@@ -1,0 +1,54 @@
+/* Backgrounds — colour, gradients, images, size & position */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+.row {
+  display: flex;
+  gap: 16px;
+  flex-wrap: wrap;
+  margin: 16px 0;
+}
+
+.card {
+  flex: 1;
+  min-width: 180px;
+  border-radius: 10px;
+  padding: 16px;
+  color: #fff;
+}
+
+.card h2 { margin: 0 0 6px; font-size: 16px; }
+.card p  { margin: 0; font-size: 13px; opacity: 0.92; }
+
+/* a flat background colour */
+.color { background-color: #185fa5; }
+
+/* a linear gradient (top → bottom by default) */
+.gradient {
+  background-image: linear-gradient(to bottom right, #185fa5, #3d7bd9);
+}
+
+/* a radial gradient (centre → outward) */
+.radial {
+  background-image: radial-gradient(circle at 30% 30%, #3d7bd9, #0e3f8c);
+}
+
+/* background image, tiled and positioned */
+.hero {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='4' fill='%23185fa5'/%3E%3C/svg%3E");
+  background-repeat: repeat;          /* tile the image */
+  background-position: center;        /* where the tiling starts */
+  background-color: #eef3fb;          /* colour behind the image */
+  border-radius: 10px;
+  padding: 20px;
+  margin-top: 16px;
+}
+
+.hero h2 { margin: 0 0 6px; color: #0e3f8c; }
+.hero p  { margin: 0; color: #4a5568; font-size: 13px; }

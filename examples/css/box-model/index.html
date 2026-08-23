@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Box model</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>The box model</h1>
+  <p>Every element is a box with four layers — hover the boxes to inspect them.</p>
+
+  <!-- content-box (default): width = content only -->
+  <div class="box content-box">
+    <span class="tag">content-box</span>
+    <code>width: 200px</code> = the content only. Padding and border are added on top.
+  </div>
+
+  <!-- border-box: width includes padding + border -->
+  <div class="box border-box">
+    <span class="tag">border-box</span>
+    <code>width: 200px</code> = content + padding + border. Easier to reason about.
+  </div>
+
+  <div class="layers">
+    <div class="layer layer-margin">margin</div>
+    <div class="layer layer-border">border</div>
+    <div class="layer layer-padding">padding</div>
+    <div class="layer layer-content">content</div>
+  </div>
+</body>
+</html>

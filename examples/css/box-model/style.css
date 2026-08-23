@@ -1,0 +1,57 @@
+/* Box model — content, padding, border, margin, box-sizing */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+/* A generic box to compare the two box-sizing modes */
+.box {
+  width: 200px;              /* the width property */
+  margin: 20px 0;            /* space OUTSIDE the border */
+  padding: 16px;             /* space between content and border */
+  border: 8px solid #185fa5; /* the border itself */
+  background: #eef3fb;
+  font-size: 13px;
+  line-height: 1.4;
+}
+
+/* Default: width applies to the CONTENT only.
+   Total width = 200 + 16*2 + 8*2 = 248px */
+.content-box {
+  box-sizing: content-box;
+}
+
+/* width now includes padding and border.
+   Total width = exactly 200px */
+.border-box {
+  box-sizing: border-box;
+}
+
+.tag {
+  display: block;
+  font-weight: bold;
+  color: #185fa5;
+  margin-bottom: 4px;
+}
+
+/* A visual, nested illustration of the four layers */
+.layers {
+  width: 240px;
+  margin-top: 28px;
+}
+
+.layer {
+  text-align: center;
+  font-size: 13px;
+  padding: 8px;
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+}
+
+.layer-margin  { background: #ffe9b3; padding: 18px; }
+.layer-border  { background: #9dc0ee; }
+.layer-padding { background: #b9cdee; }
+.layer-content { background: #ffffff; }

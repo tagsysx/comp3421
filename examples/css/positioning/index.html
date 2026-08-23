@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Positioning</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Positioning</h1>
+
+  <div class="panel">
+    <h2>relative</h2>
+    <p>Moved <code>20px</code> down and right, but still takes its original space.</p>
+    <div class="box static">static</div>
+    <div class="box relative">relative</div>
+  </div>
+
+  <div class="panel">
+    <h2>absolute</h2>
+    <p>The red box is positioned <code>top: 0; right: 0</code> relative to this (relatively-positioned) panel.</p>
+    <div class="box absolute">absolute</div>
+  </div>
+
+  <div class="panel">
+    <h2>fixed</h2>
+    <p>The badge below is fixed to the viewport — scroll and it stays put.</p>
+    <div class="box fixed">fixed</div>
+  </div>
+
+  <div class="panel tall">
+    <h2>sticky</h2>
+    <p>Scroll inside this panel — the heading sticks to the top while you scroll.</p>
+    <div class="sticky-head">sticky — sticks while scrolling</div>
+    <p>Lots of filler text to scroll through…</p>
+    <p>Keep scrolling and the sticky bar holds its place.</p>
+    <p>Once you scroll past its container, it lets go.</p>
+  </div>
+</body>
+</html>
