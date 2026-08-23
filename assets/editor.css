@@ -9,7 +9,7 @@
   --accent-soft: #e6f1fb;
   --tab-active: #ffffff;
   --tab-inactive: #eceff3;
-  --code-bg: #ffffff;
+  --code-bg: #23272e;
 }
 * { box-sizing: border-box; }
 html, body {
@@ -82,6 +82,8 @@ body.dragging .preview-frame { pointer-events: none; }
 /* editor host */
 .editor-host { flex: 1; overflow: hidden; background: var(--code-bg); }
 .editor-host .cm-editor { height: 100%; }
+.editor-host .cm-editor { background: #23272e; color: #abb2bf; }
+.editor-host .cm-editor .cm-gutters { background: #23272e; color: #7f8c98; border: none; }
 .editor-host .cm-editor.cm-focused { outline: none; }
 .editor-host .cm-scroller { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 14px; line-height: 1.55; }
 
