@@ -146,6 +146,43 @@
   autoToggle.checked = state.auto;
   autoToggle.onchange = () => { state.auto = autoToggle.checked; };
 
+  // resizable preview pane — drag the divider to show relative width (%, vw, …)
+  (function () {
+    const split = document.querySelector('.split');
+    const divider = $('#divider');
+    const preview = document.querySelector('.pane.preview');
+    const sizeEl = $('#preview-size');
+
+    function clamp(w) {
+      const min = 120;
+      const max = split.clientWidth - divider.clientWidth - 200; // keep 200px editor
+      return Math.max(min, Math.min(max, w));
+    }
+    function setWidth(w) {
+      const px = clamp(w);
+      preview.style.width = px + 'px';
+      preview.style.flex = '0 0 auto';
+      if (sizeEl) sizeEl.textContent = Math.round(px) + 'px';
+    }
+    // start at 50/50
+    setWidth((split.clientWidth - divider.clientWidth) / 2);
+
+    let dragging = false;
+    divider.addEventListener('mousedown', (e) => {
+      dragging = true;
+      document.body.classList.add('dragging');
+      e.preventDefault();
+    });
+    window.addEventListener('mousemove', (e) => {
+      if (!dragging) return;
+      const rect = split.getBoundingClientRect();
+      setWidth(rect.right - e.clientX);
+    });
+    window.addEventListener('mouseup', () => {
+      if (dragging) { dragging = false; document.body.classList.remove('dragging'); }
+    });
+  })();
+
   load().catch((err) => {
     document.body.innerHTML = '<p style="padding:20px">Error loading example: ' + err.message +
       '<br><a href="index.html">← back to index</a></p>';

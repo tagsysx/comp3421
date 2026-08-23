@@ -41,8 +41,28 @@ a { color: var(--accent); text-decoration: none; }
 body { display: flex; flex-direction: column; }
 .split { display: flex; flex: 1 1 auto; height: calc(100vh - 49px); }
 .pane { min-width: 0; display: flex; flex-direction: column; }
-.pane.editor { flex: 1 1 50%; border-right: 1px solid var(--border); }
-.pane.preview { flex: 1 1 50%; }
+.pane.editor { flex: 1 1 0; min-width: 200px; }
+.pane.preview { flex: 0 0 auto; width: 50%; min-width: 120px; }
+.divider {
+  flex: 0 0 8px; width: 8px;
+  cursor: col-resize;
+  background: var(--border);
+  position: relative;
+  transition: background .15s;
+}
+.divider::after {
+  content: ''; position: absolute; top: 50%; left: 50%;
+  transform: translate(-50%, -50%);
+  width: 3px; height: 34px; border-radius: 2px;
+  background: #b6bdc6;
+}
+.divider:hover, body.dragging .divider { background: var(--accent-soft); }
+.divider:hover::after, body.dragging .divider::after { background: var(--accent); }
+body.dragging { cursor: col-resize; user-select: none; }
+.pane-title .size {
+  color: var(--accent); font-weight: 600;
+  font-variant-numeric: tabular-nums;
+}
 .pane-title {
   font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em;
   padding: 6px 12px; border-bottom: 1px solid var(--border); background: var(--panel);
