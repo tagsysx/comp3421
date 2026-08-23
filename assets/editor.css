@@ -38,7 +38,8 @@ a { color: var(--accent); text-decoration: none; }
 .topbar label { font-size: 13px; color: var(--muted); display: flex; align-items: center; gap: 5px; cursor: pointer; }
 
 /* split layout */
-.split { display: flex; height: calc(100vh - 49px); }
+body { display: flex; flex-direction: column; }
+.split { display: flex; flex: 1 1 auto; height: calc(100vh - 49px); }
 .pane { min-width: 0; display: flex; flex-direction: column; }
 .pane.editor { flex: 1 1 50%; border-right: 1px solid var(--border); }
 .pane.preview { flex: 1 1 50%; }
@@ -80,3 +81,20 @@ a { color: var(--accent); text-decoration: none; }
 .card:hover { border-color: var(--accent); box-shadow: 0 1px 6px rgba(0,0,0,.06); }
 .card .name { font-weight: 600; font-size: 14px; }
 .card .desc { color: var(--muted); font-size: 12px; margin-top: 4px; }
+
+/* site footer */
+.site-footer {
+  border-top: 1px solid var(--border);
+  background: var(--panel);
+  color: var(--muted);
+  font-size: 12.5px;
+  padding: 14px 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  flex-wrap: wrap;
+  text-align: center;
+}
+.site-footer a { color: var(--accent); font-weight: 500; }
+.site-footer .sep { opacity: .4; }
