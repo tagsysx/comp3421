@@ -3,20 +3,25 @@
 <head>
   <meta charset="utf-8" />
   <title>Font properties</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1 class="serif">A serif heading</h1>
-  <h2 class="sans">A sans-serif subheading</h2>
+  <h1 style="font-family: Georgia, 'Times New Roman', serif; color: #185fa5;">
+    Serif heading — <code>font-family: Georgia, serif;</code>
+  </h1>
+  <h2 style="font-family: Arial, Helvetica, sans-serif;">
+    Sans-serif subheading — <code>font-family: Arial, sans-serif;</code>
+  </h2>
 
-  <p class="big">This paragraph is big — <code>font-size: 20px</code>.</p>
-  <p class="em">This paragraph uses <code>em</code> — <code>font-size: 1.5em</code>.</p>
+  <p style="font-size: 20px;">Big — <code>font-size: 20px;</code></p>
+  <p style="font-size: 1.5em;">Relative — <code>font-size: 1.5em;</code></p>
 
-  <p class="italic">Italic text.</p>
-  <p class="bold">Bold text.</p>
-  <p class="weight">A numeric weight (<code>font-weight: 300</code>).</p>
-  <p class="caps">Small-caps text.</p>
+  <p style="font-style: italic;">Italic — <code>font-style: italic;</code></p>
+  <p style="font-weight: bold;">Bold — <code>font-weight: bold;</code></p>
+  <p style="font-weight: 300;">Light weight — <code>font-weight: 300;</code></p>
+  <p style="font-variant: small-caps;">Small-caps — <code>font-variant: small-caps;</code></p>
 
-  <p class="short">This line uses the <code>font</code> shorthand.</p>
+  <p style="font: italic bold 16px Georgia, serif;">
+    Shorthand — <code>font: italic bold 16px Georgia, serif;</code>
+  </p>
 </body>
 </html>

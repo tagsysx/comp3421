@@ -18,16 +18,38 @@
       ]
     },
     {
-      "id": "css",
-      "name": "CSS",
-      "desc": "Layout & styling",
+      "id": "css-styling",
+      "name": "CSS Styling",
+      "desc": "The style attribute — colour, length, text & font (inline)",
       "examples": [
-        { "id": "hello", "name": "First stylesheet", "desc": "Link style.css and style headings, paragraphs, lists", "files": ["index.html", "style.css"] },
-        { "id": "selectors", "name": "Selectors", "desc": "Element, class, id, combinators and pseudo-classes", "files": ["index.html", "style.css"] },
-        { "id": "cascade", "name": "Cascade & specificity", "desc": "Which rule wins, inheritance and !important", "files": ["index.html", "style.css"] },
-        { "id": "colors-units", "name": "Colours & units", "desc": "Named, hex, rgb/rgba, hsl and px/%/em/rem/vh", "files": ["index.html", "style.css"] },
-        { "id": "text", "name": "Text properties", "desc": "align, decoration, transform, indent, letter/word/line spacing", "files": ["index.html", "style.css"] },
-        { "id": "font", "name": "Font properties", "desc": "family, size, style, weight, variant and the font shorthand", "files": ["index.html", "style.css"] },
+        { "id": "colors", "name": "Colours", "desc": "Named, hex, rgb/rgba, hsl — inline style only", "files": ["index.html"] },
+        { "id": "length-units", "name": "Length units", "desc": "px, em, rem, %, vw, vh — inline style only", "files": ["index.html"] },
+        { "id": "text", "name": "Text properties", "desc": "align, decoration, transform, indent, spacing — inline style only", "files": ["index.html"] },
+        { "id": "font", "name": "Font properties", "desc": "family, size, style, weight, variant, shorthand — inline style only", "files": ["index.html"] }
+      ]
+    },
+    {
+      "id": "css-selectors",
+      "name": "CSS Selectors",
+      "desc": "External stylesheets & selectors",
+      "examples": [
+        { "id": "hello", "name": "First stylesheet", "desc": "Link style.css and style with element selectors", "files": ["index.html", "style.css"] },
+        { "id": "selectors", "name": "Selectors", "desc": "Element, class, id, combinators and pseudo-classes", "files": ["index.html", "style.css"] }
+      ]
+    },
+    {
+      "id": "css-cascade",
+      "name": "CSS Cascade",
+      "desc": "Specificity & inheritance",
+      "examples": [
+        { "id": "cascade", "name": "Cascade & specificity", "desc": "Which rule wins, inheritance and !important", "files": ["index.html", "style.css"] }
+      ]
+    },
+    {
+      "id": "css-layout",
+      "name": "CSS Layout",
+      "desc": "Box model, positioning & responsive design",
+      "examples": [
         { "id": "box-model", "name": "Box model", "desc": "Content, padding, border, margin and box-sizing", "files": ["index.html", "style.css"] },
         { "id": "positioning", "name": "Positioning", "desc": "static, relative, absolute, fixed and sticky", "files": ["index.html", "style.css"] },
         { "id": "backgrounds", "name": "Backgrounds", "desc": "Colours, gradients, images, size and position", "files": ["index.html", "style.css"] },
