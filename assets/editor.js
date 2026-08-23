@@ -37,7 +37,7 @@
       parent: $('#editor-host'),
       state: CM.EditorState.create({
         doc: content,
-        extensions: [CM.basicSetup, lang, CM.EditorView.updateListener.of(onUpdate)]
+        extensions: [CM.basicSetup, CM.EditorView.lineWrapping, lang, CM.EditorView.updateListener.of(onUpdate)]
       })
     });
   }
@@ -108,7 +108,7 @@
     const content = state.files[filename];
     state.view.setState(CM.EditorState.create({
       doc: content,
-      extensions: [CM.basicSetup, langFor(filename) || [], CM.EditorView.updateListener.of(onUpdate)]
+      extensions: [CM.basicSetup, CM.EditorView.lineWrapping, langFor(filename) || [], CM.EditorView.updateListener.of(onUpdate)]
     }));
     renderTabs();
     renderPreview();
