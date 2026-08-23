@@ -1,0 +1,34 @@
+/* Cascade — specificity, inheritance and !important */
+
+/* (0,0,1) element — weakest */
+p {
+  color: black;
+}
+
+/* (0,1,0) class — beats the element selector */
+.note {
+  color: #185fa5;
+}
+
+/* (1,0,0) id — beats the class; #intro wins the colour */
+#intro {
+  color: #d9534f;
+}
+
+/* Inheritance — properties like color and font-family flow down */
+.parent {
+  color: #0e3f8c;
+  font-family: Georgia, serif;
+  margin: 24px;
+  border: 2px solid #185fa5;
+  padding: 12px;
+}
+
+/* The child inherits color/font-family, but margin/border/padding
+   belong only to .parent itself. */
+
+/* Uncomment to override every rule above — avoid this in practice:
+#intro {
+  color: green !important;
+}
+*/

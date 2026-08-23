@@ -1,0 +1,47 @@
+/* Selectors — element, class, id, combinators and pseudo-classes */
+
+/* element selector — every <p> */
+p {
+  color: #333;
+}
+
+/* class selector — elements with class="intro" */
+.intro {
+  font-size: 20px;
+  color: #185fa5;
+}
+
+/* id selector — the element with id="site-header" */
+#site-header {
+  background: #185fa5;
+  color: #fff;
+  padding: 12px 16px;
+}
+
+/* descendant combinator — any <a> inside <ul class="menu"> */
+.menu a {
+  color: #185fa5;
+  text-decoration: none;
+}
+
+/* child combinator — <p> that is a DIRECT child of <section> */
+section > p {
+  font-weight: bold;
+  color: #0e3f8c;
+}
+
+/* adjacent sibling — <p> that follows <h2> */
+h2 + p {
+  color: #b26a00;
+}
+
+/* pseudo-class — hover state */
+.menu a:hover {
+  color: #d9534f;
+  text-decoration: underline;
+}
+
+/* pseudo-class — nth-child (every 2nd list item) */
+.menu li:nth-child(2n) {
+  background: #eef3fb;
+}

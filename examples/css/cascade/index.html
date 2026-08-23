@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Cascade &amp; specificity</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>The cascade</h1>
+
+  <p class="note" id="intro">Three rules target me — element, class and id.
+     The <em>most specific</em> one wins.</p>
+
+  <div class="parent">
+    <p class="child">I inherit <code>color</code> and <code>font-family</code>
+       from my parent, but not <code>margin</code> or <code>border</code>.</p>
+  </div>
+
+  <p class="plain">Open <code>style.css</code> and uncomment the
+     <code>!important</code> rule to see it override everything.</p>
+</body>
+</html>

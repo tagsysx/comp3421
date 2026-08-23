@@ -21,6 +21,10 @@
       "name": "CSS",
       "desc": "Layout & styling",
       "examples": [
+        { "id": "hello", "name": "First stylesheet", "desc": "Link style.css and style headings, paragraphs, lists", "files": ["index.html", "style.css"] },
+        { "id": "selectors", "name": "Selectors", "desc": "Element, class, id, combinators and pseudo-classes", "files": ["index.html", "style.css"] },
+        { "id": "cascade", "name": "Cascade & specificity", "desc": "Which rule wins, inheritance and !important", "files": ["index.html", "style.css"] },
+        { "id": "colors-units", "name": "Colours & units", "desc": "Named, hex, rgb/rgba, hsl and px/%/em/rem/vh", "files": ["index.html", "style.css"] },
         { "id": "flexbox", "name": "Flexbox layout", "desc": "HTML + CSS: rows and columns with flex", "files": ["index.html", "style.css"] },
         { "id": "card", "name": "Interactive card", "desc": "HTML + CSS + JS together", "files": ["index.html", "style.css", "script.js"] }
       ]

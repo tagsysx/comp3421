@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Selectors</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <header id="site-header">
+    <h1>Selectors in action</h1>
+  </header>
+
+  <nav>
+    <ul class="menu">
+      <li><a href="#">Home</a></li>
+      <li><a href="#">About</a></li>
+      <li><a href="#">Contact</a></li>
+    </ul>
+  </nav>
+
+  <main>
+    <p class="intro">This paragraph has <code>class="intro"</code>.</p>
+    <p>This paragraph has no class — it gets the plain <code>p</code> style.</p>
+
+    <section>
+      <h2>Direct children</h2>
+      <p><code>section &gt; p</code> styles only the paragraphs that are direct children.</p>
+      <div>
+        <p>This paragraph is nested inside a div, so it is <em>not</em> a direct child of section.</p>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <p>Hover the links above to see the <code>:hover</code> pseudo-class.</p>
+  </footer>
+</body>
+</html>

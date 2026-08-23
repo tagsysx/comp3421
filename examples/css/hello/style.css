@@ -1,0 +1,20 @@
+/* First stylesheet — one rule = a selector + declarations */
+
+h1 {
+  color: #185fa5;      /* property: value; */
+  font-family: sans-serif;
+}
+
+p {
+  font-size: 18px;
+  color: #333;
+}
+
+body {
+  font-family: system-ui, sans-serif;
+  line-height: 1.5;
+}
+
+li {
+  color: #185fa5;
+}
