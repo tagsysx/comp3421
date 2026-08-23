@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>COMP3421 · Code Examples</title>
+  <link rel="stylesheet" href="assets/editor.css" />
+</head>
+<body>
+  <div class="topbar">
+    <span class="brand">COMP3421 · Web Application Design and Development</span>
+    <span class="spacer"></span>
+    <span class="crumb">Code examples</span>
+  </div>
+
+  <div class="gallery">
+    <h1>Code examples</h1>
+    <p class="sub">Each card opens in the live editor — edit the source on the left, see the result on the right.</p>
+    <div id="cats"></div>
+  </div>
+
+  <script>
+    (function () {
+      const catsEl = document.getElementById('cats');
+      fetch('examples/manifest.json')
+        .then((r) => r.json())
+        .then((manifest) => {
+          catsEl.innerHTML = '';
+          manifest.categories.forEach((cat) => {
+            const sec = document.createElement('div');
+            sec.className = 'cat';
+            const h = document.createElement('h2');
+            h.textContent = cat.name + (cat.desc ? ' — ' + cat.desc : '');
+            sec.appendChild(h);
+            const grid = document.createElement('div');
+            grid.className = 'grid';
+            cat.examples.forEach((ex) => {
+              const a = document.createElement('a');
+              a.className = 'card';
+              a.href = 'editor.html?example=' + encodeURIComponent(cat.id + '/' + ex.id);
+              const name = document.createElement('div');
+              name.className = 'name';
+              name.textContent = ex.name;
+              const desc = document.createElement('div');
+              desc.className = 'desc';
+              desc.textContent = ex.desc || '';
+              a.appendChild(name);
+              a.appendChild(desc);
+              grid.appendChild(a);
+            });
+            sec.appendChild(grid);
+            catsEl.appendChild(sec);
+          });
+        })
+        .catch((err) => { catsEl.innerHTML = '<p>Failed to load examples: ' + err.message + '</p>'; });
+    })();
+  </script>
+</body>
+</html>

@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Block vs inline</title>
+</head>
+<body>
+  <h1>Block vs inline elements</h1>
+
+  <!-- Block elements start on a new line and take full width -->
+  <div style="background:#e8eff8">This is a <code>&lt;div&gt;</code> — a block element.</div>
+  <p style="background:#e8eff8">This is a <code>&lt;p&gt;</code> — also a block element.</p>
+
+  <!-- Inline elements flow within the text -->
+  <p>
+    This sentence contains
+    <span style="color:#1e4fa8">a <code>&lt;span&gt;</code></span>,
+    <a href="#">a link</a>,
+    <strong>strong text</strong>, and
+    <em>emphasised text</em> — all inline.
+  </p>
+
+  <!-- Inline cannot contain block -->
+  <!-- WRONG: <span><div>…</div></span> — a div cannot live inside a span -->
+  <p><code>&lt;span&gt;</code> must only contain inline content, never a block.</p>
+</body>
+</html>

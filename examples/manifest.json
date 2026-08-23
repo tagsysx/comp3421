@@ -1,0 +1,37 @@
+{
+  "categories": [
+    {
+      "id": "html",
+      "name": "HTML",
+      "desc": "Structure & semantics",
+      "examples": [
+        { "id": "hello", "name": "Hello world", "desc": "Minimal page: headings, paragraphs, lists, links", "files": ["index.html"] },
+        { "id": "text", "name": "Text elements", "desc": "Headings h1–h6, strong/em, br/hr, blockquote", "files": ["index.html"] },
+        { "id": "links", "name": "Links & images", "desc": "Absolute/relative URLs, anchors, target, img + alt", "files": ["index.html"] },
+        { "id": "lists", "name": "Lists & tables", "desc": "ul, ol, nested lists, table with th/td", "files": ["index.html"] },
+        { "id": "block-inline", "name": "Block vs inline", "desc": "div vs span — block and inline elements", "files": ["index.html"] },
+        { "id": "semantic", "name": "Semantic page", "desc": "header, nav, main, article, section, aside, footer", "files": ["index.html"] },
+        { "id": "form", "name": "Form controls", "desc": "Inputs, labels, selects, checkboxes, buttons", "files": ["index.html"] },
+        { "id": "inputs", "name": "All input types", "desc": "text, password, email, number, date, checkbox, radio, file, color, range, select, textarea", "files": ["index.html"] },
+        { "id": "svg", "name": "SVG shapes", "desc": "rect, circle, line, ellipse, path — vector graphics", "files": ["index.html"] }
+      ]
+    },
+    {
+      "id": "css",
+      "name": "CSS",
+      "desc": "Layout & styling",
+      "examples": [
+        { "id": "flexbox", "name": "Flexbox layout", "desc": "HTML + CSS: rows and columns with flex", "files": ["index.html", "style.css"] },
+        { "id": "card", "name": "Interactive card", "desc": "HTML + CSS + JS together", "files": ["index.html", "style.css", "script.js"] }
+      ]
+    },
+    {
+      "id": "js",
+      "name": "JavaScript",
+      "desc": "Behaviour",
+      "examples": [
+        { "id": "counter", "name": "Click counter", "desc": "DOM + events: buttons that update the page", "files": ["index.html", "script.js"] }
+      ]
+    }
+  ]
+}

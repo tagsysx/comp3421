@@ -1,0 +1,16 @@
+.row {
+  display: flex;
+  gap: 12px;
+}
+.box {
+  flex: 1;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  font-weight: bold;
+  color: #fff;
+  background: #185fa5;
+  border-radius: 10px;
+}

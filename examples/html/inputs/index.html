@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Input types</title>
+</head>
+<body>
+  <h1>Input types</h1>
+  <form>
+    <!-- text -->
+    <label>Text: <input type="text" name="username" placeholder="Your name" /></label><br /><br />
+
+    <!-- password -->
+    <label>Password: <input type="password" name="pw" /></label><br /><br />
+
+    <!-- email: browser checks the format -->
+    <label>Email: <input type="email" name="email" placeholder="you@polyu.edu.hk" /></label><br /><br />
+
+    <!-- number: min/max -->
+    <label>Number: <input type="number" name="age" min="0" max="120" /></label><br /><br />
+
+    <!-- date: a calendar picker -->
+    <label>Date: <input type="date" name="birthday" /></label><br /><br />
+
+    <!-- checkbox: multiple choices -->
+    <label><input type="checkbox" name="agree" checked /> I agree</label><br /><br />
+
+    <!-- radio: mutually exclusive -->
+    <label><input type="radio" name="year" value="1" /> Year 1</label>
+    <label><input type="radio" name="year" value="2" /> Year 2</label><br /><br />
+
+    <!-- file -->
+    <label>File: <input type="file" name="photo" /></label><br /><br />
+
+    <!-- color / range -->
+    <label>Colour: <input type="color" name="fav" /></label>
+    <label>Volume: <input type="range" name="vol" min="0" max="10" /></label><br /><br />
+
+    <!-- select: a dropdown -->
+    <label>Department:
+      <select name="dept">
+        <option>COMP</option>
+        <option>EIE</option>
+        <option>AMA</option>
+      </select>
+    </label><br /><br />
+
+    <!-- textarea: multi-line -->
+    <label>Message:<br />
+      <textarea name="msg" rows="4" cols="30"></textarea>
+    </label><br /><br />
+
+    <button type="submit">Submit</button>
+  </form>
+</body>
+</html>

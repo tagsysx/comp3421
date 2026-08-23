@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>SVG shapes</title>
+</head>
+<body>
+  <h1>SVG shapes</h1>
+
+  <!-- A rectangle -->
+  <svg width="200" height="120">
+    <rect x="10" y="10" width="80" height="50" fill="#1E4FA8" />
+  </svg>
+
+  <!-- A circle -->
+  <svg width="120" height="120">
+    <circle cx="60" cy="60" r="40" fill="#3D7BD9" />
+  </svg>
+
+  <!-- A line -->
+  <svg width="120" height="120">
+    <line x1="10" y1="10" x2="110" y2="110" stroke="#0E3F8C" stroke-width="4" />
+  </svg>
+
+  <!-- An ellipse -->
+  <svg width="160" height="120">
+    <ellipse cx="80" cy="60" rx="60" ry="30" fill="#1E4FA8" />
+  </svg>
+
+  <!-- A path: move, line, close -->
+  <svg width="120" height="120" viewBox="0 0 100 100">
+    <path d="M10 10 L90 10 L50 90 Z" fill="#FFC107" />
+  </svg>
+
+  <!-- Scaled up 3x — SVG stays crisp (vector, not pixels) -->
+  <svg width="120" height="120">
+    <circle cx="60" cy="60" r="40" fill="none" stroke="#D9534F" stroke-width="8" />
+  </svg>
+</body>
+</html>

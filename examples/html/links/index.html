@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Links &amp; images</title>
+</head>
+<body>
+  <h1>Links and images</h1>
+
+  <!-- A link to an absolute URL -->
+  <p>Visit <a href="https://www.polyu.edu.hk">PolyU</a> (absolute URL).</p>
+
+  <!-- Relative links (same folder, parent folder) -->
+  <p><a href="index.html">This page</a> (relative, same folder).</p>
+  <p><a href="../hello/index.html">Hello example</a> (relative, parent folder).</p>
+
+  <!-- Open in a new tab -->
+  <p><a href="https://www.polyu.edu.hk" target="_blank">PolyU in a new tab</a>.</p>
+
+  <!-- Link to a section on the same page (anchor) -->
+  <p><a href="#bottom">Jump to the bottom</a>.</p>
+
+  <!-- An image: src + alt (void element) -->
+  <img src="https://www.polyu.edu.hk/etc/designs/polyu/img/polyu_logo.png"
+       alt="PolyU logo" width="180" />
+
+  <!-- width/height prevent layout shift while the image loads -->
+  <p id="bottom">The image above has an <code>alt</code> attribute — screen readers read it.</p>
+</body>
+</html>
