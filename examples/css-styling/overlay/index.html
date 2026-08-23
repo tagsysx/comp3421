@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Overlays</title>
+</head>
+<body>
+  <h1 style="color: #185fa5;">Overlays — semi-transparent layers</h1>
+
+  <!-- Caption overlay: text over a "photo", on a translucent strip -->
+  <div style="position: relative; width: 360px; height: 200px;
+              background: linear-gradient(135deg, #9dc0ee, #185fa5);
+              border-radius: 8px; overflow: hidden;">
+    <div style="position: absolute; left: 0; right: 0; bottom: 0;
+                background: rgba(0, 0, 0, 0.55); color: #fff; padding: 10px 14px;">
+      A caption over the image — <code>background: rgba(0,0,0,0.55)</code>
+    </div>
+  </div>
+
+  <!-- Scrim overlay: a dark tint dimming everything underneath -->
+  <div style="position: relative; width: 360px; height: 150px;
+              background: #3d7bd9; border-radius: 8px; margin-top: 16px; overflow: hidden;">
+    <p style="color: #fff; padding: 16px; margin: 0;">Some content that is about to be dimmed…</p>
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(0, 0, 0, 0.45); color: #fff;
+                display: flex; align-items: center; justify-content: center;">
+      A dark scrim overlay
+    </div>
+  </div>
+
+  <!-- Lighter tint: just to show alpha changes the strength -->
+  <div style="position: relative; width: 360px; height: 90px;
+              background: #185fa5; border-radius: 8px; margin-top: 16px; overflow: hidden;">
+    <div style="position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+                background: rgba(255, 255, 255, 0.25); color: #fff;
+                display: flex; align-items: center; justify-content: center;">
+      A light white tint — <code>rgba(255,255,255,0.25)</code>
+    </div>
+  </div>
+</body>
+</html>

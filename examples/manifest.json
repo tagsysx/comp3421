@@ -23,6 +23,7 @@
       "desc": "The style attribute — colour, length, text & font (inline)",
       "examples": [
         { "id": "colors", "name": "Colours", "desc": "Named, hex, rgb/rgba, hsl — inline style only", "files": ["index.html"] },
+        { "id": "overlay", "name": "Overlays", "desc": "Semi-transparent layers: caption & scrim with rgba", "files": ["index.html"] },
         { "id": "length-units", "name": "Length units", "desc": "px, em, rem, %, vw, vh — inline style only", "files": ["index.html"] },
         { "id": "text", "name": "Text properties", "desc": "align, decoration, transform, indent, spacing — inline style only", "files": ["index.html"] },
         { "id": "font", "name": "Font properties", "desc": "family, size, style, weight, variant, shorthand — inline style only", "files": ["index.html"] }
