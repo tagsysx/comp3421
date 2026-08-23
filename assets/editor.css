@@ -59,6 +59,7 @@ body { display: flex; flex-direction: column; }
 .divider:hover, body.dragging .divider { background: var(--accent-soft); }
 .divider:hover::after, body.dragging .divider::after { background: var(--accent); }
 body.dragging { cursor: col-resize; user-select: none; }
+body.dragging .preview-frame { pointer-events: none; }
 .pane-title .size {
   color: var(--accent); font-weight: 600;
   font-variant-numeric: tabular-nums;

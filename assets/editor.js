@@ -153,33 +153,49 @@
     const preview = document.querySelector('.pane.preview');
     const sizeEl = $('#preview-size');
 
+    const MIN_PREVIEW = 120;
+    const MIN_EDITOR = 200;
+    let splitRect = null;
+    let raf = null;
+    let dragging = false;
+
     function clamp(w) {
-      const min = 120;
-      const max = split.clientWidth - divider.clientWidth - 200; // keep 200px editor
-      return Math.max(min, Math.min(max, w));
+      const max = splitRect.width - divider.clientWidth - MIN_EDITOR;
+      return Math.max(MIN_PREVIEW, Math.min(max, w));
     }
-    function setWidth(w) {
+    function apply(w) {
       const px = clamp(w);
       preview.style.width = px + 'px';
-      preview.style.flex = '0 0 auto';
       if (sizeEl) sizeEl.textContent = Math.round(px) + 'px';
     }
-    // start at 50/50
-    setWidth((split.clientWidth - divider.clientWidth) / 2);
+    function init() {
+      splitRect = split.getBoundingClientRect();
+      apply((splitRect.width - divider.clientWidth) / 2);
+    }
 
-    let dragging = false;
     divider.addEventListener('mousedown', (e) => {
       dragging = true;
+      splitRect = split.getBoundingClientRect(); // cache once per drag
       document.body.classList.add('dragging');
       e.preventDefault();
     });
     window.addEventListener('mousemove', (e) => {
       if (!dragging) return;
-      const rect = split.getBoundingClientRect();
-      setWidth(rect.right - e.clientX);
+      if (raf) return; // one update per frame
+      raf = requestAnimationFrame(() => {
+        raf = null;
+        apply(splitRect.right - e.clientX);
+      });
     });
     window.addEventListener('mouseup', () => {
-      if (dragging) { dragging = false; document.body.classList.remove('dragging'); }
+      if (!dragging) return;
+      dragging = false;
+      document.body.classList.remove('dragging');
+    });
+
+    init();
+    window.addEventListener('resize', () => {
+      if (!dragging) init();
     });
   })();
 
