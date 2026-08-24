@@ -27,7 +27,8 @@
         { "id": "overlay", "name": "Overlays", "desc": "Semi-transparent layers: caption & scrim with rgba", "files": ["index.html"] },
         { "id": "length-units", "name": "Length units", "desc": "px, em, rem, %, vw, vh — inline style only", "files": ["index.html"] },
         { "id": "text", "name": "Text properties", "desc": "align, decoration, transform, indent, spacing — inline style only", "files": ["index.html"] },
-        { "id": "font", "name": "Font properties", "desc": "family, size, style, weight, variant, shorthand — inline style only", "files": ["index.html"] }
+        { "id": "font", "name": "Font properties", "desc": "family, size, style, weight, variant, shorthand — inline style only", "files": ["index.html"] },
+        { "id": "webfont", "name": "Web fonts", "desc": "Load a custom font from Google Fonts, then use it inline", "files": ["index.html"] }
       ]
     },
     {
