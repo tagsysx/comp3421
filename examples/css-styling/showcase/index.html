@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>What the style attribute can do</title>
+</head>
+<body style="margin: 0; min-height: 100vh; background: linear-gradient(160deg, #0e3f8c, #185fa5);
+             font-family: system-ui, sans-serif; color: #fff; text-align: center; padding: 32px 16px;">
+
+  <h1 style="font-size: 2.6rem; font-weight: 800; letter-spacing: 1px; margin: 8px 0;
+             text-shadow: 0 3px 10px rgba(0, 0, 0, 0.35);">
+    One <span style="color: #ffc107;">style</span> attribute
+  </h1>
+  <p style="font-size: 1.05rem; color: #b9cdee; letter-spacing: 0.5px; margin: 4px 0 28px;">
+    colour &middot; size &middot; text &middot; font &mdash; all written inline
+  </p>
+
+  <!-- colour: a card that cycles through the palette -->
+  <div id="card" style="width: 280px; height: 180px; margin: 0 auto; border-radius: 18px;
+              background: #1e4fa8; box-shadow: 0 12px 32px rgba(0, 0, 0, 0.35);
+              display: flex; align-items: center; justify-content: center;">
+    <span style="font-size: 1.5rem; font-weight: bold; color: #fff; text-shadow: 0 1px 4px rgba(0, 0, 0, 0.4);">
+      colour
+    </span>
+  </div>
+
+  <!-- width / unit: a bar that breathes -->
+  <div style="width: 320px; margin: 28px auto 8px; text-align: left;">
+    <p style="font-size: 0.85rem; color: #b9cdee; margin: 0 0 6px;">width &mdash; a relative unit</p>
+    <div id="bar" style="height: 16px; width: 25%; border-radius: 8px;
+                background: linear-gradient(90deg, #ffc107, #d9534f);"></div>
+  </div>
+
+  <!-- text + font: a line that shows off its own look -->
+  <p id="caption" style="font-family: Georgia, 'Times New Roman', serif; font-style: italic;
+             font-size: 1.3rem; letter-spacing: 1px; color: #ffc107; margin-top: 28px;
+             text-shadow: 0 2px 6px rgba(0, 0, 0, 0.35);">
+    watch colour and width move&hellip;
+  </p>
+
+  <script>
+    // Tiny self-contained demo — every change happens through the inline style attribute.
+    (function () {
+      const card = document.getElementById('card');
+      const bar = document.getElementById('bar');
+      const colors = ['#1e4fa8', '#3d7bd9', '#d9534f', '#ffc107', '#0e3f8c', '#7b5cd6'];
+      let ci = 0, w = 25, dir = 1;
+      setInterval(() => {
+        card.style.background = colors[ci = (ci + 1) % colors.length];  // colour
+        w += dir * 5; if (w >= 95 || w <= 10) dir *= -1;                 // width
+        bar.style.width = w + '%';
+      }, 450);
+    })();
+  </script>
+</body>
+</html>

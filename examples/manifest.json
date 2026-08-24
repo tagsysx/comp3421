@@ -22,6 +22,7 @@
       "name": "CSS Styling",
       "desc": "The style attribute — colour, length, text & font (inline)",
       "examples": [
+        { "id": "showcase", "name": "What style can do", "desc": "A lively intro: colour, width, text & font — all inline", "files": ["index.html"] },
         { "id": "colors", "name": "Colours", "desc": "Named, hex, rgb/rgba, hsl — inline style only", "files": ["index.html"] },
         { "id": "overlay", "name": "Overlays", "desc": "Semi-transparent layers: caption & scrim with rgba", "files": ["index.html"] },
         { "id": "length-units", "name": "Length units", "desc": "px, em, rem, %, vw, vh — inline style only", "files": ["index.html"] },
