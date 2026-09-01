@@ -14,13 +14,25 @@
 
   const state = {
     catId, exId,
-    files: {},          // filename -> content
+    files: {},          // filename -> content (editable text files)
+    images: {},         // filename -> data URL (binary assets, inlined at preview)
     activeFile: null,
     view: null,
     auto: true,
     timer: null,
     ext: { html: CM.html(), css: CM.css(), js: CM.javascript() }
   };
+
+  const IMG_EXT = /\.(jpe?g|png|gif|svg|webp|ico|avif|bmp)$/i;
+
+  function blobToDataURL(blob) {
+    return new Promise((resolve, reject) => {
+      const fr = new FileReader();
+      fr.onload = () => resolve(fr.result);
+      fr.onerror = reject;
+      fr.readAsDataURL(blob);
+    });
+  }
 
   const $ = (sel) => document.querySelector(sel);
 
@@ -57,6 +69,15 @@
   function buildSrcdoc() {
     const files = state.files;
     let html = files['index.html'] || files['index.htm'] || '';
+
+    // Inline local images (and other binary assets) as data URLs so they
+    // render inside the srcdoc iframe, where relative URLs would 404.
+    for (const [name, dataURL] of Object.entries(state.images)) {
+      const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+      const re = new RegExp("(src\\s*=\\s*[\"'])" + esc + "([\"'])", 'gi');
+      html = html.replace(re, '$1' + dataURL + '$2');
+    }
+
     const cssFiles = Object.keys(files).filter((f) => /\.css$/i.test(f));
     const jsFiles = Object.keys(files).filter((f) => /\.js$/i.test(f));
 
@@ -149,14 +170,18 @@
     $('#crumb-ex').textContent = ex.name;
     document.title = ex.name + ' · ' + cat.name + ' · COMP3421';
 
-    // load files
+    // load files — binary assets become data URLs, text files become editors
     const files = ex.files;
     for (const f of files) {
       const res = await fetch('examples/' + state.catId + '/' + state.exId + '/' + f);
-      state.files[f] = await res.text();
+      if (IMG_EXT.test(f)) {
+        state.images[f] = await blobToDataURL(await res.blob());
+      } else {
+        state.files[f] = await res.text();
+      }
     }
-    state.activeFile = files[0];
-    makeEditor(state.activeFile, state.files[state.activeFile]);
+    state.activeFile = files.find((f) => !IMG_EXT.test(f)) || files[0];
+    makeEditor(state.activeFile, state.files[state.activeFile] || '');
     renderTabs();
     renderPreview();
   }

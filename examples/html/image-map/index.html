@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Image map — clickable regions</title>
+</head>
+<body>
+  <h1>Image map</h1>
+  <p>Click the computer, the phone, or the cup of coffee — each is its own link.</p>
+
+  <!-- usemap links this image to the <map> below -->
+  <img src="workplace.jpg" alt="Workplace" usemap="#workmap" width="400" height="379" />
+
+  <!-- the map defines clickable regions with coordinates -->
+  <map name="workmap">
+    <area shape="rect"   coords="34,44,270,350"    alt="Computer"      href="#computer" />
+    <area shape="rect"   coords="290,172,333,250"  alt="Phone"         href="#phone" />
+    <area shape="circle" coords="337,300,44"       alt="Cup of coffee" href="#coffee" />
+  </map>
+
+  <!-- landing targets for each clickable region -->
+  <section id="computer"><h2>Computer</h2><p>You clicked the computer area.</p></section>
+  <section id="phone"><h2>Phone</h2><p>You clicked the phone area.</p></section>
+  <section id="coffee"><h2>Cup of coffee</h2><p>You clicked the coffee area.</p></section>
+</body>
+</html>
