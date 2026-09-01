@@ -1,0 +1,12 @@
+{
+  "name": "npm-demo",
+  "version": "1.0.0",
+  "description": "A minimal npm project for COMP3421",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "dependencies": {},
+  "devDependencies": {}
+}

@@ -1,0 +1,37 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  padding: 32px;
+}
+
+.row {
+  display: flex;
+  gap: 24px;
+  margin-top: 16px;
+}
+
+.box {
+  width: 120px;
+  height: 120px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+  color: #fff;
+  background: #185fa5;
+  border-radius: 12px;
+  transition: transform 0.3s ease;
+}
+
+.t1:hover { transform: translate(16px, -16px); }
+.t2:hover { transform: rotate(45deg); }
+.t3:hover { transform: scale(1.3); }
+.t4:hover { transform: skewX(-20deg); }
+
+/* transform-origin changes the pivot point */
+.t2 { transform-origin: bottom left; }
+
+.hint {
+  margin-top: 24px;
+  color: #555;
+}

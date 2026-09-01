@@ -1,0 +1,37 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  padding: 32px;
+}
+
+/* --- transition: a smooth change when a property changes --- */
+.btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #185fa5;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s ease, transform 0.3s ease;
+}
+
+.btn:hover {
+  background: #3d7bd9;
+  transform: translateY(-4px);
+}
+
+/* --- animation: a reusable sequence of steps --- */
+.ball {
+  width: 60px;
+  height: 60px;
+  margin-top: 16px;
+  border-radius: 50%;
+  background: #d9534f;
+  animation: bounce 1s ease-in-out infinite alternate;
+}
+
+@keyframes bounce {
+  from { transform: translateY(0); }
+  to   { transform: translateY(120px); }
+}

@@ -58,7 +58,11 @@
         { "id": "backgrounds", "name": "Backgrounds", "desc": "Colours, gradients, images, size and position", "files": ["index.html", "style.css"] },
         { "id": "responsive", "name": "Responsive design", "desc": "Viewport, fluid grid and media queries", "files": ["index.html", "style.css"] },
         { "id": "flexbox", "name": "Flexbox layout", "desc": "HTML + CSS: rows and columns with flex", "files": ["index.html", "style.css"] },
-        { "id": "card", "name": "Interactive card", "desc": "HTML + CSS + JS together", "files": ["index.html", "style.css", "script.js"] }
+        { "id": "card", "name": "Interactive card", "desc": "HTML + CSS + JS together", "files": ["index.html", "style.css", "script.js"] },
+        { "id": "transform", "name": "Transforms", "desc": "translate, rotate, scale and skew elements", "files": ["index.html", "style.css"] },
+        { "id": "animation", "name": "Transitions & animations", "desc": "transitions, @keyframes and the animation shorthand", "files": ["index.html", "style.css"] },
+        { "id": "grid", "name": "CSS Grid", "desc": "Two-dimensional layout with grid-template-columns and fr", "files": ["index.html", "style.css"] },
+        { "id": "variables", "name": "CSS variables", "desc": "Custom properties --name and var() for theming", "files": ["index.html", "style.css"] }
       ]
     },
     {
@@ -66,7 +70,30 @@
       "name": "JavaScript",
       "desc": "Behaviour",
       "examples": [
-        { "id": "counter", "name": "Click counter", "desc": "DOM + events: buttons that update the page", "files": ["index.html", "script.js"] }
+        { "id": "counter", "name": "Click counter", "desc": "DOM + events: buttons that update the page", "files": ["index.html", "script.js"] },
+        { "id": "es6", "name": "ES6+ syntax", "desc": "let/const, arrow functions, destructuring, spread, template literals", "files": ["index.html", "script.js"] },
+        { "id": "dom", "name": "DOM manipulation", "desc": "querySelector, createElement and updating the page", "files": ["index.html", "script.js"] },
+        { "id": "events", "name": "Events", "desc": "addEventListener, the event object and delegation", "files": ["index.html", "script.js"] },
+        { "id": "functions", "name": "Functions as values", "desc": "Pass, return and compose functions — higher-order functions", "files": ["index.html", "script.js"] },
+        { "id": "context", "name": "this & context", "desc": "Function context, call / apply / bind and arrow-function this", "files": ["index.html", "script.js"] },
+        { "id": "closures", "name": "Closures", "desc": "Lexical scope and private state", "files": ["index.html", "script.js"] },
+        { "id": "classes", "name": "ES6 classes", "desc": "class, constructor, extends and super", "files": ["index.html", "script.js"] },
+        { "id": "promises", "name": "Promises", "desc": "then, catch, chaining and Promise.all", "files": ["index.html", "script.js"] },
+        { "id": "async-await", "name": "async / await", "desc": "async functions and await for readable async code", "files": ["index.html", "script.js"] },
+        { "id": "fetch", "name": "Fetch API", "desc": "fetch a URL, read JSON, POST with headers", "files": ["index.html", "script.js"] }
+      ]
+    },
+    {
+      "id": "node",
+      "name": "Node.js & Express",
+      "desc": "JavaScript on the server — run with: node server.js",
+      "examples": [
+        { "id": "hello-http", "name": "Hello HTTP", "desc": "The smallest Node web server — http.createServer", "files": ["server.js", "README.md"] },
+        { "id": "http-module", "name": "http module", "desc": "Serve an HTML file with the built-in http + fs modules", "files": ["server.js", "index.html", "README.md"] },
+        { "id": "npm-demo", "name": "npm project", "desc": "package.json, local modules and npm scripts", "files": ["package.json", "greet.js", "server.js", "README.md"] },
+        { "id": "express-hello", "name": "Express hello", "desc": "The smallest Express app — a single route", "files": ["server.js", "README.md"] },
+        { "id": "express-rest", "name": "Express REST API", "desc": "CRUD routes with GET / POST / PUT / DELETE", "files": ["server.js", "README.md"] },
+        { "id": "express-db", "name": "Express + database", "desc": "A REST API persisting todos to a JSON file", "files": ["server.js", "db.json", "README.md"] }
       ]
     }
   ]

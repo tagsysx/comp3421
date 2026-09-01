@@ -83,6 +83,28 @@
   }
 
   function renderPreview() {
+    const files = state.files;
+    const hasPage = !!files['index.html'] || !!files['index.htm'];
+    if (!hasPage) {
+      // Node/Express server example — no browser page; show run instructions.
+      const cmds = [];
+      if (files['package.json']) cmds.push('npm install   # first time only');
+      if (files['server.js']) cmds.push('node server.js');
+      const names = Object.keys(files).join(', ');
+      $('#preview-frame').srcdoc = [
+        '<!DOCTYPE html><html><head><meta charset="utf-8">',
+        '<style>body{margin:0;background:#23272e;color:#d5dbe3;font-family:Menlo,Consolas,monospace;padding:28px;box-sizing:border-box;}',
+        '.tag{color:#61afef;font-size:12px;letter-spacing:1px;}h1{font-size:20px;color:#e5c07b;margin:8px 0 6px;}',
+        'p{color:#98c379;font-size:13px;line-height:1.7;margin:6px 0;}code{background:#2c313a;padding:2px 8px;border-radius:4px;color:#61afef;display:inline-block;}</style></head><body>',
+        '<div class="tag">SERVER-SIDE EXAMPLE</div>',
+        '<h1>Run this on your machine</h1>',
+        '<p>This example is a Node.js / Express server — it cannot run inside the browser preview.</p>',
+        cmds.map((c) => '<p><code>' + c + '</code></p>').join(''),
+        '<p>Files: ' + names + '</p>',
+        '</body></html>'
+      ].join('');
+      return;
+    }
     $('#preview-frame').srcdoc = buildSrcdoc();
   }
 
