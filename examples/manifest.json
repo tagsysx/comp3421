@@ -20,7 +20,7 @@
       "examples": [
         "html/hello", "html/text", "html/links", "html/lists",
         "html/block-inline", "html/semantic", "html/form", "html/inputs",
-        "html/style", "html/svg"
+        "html/style", "html/media", "html/canvas-dl", "html/svg"
       ]
     },
     {
@@ -127,6 +127,8 @@
         { "id": "form", "name": "Form controls", "desc": "Inputs, labels, selects, checkboxes, buttons", "files": ["index.html"] },
         { "id": "inputs", "name": "All input types", "desc": "text, password, email, number, date, checkbox, radio, file, color, range, select, textarea", "files": ["index.html"] },
         { "id": "style", "name": "Inline styles", "desc": "style attribute: colors, length units, text & font properties", "files": ["index.html"] },
+        { "id": "media", "name": "Audio, video & picture", "desc": "audio, video and responsive <picture> elements", "files": ["index.html"] },
+        { "id": "canvas-dl", "name": "Canvas & definition lists", "desc": "canvas surface and dl/dt/dd definition lists", "files": ["index.html"] },
         { "id": "svg", "name": "SVG shapes", "desc": "rect, circle, line, ellipse, path — vector graphics", "files": ["index.html"] }
       ]
     },
