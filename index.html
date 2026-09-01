@@ -28,34 +28,71 @@
   <script>
     (function () {
       const catsEl = document.getElementById('cats');
+
+      // Look up an example ref ("catId/exId") inside the categories list.
+      function findExample(categories, ref) {
+        const slash = ref.indexOf('/');
+        const cid = ref.slice(0, slash);
+        const eid = ref.slice(slash + 1);
+        const cat = categories.find((c) => c.id === cid);
+        if (!cat) return null;
+        return cat.examples.find((e) => e.id === eid) || null;
+      }
+
+      function makeCard(ex, ref) {
+        const a = document.createElement('a');
+        a.className = 'card';
+        a.href = 'editor.html?example=' + encodeURIComponent(ref);
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = ex.name;
+        const desc = document.createElement('div');
+        desc.className = 'desc';
+        desc.textContent = ex.desc || '';
+        a.appendChild(name);
+        a.appendChild(desc);
+        return a;
+      }
+
+      function addSection(title, examples) {
+        const sec = document.createElement('div');
+        sec.className = 'cat';
+        const h = document.createElement('h2');
+        h.textContent = title;
+        sec.appendChild(h);
+        const grid = document.createElement('div');
+        grid.className = 'grid';
+        examples.forEach((ex) => grid.appendChild(ex));
+        sec.appendChild(grid);
+        catsEl.appendChild(sec);
+      }
+
       fetch('examples/manifest.json')
         .then((r) => r.json())
         .then((manifest) => {
           catsEl.innerHTML = '';
-          manifest.categories.forEach((cat) => {
-            const sec = document.createElement('div');
-            sec.className = 'cat';
-            const h = document.createElement('h2');
-            h.textContent = cat.name + (cat.desc ? ' — ' + cat.desc : '');
-            sec.appendChild(h);
-            const grid = document.createElement('div');
-            grid.className = 'grid';
-            cat.examples.forEach((ex) => {
-              const a = document.createElement('a');
-              a.className = 'card';
-              a.href = 'editor.html?example=' + encodeURIComponent(cat.id + '/' + ex.id);
-              const name = document.createElement('div');
-              name.className = 'name';
-              name.textContent = ex.name;
-              const desc = document.createElement('div');
-              desc.className = 'desc';
-              desc.textContent = ex.desc || '';
-              a.appendChild(name);
-              a.appendChild(desc);
-              grid.appendChild(a);
+
+          // New layout: group examples by lecture.
+          if (Array.isArray(manifest.lectures) && manifest.lectures.length) {
+            manifest.lectures.forEach((lec) => {
+              const refs = lec.examples || [];
+              if (!refs.length) return; // lecture has no examples yet
+              const cards = [];
+              refs.forEach((ref) => {
+                const ex = findExample(manifest.categories, ref);
+                if (ex) cards.push(makeCard(ex, ref));
+              });
+              if (cards.length) {
+                addSection(lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
+              }
             });
-            sec.appendChild(grid);
-            catsEl.appendChild(sec);
+            return;
+          }
+
+          // Fallback: old layout, one section per category.
+          manifest.categories.forEach((cat) => {
+            const cards = cat.examples.map((ex) => makeCard(ex, cat.id + '/' + ex.id));
+            addSection(cat.name + (cat.desc ? ' — ' + cat.desc : ''), cards);
           });
         })
         .catch((err) => { catsEl.innerHTML = '<p>Failed to load examples: ' + err.message + '</p>'; });

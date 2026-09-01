@@ -1,4 +1,117 @@
 {
+  "lectures": [
+    {
+      "id": "lecture-01-overview",
+      "name": "Lecture 1 · Overview",
+      "desc": "A tour of the whole course — one taste of every pillar",
+      "examples": [
+        "html/hello", "html/form",
+        "css-selectors/hello",
+        "css-layout/flexbox", "css-layout/variables",
+        "js/es6", "js/dom", "js/fetch",
+        "node/http-module", "node/hello-http",
+        "node/express-rest", "node/express-hello", "node/express-db"
+      ]
+    },
+    {
+      "id": "lecture-02-html",
+      "name": "Lecture 2 · HTML",
+      "desc": "Elements, forms, SVG & semantics",
+      "examples": [
+        "html/hello", "html/text", "html/links", "html/lists",
+        "html/block-inline", "html/semantic", "html/form", "html/inputs",
+        "html/style", "html/svg"
+      ]
+    },
+    {
+      "id": "lecture-03-css",
+      "name": "Lecture 3 · CSS I — Styling, Selectors & Cascade",
+      "desc": "Inline styles, stylesheets, selectors, specificity",
+      "examples": [
+        "css-styling/showcase", "css-styling/colors", "css-styling/overlay",
+        "css-styling/length-units", "css-styling/text", "css-styling/font",
+        "css-styling/webfont", "css-selectors/hello", "css-selectors/selectors",
+        "css-cascade/cascade"
+      ]
+    },
+    {
+      "id": "lecture-04-css-layout",
+      "name": "Lecture 4 · CSS II — Box Model & Responsive",
+      "desc": "The box model, positioning, backgrounds, media queries",
+      "examples": [
+        "css-layout/box-model", "css-layout/positioning",
+        "css-layout/backgrounds", "css-layout/responsive"
+      ]
+    },
+    {
+      "id": "lecture-05-css-advanced",
+      "name": "Lecture 5 · CSS III — Flexbox, Grid & Motion",
+      "desc": "Flexbox, grid, transforms, animations, CSS variables",
+      "examples": [
+        "css-layout/transform", "css-layout/animation",
+        "css-layout/flexbox", "css-layout/grid",
+        "css-layout/variables", "css-layout/card"
+      ]
+    },
+    {
+      "id": "lecture-06-js-core",
+      "name": "Lecture 6 · JavaScript I — ES6 & the DOM",
+      "desc": "Variables, ES6+, the DOM and events",
+      "examples": [
+        "js/counter", "js/es6", "js/dom", "js/events"
+      ]
+    },
+    {
+      "id": "lecture-07-js-functions",
+      "name": "Lecture 7 · JavaScript II — Functions & Objects",
+      "desc": "Functions, this, closures, prototypes, classes",
+      "examples": [
+        "js/functions", "js/context", "js/closures", "js/classes"
+      ]
+    },
+    {
+      "id": "lecture-08-js-async",
+      "name": "Lecture 8 · JavaScript III — Async & Fetch",
+      "desc": "Promises, async / await and the Fetch API",
+      "examples": [
+        "js/promises", "js/async-await", "js/fetch"
+      ]
+    },
+    {
+      "id": "lecture-09-http",
+      "name": "Lecture 9 · HTTP",
+      "desc": "The protocol, URLs, methods, status codes",
+      "examples": []
+    },
+    {
+      "id": "lecture-10-node",
+      "name": "Lecture 10 · Node.js I — Runtime & HTTP",
+      "desc": "The Node runtime, npm, modules and the http module",
+      "examples": [
+        "node/hello-http", "node/http-module", "node/npm-demo"
+      ]
+    },
+    {
+      "id": "lecture-11-node-express",
+      "name": "Lecture 11 · Node.js II — Express & Data",
+      "desc": "Express, routes, REST APIs and databases",
+      "examples": [
+        "node/express-hello", "node/express-rest", "node/express-db"
+      ]
+    },
+    {
+      "id": "lecture-12-integration",
+      "name": "Lecture 12 · Full-Stack Integration",
+      "desc": "WebSocket, SPA, deployment",
+      "examples": []
+    },
+    {
+      "id": "lecture-13-performance",
+      "name": "Lecture 13 · Performance",
+      "desc": "Caching, CDN, HTTP/2 & HTTP/3",
+      "examples": []
+    }
+  ],
   "categories": [
     {
       "id": "html",
