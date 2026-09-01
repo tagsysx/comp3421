@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Media: audio, video & picture</title>
+</head>
+<body>
+  <h1>Media elements</h1>
+
+  <!-- Audio: controls + source fallback -->
+  <h2>Audio</h2>
+  <audio controls>
+    <source src="song.mp3" type="audio/mpeg" />
+    <source src="song.ogg" type="audio/ogg" />
+    Your browser does not support audio.
+  </audio>
+
+  <!-- Video: controls + width -->
+  <h2>Video</h2>
+  <video width="320" controls>
+    <source src="movie.mp4" type="video/mp4" />
+    <source src="movie.ogg" type="video/ogg" />
+    Your browser does not support video.
+  </video>
+
+  <!-- Picture: responsive images via source media queries -->
+  <h2>Picture (responsive image)</h2>
+  <picture>
+    <source media="(min-width: 650px)" srcset="large.jpg" />
+    <source media="(min-width: 465px)" srcset="medium.jpg" />
+    <img src="small.jpg" alt="A responsive image" />
+  </picture>
+</body>
+</html>
