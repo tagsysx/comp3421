@@ -259,6 +259,9 @@
           "desc": "img + usemap + map + area — clickable regions (rect & circle)",
           "files": [
             "index.html",
+            "computer.html",
+            "phone.html",
+            "coffee.html",
             "workplace.jpg"
           ]
         },
