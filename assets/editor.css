@@ -116,6 +116,16 @@ body.dragging .preview-frame { pointer-events: none; }
 .card .name { font-weight: 600; font-size: 14px; }
 .card .desc { color: var(--muted); font-size: 12px; margin-top: 4px; }
 
+/* featured intro card (Lists) — spans the full grid width */
+.card.feature {
+  grid-column: 1 / -1;
+  background: linear-gradient(180deg, var(--panel), #f4f8ff);
+  border-color: var(--accent);
+  border-left: 4px solid var(--accent);
+}
+.card.feature .name { font-size: 15px; color: var(--accent); }
+.card.feature .desc { font-size: 13px; line-height: 1.55; }
+
 /* site footer */
 .site-footer {
   border-top: 1px solid var(--border);

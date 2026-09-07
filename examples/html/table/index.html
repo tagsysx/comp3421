@@ -2,30 +2,92 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Tables</title>
+  <title>Tables — three versions</title>
   <style>
     body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
-    table { border-collapse: collapse; margin: 10px 0; }
+    section { margin: 18px 0 26px; }
+    h2 { font-size: 1.15em; }
+    table { border-collapse: collapse; margin: 8px 0; }
     th, td { border: 1px solid #9db3d5; padding: 6px 14px; text-align: left; }
-    caption { font-weight: 600; margin-bottom: 4px; }
+    th { background: #eef2f8; }
+    caption { font-weight: 600; margin-bottom: 4px; caption-side: top; }
   </style>
 </head>
 <body>
-  <h1>A table of monthly savings</h1>
+  <h1>Tables — simple, semantic, and merged cells</h1>
+  <p>Three versions of the same idea, each adding more structure:</p>
 
-  <!-- Semantic skeleton: caption, thead/tbody, merging with rowspan/colspan -->
-  <table>
-    <caption>Monthly savings (HK$)</caption>
-    <thead>
+  <!-- ============ 1. SIMPLE ============ -->
+  <section>
+    <h2>1 · Simple table</h2>
+    <p>Just rows and cells — a header row made of <code>&lt;th&gt;</code>,
+       data rows of <code>&lt;td&gt;</code>.</p>
+    <table>
+      <tr>
+        <th>Name</th>
+        <th>Mark</th>
+      </tr>
+      <tr>
+        <td>Ada</td>
+        <td>95</td>
+      </tr>
+      <tr>
+        <td>Lin</td>
+        <td>88</td>
+      </tr>
+    </table>
+  </section>
+
+  <!-- ============ 2. COMPLEX / SEMANTIC ============ -->
+  <section>
+    <h2>2 · Complex table (semantic skeleton)</h2>
+    <p><code>&lt;caption&gt;</code> titles it, <code>&lt;thead&gt;</code> /
+       <code>&lt;tbody&gt;</code> / <code>&lt;tfoot&gt;</code> label the parts —
+       the structure Week 4 will style with CSS.</p>
+    <table>
+      <caption>Monthly savings (HK$)</caption>
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Month</th>
+          <th>Saved</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td>Ada</td>
+          <td>Jan</td>
+          <td>95</td>
+        </tr>
+        <tr>
+          <td>Lin</td>
+          <td>Feb</td>
+          <td>88</td>
+        </tr>
+      </tbody>
+      <tfoot>
+        <tr>
+          <td colspan="2">Total</td>
+          <td>183</td>
+        </tr>
+      </tfoot>
+    </table>
+  </section>
+
+  <!-- ============ 3. MERGED CELLS ============ -->
+  <section>
+    <h2>3 · Merging cells — rowspan &amp; colspan</h2>
+    <p><code>rowspan="2"</code> makes a cell span two rows;
+       <code>colspan="2"</code> spans two columns.</p>
+    <table>
+      <caption>Monthly savings, merged</caption>
       <tr>
         <th>Name</th>
         <th>Month</th>
         <th>Saved</th>
       </tr>
-    </thead>
-    <tbody>
       <tr>
-        <td rowspan="2">Ada</td>   <!-- spans two rows -->
+        <td rowspan="2">Ada</td>   <!-- one cell covering two rows -->
         <td>Jan</td>
         <td>95</td>
       </tr>
@@ -34,15 +96,10 @@
         <td>88</td>
       </tr>
       <tr>
-        <td>Lin</td>
-        <td colspan="2">88 total</td>  <!-- spans two columns -->
+        <td colspan="2">Lin, Jan + Feb</td>  <!-- one cell covering two columns -->
+        <td>88</td>
       </tr>
-    </tbody>
-    <tfoot>
-      <tr>
-        <td colspan="3">Use tables for data — not for page layout.</td>
-      </tr>
-    </tfoot>
-  </table>
+    </table>
+  </section>
 </body>
 </html>

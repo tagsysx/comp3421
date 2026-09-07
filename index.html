@@ -67,6 +67,25 @@
         catsEl.appendChild(sec);
       }
 
+      // Featured entry: the Lists example gets its own highlighted intro card
+      // at the top of its lecture section (instead of a plain grid card).
+      function makeListsFeature() {
+        const a = document.createElement('a');
+        a.className = 'card feature';
+        a.href = 'editor.html?example=html/lists';
+        const name = document.createElement('div');
+        name.className = 'name';
+        name.textContent = 'Lists — an intro';
+        const desc = document.createElement('div');
+        desc.className = 'desc';
+        desc.textContent = 'Four kinds of list, four jobs: ul for bullets, ol for numbered steps, ' +
+          'nested lists for outlines and menus, and dl/dt/dd for term + description. ' +
+          'Open the live example →';
+        a.appendChild(name);
+        a.appendChild(desc);
+        return a;
+      }
+
       fetch('examples/manifest.json')
         .then((r) => r.json())
         .then((manifest) => {
@@ -79,10 +98,12 @@
               if (!refs.length) return; // lecture has no examples yet
               const cards = [];
               refs.forEach((ref) => {
+                if (ref === 'html/lists') return; // Lists gets the feature card below
                 const ex = findExample(manifest.categories, ref);
                 if (ex) cards.push(makeCard(ex, ref));
               });
-              if (cards.length) {
+              if (cards.length || refs.includes('html/lists')) {
+                if (refs.includes('html/lists')) cards.unshift(makeListsFeature());
                 addSection(lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
               }
             });
