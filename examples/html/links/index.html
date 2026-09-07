@@ -3,28 +3,101 @@
 <head>
   <meta charset="utf-8" />
   <title>Links &amp; images</title>
+  <style>
+    body {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      line-height: 1.75; max-width: 620px; margin: 0 auto;
+      padding: 20px 24px 70px; color: #23272e;
+    }
+    h2 { margin-top: 46px; border-top: 1px solid #e5e9ef; padding-top: 18px; }
+    img { border: 1px solid #d8dde4; border-radius: 8px; }
+    a { color: #185fa5; }
+    .jump { background: #eef4fb; border-radius: 8px; padding: 8px 14px; font-size: 14px; }
+    .jump a { margin-right: 14px; white-space: nowrap; }
+  </style>
 </head>
-<body>
-  <h1>Links and images</h1>
+<body id="top">
 
-  <!-- A link to an absolute URL -->
-  <p>Visit <a href="https://www.polyu.edu.hk">PolyU</a> (absolute URL).</p>
+  <h1>Links &amp; images</h1>
 
-  <!-- Relative links (same folder, parent folder) -->
-  <p><a href="index.html">This page</a> (relative, same folder).</p>
-  <p><a href="../hello/index.html">Hello example</a> (relative, parent folder).</p>
+  <!-- quick-jump links: each points at an id further down this same page -->
+  <p class="jump">
+    <a href="#bookmarks">1 · Bookmarks</a>
+    <a href="#absolute">2 · Absolute URLs</a>
+    <a href="#images">3 · Images</a>
+    <a href="#relative">4 · Relative links</a>
+    <a href="#bottom">Bottom ↓</a>
+  </p>
 
-  <!-- Open in a new tab -->
-  <p><a href="https://www.polyu.edu.hk" target="_blank">PolyU in a new tab</a>.</p>
+  <p>This single page demonstrates every kind of link you will write.
+     Scroll down — or click one of the quick jumps above — to see how an
+     <code>href="#id"</code> bookmark takes you straight to that part of the
+     document. There is plenty of reading below so the jump is easy to see.</p>
 
-  <!-- Link to a section on the same page (anchor) -->
-  <p><a href="#bottom">Jump to the bottom</a>.</p>
+  <!-- ---------------- 1 · Bookmarks ---------------- -->
+  <h2 id="bookmarks">1 · Bookmarks — jumping within one page</h2>
+  <p>A bookmark is just an <code>id</code> on any element, plus a link whose
+     <code>href</code> starts with <code>#</code> and names that id. The browser
+     scrolls the element into view — no JavaScript needed.</p>
+  <p>The five links in the grey bar above are all bookmarks. Click
+     <a href="#bookmarks">#bookmarks</a> (you are probably already here), then
+     try <a href="#images">#images</a> to skip straight past the reading below,
+     or <a href="#bottom">#bottom</a> to land on the final paragraph.</p>
+  <p>Bookmarks are everywhere in real pages: table-of-contents sidebars, FAQ
+     questions, "back to top" arrows, and long-form articles all rely on the
+     same two ingredients — an <code>id</code> and an <code>href="#…"</code>.</p>
+  <p>One rule to remember: an <code>id</code> must be unique in the page, so the
+     browser always knows which single element you mean. Duplicate ids break
+     bookmarks.</p>
 
-  <!-- An image: src + alt (void element) -->
-  <img src="https://www.polyu.edu.hk/etc/designs/polyu/img/polyu_logo.png"
-       alt="PolyU logo" width="180" />
+  <!-- ---------------- 2 · Absolute URLs ---------------- -->
+  <h2 id="absolute">2 · Absolute URLs</h2>
+  <p>An <strong>absolute URL</strong> contains the full web address, starting
+     with the scheme. It works no matter where the current page lives:
+     <a href="https://www.polyu.edu.hk">https://www.polyu.edu.hk</a> points to
+     the PolyU homepage whether you click it from Hong Kong or Helsinki.</p>
+  <p>Absolute URLs are the right choice when the target is on another site, or
+     when you cannot rely on the folder structure staying the same. They are
+     also what email links use: <a href="mailto:ray.yang@polyu.edu.hk">mailto:
+     ray.yang@polyu.edu.hk</a> opens the reader's email client.</p>
+  <p>You can open a link in a fresh tab by adding
+     <code>target="_blank"</code> — <a href="https://www.polyu.edu.hk"
+     target="_blank">PolyU in a new tab</a>. Use it sparingly: forcing new tabs
+     can annoy users, and the back button stops working the way they expect.</p>
 
-  <!-- width/height prevent layout shift while the image loads -->
-  <p id="bottom">The image above has an <code>alt</code> attribute — screen readers read it.</p>
+  <!-- ---------------- 3 · Images ---------------- -->
+  <h2 id="images">3 · Images — <code>src</code>, <code>alt</code>, width</h2>
+  <p>The image below is stored locally, next to this page, so its relative
+     <code>src="polyu-logo.jpg"</code> always resolves — no network needed:</p>
+  <p><img src="polyu-logo.jpg" alt="PolyU logo" width="240" /></p>
+  <p>The <code>alt</code> attribute is what a screen reader speaks when it meets
+     the image, and what a browser shows if the file cannot load. Try renaming
+     the file to see the alt text appear. The <code>width</code> attribute keeps
+     the image to a sensible size without CSS.</p>
+  <p>An image can itself be a link — just wrap it in an anchor. Click the small
+     logo to visit <a href="https://www.polyu.edu.hk"><img src="polyu-logo.jpg"
+     alt="PolyU homepage" width="90" style="vertical-align:middle" /></a> the
+     university website.</p>
+
+  <!-- ---------------- 4 · Relative links ---------------- -->
+  <h2 id="relative">4 · Relative links</h2>
+  <p>A <strong>relative link</strong> names the target by its position relative
+     to the current file. Because it carries no scheme or host, it keeps working
+     when the whole site moves to a new domain or a local folder.</p>
+  <p>Same folder: <a href="index.html">index.html</a>. Parent folder:
+     <a href="../hello/index.html">../hello/index.html</a> reaches the
+     <em>Hello world</em> example in the sibling <code>html/hello</code>
+     directory — the <code>..</code> walks up one level first.</p>
+  <p>Relative links are the default for everything inside your own site: shorter
+     to write, and immune to domain changes. Save absolute URLs for pages
+     outside your site, like the <a href="https://developer.mozilla.org"
+     target="_blank">MDN reference</a>.</p>
+
+  <!-- ---------------- bottom ---------------- -->
+  <p id="bottom" style="margin-top:60px; border-top:1px solid #e5e9ef; padding-top:14px">
+     You reached the bottom of the page.
+     <a href="#top">Back to top ↑</a> uses the bookmark <code>#top</code> on the
+     <code>&lt;body&gt;</code> element.</p>
+
 </body>
 </html>

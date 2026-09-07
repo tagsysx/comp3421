@@ -120,7 +120,7 @@
       "examples": [
         { "id": "hello", "name": "Hello world", "desc": "Minimal page: headings, paragraphs, lists, links", "files": ["index.html"] },
         { "id": "text", "name": "Text elements", "desc": "Headings h1–h6, strong/em, br/hr, blockquote", "files": ["index.html"] },
-        { "id": "links", "name": "Links & images", "desc": "Absolute/relative URLs, anchors, target, img + alt", "files": ["index.html"] },
+        { "id": "links", "name": "Links & images", "desc": "Absolute/relative URLs, anchors, target, img + alt", "files": ["index.html", "polyu-logo.jpg"] },
         { "id": "lists", "name": "Lists & tables", "desc": "ul, ol, nested lists, table with th/td", "files": ["index.html"] },
         { "id": "block-inline", "name": "Block vs inline", "desc": "div vs span — block and inline elements", "files": ["index.html"] },
         { "id": "semantic", "name": "Semantic page", "desc": "header, nav, main, article, section, aside, footer", "files": ["index.html"] },
