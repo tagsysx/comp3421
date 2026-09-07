@@ -246,6 +246,17 @@
           ]
         },
         {
+          "id": "picture",
+          "name": "The <picture> element",
+          "desc": "Art direction — three different photos, one per screen size",
+          "files": [
+            "index.html",
+            "large.jpg",
+            "medium.jpg",
+            "small.jpg"
+          ]
+        },
+        {
           "id": "canvas-dl",
           "name": "Canvas & definition lists",
           "desc": "canvas surface and dl/dt/dd definition lists",

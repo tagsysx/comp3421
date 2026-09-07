@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The &lt;picture&gt; element — three photos</title>
+  <style>
+    body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    .note { color: #444; max-width: 60ch; }
+    .note code { background: #eef2f8; padding: 1px 5px; border-radius: 4px; }
+    figure { margin: 14px 0; }
+    figure img { display: block; max-width: 100%; height: auto; border-radius: 6px; }
+    figcaption { margin-top: 6px; color: #555; font-size: 0.92em; }
+    .photo-name { font-weight: 600; color: #1e4fa8; }
+  </style>
+</head>
+<body>
+  <h1>The &lt;picture&gt; element</h1>
+  <p class="note">Three <strong>different photos</strong>, one per screen width —
+     drag the splitter (or resize the window) to switch:
+     the ocean on wide screens, mountains in the middle, the city when narrow.</p>
+
+  <!-- Art direction: each <source> swaps in a completely different image.
+       The browser picks the first <source> whose media query matches. -->
+  <figure>
+    <picture>
+      <source media="(min-width: 650px)" srcset="large.jpg" />
+      <source media="(min-width: 465px)" srcset="medium.jpg" />
+      <img src="small.jpg" alt="City at night" />
+    </picture>
+    <figcaption>
+      <span class="photo-name">&ge;650px</span> shows <code>large.jpg</code> (ocean, 1000&times;500) &nbsp;·&nbsp;
+      <span class="photo-name">465&ndash;650px</span> shows <code>medium.jpg</code> (mountains, 600&times;400) &nbsp;·&nbsp;
+      <span class="photo-name">&lt;465px</span> shows <code>small.jpg</code> (city, 400&times;300)
+    </figcaption>
+  </figure>
+</body>
+</html>
