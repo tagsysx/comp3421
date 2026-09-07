@@ -86,13 +86,30 @@
     html = html.replace(/<link[^>]*rel=["']stylesheet["'][^>]*>/gi, '');
     html = html.replace(/<script[^>]*src=["'][^"']+["'][^>]*>\s*<\/script>/gi, '');
 
+    let doc = html;
+    // Anchor relative links to the example's own folder. Inside the srcdoc
+    // iframe (and the "open in new tab" blob) relative URLs otherwise resolve
+    // against this editor page, so demo links such as "index.html" or
+    // "../hello/index.html" would navigate to the wrong place — and can even
+    // re-enter the editor (an editor nested inside the editor). A <base> makes
+    // them open the real, corresponding pages. An explicit <base> written by
+    // the example itself is respected.
+    if (!/<base\b/i.test(doc)) {
+      const mainFile = files['index.html'] ? 'index.html' : 'index.htm';
+      const exBase = new URL('examples/' + state.catId + '/' + state.exId + '/' +
+                             mainFile, document.baseURI).href;
+      const baseTag = '<base href="' + exBase + '">';
+      const headMatch = doc.match(/<head[^>]*>/i);
+      if (headMatch) doc = doc.replace(headMatch[0], headMatch[0] + baseTag);
+      else doc = baseTag + doc;
+    }
+
     const cssTag = cssFiles.map((f) => '<style>' + files[f] + '</style>').join('\n');
     const jsTag = jsFiles.map((f) => {
       const safe = files[f].replace(/<\/script>/gi, '<\\/script>');
       return '<script>' + safe + '<\/script>';
     }).join('\n');
 
-    let doc = html;
     if (cssTag) {
       if (/<\/head>/i.test(doc)) doc = doc.replace(/<\/head>/i, cssTag + '</head>');
       else doc = cssTag + doc;
