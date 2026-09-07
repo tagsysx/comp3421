@@ -20,6 +20,7 @@
     view: null,
     auto: true,
     timer: null,
+    openTabUrl: null,   // blob URL for the "open in new tab" link
     ext: { html: CM.html(), css: CM.css(), js: CM.javascript() }
   };
 
@@ -124,9 +125,29 @@
         '<p>Files: ' + names + '</p>',
         '</body></html>'
       ].join('');
+      updateOpenTab(null);
       return;
     }
-    $('#preview-frame').srcdoc = buildSrcdoc();
+    const doc = buildSrcdoc();
+    $('#preview-frame').srcdoc = doc;
+    updateOpenTab(doc);
+  }
+
+  // Keep the "Open in new tab" link pointed at a fresh blob URL of the current
+  // document (a real <a target="_blank"> click, so popup blockers don't fire).
+  function updateOpenTab(doc) {
+    const link = $('#open-tab');
+    if (!link) return;
+    if (state.openTabUrl) { URL.revokeObjectURL(state.openTabUrl); state.openTabUrl = null; }
+    if (!doc) {
+      link.removeAttribute('href');
+      link.classList.add('disabled');
+      return;
+    }
+    link.classList.remove('disabled');
+    const blob = new Blob([doc], { type: 'text/html;charset=utf-8' });
+    state.openTabUrl = URL.createObjectURL(blob);
+    link.href = state.openTabUrl;
   }
 
   function renderTabs() {
@@ -286,22 +307,6 @@
   autoToggle.onchange = () => { state.auto = autoToggle.checked; };
   const downloadBtn = $('#download');
   if (downloadBtn) downloadBtn.onclick = downloadExample;
-
-  // "Open in new tab" — render the current HTML into a blob and open it in a
-  // standalone tab (images/CSS/JS are already inlined, so it renders fully).
-  const openTabBtn = $('#open-tab');
-  if (openTabBtn) openTabBtn.onclick = () => {
-    const hasPage = !!state.files['index.html'] || !!state.files['index.htm'];
-    if (!hasPage) {
-      alert('This is a server-side example — it has no standalone HTML page to open.');
-      return;
-    }
-    const doc = buildSrcdoc();
-    const blob = new Blob([doc], { type: 'text/html;charset=utf-8' });
-    const url = URL.createObjectURL(blob);
-    window.open(url, '_blank', 'noopener');
-    setTimeout(() => URL.revokeObjectURL(url), 60000);
-  };
 
   // resizable preview pane — drag the divider to show relative width (%, vw, …)
   (function () {

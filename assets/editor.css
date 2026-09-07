@@ -74,9 +74,12 @@ body.dragging .preview-frame { pointer-events: none; }
   font-size: 12px; text-transform: none; letter-spacing: 0;
   padding: 4px 10px; border-radius: 6px;
   border: 1px solid var(--border); background: var(--panel); color: var(--accent);
-  cursor: pointer; white-space: nowrap;
+  cursor: pointer; white-space: nowrap; text-decoration: none; line-height: 1.4;
 }
 .pane-title .open-tab:hover { background: var(--accent-soft); border-color: var(--accent); }
+.pane-title .open-tab.disabled {
+  color: var(--muted); cursor: not-allowed; opacity: .55; pointer-events: none;
+}
 
 /* tabs */
 .tabs { display: flex; background: var(--tab-inactive); border-bottom: 1px solid var(--border); padding: 4px 6px 0; gap: 2px; overflow-x: auto; }
