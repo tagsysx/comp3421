@@ -2,12 +2,13 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Media: audio, video &amp; picture</title>
+  <title>Media: audio &amp; video</title>
   <!--
     Sample media (public-domain / CC0, self-hosted so this example works offline):
     roar.mp3  — MDN CC0 audio sample (t-rex roar)
     movie.*   — MDN CC0 video sample (flower)
-    large / medium / small.jpg — same photo at three widths for the <picture> demo
+    (The <picture> element has its own example — see the "The <picture>
+    element" card in the index.)
   -->
 </head>
 <body>
@@ -28,13 +29,5 @@
     <source src="movie.webm" type="video/webm" />
     Your browser does not support video.
   </video>
-
-  <!-- Picture: responsive images via <source media> switching -->
-  <h2>Picture (responsive image)</h2>
-  <picture>
-    <source media="(min-width: 650px)" srcset="large.jpg" />
-    <source media="(min-width: 465px)" srcset="medium.jpg" />
-    <img src="small.jpg" alt="A responsive image" />
-  </picture>
 </body>
 </html>

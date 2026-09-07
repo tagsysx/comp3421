@@ -35,6 +35,7 @@
         "html/inputs",
         "html/style",
         "html/media",
+        "html/picture",
         "html/canvas-dl",
         "html/image-map",
         "html/svg"
@@ -233,16 +234,13 @@
         },
         {
           "id": "media",
-          "name": "Audio, video & picture",
-          "desc": "audio, video and responsive <picture> elements",
+          "name": "Audio & video",
+          "desc": "audio & video elements — controls, sources and format fallbacks",
           "files": [
             "index.html",
             "roar.mp3",
             "movie.mp4",
-            "movie.webm",
-            "large.jpg",
-            "medium.jpg",
-            "small.jpg"
+            "movie.webm"
           ]
         },
         {
