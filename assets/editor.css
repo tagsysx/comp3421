@@ -68,7 +68,15 @@ body.dragging .preview-frame { pointer-events: none; }
   font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em;
   padding: 6px 12px; border-bottom: 1px solid var(--border); background: var(--panel);
   display: flex; align-items: center; justify-content: space-between;
+  gap: 8px;
 }
+.pane-title .open-tab {
+  font-size: 12px; text-transform: none; letter-spacing: 0;
+  padding: 4px 10px; border-radius: 6px;
+  border: 1px solid var(--border); background: var(--panel); color: var(--accent);
+  cursor: pointer; white-space: nowrap;
+}
+.pane-title .open-tab:hover { background: var(--accent-soft); border-color: var(--accent); }
 
 /* tabs */
 .tabs { display: flex; background: var(--tab-inactive); border-bottom: 1px solid var(--border); padding: 4px 6px 0; gap: 2px; overflow-x: auto; }

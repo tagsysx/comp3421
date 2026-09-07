@@ -186,12 +186,122 @@
     renderPreview();
   }
 
+  // ---------- download the current example as a .zip ----------
+
+  // Node core modules — anything else pulled in via require() is a 3rd-party
+  // package and belongs in the generated package.json's dependencies.
+  const NODE_BUILTINS = new Set([
+    'assert', 'async_hooks', 'buffer', 'child_process', 'cluster', 'console',
+    'constants', 'crypto', 'dgram', 'diagnostics_channel', 'dns', 'domain',
+    'events', 'fs', 'http', 'http2', 'https', 'module', 'net', 'os', 'path',
+    'perf_hooks', 'process', 'punycode', 'querystring', 'readline', 'repl',
+    'stream', 'string_decoder', 'sys', 'timers', 'tls', 'trace_events', 'tty',
+    'url', 'util', 'v8', 'vm', 'worker_threads', 'zlib'
+  ]);
+
+  // Server-side (node) examples that lack a package.json get one generated on
+  // the fly, so the downloaded folder runs with: npm install && node server.js
+  function generatedPackageJson() {
+    if (state.catId !== 'node' || state.files['package.json']) return null;
+    const deps = {};
+    for (const [name, content] of Object.entries(state.files)) {
+      if (!/\.js$/i.test(name)) continue;
+      const re = /require\(\s*['"]([^'"]+)['"]\s*\)/g;
+      let m;
+      while ((m = re.exec(content))) {
+        const pkg = m[1];
+        if (!pkg.startsWith('.') && !pkg.startsWith('/') && !NODE_BUILTINS.has(pkg)) {
+          deps[pkg] = 'latest';
+        }
+      }
+    }
+    if (!Object.keys(deps).length) return null;
+    const pkg = {
+      name: state.exId,
+      version: '1.0.0',
+      private: true,
+      description: 'COMP3421 example — ' + state.exId,
+      main: state.files['server.js'] ? 'server.js' : 'index.js',
+      scripts: state.files['server.js'] ? { start: 'node server.js' } : {},
+      dependencies: deps
+    };
+    return JSON.stringify(pkg, null, 2) + '\n';
+  }
+
+  // "data:image/png;base64,...." -> Uint8Array (for binary files in the zip)
+  function dataURLToBytes(dataURL) {
+    const b64 = dataURL.slice(dataURL.indexOf(',') + 1);
+    const bin = atob(b64);
+    const bytes = new Uint8Array(bin.length);
+    for (let i = 0; i < bin.length; i++) bytes[i] = bin.charCodeAt(i);
+    return bytes;
+  }
+
+  function flashButton(el) {
+    const label = el.textContent;
+    el.textContent = '✓ Downloaded';
+    setTimeout(() => { el.textContent = label; }, 1600);
+  }
+
+  function downloadExample() {
+    if (!window.StoredZip) {
+      alert('Download library not loaded — please hard-refresh (Cmd+Shift+R).');
+      return;
+    }
+    if (state.view) state.files[state.activeFile] = state.view.state.doc.toString();
+    const folder = state.catId + '-' + state.exId;   // e.g. "node-express-rest"
+    const entries = [];
+
+    // Server-side examples get a generated package.json (listed first).
+    const pkg = generatedPackageJson();
+    if (pkg) entries.push({ name: folder + '/package.json', data: pkg });
+
+    // Text files (current editor content — edits included).
+    for (const [name, content] of Object.entries(state.files)) {
+      entries.push({ name: folder + '/' + name, data: content });
+    }
+    // Binary assets (images, fonts, …) restored from their data URLs.
+    for (const [name, dataURL] of Object.entries(state.images)) {
+      entries.push({ name: folder + '/' + name, data: dataURLToBytes(dataURL) });
+    }
+    if (!entries.length) return;
+
+    const blob = window.StoredZip.build(entries);
+    const url = URL.createObjectURL(blob);
+    const a = document.createElement('a');
+    a.href = url;
+    a.download = folder + '.zip';
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 4000);
+    flashButton(downloadBtn);
+  }
+
   // wire controls
   $('#run').onclick = () => renderPreview();
   $('#back').onclick = () => { location.href = 'index.html'; };
   const autoToggle = $('#auto');
   autoToggle.checked = state.auto;
   autoToggle.onchange = () => { state.auto = autoToggle.checked; };
+  const downloadBtn = $('#download');
+  if (downloadBtn) downloadBtn.onclick = downloadExample;
+
+  // "Open in new tab" — render the current HTML into a blob and open it in a
+  // standalone tab (images/CSS/JS are already inlined, so it renders fully).
+  const openTabBtn = $('#open-tab');
+  if (openTabBtn) openTabBtn.onclick = () => {
+    const hasPage = !!state.files['index.html'] || !!state.files['index.htm'];
+    if (!hasPage) {
+      alert('This is a server-side example — it has no standalone HTML page to open.');
+      return;
+    }
+    const doc = buildSrcdoc();
+    const blob = new Blob([doc], { type: 'text/html;charset=utf-8' });
+    const url = URL.createObjectURL(blob);
+    window.open(url, '_blank', 'noopener');
+    setTimeout(() => URL.revokeObjectURL(url), 60000);
+  };
 
   // resizable preview pane — drag the divider to show relative width (%, vw, …)
   (function () {

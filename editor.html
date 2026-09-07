@@ -13,6 +13,7 @@
     <span class="crumb"><span id="crumb-cat">…</span> / <span id="crumb-ex">…</span></span>
     <span class="spacer"></span>
     <label><input type="checkbox" id="auto" checked /> Auto-run</label>
+    <button class="btn" id="download" title="Download all files of this example as a .zip (including your edits)">⬇ Download .zip</button>
     <button class="btn primary" id="run">▶ Run</button>
   </div>
 
@@ -24,7 +25,10 @@
     </div>
     <div class="divider" id="divider" title="Drag to resize the preview"></div>
     <div class="pane preview">
-      <div class="pane-title">Result <span class="size" id="preview-size"></span></div>
+      <div class="pane-title">
+        <span>Result <span class="size" id="preview-size"></span></span>
+        <button class="open-tab" id="open-tab" title="Open this HTML in a new browser tab">↗ Open in new tab</button>
+      </div>
       <iframe class="preview-frame" id="preview-frame" title="Result"></iframe>
     </div>
   </div>
@@ -36,6 +40,7 @@
   </footer>
 
   <script src="vendor/codemirror.bundle.js"></script>
+  <script src="assets/stored-zip.js"></script>
   <script src="assets/editor.js"></script>
 </body>
 </html>
