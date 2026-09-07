@@ -1,0 +1,48 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Tables</title>
+  <style>
+    body { font-family: -apple-system, "Segoe UI", Helvetica, Arial, sans-serif; }
+    table { border-collapse: collapse; margin: 10px 0; }
+    th, td { border: 1px solid #9db3d5; padding: 6px 14px; text-align: left; }
+    caption { font-weight: 600; margin-bottom: 4px; }
+  </style>
+</head>
+<body>
+  <h1>A table of monthly savings</h1>
+
+  <!-- Semantic skeleton: caption, thead/tbody, merging with rowspan/colspan -->
+  <table>
+    <caption>Monthly savings (HK$)</caption>
+    <thead>
+      <tr>
+        <th>Name</th>
+        <th>Month</th>
+        <th>Saved</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td rowspan="2">Ada</td>   <!-- spans two rows -->
+        <td>Jan</td>
+        <td>95</td>
+      </tr>
+      <tr>
+        <td>Feb</td>
+        <td>88</td>
+      </tr>
+      <tr>
+        <td>Lin</td>
+        <td colspan="2">88 total</td>  <!-- spans two columns -->
+      </tr>
+    </tbody>
+    <tfoot>
+      <tr>
+        <td colspan="3">Use tables for data — not for page layout.</td>
+      </tr>
+    </tfoot>
+  </table>
+</body>
+</html>

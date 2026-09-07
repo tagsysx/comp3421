@@ -29,6 +29,7 @@
         "html/text",
         "html/links",
         "html/lists",
+        "html/table",
         "html/block-inline",
         "html/semantic",
         "html/form",
@@ -186,8 +187,16 @@
         },
         {
           "id": "lists",
-          "name": "Lists & tables",
-          "desc": "ul, ol, nested lists, table with th/td",
+          "name": "Lists",
+          "desc": "ul, ol, nested lists and definition lists (dl)",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "table",
+          "name": "Tables",
+          "desc": "caption, thead/tbody/tfoot, rowspan & colspan — a full table",
           "files": [
             "index.html"
           ]
