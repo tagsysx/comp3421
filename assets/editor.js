@@ -15,7 +15,10 @@
   const state = {
     catId, exId,
     files: {},          // filename -> content (editable text files)
-    images: {},         // filename -> data URL (binary assets, inlined at preview)
+    images: {},         // filename -> data URL (images, inlined into the preview)
+    media: {},          // filename -> data URL (audio/video, kept for the zip only;
+                        // the preview plays them from the example's real folder
+                        // via the injected <base>, which keeps the srcdoc light)
     activeFile: null,
     view: null,
     auto: true,
@@ -25,6 +28,7 @@
   };
 
   const IMG_EXT = /\.(jpe?g|png|gif|svg|webp|ico|avif|bmp)$/i;
+  const MEDIA_EXT = /\.(mp3|m4a|aac|oga|ogg|wav|mp4|webm|ogv|mov)$/i;
 
   function blobToDataURL(blob) {
     return new Promise((resolve, reject) => {
@@ -71,13 +75,28 @@
     const files = state.files;
     let html = files['index.html'] || files['index.htm'] || '';
 
-    // Inline local images (and other binary assets) as data URLs so they
-    // render inside the srcdoc iframe, where relative URLs would 404.
+    // Inline local images as data URLs so they render inside the srcdoc iframe,
+    // where relative URLs would 404 (media stays relative: the injected <base>
+    // lets the browser fetch it from the example's real folder).
     for (const [name, dataURL] of Object.entries(state.images)) {
       const esc = name.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
       const re = new RegExp("(src\\s*=\\s*[\"'])" + esc + "([\"'])", 'gi');
       html = html.replace(re, '$1' + dataURL + '$2');
+      const rePoster = new RegExp('(poster\\s*=\\s*["\'])' + esc + '(["\'])', 'gi');
+      html = html.replace(rePoster, '$1' + dataURL + '$2');
     }
+    // srcset — single pass over every srcset value (a per-name pass would split
+    // the commas inside an already-inlined data URL and corrupt it).
+    html = html.replace(/(srcset\s*=\s*["'])([^"']*)(["'])/gi, (m, p1, val, p2) => {
+      const next = val.split(',').map((tok) => {
+        const t = tok.trim();
+        const [url] = t.split(/\s+/);
+        const data = state.images[url];
+        if (!data) return t;
+        return data + t.slice(url.length);   // keep any width descriptor
+      });
+      return p1 + next.join(', ') + p2;
+    });
 
     const cssFiles = Object.keys(files).filter((f) => /\.css$/i.test(f));
     const jsFiles = Object.keys(files).filter((f) => /\.js$/i.test(f));
@@ -214,11 +233,13 @@
       const res = await fetch('examples/' + state.catId + '/' + state.exId + '/' + f);
       if (IMG_EXT.test(f)) {
         state.images[f] = await blobToDataURL(await res.blob());
+      } else if (MEDIA_EXT.test(f)) {
+        state.media[f] = await blobToDataURL(await res.blob());
       } else {
         state.files[f] = await res.text();
       }
     }
-    state.activeFile = files.find((f) => !IMG_EXT.test(f)) || files[0];
+    state.activeFile = files.find((f) => !IMG_EXT.test(f) && !MEDIA_EXT.test(f)) || files[0];
     makeEditor(state.activeFile, state.files[state.activeFile] || '');
     renderTabs();
     renderPreview();
@@ -300,6 +321,10 @@
     }
     // Binary assets (images, fonts, …) restored from their data URLs.
     for (const [name, dataURL] of Object.entries(state.images)) {
+      entries.push({ name: folder + '/' + name, data: dataURLToBytes(dataURL) });
+    }
+    // Audio/video assets — kept as data URLs so the downloaded folder plays.
+    for (const [name, dataURL] of Object.entries(state.media)) {
       entries.push({ name: folder + '/' + name, data: dataURLToBytes(dataURL) });
     }
     if (!entries.length) return;

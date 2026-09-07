@@ -5,12 +5,19 @@
       "name": "Lecture 1 · Overview",
       "desc": "A tour of the whole course — one taste of every pillar",
       "examples": [
-        "html/hello", "html/form",
+        "html/hello",
+        "html/form",
         "css-selectors/hello",
-        "css-layout/flexbox", "css-layout/variables",
-        "js/es6", "js/dom", "js/fetch",
-        "node/http-module", "node/hello-http",
-        "node/express-rest", "node/express-hello", "node/express-db"
+        "css-layout/flexbox",
+        "css-layout/variables",
+        "js/es6",
+        "js/dom",
+        "js/fetch",
+        "node/http-module",
+        "node/hello-http",
+        "node/express-rest",
+        "node/express-hello",
+        "node/express-db"
       ]
     },
     {
@@ -18,9 +25,19 @@
       "name": "Lecture 2 · HTML",
       "desc": "Elements, forms, SVG & semantics",
       "examples": [
-        "html/hello", "html/text", "html/links", "html/lists",
-        "html/block-inline", "html/semantic", "html/form", "html/inputs",
-        "html/style", "html/media", "html/canvas-dl", "html/image-map", "html/svg"
+        "html/hello",
+        "html/text",
+        "html/links",
+        "html/lists",
+        "html/block-inline",
+        "html/semantic",
+        "html/form",
+        "html/inputs",
+        "html/style",
+        "html/media",
+        "html/canvas-dl",
+        "html/image-map",
+        "html/svg"
       ]
     },
     {
@@ -28,9 +45,15 @@
       "name": "Lecture 3 · CSS I — Styling, Selectors & Cascade",
       "desc": "Inline styles, stylesheets, selectors, specificity",
       "examples": [
-        "css-styling/showcase", "css-styling/colors", "css-styling/overlay",
-        "css-styling/length-units", "css-styling/text", "css-styling/font",
-        "css-styling/webfont", "css-selectors/hello", "css-selectors/selectors",
+        "css-styling/showcase",
+        "css-styling/colors",
+        "css-styling/overlay",
+        "css-styling/length-units",
+        "css-styling/text",
+        "css-styling/font",
+        "css-styling/webfont",
+        "css-selectors/hello",
+        "css-selectors/selectors",
         "css-cascade/cascade"
       ]
     },
@@ -39,8 +62,10 @@
       "name": "Lecture 4 · CSS II — Box Model & Responsive",
       "desc": "The box model, positioning, backgrounds, media queries",
       "examples": [
-        "css-layout/box-model", "css-layout/positioning",
-        "css-layout/backgrounds", "css-layout/responsive"
+        "css-layout/box-model",
+        "css-layout/positioning",
+        "css-layout/backgrounds",
+        "css-layout/responsive"
       ]
     },
     {
@@ -48,9 +73,12 @@
       "name": "Lecture 5 · CSS III — Flexbox, Grid & Motion",
       "desc": "Flexbox, grid, transforms, animations, CSS variables",
       "examples": [
-        "css-layout/transform", "css-layout/animation",
-        "css-layout/flexbox", "css-layout/grid",
-        "css-layout/variables", "css-layout/card"
+        "css-layout/transform",
+        "css-layout/animation",
+        "css-layout/flexbox",
+        "css-layout/grid",
+        "css-layout/variables",
+        "css-layout/card"
       ]
     },
     {
@@ -58,7 +86,10 @@
       "name": "Lecture 6 · JavaScript I — ES6 & the DOM",
       "desc": "Variables, ES6+, the DOM and events",
       "examples": [
-        "js/counter", "js/es6", "js/dom", "js/events"
+        "js/counter",
+        "js/es6",
+        "js/dom",
+        "js/events"
       ]
     },
     {
@@ -66,7 +97,10 @@
       "name": "Lecture 7 · JavaScript II — Functions & Objects",
       "desc": "Functions, this, closures, prototypes, classes",
       "examples": [
-        "js/functions", "js/context", "js/closures", "js/classes"
+        "js/functions",
+        "js/context",
+        "js/closures",
+        "js/classes"
       ]
     },
     {
@@ -74,7 +108,9 @@
       "name": "Lecture 8 · JavaScript III — Async & Fetch",
       "desc": "Promises, async / await and the Fetch API",
       "examples": [
-        "js/promises", "js/async-await", "js/fetch"
+        "js/promises",
+        "js/async-await",
+        "js/fetch"
       ]
     },
     {
@@ -88,7 +124,9 @@
       "name": "Lecture 10 · Node.js I — Runtime & HTTP",
       "desc": "The Node runtime, npm, modules and the http module",
       "examples": [
-        "node/hello-http", "node/http-module", "node/npm-demo"
+        "node/hello-http",
+        "node/http-module",
+        "node/npm-demo"
       ]
     },
     {
@@ -96,7 +134,9 @@
       "name": "Lecture 11 · Node.js II — Express & Data",
       "desc": "Express, routes, REST APIs and databases",
       "examples": [
-        "node/express-hello", "node/express-rest", "node/express-db"
+        "node/express-hello",
+        "node/express-rest",
+        "node/express-db"
       ]
     },
     {
@@ -118,19 +158,118 @@
       "name": "HTML",
       "desc": "Structure & semantics",
       "examples": [
-        { "id": "hello", "name": "Hello world", "desc": "Minimal page: headings, paragraphs, lists, links", "files": ["index.html"] },
-        { "id": "text", "name": "Text elements", "desc": "Headings h1–h6, strong/em, br/hr, blockquote", "files": ["index.html"] },
-        { "id": "links", "name": "Links & images", "desc": "Absolute/relative URLs, anchors, target, img + alt", "files": ["index.html", "polyu-logo.jpg"] },
-        { "id": "lists", "name": "Lists & tables", "desc": "ul, ol, nested lists, table with th/td", "files": ["index.html"] },
-        { "id": "block-inline", "name": "Block vs inline", "desc": "div vs span — block and inline elements", "files": ["index.html"] },
-        { "id": "semantic", "name": "Semantic page", "desc": "header, nav, main, article, section, aside, footer", "files": ["index.html"] },
-        { "id": "form", "name": "Form controls", "desc": "Inputs, labels, selects, checkboxes, buttons", "files": ["index.html"] },
-        { "id": "inputs", "name": "All input types", "desc": "text, password, email, number, date, checkbox, radio, file, color, range, select, textarea", "files": ["index.html"] },
-        { "id": "style", "name": "Inline styles", "desc": "style attribute: colors, length units, text & font properties", "files": ["index.html"] },
-        { "id": "media", "name": "Audio, video & picture", "desc": "audio, video and responsive <picture> elements", "files": ["index.html"] },
-        { "id": "canvas-dl", "name": "Canvas & definition lists", "desc": "canvas surface and dl/dt/dd definition lists", "files": ["index.html"] },
-        { "id": "image-map", "name": "Image map", "desc": "img + usemap + map + area — clickable regions (rect & circle)", "files": ["index.html", "workplace.jpg"] },
-        { "id": "svg", "name": "SVG shapes", "desc": "rect, circle, line, ellipse, path — vector graphics", "files": ["index.html"] }
+        {
+          "id": "hello",
+          "name": "Hello world",
+          "desc": "Minimal page: headings, paragraphs, lists, links",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text",
+          "name": "Text elements",
+          "desc": "Headings h1–h6, strong/em, br/hr, blockquote",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "links",
+          "name": "Links & images",
+          "desc": "Absolute/relative URLs, anchors, target, img + alt",
+          "files": [
+            "index.html",
+            "polyu-logo.jpg"
+          ]
+        },
+        {
+          "id": "lists",
+          "name": "Lists & tables",
+          "desc": "ul, ol, nested lists, table with th/td",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "block-inline",
+          "name": "Block vs inline",
+          "desc": "div vs span — block and inline elements",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "semantic",
+          "name": "Semantic page",
+          "desc": "header, nav, main, article, section, aside, footer",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "form",
+          "name": "Form controls",
+          "desc": "Inputs, labels, selects, checkboxes, buttons",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "inputs",
+          "name": "All input types",
+          "desc": "text, password, email, number, date, checkbox, radio, file, color, range, select, textarea",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "style",
+          "name": "Inline styles",
+          "desc": "style attribute: colors, length units, text & font properties",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "media",
+          "name": "Audio, video & picture",
+          "desc": "audio, video and responsive <picture> elements",
+          "files": [
+            "index.html",
+            "roar.mp3",
+            "movie.mp4",
+            "movie.webm",
+            "large.jpg",
+            "medium.jpg",
+            "small.jpg"
+          ]
+        },
+        {
+          "id": "canvas-dl",
+          "name": "Canvas & definition lists",
+          "desc": "canvas surface and dl/dt/dd definition lists",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "image-map",
+          "name": "Image map",
+          "desc": "img + usemap + map + area — clickable regions (rect & circle)",
+          "files": [
+            "index.html",
+            "workplace.jpg"
+          ]
+        },
+        {
+          "id": "svg",
+          "name": "SVG shapes",
+          "desc": "rect, circle, line, ellipse, path — vector graphics",
+          "files": [
+            "index.html"
+          ]
+        }
       ]
     },
     {
@@ -138,13 +277,62 @@
       "name": "CSS Styling",
       "desc": "The style attribute — colour, length, text & font (inline)",
       "examples": [
-        { "id": "showcase", "name": "What style can do", "desc": "A lively intro: colour, width, text & font — all inline", "files": ["index.html"] },
-        { "id": "colors", "name": "Colours", "desc": "Named, hex, rgb/rgba, hsl — inline style only", "files": ["index.html"] },
-        { "id": "overlay", "name": "Overlays", "desc": "Semi-transparent layers: caption & scrim with rgba", "files": ["index.html"] },
-        { "id": "length-units", "name": "Length units", "desc": "px, em, rem, %, vw, vh — inline style only", "files": ["index.html"] },
-        { "id": "text", "name": "Text properties", "desc": "align, decoration, transform, indent, spacing — inline style only", "files": ["index.html"] },
-        { "id": "font", "name": "Font properties", "desc": "family, size, style, weight, variant, shorthand — inline style only", "files": ["index.html"] },
-        { "id": "webfont", "name": "Web fonts", "desc": "Load a custom font from Google Fonts, then use it inline", "files": ["index.html"] }
+        {
+          "id": "showcase",
+          "name": "What style can do",
+          "desc": "A lively intro: colour, width, text & font — all inline",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "colors",
+          "name": "Colours",
+          "desc": "Named, hex, rgb/rgba, hsl — inline style only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "overlay",
+          "name": "Overlays",
+          "desc": "Semi-transparent layers: caption & scrim with rgba",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "length-units",
+          "name": "Length units",
+          "desc": "px, em, rem, %, vw, vh — inline style only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text",
+          "name": "Text properties",
+          "desc": "align, decoration, transform, indent, spacing — inline style only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "font",
+          "name": "Font properties",
+          "desc": "family, size, style, weight, variant, shorthand — inline style only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "webfont",
+          "name": "Web fonts",
+          "desc": "Load a custom font from Google Fonts, then use it inline",
+          "files": [
+            "index.html"
+          ]
+        }
       ]
     },
     {
@@ -152,8 +340,24 @@
       "name": "CSS Selectors",
       "desc": "External stylesheets & selectors",
       "examples": [
-        { "id": "hello", "name": "First stylesheet", "desc": "Link style.css and style with element selectors", "files": ["index.html", "style.css"] },
-        { "id": "selectors", "name": "Selectors", "desc": "Element, class, id, combinators and pseudo-classes", "files": ["index.html", "style.css"] }
+        {
+          "id": "hello",
+          "name": "First stylesheet",
+          "desc": "Link style.css and style with element selectors",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "selectors",
+          "name": "Selectors",
+          "desc": "Element, class, id, combinators and pseudo-classes",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
       ]
     },
     {
@@ -161,7 +365,15 @@
       "name": "CSS Cascade",
       "desc": "Specificity & inheritance",
       "examples": [
-        { "id": "cascade", "name": "Cascade & specificity", "desc": "Which rule wins, inheritance and !important", "files": ["index.html", "style.css"] }
+        {
+          "id": "cascade",
+          "name": "Cascade & specificity",
+          "desc": "Which rule wins, inheritance and !important",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
       ]
     },
     {
@@ -169,16 +381,97 @@
       "name": "CSS Layout",
       "desc": "Box model, positioning & responsive design",
       "examples": [
-        { "id": "box-model", "name": "Box model", "desc": "Content, padding, border, margin and box-sizing", "files": ["index.html", "style.css"] },
-        { "id": "positioning", "name": "Positioning", "desc": "static, relative, absolute, fixed and sticky", "files": ["index.html", "style.css"] },
-        { "id": "backgrounds", "name": "Backgrounds", "desc": "Colours, gradients, images, size and position", "files": ["index.html", "style.css"] },
-        { "id": "responsive", "name": "Responsive design", "desc": "Viewport, fluid grid and media queries", "files": ["index.html", "style.css"] },
-        { "id": "flexbox", "name": "Flexbox layout", "desc": "HTML + CSS: rows and columns with flex", "files": ["index.html", "style.css"] },
-        { "id": "card", "name": "Interactive card", "desc": "HTML + CSS + JS together", "files": ["index.html", "style.css", "script.js"] },
-        { "id": "transform", "name": "Transforms", "desc": "translate, rotate, scale and skew elements", "files": ["index.html", "style.css"] },
-        { "id": "animation", "name": "Transitions & animations", "desc": "transitions, @keyframes and the animation shorthand", "files": ["index.html", "style.css"] },
-        { "id": "grid", "name": "CSS Grid", "desc": "Two-dimensional layout with grid-template-columns and fr", "files": ["index.html", "style.css"] },
-        { "id": "variables", "name": "CSS variables", "desc": "Custom properties --name and var() for theming", "files": ["index.html", "style.css"] }
+        {
+          "id": "box-model",
+          "name": "Box model",
+          "desc": "Content, padding, border, margin and box-sizing",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "positioning",
+          "name": "Positioning",
+          "desc": "static, relative, absolute, fixed and sticky",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "backgrounds",
+          "name": "Backgrounds",
+          "desc": "Colours, gradients, images, size and position",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "responsive",
+          "name": "Responsive design",
+          "desc": "Viewport, fluid grid and media queries",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "flexbox",
+          "name": "Flexbox layout",
+          "desc": "HTML + CSS: rows and columns with flex",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "card",
+          "name": "Interactive card",
+          "desc": "HTML + CSS + JS together",
+          "files": [
+            "index.html",
+            "style.css",
+            "script.js"
+          ]
+        },
+        {
+          "id": "transform",
+          "name": "Transforms",
+          "desc": "translate, rotate, scale and skew elements",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "animation",
+          "name": "Transitions & animations",
+          "desc": "transitions, @keyframes and the animation shorthand",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "grid",
+          "name": "CSS Grid",
+          "desc": "Two-dimensional layout with grid-template-columns and fr",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "variables",
+          "name": "CSS variables",
+          "desc": "Custom properties --name and var() for theming",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
       ]
     },
     {
@@ -186,17 +479,105 @@
       "name": "JavaScript",
       "desc": "Behaviour",
       "examples": [
-        { "id": "counter", "name": "Click counter", "desc": "DOM + events: buttons that update the page", "files": ["index.html", "script.js"] },
-        { "id": "es6", "name": "ES6+ syntax", "desc": "let/const, arrow functions, destructuring, spread, template literals", "files": ["index.html", "script.js"] },
-        { "id": "dom", "name": "DOM manipulation", "desc": "querySelector, createElement and updating the page", "files": ["index.html", "script.js"] },
-        { "id": "events", "name": "Events", "desc": "addEventListener, the event object and delegation", "files": ["index.html", "script.js"] },
-        { "id": "functions", "name": "Functions as values", "desc": "Pass, return and compose functions — higher-order functions", "files": ["index.html", "script.js"] },
-        { "id": "context", "name": "this & context", "desc": "Function context, call / apply / bind and arrow-function this", "files": ["index.html", "script.js"] },
-        { "id": "closures", "name": "Closures", "desc": "Lexical scope and private state", "files": ["index.html", "script.js"] },
-        { "id": "classes", "name": "ES6 classes", "desc": "class, constructor, extends and super", "files": ["index.html", "script.js"] },
-        { "id": "promises", "name": "Promises", "desc": "then, catch, chaining and Promise.all", "files": ["index.html", "script.js"] },
-        { "id": "async-await", "name": "async / await", "desc": "async functions and await for readable async code", "files": ["index.html", "script.js"] },
-        { "id": "fetch", "name": "Fetch API", "desc": "fetch a URL, read JSON, POST with headers", "files": ["index.html", "script.js"] }
+        {
+          "id": "counter",
+          "name": "Click counter",
+          "desc": "DOM + events: buttons that update the page",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "es6",
+          "name": "ES6+ syntax",
+          "desc": "let/const, arrow functions, destructuring, spread, template literals",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "dom",
+          "name": "DOM manipulation",
+          "desc": "querySelector, createElement and updating the page",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "events",
+          "name": "Events",
+          "desc": "addEventListener, the event object and delegation",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "functions",
+          "name": "Functions as values",
+          "desc": "Pass, return and compose functions — higher-order functions",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "context",
+          "name": "this & context",
+          "desc": "Function context, call / apply / bind and arrow-function this",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "closures",
+          "name": "Closures",
+          "desc": "Lexical scope and private state",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "classes",
+          "name": "ES6 classes",
+          "desc": "class, constructor, extends and super",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "promises",
+          "name": "Promises",
+          "desc": "then, catch, chaining and Promise.all",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "async-await",
+          "name": "async / await",
+          "desc": "async functions and await for readable async code",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "fetch",
+          "name": "Fetch API",
+          "desc": "fetch a URL, read JSON, POST with headers",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        }
       ]
     },
     {
@@ -204,12 +585,64 @@
       "name": "Node.js & Express",
       "desc": "JavaScript on the server — run with: node server.js",
       "examples": [
-        { "id": "hello-http", "name": "Hello HTTP", "desc": "The smallest Node web server — http.createServer", "files": ["server.js", "README.md"] },
-        { "id": "http-module", "name": "http module", "desc": "Serve an HTML file with the built-in http + fs modules", "files": ["server.js", "index.html", "README.md"] },
-        { "id": "npm-demo", "name": "npm project", "desc": "package.json, local modules and npm scripts", "files": ["package.json", "greet.js", "server.js", "README.md"] },
-        { "id": "express-hello", "name": "Express hello", "desc": "The smallest Express app — a single route", "files": ["server.js", "README.md"] },
-        { "id": "express-rest", "name": "Express REST API", "desc": "CRUD routes with GET / POST / PUT / DELETE", "files": ["server.js", "README.md"] },
-        { "id": "express-db", "name": "Express + database", "desc": "A REST API persisting todos to a JSON file", "files": ["server.js", "db.json", "README.md"] }
+        {
+          "id": "hello-http",
+          "name": "Hello HTTP",
+          "desc": "The smallest Node web server — http.createServer",
+          "files": [
+            "server.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "http-module",
+          "name": "http module",
+          "desc": "Serve an HTML file with the built-in http + fs modules",
+          "files": [
+            "server.js",
+            "index.html",
+            "README.md"
+          ]
+        },
+        {
+          "id": "npm-demo",
+          "name": "npm project",
+          "desc": "package.json, local modules and npm scripts",
+          "files": [
+            "package.json",
+            "greet.js",
+            "server.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "express-hello",
+          "name": "Express hello",
+          "desc": "The smallest Express app — a single route",
+          "files": [
+            "server.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "express-rest",
+          "name": "Express REST API",
+          "desc": "CRUD routes with GET / POST / PUT / DELETE",
+          "files": [
+            "server.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "express-db",
+          "name": "Express + database",
+          "desc": "A REST API persisting todos to a JSON file",
+          "files": [
+            "server.js",
+            "db.json",
+            "README.md"
+          ]
+        }
       ]
     }
   ]

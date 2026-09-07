@@ -2,28 +2,34 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Media: audio, video & picture</title>
+  <title>Media: audio, video &amp; picture</title>
+  <!--
+    Sample media (public-domain / CC0, self-hosted so this example works offline):
+    roar.mp3  — MDN CC0 audio sample (t-rex roar)
+    movie.*   — MDN CC0 video sample (flower)
+    large / medium / small.jpg — same photo at three widths for the <picture> demo
+  -->
 </head>
 <body>
   <h1>Media elements</h1>
 
-  <!-- Audio: controls + source fallback -->
+  <!-- Audio: one attribute (controls) gives a full player. List extra
+       <source> entries to offer more formats as fallbacks. -->
   <h2>Audio</h2>
   <audio controls>
-    <source src="song.mp3" type="audio/mpeg" />
-    <source src="song.ogg" type="audio/ogg" />
+    <source src="roar.mp3" type="audio/mpeg" />
     Your browser does not support audio.
   </audio>
 
-  <!-- Video: controls + width -->
+  <!-- Video: the browser picks the first <source> it can play. -->
   <h2>Video</h2>
   <video width="320" controls>
     <source src="movie.mp4" type="video/mp4" />
-    <source src="movie.ogg" type="video/ogg" />
+    <source src="movie.webm" type="video/webm" />
     Your browser does not support video.
   </video>
 
-  <!-- Picture: responsive images via source media queries -->
+  <!-- Picture: responsive images via <source media> switching -->
   <h2>Picture (responsive image)</h2>
   <picture>
     <source media="(min-width: 650px)" srcset="large.jpg" />
