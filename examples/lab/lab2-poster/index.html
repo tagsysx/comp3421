@@ -65,7 +65,7 @@
        TODO 1 — the <body> tag just below.
        Add this attribute (one line is fine):
            style="margin: 0; background-color: #1a0b0e; color: rgba(255,244,235,.84);
-                  font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+                  font-family: Inter;
                   font-size: 1rem; line-height: 1.7;"
        Why: background-color paints the WHOLE page; color sets the default
        text colour that every element inherits; margin: 0 removes the white
@@ -100,20 +100,20 @@
              <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
              <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet" />
          Step 2: add this attribute to the <h1>:
-             style="margin: 0; font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+             style="margin: 0; font-family: 'Bebas Neue';
                     font-size: 7rem; font-weight: 400; line-height: .92;
                     letter-spacing: .1em; text-indent: .1em; color: #fff8ee;"
          Why text-indent: letter-spacing adds space AFTER the last letter too, so
          centred text looks one space too far left. text-indent pushes it back.
-         Bebas Neue is always uppercase; Impact and Arial Narrow are the condensed
-         system fallbacks.                                          [6 min] -->
+         Bebas Neue ships in capitals only — that is why the title is already
+         uppercase here without text-transform.                    [6 min] -->
     <h1>Welcome Night</h1>
 
     <!-- ── Exercise 2 · The masthead (continued) ──────────────────
          TODO 5 — the tagline below.
          Add this attribute:
              style="margin: 24px auto 0; max-width: 34rem;
-                    font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+                    font-family: 'Playfair Display'; font-style: italic;
                     font-size: 1.35rem; line-height: 1.5; color: rgba(255,244,235,.74);"
          A second font family (a serif, in italic) is the cheapest way to make a page
          look art-directed.                                         [2 min] -->
@@ -211,7 +211,7 @@
          TODO 13 — the <blockquote> below.
          Add this attribute:
              style="max-width: 28rem; margin: 48px auto 0; padding: 0;
-                    font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+                    font-family: 'Playfair Display'; font-style: italic;
                     font-size: 1.75rem; line-height: 1.35; text-indent: 0;
                     color: rgba(255,250,244,.95); text-shadow: 0 2px 22px rgba(0,0,0,.6);"
          Here the shadow is BLACK with a 2px offset — a soft drop shadow that lifts the
@@ -223,7 +223,7 @@
       <!-- ── Exercise 6 · The quote (continued) ───────────────────
            TODO 14 — the attribution span below.
            Add this attribute:
-               style="display: block; margin-top: 14px; font-family: Inter, Arial, sans-serif;
+               style="display: block; margin-top: 14px; font-family: Inter;
                       font-style: normal; font-size: .72rem; font-weight: 600;
                       letter-spacing: .3em; text-transform: uppercase;
                       color: rgba(255,244,235,.5); text-shadow: none;"
