@@ -60,6 +60,14 @@
       ]
     },
     {
+      "id": "lab-02-poster",
+      "name": "Lab 2 · Style a poster",
+      "desc": "practise inline style — colour, units, text, fonts",
+      "examples": [
+        "lab/lab2-poster"
+      ]
+    },
+    {
       "id": "lecture-04-css-layout",
       "name": "Lecture 4 · CSS II — Box Model & Responsive",
       "desc": "The box model, positioning, backgrounds, media queries",
@@ -155,6 +163,21 @@
     }
   ],
   "categories": [
+    {
+      "id": "lab",
+      "name": "Labs",
+      "desc": "Practice files for the lab sessions",
+      "examples": [
+        {
+          "id": "lab2-poster",
+          "name": "Lab 2 — Style a poster",
+          "desc": "Your practice file: 19 TODOs, style attributes only",
+          "files": [
+            "index.html"
+          ]
+        }
+      ]
+    },
     {
       "id": "html",
       "name": "HTML",

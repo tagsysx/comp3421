@@ -1,0 +1,303 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Welcome Night — Lab 2 practice</title>
+
+  <!-- Exercise 2, step 1 asks you to paste the Google Fonts <link> lines here. -->
+
+</head>
+
+<!-- ================================================================
+     LAB 2 — STYLE A POSTER
+
+     Every TODO below asks for ONE style attribute. Read the hint, write
+     the attribute, then LOOK AT THE PAGE — one declaration can change
+     colour, size, spacing and mood.
+
+     Work in the live editor (source on the left, result on the right) or
+     in any editor + browser. Open target-preview.png (same folder) to see
+     what the finished page looks like.
+     ================================================================ -->
+
+<body>
+
+  <p><strong>Target result.</strong> Open <em>target-preview.png</em> in the same folder
+     to see what this page should look like when every TODO is done, then work down the
+     file one TODO at a time.</p>
+
+  <p><em>This header is scaffolding — ignore how it looks. It sits on the dark canvas
+     you create in Exercise 1.</em></p>
+
+  <!-- ============================================================
+       HOW CSS WORKS — quick start
+
+       1. A style attribute lives INSIDE the opening tag:
+              <p style="color: #ff8f95;">pink text</p>
+
+       2. One declaration is  property: value;  — and it ends with a
+          SEMICOLON. Several declarations are separated by semicolons:
+              style="color: #fff; font-size: 2rem;"
+          A missing semicolon is the #1 reason CSS "does nothing".
+
+       3. Colours, the three ways you will use today:
+              #1a0b0e                       hex — opaque
+              rgba(255, 244, 235, .84)      rgb + alpha (1 = solid, 0 = invisible)
+              hsla(40, 95%, 60%, .10)       hue 0-360, saturation, lightness, alpha
+
+       4. Lengths, the units you will use today:
+              1rem   the ROOT font size (16px by default)
+              .4em   the PARENT font size — good for letter-spacing
+              12px   fixed pixels — good for hairlines
+              92%    a share of the PARENT width
+              100vh  a share of the VIEWPORT height
+
+       5. Save, then refresh (the live editor refreshes itself). Nothing
+          changed? Look for a missing ";", a missing closing quote, or a
+          style attribute on the wrong tag.
+       ============================================================ -->
+
+
+  <!-- ── Exercise 1 · The canvas ────────────────────────────────────
+       TODO 1 — the <body> tag just below.
+       Add this attribute (one line is fine):
+           style="margin: 0; background-color: #1a0b0e; color: rgba(255,244,235,.84);
+                  font-family: Inter, 'Helvetica Neue', Arial, sans-serif;
+                  font-size: 1rem; line-height: 1.7;"
+       Why: background-color paints the WHOLE page; color sets the default
+       text colour that every element inherits; margin: 0 removes the white
+       gap the browser leaves around the page.                     [5 min] -->
+<body>
+
+  <!-- ── Exercise 1 · The canvas (continued) ──────────────────────
+       TODO 2 — the <main> wrapper just below.
+       Add this attribute:
+           style="width: 92%; max-width: 880px; min-height: 100vh;
+                  margin: 0 auto; padding: 72px 0 56px; text-align: center;"
+       Recipe note: margin and padding are next week's topic (the box model)
+       — for now just copy them. text-align: center is what turns a
+       left-aligned document into a poster.                        [4 min] -->
+  <main>
+
+    <!-- ── Exercise 2 · The masthead ──────────────────────────────
+         TODO 3 — the small "The Hong Kong Polytechnic University" line below.
+         Add this attribute:
+             style="margin: 0 0 20px; font-size: .8rem; font-weight: 600;
+                    letter-spacing: .32em; text-transform: uppercase;
+                    color: #f0c05a;"
+         letter-spacing + text-transform: uppercase is the classic "designed"
+         look. Note the spacing is in em, so it scales with the font size. [3 min] -->
+    <p>The Hong Kong Polytechnic University</p>
+
+    <!-- ── Exercise 2 · The masthead (continued) ──────────────────
+         TODO 4 — the <h1> title below.
+         Step 1: paste these three <link> lines into <head>, just before </head>
+                 — this is the Google Fonts web-font trick:
+             <link rel="preconnect" href="https://fonts.googleapis.com" />
+             <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+             <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600&family=Playfair+Display:ital,wght@1,600&display=swap" rel="stylesheet" />
+         Step 2: add this attribute to the <h1>:
+             style="margin: 0; font-family: 'Bebas Neue', Impact, 'Arial Narrow', sans-serif;
+                    font-size: 7rem; font-weight: 400; line-height: .92;
+                    letter-spacing: .1em; text-indent: .1em; color: #fff8ee;"
+         Why text-indent: letter-spacing adds space AFTER the last letter too, so
+         centred text looks one space too far left. text-indent pushes it back.
+         Bebas Neue is always uppercase; Impact and Arial Narrow are the condensed
+         system fallbacks.                                          [6 min] -->
+    <h1>Welcome Night</h1>
+
+    <!-- ── Exercise 2 · The masthead (continued) ──────────────────
+         TODO 5 — the tagline below.
+         Add this attribute:
+             style="margin: 24px auto 0; max-width: 34rem;
+                    font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+                    font-size: 1.35rem; line-height: 1.5; color: rgba(255,244,235,.74);"
+         A second font family (a serif, in italic) is the cheapest way to make a page
+         look art-directed.                                         [2 min] -->
+    <p>Meet your department, your mentors, and your very first project.</p>
+
+    <!-- ── Exercise 3 · The glow ──────────────────────────────────
+         TODO 6 — the <h1> again: APPEND to the style attribute you wrote in TODO 4.
+         Add one more declaration at the end, before the closing quote:
+             text-shadow: 0 0 12px rgba(240,192,90,.85), 0 0 38px rgba(240,192,90,.5), 0 0 90px rgba(255,160,60,.35);
+         text-shadow takes  x-offset y-offset blur colour. Keep the offsets at 0 and
+         it becomes a glow instead of a drop shadow. Three layers = a soft, wide
+         halo.                                                      [4 min] -->
+    <!-- TODO 6: (edit the <h1> above — no new element needed) -->
+
+    <!-- ── Exercise 3 · The glow (continued) ──────────────────────
+         TODO 7 — the thin divider line below.
+         Add this attribute:
+             style="width: 72px; height: 1px; margin: 36px auto;
+                    background-color: rgba(240,192,90,.55);"
+         "36px auto" means 36px top and bottom, auto left and right — that is what
+         centres a block. height: 1px + a background colour is how you draw a line
+         without an <hr>.                                           [2 min] -->
+    <div></div>
+
+    <!-- ── Exercise 4 · The tint ──────────────────────────────────
+         TODO 8 — the information strip below.
+         Add this attribute:
+             style="width: 100%; max-width: 660px; margin: 0 auto; padding: 15px 20px;
+                    border-radius: 12px; background-color: hsla(40, 95%, 60%, .10);
+                    font-size: .82rem; letter-spacing: .22em; text-transform: uppercase;
+                    color: rgba(255,244,235,.9);"
+         The background is gold at 10% alpha, so the dark canvas shows through — that
+         is a "tint", not a solid fill.                             [4 min] -->
+    <div>Thu 3 Sep 2026 &nbsp;·&nbsp; 18:00 &ndash; 21:30 &nbsp;·&nbsp; Block Y Courtyard</div>
+
+    <!-- ── Exercise 5 · The programme ─────────────────────────────
+         TODO 9 — the <h2> below.
+         Add this attribute:
+             style="margin: 56px 0 4px; font-size: .8rem; font-weight: 600;
+                    letter-spacing: .38em; text-transform: uppercase; color: #f0c05a;"
+                                                                    [2 min] -->
+    <h2>Programme</h2>
+
+    <!-- ── Exercise 5 · The programme (continued) ─────────────────
+         TODO 10 — the <ul> below.
+         Add this attribute:
+             style="margin: 0; padding: 0; list-style: none;"
+         list-style: none removes the bullet dots — a poster has no bullets. [3 min] -->
+    <ul>
+
+      <!-- ── Exercise 5 · The programme (continued) ───────────────
+           TODO 11 — every <li> below (there are five).
+           Add this attribute to EACH <li>:
+               style="padding: 13px 0; border-bottom: 1px solid rgba(255,244,235,.09);
+                      font-size: 1.08rem;"
+           Leave the border off the LAST <li> (a line under the final row looks like a
+           mistake). The rgba colour is a hairline at 9% white: visible, but quiet. [3 min] -->
+      <li>
+        <span>18:00</span>
+        &nbsp;&nbsp;<span>Welcome &amp; Dean's address</span>
+        &nbsp;·&nbsp;<span>Main Hall</span>
+      </li>
+      <li>
+        <span>18:30</span>
+        &nbsp;&nbsp;<span>Campus tour</span>
+        &nbsp;·&nbsp;<span>in five groups</span>
+      </li>
+      <li>
+        <span>19:15</span>
+        &nbsp;&nbsp;<span>Lab demos &amp; showcase</span>
+        &nbsp;·&nbsp;<span>3/F labs</span>
+      </li>
+      <li>
+        <span>20:00</span>
+        &nbsp;&nbsp;<span>Student societies fair</span>
+        &nbsp;·&nbsp;<span>Foyer</span>
+      </li>
+      <li>
+        <span>20:45</span>
+        &nbsp;&nbsp;<span>Live music &amp; supper</span>
+        &nbsp;·&nbsp;<span>Rooftop</span>
+      </li>
+    </ul>
+
+    <!-- ── Exercise 5 · The programme (continued) ─────────────────
+         TODO 12 — the three kinds of <span> inside each <li>.
+         The TIME span:   style="font-size: .84rem; letter-spacing: .1em; color: rgba(255,244,235,.5);"
+         The EVENT span:  style="font-weight: 600; color: #fff8ee;"
+         The PLACE span:  style="font-style: italic; color: rgba(255,244,235,.55);"
+         Three levels of importance built from colour alone: bright = what it is, 50%
+         white = when, italic 55% = where. That is a typographic hierarchy — no bold
+         headings needed.                                           [3 min] -->
+
+    <!-- ── Exercise 6 · The quote ─────────────────────────────────
+         TODO 13 — the <blockquote> below.
+         Add this attribute:
+             style="max-width: 28rem; margin: 48px auto 0; padding: 0;
+                    font-family: 'Playfair Display', Georgia, serif; font-style: italic;
+                    font-size: 1.75rem; line-height: 1.35; text-indent: 0;
+                    color: rgba(255,250,244,.95); text-shadow: 0 2px 22px rgba(0,0,0,.6);"
+         Here the shadow is BLACK with a 2px offset — a soft drop shadow that lifts the
+         text off the background. Same property as the glow, completely different
+         result.                                                    [3 min] -->
+    <blockquote>
+      “Ask questions early. Build things often.”
+
+      <!-- ── Exercise 6 · The quote (continued) ───────────────────
+           TODO 14 — the attribution span below.
+           Add this attribute:
+               style="display: block; margin-top: 14px; font-family: Inter, Arial, sans-serif;
+                      font-style: normal; font-size: .72rem; font-weight: 600;
+                      letter-spacing: .3em; text-transform: uppercase;
+                      color: rgba(255,244,235,.5); text-shadow: none;"
+           Two things to notice: font-style: normal switches the italic OFF for this
+           span, and text-shadow: none switches the shadow off. Both properties were
+           inherited — and both can be reset.                        [2 min] -->
+      <span>Welcome Week 2026</span>
+    </blockquote>
+
+    <!-- ── Exercise 7 · The tickets ───────────────────────────────
+         TODO 15 — the paragraph that wraps the price chip below.
+         Add this attribute:
+             style="margin: 44px 0 0;"                              [1 min] -->
+    <p>
+      <!-- ── Exercise 7 · The tickets (continued) ─────────────────
+           TODO 16 — the chip span below.
+           Add this attribute:
+               style="display: inline-block; padding: 8px 22px; border-radius: 999px;
+                      background-color: rgba(226,58,70,.18); font-size: .76rem;
+                      font-weight: 600; letter-spacing: .24em; text-transform: uppercase;
+                      color: #ff8f95;"
+           display: inline-block + padding + border-radius: 999px is the recipe for a
+           pill. border-radius: 999px means "as round as possible".   [2 min] -->
+      <span>Free entry &nbsp;·&nbsp; bring your student card</span>
+    </p>
+
+    <!-- ── Exercise 7 · The tickets (continued) ───────────────────
+         TODO 17 — the link line below (the <p>, the <a> and the muted span).
+         <p>:   style="margin: 22px 0 0; font-size: .95rem;"
+         <a>:   style="color: #ff8f95; font-weight: 600; letter-spacing: .04em;
+                       text-decoration: underline;"
+         span:  style="color: rgba(255,244,235,.5);"
+         A saturated red on deep wine is a deliberate clash — the link should be the
+         second thing your eye finds.                               [1 min] -->
+    <p>
+      <a href="#">Get the full programme</a>
+      <span>&nbsp; or scan the QR code at the door</span>
+    </p>
+
+    <!-- ── Exercise 8 · The quiet footer ──────────────────────────
+         TODO 18 — the <footer> below and the span inside it.
+         <footer>:
+             style="margin-top: 68px; padding-top: 24px;
+                    border-top: 1px solid rgba(255,244,235,.1);
+                    font-size: .72rem; font-weight: 600; letter-spacing: .26em;
+                    text-transform: uppercase; color: rgba(255,244,235,.5);"
+         the span:
+             style="display: inline-block; margin-top: 8px; font-size: .74rem;
+                    font-weight: 400; letter-spacing: .06em; text-transform: none;
+                    opacity: .9;"
+         opacity: .9 on an element that is already 50% white — check that the result is
+         still readable. Small text below 4.5:1 contrast fails WCAG AA. [2 min] -->
+    <footer>
+      Presented by COMP3421 · Web Application Design &amp; Development<br />
+      <span>Fictional demo content for Lab 2 — not a real event.</span>
+    </footer>
+
+    <!-- ── Exercise 9 · Make it yours ─────────────────────────────
+         TODO 19 — do not skip this one; it is how the marker knows the page is yours.
+         (a) Change the event to YOUR OWN: rename the <h1>, write a new tagline, give
+             the programme your own five items, change the date, the venue and the chip
+             text.
+         (b) Replace the two accent colours #f0c05a (gold) and #ff8f95 (red) with a pair
+             of YOUR OWN, chosen deliberately:
+                 #f0c05a  gold      #7ee0c0  mint
+                 #ff8f95  coral     #8fb8ff  sky
+                 #d8b4ff  lilac     #ffd166  amber
+             Paste your colours into the chip, the link, the university line, the <h2>
+             and the divider — then look at the page at 100% zoom and ask yourself
+             honestly whether the text is still readable.
+
+         WHEN YOU ARE DONE: download your file and submit it.
+         In the live editor press  ⬇ Download .zip ; if you worked offline, submit this
+         .html file. Submit the CODE, not a screenshot.             [8 min] -->
+
+  </main>
+
+</body>
+</html>
