@@ -273,19 +273,49 @@
     </footer>
 
     <!-- ── Exercise 9 · Make it yours ─────────────────────────────
-         TODO 19 — do not skip this one; it is how the marker knows the page is yours.
-         (a) Change the event to YOUR OWN: rename the <h1>, write a new tagline, give
-             the programme your own five items, change the date, the venue and the chip
-             text.
-         (b) Replace the two accent colours #f0c05a (gold) and #ff8f95 (red) with a pair
-             of YOUR OWN, chosen deliberately:
-                 #f0c05a  gold      #7ee0c0  mint
-                 #ff8f95  coral     #8fb8ff  sky
-                 #d8b4ff  lilac     #ffd166  amber
-             Paste your colours into the chip, the link, the university line, the <h2>
-             and the divider — then look at the page at 100% zoom and ask yourself
-             honestly whether the text is still readable.
+         TODO 19 — do not skip this one. Everything above made the page look
+         good; this step makes it YOURS, and it is how the marker knows the
+         page is yours. Change five things (a–e), then check your work (f).
 
+         (a) THE EVENT — rewrite the <h1> so it is a different event. Any
+             event you like — a concert, a game jam, a hall dinner, a club
+             night — as long as it is not "Welcome Night".
+         (b) THE TAGLINE — one new sentence under the title. It has the same
+             job as the old one: tell the reader what the evening is.
+         (c) THE PROGRAMME — all five <li> rows: new times, new item names,
+             new places. Keep the three-part shape of every row
+             (time · what · where) — that shape IS the typographic
+             hierarchy you built in Exercise 5.
+         (d) THE DETAILS — the date, the start/end time and the venue inside
+             the tinted strip, plus the wording of the pill near the bottom.
+         (e) THE ACCENT COLOURS — choose a pair of your own and replace
+             BOTH of the current ones. They live in seven places; a
+             half-finished swap looks worse than the original.
+                 gold #f0c05a  +  red #ff8f95   (the ones you have)
+                 mint #7ee0c0  +  sky #8fb8ff
+                 lilac #d8b4ff +  amber #ffd166
+             Where they are:
+               1. the university line ..... color: #f0c05a
+               2. the title glow .......... rgba(240,192,90,.85) and the two
+                                            other layers in the same declaration
+               3. the divider hairline .... rgba(240,192,90,.55)
+               4. the tinted strip ........ hsla(40, 95%, 60%, .10)
+               5. the "Programme" label ... color: #f0c05a
+               6. the pill ................ rgba(226,58,70,.18) background
+                                            and #ff8f95 text — two declarations
+               7. the link ................ color: #ff8f95
+             Ten declarations in all. Note that 2, 3, 4 and 6 are NOT hex —
+             one colour can be written four ways (Lecture 03 §1). Change the
+             hex and forget the rgba()/hsla() copies and you get a gold glow
+             around a mint title. That is the most common mistake here.
+
+         (f) LOOK at the page at 100% zoom, then ask honestly: is every line
+             still readable? A light accent on this dark canvas can fall below
+             4.5:1. If it does, pick a darker or more saturated pair.
+
+         Optional (not marked): the <h2> word, the pull-quote and its
+         attribution — change them if they suit your event better.
+         Keep: the university line, the footer and both honesty lines.
          WHEN YOU ARE DONE: download your file and submit it.
          In the live editor press  ⬇ Download .zip ; if you worked offline, submit this
          .html file. Submit the CODE, not a screenshot.             [8 min] -->
