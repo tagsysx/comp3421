@@ -42,6 +42,7 @@
         "html/svg",
         "html/svg-path",
         "html/svg-dasharray",
+        "html/svg-loader",
         "html/svg-animation"
       ]
     },
@@ -331,6 +332,14 @@
           "id": "svg-dasharray",
           "name": "stroke-dasharray",
           "desc": "Dashed strokes — what \"4 3\" means, guide lines & arrows, patterns, marching ants",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "svg-loader",
+          "name": "SVG loaders",
+          "desc": "Four loaders from one idea — a sliding line, a sweeping arc, a draw-on path, and a script-driven transition",
           "files": [
             "index.html"
           ]

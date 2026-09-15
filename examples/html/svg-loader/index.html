@@ -1,0 +1,807 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>SVG loaders — stroke-dasharray &amp; stroke-dashoffset</title>
+  <!--
+    SVG loaders — one file, no images, no libraries.
+
+    A loader is just a path with a dash pattern, plus one number that
+    moves the pattern along the path. Four ways to do it, from simplest up:
+
+      1. Sliding line     stroke-dashoffset alone — the ink runs left, then back
+      2. Sweeping arc     the dash ARRAY grows and shrinks, plus a rotation
+      3. Draw-on path     pathLength="100" normalises any shape to 100 units
+      4. Transition       a script nudges the array; CSS tweens the change
+
+    The first three are pure CSS — no script at all. Number 4 is here for
+    contrast: it does the same job with `transition` instead of @keyframes.
+
+    Sections 1b to 1e take example 1 apart in detail: the pattern unrolled to
+    show where the dash comes from, nine frozen frames of the real animation
+    with the numbers read out of the browser, the easing curve, and an
+    annotated walkthrough of the six lines of CSS.
+
+    Everything is a shape in the markup, so every number below is editable.
+    Things worth changing: the dash numbers, the duration, the easing,
+    stroke-width, and stroke-linecap.
+  -->
+  <style>
+    body {
+      margin: 0;
+      padding: 26px 20px 44px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f5f8fc;
+      color: #111820;
+    }
+    h1 { margin: 0 0 6px; font-size: 26px; }
+    .lede { margin: 0 0 22px; color: #4a5568; font-size: 15px; max-width: 74ch; }
+    h2 { font-size: 17px; margin: 0 0 8px; color: #0E3F8C; font-weight: 700; }
+    p { margin: 0 0 12px; color: #4a5568; font-size: 14px; max-width: 78ch; line-height: 1.55; }
+    p:last-child { margin-bottom: 0; }
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: #1E4FA8;
+      background: #eef4fc;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    section {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 22px 18px;
+      margin: 0 auto 18px;
+      max-width: 900px;
+      box-shadow: 0 6px 18px rgba(14, 63, 140, .10);
+    }
+    svg { display: block; }
+
+    /* the wide line in section 1 runs the full card width */
+    .wide { width: 100%; height: auto; margin: 4px auto 12px; }
+
+    /* ---------- the shared parts of every loader ---------- */
+    /* the track is the path itself — pale, so the ink reads against it */
+    .track {
+      fill: none;
+      stroke: #dbe4f0;
+      stroke-linecap: round;
+    }
+    .ink {
+      fill: none;
+      stroke: #1E4FA8;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+    }
+
+    /* ---------- 1. sliding line ----------
+       pathLength="100" means every length below is a PERCENTAGE of the line,
+       whatever its real length happens to be. Here: 28 of ink, 80 of gap.
+       The pair (108) is deliberately LONGER than the line, and that matters:
+       let ink + gap come out equal to the path length and the pattern tiles
+       across it, so the dash before the visible one ends exactly at the start
+       of the line — and a dash that ends there still gets its round cap, half
+       of which falls inside the line. The result is a sliver of ink flashing
+       at the left end on every bounce. An oversized gap cannot do that.
+       Then a single number, stroke-dashoffset, slides the ink along. The line
+       is 100 units and the ink is 28, so travelling to -72 carries the ink
+       exactly from one end to the other. That is the whole loader. */
+    .wide .track { stroke-width: 16; }
+    .wide .ink {
+      stroke-width: 16;
+      stroke-dasharray: 28 80;
+      animation: slide 1.8s ease-in-out infinite;
+    }
+    @keyframes slide {
+      0%, 100% { stroke-dashoffset: 0; }      /* ink at the left end */
+      50%      { stroke-dashoffset: -72; }    /* ink at the right end */
+    }
+
+    /* ---------- 1b. the deep dive on example 1 ---------- */
+    .eyebrow {
+      display: inline-block;
+      font-size: 11.5px;
+      letter-spacing: .09em;
+      text-transform: uppercase;
+      font-weight: 700;
+      color: #1E4FA8;
+      background: #eef4fc;
+      border-radius: 999px;
+      padding: 3px 10px;
+      margin-bottom: 10px;
+    }
+    /* the diagram is drawn at 1:1 — one viewBox unit is one pixel at the card's
+       full width — so the font sizes inside it are the sizes you actually see.
+       A wide viewBox is what keeps that true; a narrow one would be scaled up
+       and every label with it. */
+    .diagram { display: block; width: 100%; max-width: 856px; height: auto; margin: 8px auto 0; }
+    .figure { margin: 0 0 16px; }
+    .figure figcaption { margin-top: 8px; font-size: 12.5px; color: #4a5568; line-height: 1.5; }
+
+    /* point on its own line, grey explanation indented beneath it */
+    .ingredients { margin: 0 0 10px; padding: 0; list-style: none; }
+    .ingredients li { margin: 0 0 12px; font-size: 14px; line-height: 1.5; }
+    .ingredients li b { color: #0E3F8C; }
+    .ingredients li .why {
+      display: block;
+      color: #4a5568;
+      font-size: 13.5px;
+      margin-top: 3px;
+      padding-left: 16px;
+    }
+
+    /* the frame table. Fixed widths, not 1fr: the strip is an intrinsic-width
+       SVG inside a grid cell and would otherwise push the row past the card. */
+    .frames { margin: 12px 0 6px; }
+    .frow {
+      display: grid;
+      grid-template-columns: 68px 620px 82px 96px;
+      align-items: center;
+      gap: 0 10px;
+      padding: 2px 0;
+      border-top: 1px solid #eef2f8;
+    }
+    .frow-head { border-top: 0; border-bottom: 1px solid #dce3ed; padding-bottom: 6px; }
+    .frow-head span {
+      font-size: 10.5px;
+      letter-spacing: .07em;
+      text-transform: uppercase;
+      color: #8a97a8;
+      font-weight: 700;
+    }
+    .frow.turn { background: #f7fafd; }
+    .frow .t {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: #0E3F8C;
+    }
+    .frow .v {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      color: #4a5568;
+      text-align: right;
+    }
+    .frow.turn .v { color: #1E4FA8; font-weight: 700; }
+    .fstrip { display: block; width: 100%; height: auto; }
+    .fstrip .track { stroke-width: 14; }
+    /* Every frame below is the REAL animation, held still: a negative
+       animation-delay seeks to a phase and animation-play-state: paused keeps
+       it there. Change the duration and you must change the delays to match. */
+    .fstrip .ink {
+      stroke-width: 14;
+      stroke-dasharray: 28 80;
+      animation: slide 1.8s ease-in-out infinite;
+      animation-play-state: paused;
+    }
+
+    /* the annotated code block */
+    .code-block {
+      margin: 10px 0 16px;
+      padding: 12px 16px;
+      background: #f4f7fc;
+      border-left: 3px solid #1E4FA8;
+      border-radius: 10px;
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      line-height: 1.85;
+      color: #0E3F8C;
+      white-space: pre;
+      overflow-x: auto;
+    }
+    .code-block .c { color: #8494a8; }
+    .code-block .v { color: #b4770a; font-weight: 700; }
+
+    /* ---------- the three cards ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      margin: 0;
+      background: #ffffff;
+      border: 1px solid #dce3ed;
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .card:hover {
+      border-color: #1e4fa8;
+      box-shadow: 0 10px 26px rgba(30, 79, 168, .16);
+    }
+    .card svg { display: block; width: 100%; height: 150px; }
+    .card figcaption { margin-top: 10px; font-size: 13px; line-height: 1.5; }
+    .card b { color: #1e4fa8; }
+    .card span { color: #4a5568; }
+
+    /* ---------- 2. sweeping arc ----------
+       Two animations on one circle. The first changes the dash ARRAY, so the
+       arc grows to 62% and shrinks back; the second rotates the whole circle.
+       transform-box: fill-box makes transform-origin: center mean the centre
+       of THIS circle, not the centre of the whole canvas. */
+    .sweep {
+      stroke: #3D7BD9;
+      stroke-width: 9;
+      transform-box: fill-box;
+      transform-origin: center;
+      stroke-dasharray: 1 100;
+      animation: sweep 1.7s ease-in-out infinite,
+                 spin 1.7s linear infinite;
+    }
+    .sweep-track { stroke-width: 9; }
+    @keyframes sweep {
+      0%   { stroke-dasharray: 1 100; }
+      50%  { stroke-dasharray: 62 100; }
+      100% { stroke-dasharray: 1 100; stroke-dashoffset: -100; }
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* ---------- 3. draw-on path ----------
+       A lone number is shorthand for a pair: stroke-dasharray: 100 means
+       "100 100" — a dash as long as the whole path, then a gap as long as
+       the whole path. Offsetting it by 100 hides the shape completely;
+       going to 0 draws all of it; -100 walks it off the far end. */
+    .trace {
+      stroke: #0E3F8C;
+      stroke-width: 8;
+      stroke-dasharray: 100;
+      animation: trace 2.4s ease-in-out infinite;
+    }
+    .trace-track { stroke-width: 8; stroke-dasharray: 100; opacity: .55; }
+    @keyframes trace {
+      0%   { stroke-dashoffset: 100; }                  /* hidden */
+      55%  { stroke-dashoffset: 0; }                    /* fully drawn */
+      78%  { stroke-dashoffset: 0; opacity: 1; }
+      100% { stroke-dashoffset: -100; opacity: 0; }     /* slips off the end */
+    }
+
+    /* ---------- 4. transition instead of @keyframes ----------
+       No @keyframes at all. The dash array below is one fixed value; a script
+       swaps it for another every 1.15s, and this transition tweens the
+       change into a smooth sweep. Only the ARRAY moves — the offset stays 0,
+       so the arc always grows from the same point (the 3 o'clock position,
+       turned upright by the rotation).
+       With scripting off you simply get a still arc — nothing breaks. */
+    .arc {
+      stroke: #D9534F;
+      stroke-width: 10;
+      transform-box: fill-box;
+      transform-origin: center;
+      transform: rotate(-90deg);
+      stroke-dasharray: 20 100;
+      transition: stroke-dasharray 1.1s cubic-bezier(.6, 0, .3, 1);
+    }
+    .arc-track { stroke-width: 10; }
+
+    footer {
+      max-width: 900px;
+      margin: 26px auto 0;
+      color: #4a5568;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    footer b { color: #0E3F8C; }
+  </style>
+</head>
+<body>
+  <h1>SVG Loaders</h1>
+  <p class="lede">
+    Every spinner on this page is a path, a dash pattern, and one number that moves the
+    pattern along it. No images, no libraries — and the first three need no script at all.
+  </p>
+
+  <!-- ================================================================
+       1. THE SLIDING LINE — the simplest loader there is
+       ================================================================ -->
+  <section>
+    <h2>1 · The sliding line</h2>
+    <p>
+      One straight line. The pale run is the path itself; the blue pillar is the ink
+      painted on it. Give the stroke a dash pattern of <code>"28 80"</code> and only one
+      dash can ever be on the line at a time: 28 units of ink, then 80 of gap. Then
+      <strong>animate a single number, <code>stroke-dashoffset</code></strong> — the line is
+      100 units and the ink is 28, so travelling to <code>-72</code> carries the ink exactly
+      from the left end to the right, and back to <code>0</code> returns it. That is the
+      whole loader.
+    </p>
+
+    <p>
+      The four sections after this one take it apart properly: where the dash comes from,
+      what every frame actually looks like, why it reads as a bounce, and the six lines of
+      CSS that do all of it.
+    </p>
+
+    <svg class="wide" viewBox="0 0 600 120" role="img"
+         aria-label="A horizontal line along which a single blue dash slides from the left end to the right end and back again">
+      <line class="track" x1="30" y1="60" x2="570" y2="60" pathLength="100" />
+      <line class="ink"   x1="30" y1="60" x2="570" y2="60" pathLength="100" />
+    </svg>
+
+    <p>
+      <code>pathLength="100"</code> is what makes the numbers readable: it tells the browser
+      to treat this line as 100 units long, so the dash values are percentages and the same
+      three lines work on a line of any length. The easing is
+      <code>ease-in-out</code>, which slows the ink as it reaches each end — that is what
+      makes the turn read as a bounce rather than a jump.
+    </p>
+
+    <p>
+      <strong>Try this:</strong> change <code>28</code> to <code>60</code> and the ink becomes
+      a fat comet — then change the travel to <code>-40</code> as well, so that it still
+      lands on the right end (line length minus ink length is what decides the travel).
+      Delete the <code>50%</code> step and the ink runs one way and snaps back. Swap
+      <code>ease-in-out</code> for <code>linear</code> and the bounce turns mechanical.
+    </p>
+  </section>
+
+  <!-- ================================================================
+       1b. WHERE THE DASH COMES FROM
+       ================================================================ -->
+  <section>
+    <span class="eyebrow">Example 1, in detail</span>
+    <h2>1b · Where the dash comes from</h2>
+    <p>
+      Only three things are doing work here. It is worth naming them before we take the
+      animation apart, because every other loader on this page is built from the same three.
+    </p>
+
+    <ul class="ingredients">
+      <li><b>The path</b> — the <code>&lt;line&gt;</code> we drew, carrying
+        <code>pathLength="100"</code>.
+        <span class="why">This attribute does not move, resize or rescale anything. All it
+        does is <strong>declare</strong> how long the line should be considered to be — 100
+        units — so that every dash number below is measured against that instead of against
+        pixels. Note what it does <strong>not</strong> touch:
+        <code>stroke-width</code> is still in ordinary SVG units, so the round cap stays the
+        same size no matter what you put in <code>pathLength</code>.</span></li>
+      <li><b>The pattern</b> — <code>stroke-dasharray: 28 80</code>.
+        <span class="why">Not "one dash". A rhythm: 28 units of ink, then 80 units of gap,
+        then the same again, for as long as the path lasts.</span></li>
+      <li><b>The mover</b> — <code>stroke-dashoffset</code>.
+        <span class="why">It shifts where that rhythm begins. Nothing is redrawn and the
+        line does not move; the pattern slides along a path that stays exactly where it
+        is.</span></li>
+    </ul>
+
+    <p>
+      The pattern is the part that catches people out, so let us put it on a line
+      <strong>three times as long</strong> and look at it properly. Same two numbers, same
+      <code>pathLength</code> trick — only the length of the line has changed:
+    </p>
+
+    <figure class="figure">
+      <svg class="diagram" viewBox="0 0 856 120" role="img"
+           aria-label="A 300-unit line painted with the pattern 28 then 80, showing three repeats, with brackets measuring one ink of 28, one gap of 80, and a full period of 108 units">
+        <line x1="30" y1="62" x2="826" y2="62" stroke="#dbe4f0" stroke-width="14"
+              stroke-linecap="round" pathLength="300" />
+        <line x1="30" y1="62" x2="826" y2="62" stroke="#1E4FA8" stroke-width="14"
+              stroke-linecap="round" pathLength="300" stroke-dasharray="28 80" />
+        <line x1="30" y1="26" x2="316.56" y2="26" stroke="#8a97a8" stroke-width="1.2" />
+        <line x1="30" y1="18" x2="30" y2="34" stroke="#8a97a8" stroke-width="1.2" />
+        <line x1="316.56" y1="18" x2="316.56" y2="34" stroke="#8a97a8" stroke-width="1.2" />
+        <text x="173.28" y="14" font-size="12.5" fill="#8a97a8" text-anchor="middle">one period = 108 units</text>
+        <line x1="30" y1="90" x2="104.29" y2="90" stroke="#1E4FA8" stroke-width="1.2" />
+        <line x1="30" y1="82" x2="30" y2="98" stroke="#1E4FA8" stroke-width="1.2" />
+        <line x1="104.29" y1="82" x2="104.29" y2="98" stroke="#1E4FA8" stroke-width="1.2" />
+        <text x="67.15" y="112" font-size="12.5" fill="#1E4FA8" text-anchor="middle">28</text>
+        <line x1="104.29" y1="90" x2="316.56" y2="90" stroke="#8a97a8" stroke-width="1.2" />
+        <line x1="316.56" y1="82" x2="316.56" y2="98" stroke="#8a97a8" stroke-width="1.2" />
+        <text x="210.43" y="112" font-size="12.5" fill="#8a97a8" text-anchor="middle">80</text>
+      </svg>
+      <figcaption>
+        The same <code>28 80</code>, on a line three times as long: now you can watch the
+        rhythm repeat. Three dashes, at 0, 108 and 216 units — because one period is
+        <strong>28 + 80 = 108</strong> units, not 28.
+      </figcaption>
+    </figure>
+
+    <p>
+      Now cut the line back to the 100 units our loader actually uses, and only the first
+      dash survives. The line is 100 units long and one period is 108, so the second dash
+      would not begin until 108 — eight units past the end. One dash, one gap, and nothing
+      to wrap around.
+    </p>
+
+    <p>
+      That "nothing to wrap around" is not decoration, it is the fix for a real bug. The
+      first version of this loader used <code>28 72</code>, whose period is exactly
+      <strong>100</strong> — precisely the length of the line. Set the two side by side on
+      the long line and the problem is obvious:
+    </p>
+
+    <figure class="figure">
+      <svg class="diagram" viewBox="0 0 856 176" role="img"
+           aria-label="Two long lines painted with 28 72 and 28 80. A red guide at the 100-unit mark passes exactly through the start of the second dash on the first line, but leaves an 8-unit gap on the second">
+        <text x="30" y="16" font-size="12.5" fill="#0E3F8C" font-family="ui-monospace, Menlo, Consolas, monospace">stroke-dasharray="28 72"</text>
+        <text x="330" y="16" font-size="12.5" fill="#8a97a8">period = 100 units</text>
+        <line x1="30" y1="44" x2="826" y2="44" stroke="#dbe4f0" stroke-width="13"
+              stroke-linecap="butt" pathLength="300" />
+        <line x1="30" y1="44" x2="826" y2="44" stroke="#1E4FA8" stroke-width="13"
+              stroke-linecap="butt" pathLength="300" stroke-dasharray="28 72" />
+        <text x="307" y="66" font-size="12.5" fill="#D9534F">the second dash starts exactly on the mark</text>
+
+        <text x="30" y="108" font-size="12.5" fill="#0E3F8C" font-family="ui-monospace, Menlo, Consolas, monospace">stroke-dasharray="28 80"</text>
+        <text x="330" y="108" font-size="12.5" fill="#8a97a8">period = 108 units</text>
+        <line x1="30" y1="136" x2="826" y2="136" stroke="#dbe4f0" stroke-width="13"
+              stroke-linecap="butt" pathLength="300" />
+        <line x1="30" y1="136" x2="826" y2="136" stroke="#1E4FA8" stroke-width="13"
+              stroke-linecap="butt" pathLength="300" stroke-dasharray="28 80" />
+        <text x="330" y="158" font-size="12.5" fill="#1E4FA8">8 units clear of it</text>
+
+        <line x1="295.33" y1="30" x2="295.33" y2="150" stroke="#D9534F" stroke-width="1.4"
+              stroke-dasharray="5 4" />
+      </svg>
+      <figcaption>
+        The dashed red line marks <strong>100 units — the exact length of our line</strong>.
+        With a period of 100 the second dash begins right on that mark, which is to say
+        right on the end of the line. With a period of 108 it stands clear of it. These two
+        lines are drawn with square ends, so what you see is each dash's true edge — the
+        round caps of the real loader would blur the comparison.
+      </figcaption>
+    </figure>
+
+    <p>
+      Why does landing on the mark matter? Because a dash that ends exactly at the start of
+      the line still gets its round cap, and a cap is a semicircle of ink centred on that
+      point — half of which falls <em>inside</em> the line. So on every bounce the ink
+      reaches the right end and a small blob of ink flashes at the left end at the same
+      moment. Making the gap bigger than the remaining length removes the collision
+      entirely: the nearest other dash now lives at &minus;36 to &minus;8 units, well
+      outside the path, so there is nothing there to paint a cap.
+    </p>
+
+    <p>
+      <strong>The rule to take away:</strong> keep
+      <code>ink + gap</code> greater than the length of the path, and exactly one dash will
+      ever be visible. Let it come out equal, or smaller, and the pattern tiles across the
+      path and you will see more than one.
+    </p>
+  </section>
+
+  <!-- ================================================================
+       1c. FRAME BY FRAME
+       ================================================================ -->
+  <section>
+    <h2>1c · Frame by frame</h2>
+    <p>
+      The bounce lasts 1.8 seconds. Below it is frozen nine times — every eighth of the
+      cycle — so you can read the position off the page instead of trusting your eye.
+    </p>
+    <p>
+      Each row is the <em>real</em> animation, not a drawing of it: the same
+      <code>@keyframes</code> rule, held still with
+      <code>animation-play-state: paused</code> and a negative <code>animation-delay</code>
+      that seeks to that phase. The two right-hand columns are read out of the browser.
+    </p>
+
+    <div class="frames">
+      <div class="frow frow-head">
+        <span>time</span>
+        <span>the line, held still</span>
+        <span>dashoffset</span>
+        <span>ink covers</span>
+      </div>
+      <div class="frow">
+        <span class="t">0.000 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: 0s" />
+        </svg>
+        <span class="v">0</span>
+        <span class="v">0 – 28</span>
+      </div>
+      <div class="frow">
+        <span class="t">0.225 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -0.225s" />
+        </svg>
+        <span class="v">&minus;9.3</span>
+        <span class="v">9 – 37</span>
+      </div>
+      <div class="frow">
+        <span class="t">0.450 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -0.45s" />
+        </svg>
+        <span class="v">&minus;36.0</span>
+        <span class="v">36 – 64</span>
+      </div>
+      <div class="frow">
+        <span class="t">0.675 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -0.675s" />
+        </svg>
+        <span class="v">&minus;62.7</span>
+        <span class="v">63 – 91</span>
+      </div>
+      <div class="frow turn">
+        <span class="t">0.900 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -0.9s" />
+        </svg>
+        <span class="v">&minus;72.0</span>
+        <span class="v">72 – 100</span>
+      </div>
+      <div class="frow">
+        <span class="t">1.125 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -1.125s" />
+        </svg>
+        <span class="v">&minus;62.7</span>
+        <span class="v">63 – 91</span>
+      </div>
+      <div class="frow">
+        <span class="t">1.350 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -1.35s" />
+        </svg>
+        <span class="v">&minus;36.0</span>
+        <span class="v">36 – 64</span>
+      </div>
+      <div class="frow">
+        <span class="t">1.575 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -1.575s" />
+        </svg>
+        <span class="v">&minus;9.3</span>
+        <span class="v">9 – 37</span>
+      </div>
+      <div class="frow">
+        <span class="t">1.800 s</span>
+        <svg class="fstrip" viewBox="0 0 620 26" aria-hidden="true">
+          <line class="track" x1="14" y1="13" x2="606" y2="13" pathLength="100" />
+          <line class="ink" x1="14" y1="13" x2="606" y2="13" pathLength="100"
+                style="animation-delay: -1.8s" />
+        </svg>
+        <span class="v">0</span>
+        <span class="v">0 – 28</span>
+      </div>
+    </div>
+
+    <p>
+      Three things worth noticing. The <strong>highlighted row is the turning point</strong>
+      at 0.900 s, where the offset reaches its full &minus;72 and the ink sits on the right
+      end covering units 72 to 100. The journey is <strong>mirror-symmetric</strong> —
+      0.225 s and 1.575 s are identical, and so are 0.450 s and 1.350 s — because the
+      second half of the animation just runs the first half backwards. And the last row is
+      the same state as the first, which is what makes the loop invisible.
+    </p>
+    <p>
+      <em>One caveat, since these frames are held still by a fixed delay: if you change the
+      duration in the box above, the delays stay where they are and the frames will no
+      longer line up.</em>
+    </p>
+  </section>
+
+  <!-- ================================================================
+       1d. THE EASING
+       ================================================================ -->
+  <section>
+    <h2>1d · Why the bounce reads as a bounce</h2>
+    <p>
+      The ink does not travel at a constant speed, and that is entirely down to
+      <code>ease-in-out</code>. A CSS timing function is a cubic B&eacute;zier — honestly,
+      it is one — so this curve is not an impression of the easing, it <em>is</em> the
+      easing:
+    </p>
+
+    <figure class="figure">
+      <svg class="diagram" viewBox="0 0 856 250" role="img"
+           aria-label="An S-shaped easing curve compared with a straight linear line. Both start at zero and end at 72 units; the eased curve lags behind at the start and flattens at the end, with five dots marking the sampled frames">
+        <line x1="90" y1="200" x2="800" y2="200" stroke="#dbe4f0" stroke-width="1.2" />
+        <line x1="90" y1="200" x2="90" y2="30" stroke="#dbe4f0" stroke-width="1.2" />
+        <line x1="90" y1="200" x2="800" y2="30" stroke="#b8c4d4" stroke-width="1.4"
+              stroke-dasharray="7 5" />
+        <path d="M90,200 C388.2,200 501.8,30 800,30" fill="none" stroke="#1E4FA8"
+              stroke-width="3" stroke-linecap="round" />
+        <circle cx="90" cy="200" r="5" fill="#fff" stroke="#1E4FA8" stroke-width="2" />
+        <circle cx="267.5" cy="178.04" r="5" fill="#fff" stroke="#1E4FA8" stroke-width="2" />
+        <circle cx="445" cy="115" r="5" fill="#fff" stroke="#1E4FA8" stroke-width="2" />
+        <circle cx="622.5" cy="51.96" r="5" fill="#fff" stroke="#1E4FA8" stroke-width="2" />
+        <circle cx="800" cy="30" r="5" fill="#fff" stroke="#1E4FA8" stroke-width="2" />
+        <text x="90" y="18" font-size="12.5" fill="#8a97a8">ink position</text>
+        <text x="80" y="204" font-size="12" fill="#8a97a8" text-anchor="end">0</text>
+        <text x="80" y="34" font-size="12" fill="#8a97a8" text-anchor="end">72</text>
+        <text x="90" y="220" font-size="12" fill="#8a97a8" text-anchor="middle">0</text>
+        <text x="800" y="220" font-size="12" fill="#8a97a8" text-anchor="middle">0.9 s</text>
+        <text x="445" y="242" font-size="12.5" fill="#8a97a8" text-anchor="middle">time through one half of the bounce</text>
+      </svg>
+      <figcaption>
+        The straight dashed line is <code>linear</code> — where the ink would be if it never
+        changed speed. The solid curve is <code>ease-in-out</code>, and the five dots are
+        the frames from the table above.
+      </figcaption>
+    </figure>
+
+    <p>
+      Read the gaps between those dots on the vertical axis: <strong>9.3, 26.7, 26.7,
+      9.3</strong> units. The ink creeps out of the left end, sprints through the middle
+      and eases into the right end, then repeats the trick on the way home. Same eight
+      frames, measured:
+    </p>
+
+    <figure class="figure">
+      <svg class="diagram" viewBox="0 0 856 190" role="img"
+           aria-label="A bar chart of travel between consecutive frames: 9.3, 26.7, 26.7, 9.3, 9.3, 26.7, 26.7 and 9.3 path units">
+        <line x1="30" y1="150" x2="826" y2="150" stroke="#dbe4f0" stroke-width="1.2" />
+        <rect x="77" y="111.69" width="72" height="38.31" rx="3" fill="#9dc0ea" />
+        <text x="113" y="103.69" font-size="12" fill="#8a97a8" text-anchor="middle">9.3</text>
+        <rect x="167" y="40" width="72" height="110" rx="3" fill="#1E4FA8" />
+        <text x="203" y="32" font-size="12" fill="#8a97a8" text-anchor="middle">26.7</text>
+        <rect x="257" y="40" width="72" height="110" rx="3" fill="#1E4FA8" />
+        <text x="293" y="32" font-size="12" fill="#8a97a8" text-anchor="middle">26.7</text>
+        <rect x="347" y="111.69" width="72" height="38.31" rx="3" fill="#9dc0ea" />
+        <text x="383" y="103.69" font-size="12" fill="#8a97a8" text-anchor="middle">9.3</text>
+        <rect x="437" y="111.69" width="72" height="38.31" rx="3" fill="#9dc0ea" />
+        <text x="473" y="103.69" font-size="12" fill="#8a97a8" text-anchor="middle">9.3</text>
+        <rect x="527" y="40" width="72" height="110" rx="3" fill="#1E4FA8" />
+        <text x="563" y="32" font-size="12" fill="#8a97a8" text-anchor="middle">26.7</text>
+        <rect x="617" y="40" width="72" height="110" rx="3" fill="#1E4FA8" />
+        <text x="653" y="32" font-size="12" fill="#8a97a8" text-anchor="middle">26.7</text>
+        <rect x="707" y="111.69" width="72" height="38.31" rx="3" fill="#9dc0ea" />
+        <text x="743" y="103.69" font-size="12" fill="#8a97a8" text-anchor="middle">9.3</text>
+        <text x="30" y="172" font-size="12" fill="#8a97a8">start of the bounce</text>
+        <text x="826" y="172" font-size="12" fill="#8a97a8" text-anchor="end">the turn</text>
+      </svg>
+      <figcaption>
+        Distance moved between consecutive frames, in path units — eight bars, in time
+        order. Tall bars are the fast middle of each half; short bars are the ends.
+      </figcaption>
+    </figure>
+
+    <p>
+      Swap <code>ease-in-out</code> for <code>linear</code> and every bar grows to the same
+      height — the ink then moves like a metronome, and the same loader stops looking alive.
+      That is the entire trick: <strong>a constant amount of motion spread unevenly across
+      time is what our eyes read as weight.</strong>
+    </p>
+  </section>
+
+  <!-- ================================================================
+       1e. THE CODE, LINE BY LINE
+       ================================================================ -->
+  <section>
+    <h2>1e · The code, line by line</h2>
+    <p>
+      Everything described above comes down to six lines. Nothing in them is a library or a
+      special SVG feature — it is a stroke, a pattern, and a keyframes rule:
+    </p>
+
+    <div class="code-block">.wide .ink {
+  stroke-width: <span class="v">16</span>;
+  stroke-dasharray: <span class="v">28 80</span>;
+  animation: slide <span class="v">1.8s</span> <span class="v">ease-in-out</span> infinite;
+}
+@keyframes slide {
+  <span class="v">0%, 100%</span> { stroke-dashoffset: <span class="v">0</span>; }
+  <span class="v">50%</span>       { stroke-dashoffset: <span class="v">-72</span>; }
+}</div>
+
+    <ul class="ingredients">
+      <li><b><code>stroke-width: 16</code> — how thick the ink is</b>
+        <span class="why">This also sets the round cap, because a cap is a semicircle of radius
+        <code>16 / 2</code>. That is why the ink looks a shade longer than its 28 units at
+        each end, and why the cap could reach back onto the line in the version we had to
+        fix.</span></li>
+      <li><b><code>stroke-dasharray: 28 80</code> — the rhythm</b>
+        <span class="why">Read it as a list of lengths, alternating ink and gap. Two numbers is all it
+        takes: the browser repeats the pair for as long as the path runs.</span></li>
+      <li><b><code>animation: slide 1.8s ease-in-out infinite</code> — the schedule</b>
+        <span class="why">Four words, four answers: which keyframes, how long one cycle lasts, how the
+        speed varies inside it, and never stop.</span></li>
+      <li><b><code>0%, 100%</code> sharing one value — the seam</b>
+        <span class="why">Two selectors, one declaration. The state at the end of the cycle is the state
+        at the start, so restarting is invisible. Delete either selector and you get a
+        visible jump.</span></li>
+      <li><b><code>stroke-dashoffset: -72</code> — the far end</b>
+        <span class="why">The 72 is not a taste decision: it is <code>100 &minus; 28</code>, the line
+        length minus the ink length. That is the distance that parks the ink on the right
+        end. Any other number leaves it stranded somewhere in the middle.</span></li>
+    </ul>
+
+    <p>
+      One last thing, and it is the difference between this loader and the marching-ants
+      trick in the dashed-strokes example. That one slides the offset by <em>exactly one
+      period</em>, so the crawl continues smoothly and never stops. This one does not slide
+      at all — it swings a single offset value between two fixed endpoints, and relies on
+      the arms sharing a value to close the loop. Both are the same property of
+      <code>stroke-dashoffset</code>, used in opposite directions: one for endless travel,
+      one for a bounce that returns.
+    </p>
+  </section>
+
+  <!-- ================================================================
+       2–4. THE SAME IDEA, THREE MORE WAYS
+       ================================================================ -->
+  <div class="grid">
+
+    <!-- 2. sweeping arc -->
+    <figure class="card">
+      <svg viewBox="0 0 140 140" role="img"
+           aria-label="A ring whose blue arc grows and shrinks while the ring rotates">
+        <circle class="track sweep-track" cx="70" cy="70" r="54" />
+        <circle class="ink sweep" cx="70" cy="70" r="54" pathLength="100" />
+      </svg>
+      <figcaption>
+        <b>2 · Sweeping arc</b> <span>— here the dash <em>array</em> itself changes.
+        <code>1 100</code> is a dot; <code>62 100</code> is most of the ring. Add a plain
+        rotation and the two motions together read as a spinner.</span>
+      </figcaption>
+    </figure>
+
+    <!-- 3. draw-on path -->
+    <figure class="card">
+      <svg viewBox="0 0 140 140" role="img"
+           aria-label="A lightning bolt outline that draws itself on, then slides off the end">
+        <path class="track trace-track" pathLength="100"
+              d="M72 24 L48 74 L66 74 L60 116 L92 62 L72 62 Z" />
+        <path class="ink trace" pathLength="100"
+              d="M72 24 L48 74 L66 74 L60 116 L92 62 L72 62 Z" />
+      </svg>
+      <figcaption>
+        <b>3 · Draw-on path</b> <span>— any shape at all, because
+        <code>pathLength</code> normalises it to 100 units. The offset walks from 100
+        (nothing) to 0 (all of it) to −100 (gone off the far end).</span>
+      </figcaption>
+    </figure>
+
+    <!-- 4. transition, no keyframes -->
+    <figure class="card">
+      <svg viewBox="0 0 140 140" role="img"
+           aria-label="A ring whose red arc changes length smoothly, driven by a script and a CSS transition">
+        <circle class="track arc-track" cx="70" cy="70" r="54" />
+        <circle class="ink arc" id="arc" cx="70" cy="70" r="54" pathLength="100" />
+      </svg>
+      <figcaption>
+        <b>4 · Transition, no keyframes</b> <span>— a script swaps the dash array every
+        1.15s; <code>transition: stroke-dasharray 1.1s</code> does the tweening. The three
+        loaders above need no script at all.</span>
+      </figcaption>
+    </figure>
+  </div>
+
+  <footer>
+    <b>The rule under all four.</b>
+    <code>stroke-dasharray</code> says how long the ink is and how long the gap is;
+    <code>stroke-dashoffset</code> says where along the path that pattern starts. Animate
+    either one — or both — and a still drawing becomes a loader. Keep one number in mind:
+    a dash plus its gap is one <em>period</em>. Slide the offset by a whole period and the
+    dashes flow with no seam; slide it by less and the ink simply stops somewhere along the
+    line.
+  </footer>
+
+  <script>
+    /* Section 4 only. There is no @keyframes rule for this arc: the script below
+       just swaps one dash array for another, and the CSS transition on .arc
+       stretches each change into a smooth sweep. */
+    (function () {
+      var arc = document.getElementById('arc');
+      if (!arc) return;
+      var states = ['20 100', '70 100', '35 100', '92 100'];
+      var i = 0;
+      setInterval(function () {
+        i = (i + 1) % states.length;
+        arc.style.strokeDasharray = states[i];
+      }, 1150);
+    })();
+  </script>
+</body>
+</html>
