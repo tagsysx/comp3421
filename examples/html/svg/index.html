@@ -32,6 +32,18 @@
     <path d="M10 10 L90 10 L50 90 Z" fill="#FFC107" />
   </svg>
 
+  <!-- A polyline: an open chain of segments -->
+  <svg width="200" height="120">
+    <polyline points="10,90 40,10 70,90 100,10 130,90"
+              fill="none" stroke="#1E4FA8" stroke-width="4" />
+  </svg>
+
+  <!-- A polygon: the same idea, but the browser closes the shape -->
+  <svg width="140" height="120">
+    <polygon points="60,10 100,60 60,110 20,60"
+             fill="#FFC107" opacity="0.8" />
+  </svg>
+
   <!-- Scaled up 3x — SVG stays crisp (vector, not pixels) -->
   <svg width="120" height="120">
     <circle cx="60" cy="60" r="40" fill="none" stroke="#D9534F" stroke-width="8" />

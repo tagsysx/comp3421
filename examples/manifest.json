@@ -312,7 +312,7 @@
         {
           "id": "svg",
           "name": "SVG shapes",
-          "desc": "rect, circle, line, ellipse, path — vector graphics",
+          "desc": "rect, circle, line, ellipse, path, polyline, polygon — vector graphics",
           "files": [
             "index.html"
           ]
