@@ -49,6 +49,8 @@
       "examples": [
         "css-styling/showcase",
         "css-styling/colors",
+        "css-styling/named-colors",
+        "css-styling/color-schemes",
         "css-styling/overlay",
         "css-styling/length-units",
         "css-styling/text",
@@ -333,6 +335,22 @@
           "id": "colors",
           "name": "Colours",
           "desc": "Named, hex, rgb/rgba, hsl — inline style only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "named-colors",
+          "name": "Named colours",
+          "desc": "All 148 CSS colour names as cards, banded by hue — inline style only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "color-schemes",
+          "name": "Colour schemes",
+          "desc": "Seven ways to combine hues — swatches in inline styles only",
           "files": [
             "index.html"
           ]
