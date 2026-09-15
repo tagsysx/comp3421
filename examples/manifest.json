@@ -40,6 +40,7 @@
         "html/canvas-dl",
         "html/image-map",
         "html/svg",
+        "html/svg-dasharray",
         "html/svg-animation"
       ]
     },
@@ -313,6 +314,14 @@
           "id": "svg",
           "name": "SVG shapes",
           "desc": "rect, circle, line, ellipse, path, polyline, polygon — vector graphics",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "svg-dasharray",
+          "name": "stroke-dasharray",
+          "desc": "Dashed strokes — what \"4 3\" means, guide lines & arrows, patterns, marching ants",
           "files": [
             "index.html"
           ]

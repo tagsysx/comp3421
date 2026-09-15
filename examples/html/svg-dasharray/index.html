@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>stroke-dasharray — dashed strokes</title>
+  <!--
+    stroke-dasharray — one file, no JavaScript for the drawing itself,
+    no images, no libraries.
+
+    "4 3" means: draw 4 units of ink, leave a 3-unit gap, then repeat.
+    The numbers are LENGTHS in the SVG's own coordinate units — not counts —
+    and they are read as an on/off list: on, off, on, off, ...
+
+    Sections:
+      1. The two numbers        what "4 3" actually does
+      2. Guide lines & arrows   the everyday use — dashed leader lines
+      3. Patterns               dotted, dashed, long-dash, dash-dot
+      4. An odd count           "4 3 1" repeats itself
+      5. Marching ants          stroke-dashoffset animation
+
+    Things worth changing: either number, stroke-dashoffset, stroke-linecap.
+  -->
+  <style>
+    body {
+      margin: 0;
+      padding: 26px 20px 44px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f5f8fc;
+      color: #111820;
+    }
+    h1 { margin: 0 0 6px; font-size: 26px; }
+    .lede { margin: 0 0 22px; color: #4a5568; font-size: 15px; max-width: 72ch; }
+    h2 { font-size: 17px; margin: 0 0 8px; color: #0E3F8C; font-weight: 700; }
+    p { margin: 0 0 12px; color: #4a5568; font-size: 14px; max-width: 78ch; line-height: 1.55; }
+    p:last-child { margin-bottom: 0; }
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: #1E4FA8;
+      background: #eef4fc;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    section {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 22px 18px;
+      margin: 0 auto 18px;
+      max-width: 900px;
+      box-shadow: 0 6px 18px rgba(14, 63, 140, .10);
+    }
+    svg { display: block; }
+
+    /* the demo drawings read best a little smaller than the card */
+    .demo  { width: 100%; max-width: 560px; height: auto; margin: 4px auto 10px; }
+    .ruler { width: 100%; max-width: 360px; height: auto; margin: 6px auto 10px; }
+
+    /* ---------- 5. marching ants ---------- */
+    @keyframes ants { to { stroke-dashoffset: -14; } }
+    .ants { animation: ants .6s linear infinite; }
+    @media (prefers-reduced-motion: reduce) {
+      .ants { animation: none; }
+    }
+  </style>
+</head>
+<body>
+  <h1>stroke-dasharray</h1>
+  <p class="lede">
+    One attribute turns any stroke into a dashed one. It takes a list of lengths —
+    ink, gap, ink, gap — and repeats it along the path.
+  </p>
+
+  <!-- ============================================================
+       1. The two numbers
+       ============================================================ -->
+  <section>
+    <h2>1 · What <code>"4 3"</code> means</h2>
+    <p>
+      <code>4 3</code> is two lengths, not two counts: <strong>4 units of ink</strong>,
+      then a <strong>3-unit gap</strong>, then the pair repeats. Read it left to right
+      as <em>on, off, on, off…</em>
+    </p>
+
+    <svg class="ruler" viewBox="0 0 30 11" role="img"
+         aria-label="One repeat of the 4 3 pattern: four units of ink followed by a three-unit gap">
+      <!-- the dashed stroke, drawn first so the brackets sit over it -->
+      <line x1="1" y1="8.3" x2="29" y2="8.3" stroke="#1E4FA8"
+            stroke-width="3.2" stroke-dasharray="4 3" />
+
+      <!-- measure one ink span and the gap that follows it -->
+      <g stroke="#8FA6C8" stroke-width="0.18" fill="none">
+        <path d="M1 4.5 V5.6 M5 4.5 V5.6 M1 4.5 H5" />
+        <path d="M5 4.5 V5.6 M8 4.5 V5.6 M5 4.5 H8" />
+      </g>
+      <text x="3"   y="3.1" font-size="3" font-weight="700"
+            text-anchor="middle" fill="#1E4FA8">4</text>
+      <text x="6.5" y="3.1" font-size="3" font-weight="700"
+            text-anchor="middle" fill="#D9534F">3</text>
+    </svg>
+
+    <p>
+      The numbers are <strong>lengths</strong>, so the pattern is not "4 dashes" —
+      it is four <em>units</em> of ink. Make them bigger and the dashes get longer,
+      not more numerous:
+    </p>
+
+    <svg class="demo" viewBox="0 0 300 76" role="img"
+         aria-label="Two dashed lines with the same four-to-three ratio at two different scales">
+      <line x1="0" y1="16" x2="300" y2="16" stroke="#3D7BD9"
+            stroke-width="4" stroke-dasharray="4 3" />
+      <text x="0" y="6" font-size="10" fill="#4A5568">stroke-dasharray="4 3"</text>
+
+      <line x1="0" y1="58" x2="300" y2="58" stroke="#1E4FA8"
+            stroke-width="14" stroke-dasharray="24 18" />
+      <text x="0" y="40" font-size="10" fill="#4A5568">stroke-dasharray="24 18" — same 4 : 3 ratio, six times bigger</text>
+    </svg>
+
+    <p>
+      A single number repeats itself, so <code>4</code> is shorthand for
+      <code>4 4</code> — equal dashes and gaps.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       2. Guide lines & arrows
+       ============================================================ -->
+  <section>
+    <h2>2 · Guide lines &amp; arrows</h2>
+    <p>
+      This is where you meet dashes most often in real work: a <strong>leader line</strong>
+      pointing from a label to the thing it describes. Dash it so the eye reads it as
+      annotation, not as part of the drawing.
+    </p>
+
+    <svg class="demo" viewBox="0 0 320 124" role="img"
+         aria-label="A dashed leader line with an arrow pointing at a box, and a dashed dimension line with an arrow at each end">
+      <defs>
+        <marker id="arrowRed" viewBox="0 0 10 10" refX="8" refY="5"
+                markerWidth="7" markerHeight="7" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#D9534F" />
+        </marker>
+        <marker id="arrowGrey" viewBox="0 0 10 10" refX="8" refY="5"
+                markerWidth="6" markerHeight="6" orient="auto-start-reverse">
+          <path d="M0 0 L10 5 L0 10 Z" fill="#4A5568" />
+        </marker>
+      </defs>
+
+      <!-- the thing being annotated -->
+      <rect x="200" y="30" width="104" height="52" rx="8"
+            fill="none" stroke="#1E4FA8" stroke-width="3" />
+      <text x="252" y="62" font-size="12" text-anchor="middle" fill="#1E4FA8">target</text>
+
+      <!-- a dashed leader with an arrowhead -->
+      <line x1="14" y1="56" x2="190" y2="56" stroke="#D9534F" stroke-width="2.5"
+            stroke-dasharray="6 4" marker-end="url(#arrowRed)" />
+      <text x="14" y="42" font-size="12" fill="#D9534F">annotation</text>
+
+      <!-- a dashed dimension line, arrows at both ends -->
+      <line x1="200" y1="106" x2="304" y2="106" stroke="#4A5568" stroke-width="2"
+            stroke-dasharray="5 4"
+            marker-start="url(#arrowGrey)" marker-end="url(#arrowGrey)" />
+      <text x="252" y="122" font-size="11" text-anchor="middle" fill="#4A5568">104</text>
+    </svg>
+
+    <p>
+      The dash rhythm is doing the talking: <code>6 4</code> is a calm guide,
+      <code>2 2</code> is a busy dotted rule. Keep the numbers small and even —
+      an annotation should never out-shout the drawing.
+    </p>
+    <p>
+      Notice the arrowheads are separate <code>&lt;marker&gt;</code> shapes, so they are
+      solid even though the line they sit on is dashed.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       3. Patterns
+       ============================================================ -->
+  <section>
+    <h2>3 · Patterns you will actually use</h2>
+
+    <svg class="demo" viewBox="0 0 300 150" role="img"
+         aria-label="Five dashed lines showing the patterns 2 2, 4 3, 10 5, 1 6 and 20 5 4 5">
+      <g stroke="#1E4FA8" stroke-width="5">
+        <line x1="0" y1="10"  x2="300" y2="10"  stroke-dasharray="2 2" />
+        <line x1="0" y1="42"  x2="300" y2="42"  stroke-dasharray="4 3" />
+        <line x1="0" y1="74"  x2="300" y2="74"  stroke-dasharray="10 5" />
+        <line x1="0" y1="106" x2="300" y2="106" stroke-dasharray="1 6"
+              stroke-linecap="round" />
+        <line x1="0" y1="138" x2="300" y2="138" stroke-dasharray="20 5 4 5" />
+      </g>
+      <g font-size="10" fill="#4A5568">
+        <text x="0" y="4">2 2 · dotted rule</text>
+        <text x="0" y="36">4 3 · the everyday guide line</text>
+        <text x="0" y="68">10 5 · long dash</text>
+        <text x="0" y="100">1 6 + round caps · beads</text>
+        <text x="0" y="132">20 5 4 5 · dash-dot</text>
+      </g>
+    </svg>
+
+    <p>
+      <code>stroke-linecap="round"</code> grows each dash by half the stroke width at
+      both ends — pair it with a short dash and you get round beads instead of ticks.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       4. An odd count repeats
+       ============================================================ -->
+  <section>
+    <h2>4 · An odd number of values repeats</h2>
+    <p>
+      Give an odd count of lengths and the list is used twice, so <code>4 3 1</code>
+      behaves exactly like <code>4 3 1 4 3 1</code>. That is how the dash-dot above works.
+    </p>
+
+    <svg class="demo" viewBox="0 0 300 56" role="img"
+         aria-label="Two identical dashed lines: one written as 4 3 1, the other as 4 3 1 4 3 1">
+      <line x1="0" y1="14" x2="300" y2="14" stroke="#1E4FA8"
+            stroke-width="6" stroke-dasharray="4 3 1" />
+      <text x="0" y="6" font-size="10" fill="#4A5568">stroke-dasharray="4 3 1"</text>
+
+      <line x1="0" y1="44" x2="300" y2="44" stroke="#D9534F"
+            stroke-width="6" stroke-dasharray="4 3 1 4 3 1" />
+      <text x="0" y="36" font-size="10" fill="#4A5568">stroke-dasharray="4 3 1 4 3 1"</text>
+    </svg>
+
+    <p>Same line, drawn twice — the red one just spells the repeat out.</p>
+  </section>
+
+  <!-- ============================================================
+       5. Marching ants
+       ============================================================ -->
+  <section>
+    <h2>5 · Marching ants</h2>
+    <p>
+      Animate <code>stroke-dashoffset</code> and the dashes crawl along the path.
+      Move it by exactly <strong>one full period</strong> — here 8 + 6 = 14 —
+      and the loop is seamless.
+    </p>
+
+    <svg class="demo" viewBox="0 0 320 44" role="img"
+         aria-label="A dashed line whose dashes slide continuously along it">
+      <path class="ants" d="M10 22 H310" fill="none" stroke="#3D7BD9"
+            stroke-width="4" stroke-dasharray="8 6" />
+    </svg>
+
+    <p>
+      <code>stroke-dashoffset: -14</code> in one <code>@keyframes</code> block. Used for
+      "selected" outlines, loading paths and drawing-on a line.
+    </p>
+  </section>
+</body>
+</html>
