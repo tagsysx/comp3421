@@ -23,7 +23,7 @@
     {
       "id": "lecture-02-html",
       "name": "Lecture 2 · HTML",
-      "desc": "Elements, forms, SVG & semantics",
+      "desc": "Elements, forms, SVG (incl. animation) & the DOM",
       "examples": [
         "html/hello",
         "html/text",
@@ -39,7 +39,8 @@
         "html/picture",
         "html/canvas-dl",
         "html/image-map",
-        "html/svg"
+        "html/svg",
+        "html/svg-animation"
       ]
     },
     {
@@ -312,6 +313,14 @@
           "id": "svg",
           "name": "SVG shapes",
           "desc": "rect, circle, line, ellipse, path — vector graphics",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "svg-animation",
+          "name": "Animated SVG",
+          "desc": "A pulsing scene plus six techniques — CSS keyframes, dash flow, animateMotion, SMIL",
           "files": [
             "index.html"
           ]

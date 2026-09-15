@@ -1,0 +1,348 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Animated SVG — no JavaScript</title>
+  <!--
+    Animated SVG — one file, no JavaScript, no images, no libraries.
+
+    A scene on top, then six cards, each isolating one animation technique:
+      1. Draw-on      stroke-dasharray + stroke-dashoffset (+ pathLength)
+      2. Pulse        CSS @keyframes with transform: scale
+      3. Orbit        SMIL <animateMotion> along a path
+      4. Attributes   SMIL <animate> changing an attribute (r, fill)
+      5. Flow         a dashed stroke sliding along its own path
+      6. Hover        a CSS transition on transform and fill
+
+    Everything you can see is markup — so every number below is editable.
+    Things worth changing: stroke-width, the @keyframes from/to values,
+    animation-duration, and the path coordinates.
+  -->
+  <style>
+    body {
+      margin: 0;
+      padding: 26px 20px 44px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f5f8fc;
+      color: #111820;
+    }
+    h1 { margin: 0 0 6px; font-size: 26px; }
+    .lede { margin: 0 0 22px; color: #4a5568; font-size: 15px; max-width: 70ch; }
+
+    /* ---------- the scene ---------- */
+    .scene {
+      display: block;
+      width: 100%;
+      max-width: 900px;
+      height: auto;
+      margin: 0 auto 30px;
+      border-radius: 18px;
+      box-shadow: 0 18px 40px rgba(14, 63, 140, .28);
+    }
+
+    /* 1. Pulse rings — CSS keyframes on an SVG shape.
+          transform-box: fill-box makes transform-origin: center mean
+          "the centre of this circle", not the centre of the whole SVG. */
+    .pulse circle {
+      fill: none;
+      stroke: #4da3ff;
+      stroke-width: 2.5;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: pulse 3.6s cubic-bezier(.22, .61, .36, 1) infinite;
+    }
+    .pulse circle:nth-child(2) { animation-delay: 1.2s; }
+    .pulse circle:nth-child(3) { animation-delay: 2.4s; }
+    @keyframes pulse {
+      0%   { transform: scale(.30); opacity: .85; }
+      100% { transform: scale(1);   opacity: 0; }
+    }
+
+    /* 2. The orbit ring — a dashed ellipse slowly rotating in place. */
+    .orbit {
+      fill: none;
+      stroke: #8cc4ff;
+      stroke-width: 1.6;
+      stroke-dasharray: 10 12;
+      opacity: .5;
+      transform-box: fill-box;
+      transform-origin: center;
+      animation: spin 26s linear infinite;
+    }
+    @keyframes spin { to { transform: rotate(360deg); } }
+
+    /* 3. The signal waveform — a dash pattern sliding along the line.
+          dasharray 6+10 = 16, so one dash-period of travel is -16. */
+    .wave {
+      fill: none;
+      stroke: #ffc107;
+      stroke-width: 3;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 6 10;
+      animation: flow 1.1s linear infinite;
+    }
+    @keyframes flow { to { stroke-dashoffset: -16; } }
+
+    /* 4. Light that breathes. */
+    .glow { animation: breathe 2.4s ease-in-out infinite; }
+    @keyframes breathe {
+      0%, 100% { opacity: .45; }
+      50%      { opacity: .95; }
+    }
+
+    /* 5. Stars that twinkle out of phase. */
+    .stars circle { animation: twinkle 2.8s ease-in-out infinite; }
+    .stars circle:nth-child(odd)  { animation-delay: .6s; }
+    .stars circle:nth-child(3n)   { animation-delay: 1.3s; }
+    @keyframes twinkle {
+      0%, 100% { opacity: .12; }
+      50%      { opacity: .9; }
+    }
+
+    /* ---------- the six cards ---------- */
+    .grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 18px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+    .card {
+      margin: 0;
+      background: #ffffff;
+      border: 1px solid #dce3ed;
+      border-radius: 14px;
+      padding: 14px 14px 12px;
+      transition: border-color .3s, box-shadow .3s;
+    }
+    .card:hover {
+      border-color: #1e4fa8;
+      box-shadow: 0 10px 26px rgba(30, 79, 168, .16);
+    }
+    .card svg { display: block; width: 100%; height: 132px; }
+    .card figcaption { margin-top: 10px; font-size: 13px; line-height: 1.45; }
+    .card b { color: #1e4fa8; }
+    .card span { color: #4a5568; }
+
+    /* 6. Draw-on — pathLength="100" normalises the path to 100 units,
+          so the dash numbers mean percentages of the line. */
+    .draw {
+      fill: none;
+      stroke: #1e4fa8;
+      stroke-width: 3.5;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      stroke-dasharray: 100;
+      stroke-dashoffset: 100;
+      animation: draw 2.6s ease-in-out infinite alternate;
+    }
+    @keyframes draw { to { stroke-dashoffset: 0; } }
+
+    /* Card 5 reuses the same sliding dash as the scene waveform. */
+    .flow-demo { animation: flow 1.1s linear infinite; }
+
+    /* 7. Hover — a plain CSS transition, triggered by the pointer. */
+    .hover-icon {
+      transform-box: fill-box;
+      transform-origin: center;
+      transition: transform .5s cubic-bezier(.2, .8, .2, 1), fill .5s;
+    }
+    .card:hover .hover-icon { transform: rotate(180deg) scale(1.15); fill: #ffc107; }
+
+    footer {
+      max-width: 900px;
+      margin: 26px auto 0;
+      color: #4a5568;
+      font-size: 13.5px;
+      line-height: 1.6;
+    }
+    code { font-family: Consolas, "SF Mono", Menlo, monospace; color: #0e3f8c; }
+  </style>
+</head>
+<body>
+  <h1>Animated SVG — no JavaScript</h1>
+  <p class="lede">
+    Every pixel below is markup: shapes, a dash pattern, and a few
+    <code>@keyframes</code> rules. Nothing is an image, and nothing needs a script.
+  </p>
+
+  <!-- ================================================================
+       THE SCENE — five techniques running at once
+       ================================================================ -->
+  <svg class="scene" viewBox="0 0 800 420" role="img"
+       aria-label="A signal tower pulsing, with satellites orbiting it and a waveform below">
+    <defs>
+      <!-- A sky: lighter at the centre, so the tower pops out. -->
+      <radialGradient id="sky" cx="50%" cy="45%" r="75%">
+        <stop offset="0%"   stop-color="#164a94" />
+        <stop offset="60%"  stop-color="#0d3470" />
+        <stop offset="100%" stop-color="#061c42" />
+      </radialGradient>
+      <!-- The halo around the transmitter. -->
+      <radialGradient id="halo">
+        <stop offset="0%"   stop-color="#9ad0ff" stop-opacity=".85" />
+        <stop offset="70%"  stop-color="#4da3ff" stop-opacity=".18" />
+        <stop offset="100%" stop-color="#4da3ff" stop-opacity="0" />
+      </radialGradient>
+      <!-- The tower body: dark metal, lit from the left. -->
+      <linearGradient id="metal" x1="0" y1="0" x2="1" y2="0">
+        <stop offset="0%"   stop-color="#2f6fd0" />
+        <stop offset="55%"  stop-color="#123a7d" />
+        <stop offset="100%" stop-color="#0a2454" />
+      </linearGradient>
+      <!-- Soft blur for the halo. -->
+      <filter id="soft"><feGaussianBlur stdDeviation="14" /></filter>
+    </defs>
+
+    <rect x="0" y="0" width="800" height="420" rx="18" fill="url(#sky)" />
+
+    <!-- background stars: one @keyframes, many delays -->
+    <g class="stars" fill="#cfe4ff">
+      <circle cx="70"  cy="60"  r="1.6" />
+      <circle cx="140" cy="128" r="1.3" />
+      <circle cx="205" cy="42"  r="1.7" />
+      <circle cx="96"  cy="215" r="1.2" />
+      <circle cx="255" cy="175" r="1.5" />
+      <circle cx="330" cy="58"  r="1.2" />
+      <circle cx="470" cy="48"  r="1.6" />
+      <circle cx="560" cy="140" r="1.3" />
+      <circle cx="640" cy="70"  r="1.7" />
+      <circle cx="712" cy="196" r="1.4" />
+      <circle cx="690" cy="290" r="1.3" />
+      <circle cx="120" cy="300" r="1.4" />
+    </g>
+
+    <!-- halo behind the tower -->
+    <circle class="glow" cx="400" cy="150" r="110" fill="url(#halo)" filter="url(#soft)" />
+
+    <!-- pulse rings: three circles, three delays, one @keyframes -->
+    <g class="pulse">
+      <circle cx="400" cy="150" r="150" />
+      <circle cx="400" cy="150" r="150" />
+      <circle cx="400" cy="150" r="150" />
+    </g>
+
+    <!-- orbit: a tilted ellipse with a sliding dash, plus two travellers -->
+    <g transform="rotate(-10 400 250)">
+      <ellipse class="orbit" cx="400" cy="250" rx="292" ry="104" />
+      <!-- <animateMotion> carries the element along its own path attribute.
+           rotate="auto" turns the shape to face the direction of travel. -->
+      <rect x="-7" y="-7" width="14" height="14" rx="3" fill="#ffc107">
+        <animateMotion dur="7s" repeatCount="indefinite" rotate="auto"
+          path="M108 250 A292 104 0 1 1 692 250 A292 104 0 1 1 108 250" />
+      </rect>
+      <circle cx="108" cy="250" r="5" fill="#9ad0ff">
+        <animateMotion dur="9s" begin="1.5s" repeatCount="indefinite"
+          path="M692 250 A292 104 0 1 1 108 250 A292 104 0 1 1 692 250" />
+      </circle>
+    </g>
+
+    <!-- the tower -->
+    <ellipse cx="400" cy="352" rx="150" ry="16" fill="#08234f" opacity=".8" />
+    <path d="M400 96 L432 344 L368 344 Z" fill="url(#metal)" stroke="#7fb6ff" stroke-width="1.4" />
+    <path d="M400 96 L400 344" stroke="#7fb6ff" stroke-width="1" opacity=".5" />
+    <path d="M383 232 L417 232 M378 284 L422 284" stroke="#7fb6ff" stroke-width="1.4" opacity=".7" />
+    <circle cx="400" cy="92" r="9" fill="#ffc107" />
+    <circle cx="400" cy="92" r="16" fill="none" stroke="#ffc107" stroke-width="1.5" opacity=".55" />
+
+    <!-- waveform: the dash pattern slides, the line never moves -->
+    <path class="wave"
+          d="M40 384 L130 384 L158 360 L186 406 L214 384 L318 384 L346 356 L374 410 L402 384
+             L500 384 L528 362 L556 404 L584 384 L668 384 L696 360 L724 400 L752 384" />
+  </svg>
+
+  <!-- ================================================================
+       THE CARDS — one technique each
+       ================================================================ -->
+  <div class="grid">
+
+    <figure class="card">
+      <svg viewBox="0 0 240 132">
+        <path class="draw" pathLength="100"
+              d="M20 106 L55 30 L90 106 L125 30 L160 106 L195 30 L220 76" />
+      </svg>
+      <figcaption><b>1. Draw-on.</b> <span>A dashed stroke with
+        <code>stroke-dashoffset</code> running from 100 to 0 — the line draws
+        itself. <code>pathLength="100"</code> keeps the numbers readable.</span></figcaption>
+    </figure>
+
+    <figure class="card">
+      <svg viewBox="0 0 240 132">
+        <g class="pulse">
+          <circle cx="120" cy="66" r="52" />
+          <circle cx="120" cy="66" r="52" />
+          <circle cx="120" cy="66" r="52" />
+        </g>
+        <circle cx="120" cy="66" r="10" fill="#1e4fa8" />
+      </svg>
+      <figcaption><b>2. Pulse.</b> <span>Three copies of one circle, one
+        <code>@keyframes</code>, three <code>animation-delay</code> values.
+        Scaling from <code>.30</code> to <code>1</code> while fading out.</span></figcaption>
+    </figure>
+
+    <figure class="card">
+      <svg viewBox="0 0 240 132">
+        <path d="M22 66 A 98 50 0 1 1 218 66 A 98 50 0 1 1 22 66"
+              fill="none" stroke="#dce3ed" stroke-width="1.6" stroke-dasharray="6 8" />
+        <circle cx="120" cy="66" r="15" fill="#1e4fa8" />
+        <rect x="-7" y="-7" width="14" height="14" rx="3" fill="#ffc107">
+          <animateMotion dur="4.5s" repeatCount="indefinite" rotate="auto"
+            path="M22 66 A 98 50 0 1 1 218 66 A 98 50 0 1 1 22 66" />
+        </rect>
+      </svg>
+      <figcaption><b>3. Orbit.</b> <span>SMIL <code>&lt;animateMotion&gt;</code>
+        moves a shape along a path with no CSS at all — and
+        <code>rotate="auto"</code> steers it.</span></figcaption>
+    </figure>
+
+    <figure class="card">
+      <svg viewBox="0 0 240 132">
+        <circle cx="120" cy="66" r="26" fill="#1e4fa8">
+          <animate attributeName="r" values="26;48;26" dur="2.6s"
+                   repeatCount="indefinite" />
+          <animate attributeName="fill" values="#1e4fa8;#4da3ff;#1e4fa8"
+                   dur="2.6s" repeatCount="indefinite" />
+        </circle>
+        <circle cx="120" cy="66" r="52" fill="none" stroke="#4da3ff"
+                stroke-width="1.4" opacity=".5" stroke-dasharray="4 6" />
+      </svg>
+      <figcaption><b>4. Attributes.</b> <span>SMIL <code>&lt;animate&gt;</code>
+        animates any attribute — here <code>r</code> and <code>fill</code>.
+        Pair several to choreograph them.</span></figcaption>
+    </figure>
+
+    <figure class="card">
+      <svg viewBox="0 0 240 132">
+        <path d="M16 96 C 60 96, 70 30, 120 30 S 180 96, 224 96"
+              fill="none" stroke="#e6ecf5" stroke-width="10" stroke-linecap="round" />
+        <path d="M16 96 C 60 96, 70 30, 120 30 S 180 96, 224 96"
+              fill="none" stroke="#1e4fa8" stroke-width="3"
+              stroke-linecap="round" stroke-dasharray="6 10" class="flow-demo" />
+      </svg>
+      <figcaption><b>5. Flow.</b> <span>The path never moves: a 16-unit dash
+        pattern slides along it, so data appears to travel.</span></figcaption>
+    </figure>
+
+    <figure class="card">
+      <svg viewBox="0 0 240 132">
+        <path class="hover-icon" fill="#1e4fa8"
+              d="M120 26 L138 62 L178 68 L149 96 L156 136 L120 117
+                 L84 136 L91 96 L62 68 L102 62 Z" />
+      </svg>
+      <figcaption><b>6. Hover.</b> <span>A CSS <code>transition</code> on
+        <code>transform</code> and <code>fill</code> — hover this card to
+        make the star spin and turn gold.</span></figcaption>
+    </figure>
+
+  </div>
+
+  <footer>
+    Same file, no script tag. Change one number and the animation changes:
+    <code>stroke-width</code>, the keyframe percentages, <code>dur</code>,
+    <code>animation-delay</code>, or the coordinates in <code>d</code> and
+    <code>path</code>. SVG is markup — so CSS and SMIL can both reach inside it.
+  </footer>
+</body>
+</html>
