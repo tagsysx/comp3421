@@ -1,0 +1,419 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Complex paths — the d attribute</title>
+  <!--
+    A complex <path> — one file, no JavaScript, no images.
+
+    The point of this example is the d attribute: a mini-language of
+    single-letter commands followed by coordinates.
+
+      M / m   move to            (lift the pen)
+      L / l   line to            (straight segment)
+      H / h   horizontal line
+      V / v   vertical line
+      C / c   cubic Bezier       (two control points)
+      S / s   smooth cubic       (first control point mirrored)
+      Q / q   quadratic Bezier   (one control point)
+      T / t   smooth quadratic   (control point mirrored)
+      A / a   elliptical arc     (rx ry rotation large-arc sweep x y)
+      Z / z   close the path
+
+    Uppercase = absolute coordinates, lowercase = relative to the last point.
+
+    Sections:
+      1. The command alphabet
+      2. Lines vs curves, with control points
+      3. One complex path, built up in stages
+      4. The finished shape, and what the numbers do
+
+    Things worth changing: any coordinate in the heart's d, the arc flags
+    (0 0 1 vs 1 1 1), and an uppercase command to its lowercase twin.
+  -->
+  <style>
+    body {
+      margin: 0;
+      padding: 26px 20px 44px;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, sans-serif;
+      background: #f5f8fc;
+      color: #111820;
+    }
+    h1 { margin: 0 0 6px; font-size: 26px; }
+    .lede { margin: 0 0 22px; color: #4a5568; font-size: 15px; max-width: 74ch; }
+    h2 { font-size: 17px; margin: 0 0 8px; color: #0E3F8C; font-weight: 700; }
+    p { margin: 0 0 12px; color: #4a5568; font-size: 14px; max-width: 80ch; line-height: 1.55; }
+    p:last-child { margin-bottom: 0; }
+    code {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 13px;
+      color: #1E4FA8;
+      background: #eef4fc;
+      padding: 1px 5px;
+      border-radius: 4px;
+    }
+    section {
+      background: #fff;
+      border-radius: 14px;
+      padding: 20px 22px 18px;
+      margin: 0 auto 18px;
+      max-width: 900px;
+      box-shadow: 0 6px 18px rgba(14, 63, 140, .10);
+    }
+    svg { display: block; }
+
+    /* command table */
+    table { border-collapse: collapse; width: 100%; font-size: 13.5px; }
+    th, td {
+      text-align: left;
+      padding: 7px 10px;
+      border-bottom: 1px solid #e6edf7;
+      vertical-align: middle;      /* cell text centres vertically */
+    }
+    th { color: #0E3F8C; font-size: 12.5px; text-transform: uppercase; letter-spacing: .04em; }
+    td code { font-size: 12.5px; }
+    tr:last-child td { border-bottom: none; }
+    td.cmd { width: 78px; }
+    td.cmd b {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 15px; color: #1E4FA8;
+    }
+    td.cmd b.rel { color: #D9534F; }
+
+    /* stage grid */
+    .stages {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 10px;
+      margin: 6px 0 14px;
+    }
+    .stage { text-align: center; }
+    .stage svg {
+      width: 100%; height: auto;
+      background: #f7fafe;
+      border-radius: 10px;
+    }
+    .stage figcaption {
+      font-size: 11.5px; color: #4a5568; margin-top: 5px;
+    }
+    .stage figcaption b { color: #1E4FA8; }
+
+    .demo { width: 100%; max-width: 620px; height: auto; margin: 4px auto 10px; }
+    .heart { width: 100%; max-width: 300px; height: auto; margin: 6px auto 12px; }
+
+    .dblock {
+      font-family: ui-monospace, Menlo, Consolas, monospace;
+      font-size: 13px;
+      line-height: 1.75;
+      background: #0E3F8C;
+      color: #e8eff8;
+      border-radius: 10px;
+      padding: 14px 16px;
+      margin: 4px 0 12px;
+      overflow-x: auto;
+      white-space: pre;
+    }
+    .dblock .cm { color: #98c379; }
+    .dblock .cd { color: #e5c07b; }
+    .dblock .cp { color: #7f8c98; }
+
+    @media (max-width: 640px) {
+      .stages { grid-template-columns: repeat(2, 1fr); }
+    }
+  </style>
+</head>
+<body>
+  <h1>Complex paths — the <code>d</code> attribute</h1>
+  <p class="lede">
+    A <code>&lt;path&gt;</code> draws anything: a straight line, a curve, an arc, a whole logo.
+    All of it lives in one attribute, <code>d</code>, written as a sequence of
+    single-letter commands and their coordinates.
+  </p>
+
+  <!-- ============================================================
+       1. The command alphabet
+       ============================================================ -->
+  <section>
+    <h2>1 · The command alphabet</h2>
+    <p>
+      Each command takes a fixed number of numbers after it. An <strong>uppercase</strong>
+      command uses absolute coordinates; its <strong>lowercase</strong> twin is relative to
+      where the pen currently is.
+    </p>
+
+    <table>
+      <thead>
+        <tr><th>Command</th><th>Meaning</th><th>Numbers it takes</th><th>Example</th></tr>
+      </thead>
+      <tbody>
+        <tr>
+          <td class="cmd"><b>M</b> <b class="rel">m</b></td>
+          <td>Move to — lift the pen and start here</td>
+          <td><code>x y</code></td>
+          <td><code>M16 29</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>L</b> <b class="rel">l</b></td>
+          <td>Line to — a straight segment</td>
+          <td><code>x y</code></td>
+          <td><code>L50 10</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>H</b> <b class="rel">h</b></td>
+          <td>Horizontal line — y never changes</td>
+          <td><code>x</code></td>
+          <td><code>H90</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>V</b> <b class="rel">v</b></td>
+          <td>Vertical line — x never changes</td>
+          <td><code>y</code></td>
+          <td><code>V90</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>C</b> <b class="rel">c</b></td>
+          <td>Cubic Bézier — the curve everyone uses</td>
+          <td><code>x1 y1 x2 y2 x y</code></td>
+          <td><code>C2 4 6 2 9 2</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>S</b> <b class="rel">s</b></td>
+          <td>Smooth cubic — first control point is mirrored</td>
+          <td><code>x2 y2 x y</code></td>
+          <td><code>S30 4 30 9</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>Q</b> <b class="rel">q</b></td>
+          <td>Quadratic Bézier — one control point</td>
+          <td><code>x1 y1 x y</code></td>
+          <td><code>Q50 10 90 60</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>T</b> <b class="rel">t</b></td>
+          <td>Smooth quadratic — control point is mirrored</td>
+          <td><code>x y</code></td>
+          <td><code>T90 60</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>A</b> <b class="rel">a</b></td>
+          <td>Elliptical arc — an arc of an ellipse</td>
+          <td><code>rx ry rot large sweep x y</code></td>
+          <td><code>A40 40 0 0 1 90 60</code></td>
+        </tr>
+        <tr>
+          <td class="cmd"><b>Z</b> <b class="rel">z</b></td>
+          <td>Close — join back to the start point</td>
+          <td>—</td>
+          <td><code>Z</code></td>
+        </tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:12px">
+      Numbers are separated by spaces or commas — <code>M16 29</code> and
+      <code>M16,29</code> mean the same thing. Extra numbers just repeat the last
+      command, so <code>L10 10 20 20 30 5</code> is three line segments.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       2. Lines vs curves
+       ============================================================ -->
+  <section>
+    <h2>2 · Lines vs curves — and where the control points sit</h2>
+    <p>
+      A Bézier curve does not pass through its control points. It is
+      <em>pulled</em> toward them, the way a magnet pulls a wire. The hollow dots
+      below are control points; the dashed lines just show the pull.
+    </p>
+
+    <svg class="demo" viewBox="0 0 620 236" role="img"
+         aria-label="Six curve types drawn side by side: line, horizontal and vertical, quadratic, cubic, smooth cubic and an arc, with their control points marked">
+      <g font-size="12" fill="#4A5568">
+        <!-- captions sit in their own band, clear of the curves below -->
+        <text x="20"  y="16">L · line</text>
+        <text x="215" y="16">H &amp; V · axis-aligned</text>
+        <text x="420" y="16">Q · quadratic</text>
+        <text x="20"  y="132">C · cubic</text>
+        <text x="215" y="132">S · smooth cubic</text>
+        <text x="420" y="132">A · arc · rx 80 ry 50</text>
+      </g>
+
+      <!-- ---------- row 1 ---------- -->
+      <!-- L -->
+      <path d="M20 100 L180 55" fill="none" stroke="#1E4FA8" stroke-width="3" />
+      <g fill="#1E4FA8">
+        <circle cx="20" cy="100" r="3.5" />
+        <circle cx="180" cy="55" r="3.5" />
+      </g>
+      <!-- H & V -->
+      <path d="M215 100 H330 V55" fill="none" stroke="#3D7BD9" stroke-width="3" />
+      <g fill="#3D7BD9">
+        <circle cx="215" cy="100" r="3.5" />
+        <circle cx="330" cy="55" r="3.5" />
+      </g>
+      <!-- Q -->
+      <path d="M420 100 Q 500 45 580 100" fill="none" stroke="#1E4FA8" stroke-width="3" />
+      <g stroke="#c3d3ea" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+        <path d="M420 100 L500 45 L580 100" />
+      </g>
+      <circle cx="500" cy="45" r="4.5" fill="#fff" stroke="#FFC107" stroke-width="2.5" />
+      <g fill="#1E4FA8">
+        <circle cx="420" cy="100" r="3.5" />
+        <circle cx="580" cy="100" r="3.5" />
+      </g>
+
+      <!-- ---------- row 2 ---------- -->
+      <!-- C -->
+      <path d="M20 220 C 70 175 130 175 180 220" fill="none" stroke="#1E4FA8" stroke-width="3" />
+      <g stroke="#c3d3ea" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+        <path d="M20 220 L70 175" />
+        <path d="M130 175 L180 220" />
+      </g>
+      <g fill="#fff" stroke="#FFC107" stroke-width="2.5">
+        <circle cx="70" cy="175" r="4.5" />
+        <circle cx="130" cy="175" r="4.5" />
+      </g>
+      <g fill="#1E4FA8">
+        <circle cx="20" cy="220" r="3.5" />
+        <circle cx="180" cy="220" r="3.5" />
+      </g>
+      <!-- S -->
+      <path d="M215 220 C 240 185 265 185 290 205 S 340 225 365 205"
+            fill="none" stroke="#1E4FA8" stroke-width="3" />
+      <g stroke="#c3d3ea" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+        <path d="M215 220 L240 185" />
+        <path d="M265 185 L290 205" />
+        <path d="M290 205 L340 225" />
+      </g>
+      <g fill="#fff" stroke="#FFC107" stroke-width="2.5">
+        <circle cx="240" cy="185" r="4.5" />
+        <circle cx="265" cy="185" r="4.5" />
+        <circle cx="340" cy="225" r="4.5" />
+      </g>
+      <g fill="#1E4FA8">
+        <circle cx="215" cy="220" r="3.5" />
+        <circle cx="290" cy="205" r="3.5" />
+        <circle cx="365" cy="205" r="3.5" />
+      </g>
+      <!-- A -->
+      <path d="M420 220 A 80 50 0 0 1 580 220" fill="none" stroke="#1E4FA8" stroke-width="3" />
+      <g stroke="#c3d3ea" stroke-width="1.2" stroke-dasharray="4 3" fill="none">
+        <path d="M420 220 L500 170 L580 220" />
+      </g>
+      <circle cx="500" cy="170" r="4.5" fill="none" stroke="#8FA6C8" stroke-width="1.5" stroke-dasharray="3 3" />
+      <g fill="#1E4FA8">
+        <circle cx="420" cy="220" r="3.5" />
+        <circle cx="580" cy="220" r="3.5" />
+      </g>
+    </svg>
+
+    <p>
+      Notice what each command needs: <code>L</code> and <code>H</code>/<code>V</code> take one
+      destination, <code>Q</code> takes one control point, <code>C</code> takes two.
+      <code>S</code> and <code>T</code> are shortcuts — they reuse a mirrored control point so
+      two curves join smoothly instead of forming a corner.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       3. One complex path, built up
+       ============================================================ -->
+  <section>
+    <h2>3 · One complex path, built up in stages</h2>
+    <p>
+      Here is a heart — nothing but seven cubic Bézier segments and a close.
+      Watch it grow: the same <code>d</code>, cut short at each stage.
+    </p>
+
+    <div class="stages">
+      <figure class="stage" style="margin:0">
+        <svg viewBox="-2 -2 36 36" role="img" aria-label="The heart after its first curve segment">
+          <path d="M16 29 C8 20 2 14 2 9" fill="none" stroke="#1E4FA8"
+                stroke-width="2" stroke-linecap="round" />
+          <circle cx="16" cy="29" r="1.4" fill="#D9534F" />
+        </svg>
+        <figcaption><b>1</b> · first segment</figcaption>
+      </figure>
+      <figure class="stage" style="margin:0">
+        <svg viewBox="-2 -2 36 36" role="img" aria-label="The heart after three curve segments, the left half drawn">
+          <path d="M16 29 C8 20 2 14 2 9 C2 4 6 2 9 2 C12 2 14.5 4 16 6.5"
+                fill="none" stroke="#1E4FA8" stroke-width="2" stroke-linecap="round" />
+          <circle cx="16" cy="29" r="1.4" fill="#D9534F" />
+        </svg>
+        <figcaption><b>3</b> · the left half</figcaption>
+      </figure>
+      <figure class="stage" style="margin:0">
+        <svg viewBox="-2 -2 36 36" role="img" aria-label="The heart after five segments, past the top dip on the right">
+          <path d="M16 29 C8 20 2 14 2 9 C2 4 6 2 9 2 C12 2 14.5 4 16 6.5 C17.5 4 20 2 23 2 C26 2 30 4 30 9"
+                fill="none" stroke="#1E4FA8" stroke-width="2" stroke-linecap="round" />
+          <circle cx="16" cy="29" r="1.4" fill="#D9534F" />
+        </svg>
+        <figcaption><b>5</b> · around to the right</figcaption>
+      </figure>
+      <figure class="stage" style="margin:0">
+        <svg viewBox="-2 -2 36 36" role="img" aria-label="The finished heart, filled and closed">
+          <path d="M16 29 C8 20 2 14 2 9 C2 4 6 2 9 2 C12 2 14.5 4 16 6.5 C17.5 4 20 2 23 2 C26 2 30 4 30 9 C30 14 24 20 16 29 Z"
+                fill="#D9534F" stroke="#0E3F8C" stroke-width="1.4" stroke-linejoin="round" />
+        </svg>
+        <figcaption><b>7 + Z</b> · closed and filled</figcaption>
+      </figure>
+    </div>
+
+    <p>The whole shape is this one attribute — the comments are not part of it:</p>
+
+    <div class="dblock"><span class="cd">d</span>="<span class="cm">M</span>16 29            <span class="cp">&lt;!-- start at the bottom point --&gt;</span>
+   <span class="cm">C</span> 8 20  2 14  2  9   <span class="cp">&lt;!-- up the left side --&gt;</span>
+   <span class="cm">C</span> 2  4  6  2  9  2   <span class="cp">&lt;!-- round the top-left lobe --&gt;</span>
+   <span class="cm">C</span>12  2 14.5 4 16 6.5 <span class="cp">&lt;!-- down into the middle dip --&gt;</span>
+   <span class="cm">C</span>17.5 4 20 2 23  2   <span class="cp">&lt;!-- back up to the top-right lobe --&gt;</span>
+   <span class="cm">C</span>26  2 30  4 30  9   <span class="cp">&lt;!-- round the right side --&gt;</span>
+   <span class="cm">C</span>30 14 24 20 16 29   <span class="cp">&lt;!-- and down to where we started --&gt;</span>
+   <span class="cm">Z</span>                    <span class="cp">&lt;!-- Z closes the outline --&gt;</span>"</div>
+
+    <p>
+      Read the first curve as: from <code>(16, 29)</code>, pull toward
+      <code>(8, 20)</code> and <code>(2, 14)</code>, and land on <code>(2, 9)</code>.
+      Every segment follows the same recipe, which is why a shape this curved fits in
+      one line of numbers.
+    </p>
+  </section>
+
+  <!-- ============================================================
+       4. The finished shape
+       ============================================================ -->
+  <section>
+    <h2>4 · The finished shape</h2>
+
+    <svg class="heart" viewBox="-4 -4 40 40" role="img"
+         aria-label="The completed heart path, filled">
+      <path d="M16 29 C8 20 2 14 2 9 C2 4 6 2 9 2 C12 2 14.5 4 16 6.5 C17.5 4 20 2 23 2 C26 2 30 4 30 9 C30 14 24 20 16 29 Z"
+            fill="#D9534F" stroke="#0E3F8C" stroke-width="1.2" stroke-linejoin="round" />
+    </svg>
+
+    <p>Now change the numbers and see which curve answers:</p>
+
+    <table>
+      <thead>
+        <tr><th>Change this</th><th>What happens</th></tr>
+      </thead>
+      <tbody>
+        <tr><td><code>M16 29</code> → <code>M16 35</code></td><td>The bottom point drops — the heart gets pointier.</td></tr>
+        <tr><td><code>16 6.5</code> → <code>16 3</code></td><td>The middle dip rises almost to the lobes — more of a bat than a heart.</td></tr>
+        <tr><td><code>C</code> → <code>c</code></td><td>Every coordinate becomes relative, so the shape collapses: the numbers are now offsets.</td></tr>
+        <tr><td>Add <code>transform="rotate(180 16 16)"</code></td><td>An upside-down heart — no coordinate changed.</td></tr>
+        <tr><td><code>fill="#D9534F"</code> → <code>fill="none"</code></td><td>Just the outline — you can count the seven segments.</td></tr>
+      </tbody>
+    </table>
+
+    <p style="margin-top:12px">
+      One last thing worth seeing: swap the fill for a stroke and add
+      <code>stroke-dasharray</code>, then animate <code>stroke-dashoffset</code> — the heart
+      draws itself on. That is the same trick from the
+      <code>svg-dasharray</code> and <code>svg-animation</code> examples, applied to a
+      real path.
+    </p>
+  </section>
+</body>
+</html>

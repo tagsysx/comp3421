@@ -40,6 +40,7 @@
         "html/canvas-dl",
         "html/image-map",
         "html/svg",
+        "html/svg-path",
         "html/svg-dasharray",
         "html/svg-animation"
       ]
@@ -314,6 +315,14 @@
           "id": "svg",
           "name": "SVG shapes",
           "desc": "rect, circle, line, ellipse, path, polyline, polygon — vector graphics",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "svg-path",
+          "name": "Complex paths",
+          "desc": "The d attribute — the command alphabet, control points, and a heart built from seven cubic curves",
           "files": [
             "index.html"
           ]
