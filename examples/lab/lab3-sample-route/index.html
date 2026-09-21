@@ -1,0 +1,177 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>A dot riding a path — COMP3421 sample</title>
+  <!-- ================================================================
+       SAMPLE · A ROUTE THAT DRAWS ITSELF, AND A DOT THAT RIDES IT
+
+       Two animations, one shared duration:
+
+         1. the LINE draws itself      stroke-dashoffset along the path
+         2. the DOT travels the path   offset-path + offset-distance
+
+       Both are on the clock (`animation`, not `transition`), and the
+       second one is the interesting half: CSS can move an element along an
+       arbitrary curve with no JavaScript and no maths. `offset-path` takes
+       the same path data as the SVG `d` attribute.
+
+       The step most people miss is (b): `offset-path` needs the path data
+       copied across from the SVG. Without it the dot sits in the top-left
+       corner looking broken.
+
+       Play with the numbers — the duration is the one that ties the two
+       halves together.
+       ================================================================ -->
+  <style>
+    /* ------------------------------ the page ------------------------------ */
+    body  { margin: 0; background: #0a1a30; color: #e8eff8;
+            font-family: Trebuchet MS; }
+    main  { width: 92%; max-width: 760px; margin: 0 auto; padding: 44px 0 52px; }
+    .kicker { margin: 0 0 12px; font-size: .72rem; font-weight: 700;
+              letter-spacing: .3em; text-transform: uppercase; color: #7fb6ff; }
+    h1    { margin: 0 0 10px; font-size: 2rem; font-weight: 400; color: #fff; }
+    .sub  { margin: 0 0 30px; font-size: .95rem; line-height: 1.6; color: #9db4d4;
+            max-width: 68ch; }
+    h2    { margin: 38px 0 8px; font-size: 1.08rem; color: #fff; }
+    p     { font-size: .9rem; line-height: 1.62; color: #9db4d4; max-width: 68ch; }
+    li    { font-size: .9rem; line-height: 1.6; color: #9db4d4; margin: 5px 0; }
+    code  { font-family: Consolas; font-size: .86em; color: #7fb6ff; }
+    pre   { background: #06101f; border: 1px solid #1b3a63; border-radius: 10px;
+            padding: 14px 16px; overflow-x: auto; font-family: Consolas;
+            font-size: .82rem; line-height: 1.6; color: #d8e6ff; }
+    pre code { color: inherit; }
+    .stage { background: #10233d; border: 1px solid #1b3a63; border-radius: 14px;
+             padding: 22px 18px; margin: 16px 0 8px; display: flex;
+             justify-content: center; }
+    .note { font-size: .82rem; color: #5f7695; }
+
+    /* ================== 1 · the shape of the route ==================
+       pathLength="100" re-scales the path's own coordinates to 100, so every
+       dash value below is a PERCENTAGE of the route. Without it you would
+       have to measure the curve yourself — and for a Bézier curve that is
+       genuinely hard. It is the single most useful attribute here. */
+    .route {
+      fill: none; stroke: #4da3ff; stroke-width: 5; stroke-linecap: round;
+      stroke-dasharray: 100 100;                 /* one dash the length of the route */
+      animation: trace 3.4s ease-in-out infinite;
+    }
+    /* 100 means "none of the route is drawn", 0 means "all of it". Hold at 0
+       for a beat so the finished route is visible before it retreats. */
+    @keyframes trace {
+      0%       { stroke-dashoffset: 100; }
+      55%, 90% { stroke-dashoffset: 0;   }
+      100%     { stroke-dashoffset: 100; }
+    }
+
+    /* ================== 2 · the dot that rides it ==================
+       `offset-path` moves the element along a curve. CSS has no idea what
+       your SVG path is, so the path data has to be written out again here —
+       copy it from the `d` attribute above. */
+    .runner {
+      offset-path: path("M18 116 C 56 116, 60 52, 100 52 S 148 116, 190 116 S 214 34, 232 26");
+      offset-distance: 0%;
+      animation: run 3.4s ease-in-out infinite;
+    }
+    /* Same stops as the line, and the same duration, so the dot arrives
+       exactly as the drawing finishes rather than before or after it. */
+    @keyframes run {
+      0%       { offset-distance: 0%;   }
+      55%, 90% { offset-distance: 100%; }
+      100%     { offset-distance: 0%;   }
+    }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <p class="kicker">COMP3421 &middot; sample</p>
+  <h1>A dot riding a path</h1>
+  <p class="sub">
+    A delivery route: the line draws itself, then a dot runs along the very same curve. No
+    JavaScript, and no maths — the browser can follow a path for you.
+  </p>
+
+  <div class="stage">
+    <svg width="250" height="132" viewBox="0 0 250 132">
+      <path class="route" pathLength="100"
+            d="M18 116 C 56 116, 60 52, 100 52 S 148 116, 190 116 S 214 34, 232 26" />
+      <circle class="runner" cx="0" cy="0" r="8" fill="#ffc107" />
+    </svg>
+  </div>
+
+  <h2>Half one — the line draws itself</h2>
+  <p>This is the same trick as the sliding bar in the lab: a dash pattern plus a moving
+     offset. The difference is the scale. On a loading bar the pattern repeats many times
+     along the line, so the offset travels one <em>cycle</em>. Here the dash is as long as
+     the whole route, so the offset travels the <em>route</em> and the line appears to draw
+     itself:</p>
+  <pre><code>.route {
+  stroke-dasharray: 100 100;          /* one dash the length of the route */
+  animation: trace 3.4s ease-in-out infinite;
+}
+
+@keyframes trace {
+  0%       { stroke-dashoffset: 100; }   /* nothing drawn yet        */
+  55%, 90% { stroke-dashoffset: 0;   }   /* finished — and it waits  */
+  100%     { stroke-dashoffset: 100; }   /* retreated                */
+}</code></pre>
+  <p><code>pathLength="100"</code> is doing quiet work here. It tells the browser to treat the
+     path as if it were 100 units long whatever its real length, so <code>100</code> and
+     <code>0</code> mean "all of it" and "none of it" without anyone measuring a Bézier
+     curve. The two stops at <code>55%, 90%</code> are what hold the finished route still for
+     a beat instead of snatching it away immediately.</p>
+
+  <h2>Half two — the dot follows the same curve</h2>
+  <p><code>offset-path</code> puts an element on a curve; <code>offset-distance</code> says how
+     far along it has got, as a percentage. The catch is that CSS cannot read your SVG, so the
+     path data has to be written out a second time — copied from the <code>d</code>
+     attribute:</p>
+  <pre><code>.runner {
+  offset-path: path("M18 116 C 56 116, 60 52, 100 52 S 148 116, 190 116 S 214 34, 232 26");
+  offset-distance: 0%;
+  animation: run 3.4s ease-in-out infinite;
+}</code></pre>
+  <p>Then give it the same stops and the <strong>same duration</strong> as the line. That
+     shared duration is the whole choreography: change one and not the other and the dot
+     arrives early or late. Stops of <code>55%, 90%</code> also keep the dot parked at the end
+     while the line is held.</p>
+
+  <div class="stage">
+    <svg width="250" height="132" viewBox="0 0 250 132">
+      <path class="route" pathLength="100"
+            style="animation-duration: 6s;"
+            d="M18 116 C 56 116, 60 52, 100 52 S 148 116, 190 116 S 214 34, 232 26" />
+      <circle class="runner" cx="0" cy="0" r="8" fill="#22d3ee" style="animation-duration: 6s;" />
+    </svg>
+  </div>
+  <p class="note" style="text-align:center;margin:0 auto 6px;">
+    The same route at 6 s instead of 3.4 s — slower, and easier to watch.</p>
+
+  <h2>Try these</h2>
+  <ol>
+    <li>Delete the <code>offset-path</code> line and watch the dot. It parks in the top-left
+        corner — the single most common way this exercise goes wrong.</li>
+    <li>Change only the dot's duration to <code>1.7s</code>, leaving the line at
+        <code>3.4s</code>. The dot now makes two trips per drawing. That is the clearest
+        possible demonstration of why the two must agree.</li>
+    <li>Change <code>ease-in-out</code> to <code>linear</code>. A parcel does not accelerate,
+        so <code>linear</code> is arguably more honest here — decide which you prefer.</li>
+    <li>Change the stops from <code>55%, 90%</code> to <code>55%, 55%</code>. The hold
+        disappears and the drawing retreats the instant it completes.</li>
+    <li>Edit the path data in <em>both</em> places — the <code>d</code> attribute and
+        <code>offset-path</code> — and watch both halves follow the new curve. Miss one and
+        they part company.</li>
+  </ol>
+
+  <p class="note">
+    Practice page for COMP3421 &mdash; a made-up route, not a real service.
+    Two properties do the work: <code>stroke-dashoffset</code> and
+    <code>offset-distance</code>.
+  </p>
+
+</main>
+</body>
+</html>

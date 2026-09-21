@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icon morph on hover — COMP3421 sample</title>
+  <!-- ================================================================
+       SAMPLE · AN ICON THAT MORPHS ON HOVER
+
+       A menu button that folds into a cross. Three lines, one shared
+       centre, and no @keyframes anywhere: `transition` tweens the change
+       and `:hover` is the trigger.
+
+       This is the cleanest example in the course of motion driven by
+       STATE rather than by a clock. Nothing here runs on its own — the
+       pointer is the clock.
+
+       The whole effect is two ideas:
+
+         1. Each line writes down the state it moves TO in a :hover rule.
+            The line itself keeps the state it rests in.
+         2. All three lines turn about the SAME point — the centre of the
+            icon, not the corner of the SVG. Without that line each one
+            swings around the canvas corner and the icon falls apart.
+
+       Try the experiments at the bottom of the page. Change a number,
+       click back into the editor and hover the icon again.
+       ================================================================ -->
+  <style>
+    /* ------------------------------ the page ------------------------------ */
+    body  { margin: 0; background: #0a1a30; color: #e8eff8;
+            font-family: Trebuchet MS; }
+    main  { width: 92%; max-width: 760px; margin: 0 auto; padding: 44px 0 52px; }
+    .kicker { margin: 0 0 12px; font-size: .72rem; font-weight: 700;
+              letter-spacing: .3em; text-transform: uppercase; color: #7fb6ff; }
+    h1    { margin: 0 0 10px; font-size: 2rem; font-weight: 400; color: #fff; }
+    .sub  { margin: 0 0 30px; font-size: .95rem; line-height: 1.6; color: #9db4d4;
+            max-width: 68ch; }
+    h2    { margin: 38px 0 8px; font-size: 1.08rem; color: #fff; }
+    p     { font-size: .9rem; line-height: 1.62; color: #9db4d4; max-width: 68ch; }
+    li    { font-size: .9rem; line-height: 1.6; color: #9db4d4; margin: 5px 0; }
+    code  { font-family: Consolas; font-size: .86em; color: #7fb6ff; }
+    pre   { background: #06101f; border: 1px solid #1b3a63; border-radius: 10px;
+            padding: 14px 16px; overflow-x: auto; font-family: Consolas;
+            font-size: .82rem; line-height: 1.6; color: #d8e6ff; }
+    pre code { color: inherit; }
+    .stage { background: #10233d; border: 1px solid #1b3a63; border-radius: 14px;
+             padding: 26px 20px; margin: 16px 0 8px; display: flex; flex-direction: column;
+             align-items: center; gap: 14px; }
+    .hint { margin: 0; font-size: .78rem; color: #7fb6ff; letter-spacing: .06em;
+            text-transform: uppercase; font-weight: 700; }
+    .note { font-size: .82rem; color: #5f7695; }
+
+    /* ====================== 1 · three lines, one centre ======================
+       transform-origin names the point a shape turns about: 60 60 is the
+       centre of this 120 × 120 viewBox.
+
+       ⚠ It has to go on the LINES, not on the <g> that wraps them.
+       `transform-origin` is not inherited, and it only affects the element
+       that actually carries a transform — the <g> never transforms, so an
+       origin on it does nothing at all and the lines keep the default 0 0.
+       Set it on the things that move. */
+    .icon line {
+      transform-origin: 60px 60px;
+      transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s linear;
+    }
+    .icon .mid { transition: opacity .3s linear; }
+
+    /* ======================= 2 · where each line goes ======================
+       Top line slides down 18 (its distance to the middle) and tilts +45°.
+       Bottom line slides up 18 and tilts −45°. Middle line just hides.
+       Two lines crossing at the centre IS a cross — nothing draws one. */
+    .icon:hover .top { transform: translateY(18px)  rotate(45deg); }
+    .icon:hover .mid { opacity: 0; }
+    .icon:hover .bot { transform: translateY(-18px) rotate(-45deg); }
+
+    /* ============ 3 · the same technique, staggered with a delay ============
+       Identical markup and identical hover rules — the only difference is
+       that each line waits its turn. `transition-delay` is how you turn one
+       movement into a sequence without writing a single @keyframes rule. */
+    .icon.seq line { transition: transform .4s ease, opacity .3s linear; }
+    .icon.seq .mid { transition-delay: .12s; }
+    .icon.seq .bot { transition-delay: .24s; }
+
+    /* The icon is a hover target, so say so with the cursor. */
+    .icon { cursor: pointer; }
+  </style>
+</head>
+
+<body>
+<main>
+
+  <p class="kicker">COMP3421 &middot; sample</p>
+  <h1>An icon that morphs on hover</h1>
+  <p class="sub">
+    A menu button becomes a close button, and nothing on this page runs on a clock. The
+    shape answers your pointer: the shape <em>is</em> the state.
+  </p>
+
+  <div class="stage">
+    <svg class="icon" width="140" height="140" viewBox="0 0 120 120" role="img"
+         aria-label="Hover to fold the three lines into a cross">
+      <g stroke="#4da3ff" stroke-width="9" stroke-linecap="round" fill="none">
+        <line class="top" x1="34" y1="42" x2="86" y2="42" />
+        <line class="mid" x1="34" y1="60" x2="86" y2="60" />
+        <line class="bot" x1="34" y1="78" x2="86" y2="78" />
+      </g>
+    </svg>
+    <p class="hint">Move the pointer onto the icon</p>
+  </div>
+
+  <h2>Both states, without a clock</h2>
+  <p>Each line writes down only the state it moves <em>to</em>. The resting state stays on
+     the line itself, and <code>transition</code> tweens the difference whenever the two no
+     longer agree:</p>
+  <pre><code>.icon line {
+  transition: transform .45s cubic-bezier(.2, .8, .2, 1), opacity .3s linear;
+}
+
+.icon:hover .top { transform: translateY(18px) rotate(45deg); }
+.icon:hover .mid { opacity: 0; }                    /* … it just hides      */
+.icon:hover .bot { transform: translateY(-18px) rotate(-45deg); }</code></pre>
+  <p>Nothing here draws a cross. The top line slides down by 18 — exactly its distance to
+     the middle — and tilts one way; the bottom line slides up by 18 and tilts the other way;
+     the middle line fades. Two lines crossing at the centre <em>are</em> a cross.</p>
+
+  <h2>The line that must not be missing</h2>
+  <p>An SVG shape does not turn about its own centre by default — it swings around the corner
+     of the canvas, which for a line halfway down the viewBox looks like it is being flung
+     off the card. One declaration fixes it:</p>
+  <pre><code>.icon line { transform-origin: 60px 60px; }</code></pre>
+  <p>Read that as "turn about the point (60, 60) of the SVG". All three lines name the same
+     point, and that shared pivot is the whole reason they meet in the middle.</p>
+  <p><strong>Note where that rule sits:</strong> on the lines, not on the wrapping
+     <code>&lt;g&gt;</code>. It is tempting to write it once on the group — but
+     <code>transform-origin</code> is not inherited, and it only affects the element that
+     actually carries a transform. The <code>&lt;g&gt;</code> never transforms, so an origin
+     on it does nothing and the lines silently keep the default <code>0 0</code>. Naming the
+     pivot on the things that move is the rule.</p>
+
+  <h2>Same effect, staggered</h2>
+  <p>The second icon has the same markup and the same hover rules. The only addition is a
+     <code>transition-delay</code> per line, so the three move one after another instead of at
+     once — a sequence built with no <code>@keyframes</code> at all:</p>
+
+  <div class="stage">
+    <svg class="icon seq" width="110" height="110" viewBox="0 0 120 120" role="img"
+         aria-label="Hover to fold the lines into a cross, one after another">
+      <g stroke="#22d3ee" stroke-width="9" stroke-linecap="round" fill="none">
+        <line class="top" x1="34" y1="42" x2="86" y2="42" />
+        <line class="mid" x1="34" y1="60" x2="86" y2="60" />
+        <line class="bot" x1="34" y1="78" x2="86" y2="78" />
+      </g>
+    </svg>
+    <p class="hint">Now imagine the same trick on your own shape</p>
+  </div>
+
+  <pre><code>.icon.seq .mid { transition-delay: .12s; }
+.icon.seq .bot { transition-delay: .24s; }</code></pre>
+
+  <h2>Try these</h2>
+  <ol>
+    <li>Change <code>45deg</code> to <code>30deg</code> on both lines and hover again. The
+        lines no longer meet — which tells you exactly where the 45 comes from.</li>
+    <li>Delete the <code>.mid</code> hover rule. The middle bar stays put and the icon turns
+        into a mess. That is the one line of the three that is allowed to do the least.</li>
+    <li>Move the <code>transform-origin</code> rule off <code>.icon line</code> and onto
+        <code>.icon g</code> instead, then hover. This is the mistake the rule exists to
+        prevent, and it is a subtle one: nothing errors, the property is simply ignored.</li>
+    <li>Change the cubic-bezier to <code>linear</code>, then to
+        <code>cubic-bezier(.9, 0, 1, .4)</code>. Slide and fade want different easings; a
+        slide usually wants to start quickly.</li>
+    <li>Add <code>transition-delay: .3s</code> to <code>.top</code> as well as the others.
+        The whole thing now waits before it moves, and the delay is what makes it feel
+        deliberate rather than twitchy.</li>
+    <li>Make the two durations equal — <code>transform .45s, opacity .45s</code>. The middle
+        line now lingers while the other two have already crossed, and the cross looks
+        unfinished for a moment. Different durations are a decision, not a default.</li>
+  </ol>
+
+  <p class="note">
+    Practice page for COMP3421 &mdash; a made-up interface, not a real service.
+    One property does all the motion here (<code>transform</code>) plus
+    <code>opacity</code> for the middle line.
+  </p>
+
+</main>
+</body>
+</html>

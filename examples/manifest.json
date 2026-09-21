@@ -76,9 +76,11 @@
     {
       "id": "lab-03-loaders",
       "name": "Lab 3 · Animate it, then colour it",
-      "desc": "practise @keyframes, transition and colour schemes — 60 min in the lab, three exercises at home",
+      "desc": "practise @keyframes and colour schemes — 60 min in the lab, three exercises at home",
       "examples": [
-        "lab/lab3-loaders"
+        "lab/lab3-loaders",
+        "lab/lab3-sample-morph",
+        "lab/lab3-sample-route"
       ]
     },
     {
@@ -193,7 +195,23 @@
         {
           "id": "lab3-loaders",
           "name": "Lab 3 — Animate it, then colour it",
-          "desc": "Your practice file: 8 exercises — @keyframes, transition and four colour schemes",
+          "desc": "Your practice file: 6 exercises — @keyframes and four colour schemes",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lab3-sample-morph",
+          "name": "Lab 3 sample — An icon that morphs on hover",
+          "desc": "Worked sample: three lines fold into a cross with transition + :hover, and no @keyframes",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lab3-sample-route",
+          "name": "Lab 3 sample — A dot riding a path",
+          "desc": "Worked sample: a path that draws itself while a dot follows it with offset-path",
           "files": [
             "index.html"
           ]

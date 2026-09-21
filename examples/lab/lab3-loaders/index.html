@@ -8,19 +8,17 @@
   <!-- ================================================================
        LAB 3 — ANIMATE IT, THEN COLOUR IT
 
-       Eight exercises in two halves.
+       Six exercises in two halves.
 
          PART 1 · IN THE LAB — 60 minutes
            1 · Sliding bar          a dash pattern travelling along a line
-           2 · Progress ring        an arc that breathes while the ring turns
-           3 · Icon morph           three lines that answer the pointer
-           4 · Route tracing        a path that draws itself, and a dot on it
-           5 · Choose the colours   four structures, one named scheme each
+           2 · Progress ring        one arc, drawn to full and then erased
+           3 · Choose the colours   four structures, one named scheme each
 
          PART 2 · HOMEWORK — done at home
-           6 · Pulse dots           one animation, three start times
-           7 · Your own             your shape, your rhythm
-           8 · Colour theory        three more structures, three more schemes
+           4 · Pulse dots           one animation, three start times
+           5 · Your own             your shape, your rhythm
+           6 · Colour theory        three more structures, three more schemes
 
        HOW THIS PAGE WORKS — read this before you start
 
@@ -32,7 +30,7 @@
                         are built.                  finished · NOT yours
          block 3 of 3 — YOUR WORK. this is the only block you write in.
 
-       The five exercises you do in the lab come with STEPS: a short ordered
+       The three exercises you do in the lab come with STEPS: a short ordered
        list of what to do, one line at a time. The steps give you the order
        of the work and tell you which property each step is about — the CSS
        itself is still yours to write, and so are all the numbers.
@@ -46,24 +44,28 @@
        The colour exercises work differently. There you write style
        attributes on the elements themselves, down here in the <body>.
 
-       The shapes of exercises 1–4, 6 and 7 are already drawn AND coloured:
+       The shapes of exercises 1, 2, 4 and 5 are already drawn AND coloured:
        those say what each shape looks like, and you do not change them.
-       The structures of exercises 5 and 8 carry no colour at all —
+       The structures of exercises 3 and 6 carry no colour at all —
        choosing the colour is the exercise.
 
        Work in the live editor (source on the left, result on the right) or
        in any editor + browser. Open target-preview.png (in the lab folder)
        to see one finished version.
 
-       Exercises 3 and 7 answer the pointer instead of the clock, so a still
-       picture of the page cannot show them doing anything — in
-       target-preview.png those two cards just sit there. Open
-       hover-states.png (same folder) for those two: it shows each card at
-       rest on the left and with the pointer on it on the right.
+       Exercise 5 answers the pointer instead of the clock, so a still
+       picture of the page cannot show it doing anything — in
+       target-preview.png that card just sits there. Open hover-states.png
+       (same folder) for it: the card at rest on the left, and with the
+       pointer on it on the right.
+
+       Two effects you will not build here are kept as worked samples in the
+       course examples — an icon that morphs on hover, and a dot riding a
+       path. Open them from the examples page if you want to see the code.
 
        When you are done, press  ⬇ Download .zip  and submit that file.
 
-       Each TODO shows its minutes. In the lab: 8 + 11 + 8 + 10 + 23 = 60.
+       Each TODO shows its minutes. In the lab: 17 + 20 + 23 = 60.
        ================================================================ -->
 
   <!-- ================================================================
@@ -104,7 +106,7 @@
 
           The element carries its own resting state; the :hover rule holds
           the state it moves to. Move the pointer away and back it goes.
-          Two of your cards work this way — exercises 3 and 7.
+          One of your cards works this way — exercise 5.
 
        5. What you can animate on an SVG shape: stroke-dashoffset,
           stroke-dasharray, opacity, fill, stroke, and `transform`
@@ -118,7 +120,7 @@
               transform-origin: <x> <y>;  /* the shape's centre, in SVG coordinates */
               transform-box: fill-box;    /* …or: "use this shape's own box"      */
 
-          Exercises 2, 3, 6 and 7 each need one of these two lines. If a shape
+          Exercises 2, 4 and 5 each need one of these two lines. If a shape
           flies off the page, or three dots drift apart, one of them is
           missing.
 
@@ -157,9 +159,10 @@
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px; margin-top: 14px; }
-    /* Part 1 sits 2 × 2 — two across, two down. Written out rather than left
-       to auto-fit, so the four cards land in the same arrangement whatever
-       width the window is. Collapses to one column on a narrow screen. */
+    /* Two across whatever the window width: the two animation cards form one
+       row, and the four colour structures form a 2 × 2 block. Written out
+       rather than left to auto-fit. Collapses to one column on a narrow
+       screen. */
     .grid.pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
     @media (max-width: 640px) { .grid.pair { grid-template-columns: 1fr; } }
     .card { background: #10233d; border: 1px solid #1b3a63; border-radius: 14px;
@@ -191,7 +194,7 @@
              button pair, the info card, the chart, the tag row, the tiles
              and the weather widget. Layout only: not one of them carries
              any colour yet, and that is deliberate. You add the colour in
-             the <body> as style attributes, for exercises 5 and 8.
+             the <body> as style attributes, for exercises 3 and 6.
 
        ★ Do not write anything in here either. Your CSS goes in block 3.
        ══════════════════════════════════════════════════════════════════ */
@@ -200,11 +203,8 @@
                  stroke-dasharray: 60 200; }
 
     .ring-track { fill: none; stroke: #16304f; stroke-width: 10; }
-    .ring-arc   { fill: none; stroke: #22d3ee; stroke-width: 10; stroke-linecap: round;
-                  stroke-dasharray: 25 75; }
-
-    .route { fill: none; stroke: #4da3ff; stroke-width: 5; stroke-linecap: round;
-             stroke-dasharray: 100 100; }
+    .ring-arc   { fill: none; stroke: #22d3ee; stroke-width: 10;
+                  stroke-dasharray: 100 100; }
 
     .dot { fill: #4da3ff; }
 
@@ -215,7 +215,7 @@
                   stroke-linecap: round; stroke-linejoin: round;
                   stroke-dasharray: 100 100; }
 
-    /* ── the six structures · layout only, no colour yet ──────────────── */
+    /* ── the seven structures · layout only, no colour yet ────────────── */
     .ui-nav { display: flex; align-items: center; gap: 10px; padding: 12px 14px;
               border-radius: 10px; font-size: .8rem; }
     .ui-nav .rule, .ui-nav .item:last-of-type { margin-left: auto; }
@@ -264,7 +264,7 @@
 
        Above it are two blocks of finished CSS that draw the page and the
        shapes — leave those alone. Below it, down in the <body>, are the
-       structures you colour for exercises 5 and 8.
+       structures you colour for exercises 3 and 6.
 
        Each TODO asks for one small piece of CSS. Work through them in
        order, and look at the page after each one.
@@ -275,7 +275,7 @@
        ══════════════════════════════════════════════════════════════════ */
 
     /* ── Exercise 1 · Sliding bar ────────────────────────────────────────
-         TODO 1 — put the blue line in motion.                          [8 min]
+         TODO 1 — put the blue line in motion.                         [17 min]
 
          Aim: a dash pattern that travels along the groove and comes back
          round without a visible jump.
@@ -295,95 +295,44 @@
                                                                          */
 
     /* ── Exercise 2 · Progress ring ──────────────────────────────────────
-         TODO 2 — an arc that grows and shrinks while the whole ring turns.
-                                                                        [11 min]
+         TODO 2 — draw the ring from nothing to a full circle, then empty
+         it again.
+                                                                        [20 min]
 
          The cyan circle carries pathLength="100", so every dash value on it
          is a PERCENTAGE of the ring — you never have to work out 2 × π × r.
-         "A little ink and almost all gap" is a sliver of arc; turn those two
-         numbers round and you have most of the ring.
+         Its dash pattern is already set in block 2 as "ink 100, gap 100",
+         so one whole cycle of the pattern is 200 long.
 
-         Two animations run on the SAME element at the same time.
+         That gives you two landmarks to find before you write anything:
+         the offset value at which the ink is off the ring entirely, and the
+         value at which it covers the whole ring.
 
-         Steps:
-           1. Write the breathing arc: a @keyframes rule that changes the
-              dash pattern from a sliver out to most of the ring and back.
-              Use more than two stops, and drift the offset across the cycle
-              as well, so the breathing does not sit still.
-           2. Write the turning ring: a @keyframes rule that rotates the
-              circle through one full turn.
-           3. Put BOTH of them on .ring-arc in one `animation` declaration,
-              separated by a comma, with the SAME duration so they stay in
-              step.
-           4. Pick the two easings deliberately: which of the pair should
-              turn at a perfectly constant rate, and which should ease?
-           5. Now the trap from the primer (§6). Run it exactly as it is and
-              watch the ring swing around the corner of the SVG. Then add
-              the one line that pins the shape to its own centre and watch it
-              settle. That line is the difference between a loader and a bug.
-                                                                         */
-
-    /* ── Exercise 3 · Icon morph ─────────────────────────────────────────
-         TODO 3 — hover the icon: three lines fold into a cross.        [8 min]
-
-         This card answers your POINTER, not the clock, so it uses
-         `transition` rather than `animation` (primer §4). :hover is the
-         trigger; the element keeps its own resting state.
-
-         Aim: on hover the top line slides down to the middle and tilts one
-         way, the bottom line slides up and tilts the other way, and the
-         middle line fades out. Move the pointer away and all three go back.
+         One animation, one property, and the rate never changes.
 
          Steps:
-           1. Settle the pivot first (primer §6). All three lines turn about
-              one shared centre — the centre of the icon, not the corner of
-              the SVG. Write that on the lines before you animate anything,
-              or you will spend the time debugging a shape that flies off the
-              card.
-           2. Write a `transition` on each of the three lines. Two of them
-              will change their transform; the middle one changes only its
-              opacity.
-           3. Pick the easing per line rather than once for all three — a
-              slide and a fade do not want the same one.
-           4. Write one :hover rule per line, holding the state that line
-              moves TO. A tilt of 45° one way and 45° the other is what makes
-              two lines cross in the middle — a menu button becoming an ×.
-           5. Move the pointer on and off while you tune it. Nothing here
-              repeats on its own — the pointer is the clock (primer §4).
+           1. Work out the two offset values — the one that means "nothing
+              drawn" and the one that means "the whole ring". The ink has to
+              travel the length of the ring to get from one to the other.
+           2. Write a @keyframes rule with three stops: empty, full, empty
+              again. The second half is the part that needs thinking about —
+              the ink can only leave by the door it came in, so work out
+              which way the offset has to keep moving for the ring to empty,
+              rather than refill backwards.
+           3. Switch it on with an `animation` declaration: your keyframes
+              name, a duration, and `infinite`.
+           4. Choose the easing. A progress ring that speeds up and slows
+              down reads as a wobble rather than as progress.
+           5. Name the point the ring turns about (primer §6) so that it
+              starts filling from twelve o'clock instead of the right-hand
+              side. Run it once WITHOUT that line first and look where it
+              starts — then add the line and watch it move to the top.
                                                                          */
 
-    /* ── Exercise 4 · Route tracing ──────────────────────────────────────
-         TODO 4 — draw the route, then send the dot along it.          [10 min]
+    /* ── Exercise 3 · Choose the colours — see the <body> ───────────────
+         TODO 3a–3d — four structures, four named schemes.             [23 min]
 
-         Aim: the route draws itself, holds for a beat, then the dot runs
-         along it and arrives as the line finishes.
-
-         Two halves, one shared duration, so the dot sets off in time with
-         the line.
-
-         Steps for (a) — the line draws itself:
-           1. Same trick as exercise 1: a dash pattern plus a moving offset.
-              The pattern is already on .route in block 2.
-           2. This path is drawn ONCE per cycle, not over and over, so the
-              offset travels the path's full length instead of one dash
-              cycle. The path is not a closed loop, so 100 is the whole route
-              and 0 is "nothing drawn yet".
-           3. Decide which end means hidden, hold the finished route still for
-              a beat, then let it retreat.
-
-         Steps for (b) — the dot rides the path:
-           4. CSS can do this with no JavaScript. `offset-path` takes the
-              same path data as the SVG `d` attribute — copy it across.
-           5. `offset-distance` says how far along the route the dot is; run
-              it from 0% to 100%.
-           6. Give the dot the same stops and the SAME duration as the line,
-              so it arrives exactly as the drawing finishes.
-                                                                         */
-
-    /* ── Exercise 5 · Choose the colours — see the <body> ───────────────
-         TODO 5a–5d — four structures, four named schemes.             [23 min]
-
-         There is nothing to write in this <style> block for exercise 5.
+         There is nothing to write in this <style> block for exercise 3.
          Scroll down to the four structures in the <body>: each one names the
          scheme it was designed with, and each one is waiting for its colour.
 
@@ -408,8 +357,8 @@
               the hues you used, so the reasoning is visible to the marker.
                                                                          */
 
-    /* ── Exercise 6 · Pulse dots ─────────────────────────────────────────
-         TODO 6 — three dots that ripple.                     [homework · 10 min]
+    /* ── Exercise 4 · Pulse dots ─────────────────────────────────────────
+         TODO 4 — three dots that ripple.                     [homework · 10 min]
 
          One animation, three start times: the middle dot sets off after the
          first, the third after the middle. That is the whole difference
@@ -425,13 +374,13 @@
          smallest exactly when it is at its faintest.
                                                                          */
 
-    /* ── Exercise 7 · Your own ───────────────────────────────────────────
-         TODO 7 — your own loader, triggered by the pointer.
+    /* ── Exercise 5 · Your own ───────────────────────────────────────────
+         TODO 5 — your own loader, triggered by the pointer.
                                                              [homework · 20 min]
 
-         The markup in card 7 is ONE worked example: a progress ring that
+         The markup in card 5 is ONE worked example: a progress ring that
          fills from nothing to a full circle, and only then does the tick
-         draw itself. Both beats are the same trick as exercises 1 and 4 —
+         draw itself. Both beats are the same trick as exercises 1 and 2 —
          a dash pattern revealed by moving its offset — turned on by :hover
          and tweened by transition.
 
@@ -450,8 +399,8 @@
          comment why you picked that rhythm.
                                                                          */
 
-    /* ── Exercise 8 · Colour theory, round two — see the <body> ─────────
-         TODO 8a–8c — three more structures, three more schemes.
+    /* ── Exercise 6 · Colour theory, round two — see the <body> ─────────
+         TODO 6a–6c — three more structures, three more schemes.
                                                              [homework · 20 min]
 
          Again, nothing goes in this block. This time no colours are worked
@@ -468,12 +417,12 @@
   <p class="kicker">COMP3421 &middot; motion &amp; colour</p>
   <h1>Animate it, then colour it</h1>
   <p class="sub">
-    Part 1: three animations that run on their own, one that answers your pointer, and four
-    structures to colour. Part 2 takes three more exercises home. The shapes are drawn for
-    you — the motion and the colour are not.
+    Part 1: two animations that run on their own, and four structures to colour. Part 2 takes
+    three more exercises home. The shapes are drawn for you — the motion and the colour are
+    not.
   </p>
 
-  <h2 class="part">Part 1 &middot; in the lab <span>four pieces of motion + a palette exercise</span></h2>
+  <h2 class="part">Part 1 &middot; in the lab <span>two pieces of motion + a palette exercise</span></h2>
 
   <div class="grid pair">
 
@@ -496,7 +445,8 @@
 
     <!-- TODO 2 · Progress ring — see the notes in the <style> block above.
          The pale circle is the track; the cyan circle is the arc that has to
-         sweep around it. Neither circle carries any animation yet.        -->
+         fill the ring and then empty it again. Neither circle carries any
+         animation yet.                                                    -->
     <article class="card">
       <span class="tag">syncing</span>
       <div class="box">
@@ -506,55 +456,15 @@
         </svg>
       </div>
       <h2>2 &middot; Progress ring</h2>
-      <p class="tech">stroke-dasharray + rotate</p>
-      <p class="job">A ring that says “working, amount unknown”: the arc breathes while
-         the whole ring turns. Two animations on one element.</p>
-    </article>
-
-    <!-- TODO 3 · Icon morph — see the notes in the <style> block above.
-         Three lines. Hovering the icon has to fold them into a cross. The
-         colours and widths are already set on the <g>; what is missing is
-         the change of state.                                             -->
-    <article class="card morph">
-      <span class="tag">switching &middot; hover it</span>
-      <div class="box">
-        <svg width="120" height="120" viewBox="0 0 120 120">
-          <g stroke="#4da3ff" stroke-width="9" stroke-linecap="round">
-            <line class="m-top" x1="34" y1="42" x2="86" y2="42" />
-            <line class="m-mid" x1="34" y1="60" x2="86" y2="60" />
-            <line class="m-bot" x1="34" y1="78" x2="86" y2="78" />
-          </g>
-        </svg>
-      </div>
-      <h2>3 &middot; Icon morph</h2>
-      <p class="tech">transition + :hover — hover the icon</p>
-      <p class="job">A menu button that becomes a close button. Nothing here runs on its
-         own: the shape answers your pointer, and the <em>shape is the state</em>.</p>
-    </article>
-
-    <!-- TODO 4 · Route tracing — see the notes in the <style> block above.
-         The <path> is the route; the <circle> is the dot that has to ride
-         it. The dot currently sits at the top-left corner of the SVG, which
-         is exactly where an unpositioned dot belongs.                    -->
-    <article class="card">
-      <span class="tag">travelling</span>
-      <div class="box">
-        <svg width="250" height="132" viewBox="0 0 250 132">
-          <path class="route" pathLength="100"
-                d="M18 116 C 56 116, 60 52, 100 52 S 148 116, 190 116 S 214 34, 232 26" />
-          <circle class="runner" cx="0" cy="0" r="8" fill="#ffc107" />
-        </svg>
-      </div>
-      <h2>4 &middot; Route tracing</h2>
-      <p class="tech">stroke-dashoffset + offset-path</p>
-      <p class="job">A delivery route: the line draws itself, then a dot rides the very
-         same path. <code>offset-path</code> is CSS's way of moving something along a
-         route.</p>
+      <p class="tech">stroke-dashoffset + transform-origin</p>
+      <p class="job">A ring that says “working, amount unknown”: the arc fills the whole
+         circle, then empties itself again from the same point, at a constant speed.
+         One animation, one property.</p>
     </article>
 
   </div>
 
-  <h3 class="group">5 &middot; Choose the colours
+  <h3 class="group">3 &middot; Choose the colours
     <em>four structures &middot; one named scheme each</em></h3>
 
   <p class="sub" style="margin-bottom:12px;">
@@ -565,7 +475,7 @@
 
   <div class="grid pair">
 
-    <!-- TODO 5a · Navigation bar — SCHEME: MONOCHROMATIC
+    <!-- TODO 3a · Navigation bar — SCHEME: MONOCHROMATIC
          The bar, the current item (“Courses”) and the short rule under it
          each want a colour, and all three have to come from the one hue this
          scheme is built on. Nothing here can clash, so the separation between
@@ -578,14 +488,14 @@
         <span class="item">Labs</span>
         <i class="rule"></i>
       </div>
-      <h2>5a &middot; Navigation bar</h2>
+      <h2>3a &middot; Navigation bar</h2>
       <p class="tech">scheme: monochromatic</p>
       <p class="job">One hue, three different weights of it. When everything comes from the
          same hue nothing can clash — which leaves lightness to do all the work, both for
          separating the parts and for keeping the text readable.</p>
     </article>
 
-    <!-- TODO 5b · Button pair — SCHEME: COMPLEMENTARY
+    <!-- TODO 3b · Button pair — SCHEME: COMPLEMENTARY
          Two buttons on one bar: three colours to place. One button keeps the
          base hue and the other takes the hue diametrically across the colour
          wheel from it. Decide which action deserves the loud one.          -->
@@ -595,14 +505,14 @@
         <span class="primary">Save</span>
         <span class="secondary">Delete</span>
       </div>
-      <h2>5b &middot; Button pair</h2>
+      <h2>3b &middot; Button pair</h2>
       <p class="tech">scheme: complementary</p>
       <p class="job">Two hues as far apart as the wheel allows: the safe action keeps the
          base hue, the dangerous one takes the hue directly opposite. Maximum contrast,
          placed exactly where you want the eye to stop.</p>
     </article>
 
-    <!-- TODO 5c · Info card — SCHEME: ANALOGOUS
+    <!-- TODO 3c · Info card — SCHEME: ANALOGOUS
          The card, its "Queued" badge and the rule at the bottom want a colour
          each. Three hues sitting next to one another on the wheel, within one
          step either side of the base.                                      -->
@@ -615,14 +525,14 @@
         <span class="badge">Queued</span>
         <i class="rule"></i>
       </div>
-      <h2>5c &middot; Info card</h2>
+      <h2>3c &middot; Info card</h2>
       <p class="tech">scheme: analogous</p>
       <p class="job">Three neighbouring hues, a step either side of the base. The set reads
          as one family, which is what makes it feel calm rather than loud — and it is also
          why you have to be deliberate about which part dominates.</p>
     </article>
 
-    <!-- TODO 5d · Mini chart — SCHEME: TRIADIC
+    <!-- TODO 3d · Mini chart — SCHEME: TRIADIC
          Four colours: the chart's field plus one bar each. The three bars take
          the three hues of the scheme — evenly spaced around the wheel. The
          bar heights are already set; do not change them.                   -->
@@ -633,7 +543,7 @@
         <i style="height: 74%;"></i>
         <i style="height: 62%;"></i>
       </div>
-      <h2>5d &middot; Mini chart</h2>
+      <h2>3d &middot; Mini chart</h2>
       <p class="tech">scheme: triadic</p>
       <p class="job">Three hues evenly spaced around the wheel, one per bar. Bold but
          balanced — no hue wins on symmetry, which is exactly why a triadic set needs one of
@@ -646,7 +556,7 @@
 
   <div class="grid">
 
-    <!-- TODO 6 · Pulse dots — see the notes in the <style> block above.
+    <!-- TODO 4 · Pulse dots — see the notes in the <style> block above.
          Three identical circles, all the same size and all perfectly still.
          r="9" is correct and stays.                                      -->
     <article class="card">
@@ -658,13 +568,13 @@
           <circle class="dot dot-3" cx="110" cy="20" r="9" />
         </svg>
       </div>
-      <h2>6 &middot; Pulse dots <span class="hw">(homework)</span></h2>
+      <h2>4 &middot; Pulse dots <span class="hw">(homework)</span></h2>
       <p class="tech">transform: scale + animation-delay</p>
       <p class="job">Somebody is typing. One animation, three delays, and the dots
          ripple instead of blinking.</p>
     </article>
 
-    <!-- TODO 7 · Your own — see the notes in the <style> block above.
+    <!-- TODO 5 · Your own — see the notes in the <style> block above.
          A ring and a tick, both drawn but both fully visible. What is missing
          is the two-beat choreography on hover — and your own mark on it.   -->
     <article class="card mine">
@@ -676,17 +586,17 @@
           <path class="tick" pathLength="100" d="M36 62 L54 80 L86 42" />
         </svg>
       </div>
-      <h2>7 &middot; Your own <span class="hw">(homework)</span></h2>
+      <h2>5 &middot; Your own <span class="hw">(homework)</span></h2>
       <p class="tech">transition + :hover &middot; two beats, one after the other</p>
       <p class="job">The open task, with one worked example to start from: hover it and the
          ring fills from nothing to a full circle, and only then does the tick draw itself.
          Both beats are a dash pattern revealed by moving its offset — the same trick as
-         exercises 1 and 4.</p>
+         exercises 1 and 2.</p>
     </article>
 
   </div>
 
-  <h3 class="group">8 &middot; Colour theory, round two
+  <h3 class="group">6 &middot; Colour theory, round two
     <em class="hw">homework &middot; three more structures, three more schemes</em></h3>
 
   <p class="sub" style="margin-bottom:6px;">
@@ -696,7 +606,7 @@
 
   <div class="grid">
 
-    <!-- TODO 8a · Tag row — SCHEME: SPLIT-COMPLEMENTARY
+    <!-- TODO 6a · Tag row — SCHEME: SPLIT-COMPLEMENTARY
          One bar and four tags. Colour the bar from the base hue, then take
          the two hues that sit either side of the hue opposite it. You have
          four tags and three scheme hues — think about what the fourth tag
@@ -709,7 +619,7 @@
         <span>done</span>
         <span>mine</span>
       </div>
-      <h2>8a &middot; Tag row</h2>
+      <h2>6a &middot; Tag row</h2>
       <p class="tech">scheme: split-complementary</p>
       <p class="job">One base hue plus the two hues either side of its opposite — the softer
          cousin of a complementary pair. There are four tags and three scheme hues, so the
@@ -717,7 +627,7 @@
          spoils it.</p>
     </article>
 
-    <!-- TODO 8b · Four tiles — SCHEME: TETRADIC (a square on the wheel)
+    <!-- TODO 6b · Four tiles — SCHEME: TETRADIC (a square on the wheel)
          The panel and four tiles: five colours, four of them evenly spaced
          around the wheel. Four hues give the eye nowhere to rest, so choose
          which tile leads BEFORE you pick the rest.                        -->
@@ -729,14 +639,14 @@
         <i></i>
         <i></i>
       </div>
-      <h2>8b &middot; Four tiles</h2>
+      <h2>6b &middot; Four tiles</h2>
       <p class="tech">scheme: tetradic</p>
       <p class="job">A square drawn on the wheel — four hues, evenly spaced. Four is the hard
          one: no hue dominates, so the eye has nowhere to rest unless you decide in advance
          which tile is the important one.</p>
     </article>
 
-    <!-- TODO 8c · Weather widget — SCHEME: WARM &amp; COOL
+    <!-- TODO 6c · Weather widget — SCHEME: WARM &amp; COOL
          A cool field with a warm mark on it: the panel and the sun, and the
          temperature reading has to stay legible over whichever you choose. -->
     <article class="card">
@@ -745,7 +655,7 @@
         <span class="sun"></span>
         <span class="temp">28&deg;C &middot; sunny</span>
       </div>
-      <h2>8c &middot; Weather widget</h2>
+      <h2>6c &middot; Weather widget</h2>
       <p class="tech">scheme: warm &amp; cool</p>
       <p class="job">Here it is temperature, not distance on the wheel, that does the work:
          a cool field settles back and a warm mark comes forward. Build it, look at it, then
@@ -756,9 +666,9 @@
 
   <p class="note">
     Practice page for COMP3421 &mdash; a made-up interface, not a real service.
-    Four properties, six shapes, seven structures:
-    <code>stroke-dashoffset</code> · <code>stroke-dasharray</code> ·
-    <code>transform</code> · <code>opacity</code>, plus <code>hsl()</code>.
+    Three properties do all the motion &mdash; <code>stroke-dashoffset</code> &middot;
+    <code>transform</code> &middot; <code>opacity</code> &mdash; one draws the shapes
+    (<code>stroke-dasharray</code>), and one does the colour (<code>hsl()</code>).
   </p>
 
 </main>
