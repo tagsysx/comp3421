@@ -22,13 +22,12 @@
 
        HOW THIS PAGE WORKS — read this before you start
 
-       There are THREE <style> blocks on this page, and they are labelled:
+       There are TWO <style> blocks on this page, and they are labelled:
 
-         block 1 of 3 — the page itself — the background, the headings,
-                        the grid, the cards.        finished · NOT yours
-         block 2 of 3 — how the given shapes look, and how the structures
-                        are built.                  finished · NOT yours
-         block 3 of 3 — YOUR WORK. this is the only block you write in.
+         block 1 of 2 — the page layout: the page itself, the given shapes
+                        and the given structures. all of it is finished
+                        already.                          NOT yours
+         block 2 of 2 — YOUR WORK. this is the only block you write in.
 
        The three exercises you do in the lab come with STEPS: a short ordered
        list of what to do, one line at a time. The steps give you the order
@@ -38,7 +37,7 @@
        The three homework exercises come with the AIM only. Working out the
        steps for those is part of the homework.
 
-       Read the TODO, write the CSS in block 3, then LOOK AT THE PAGE
+       Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE
        before you move on.
 
        The colour exercises work differently. There you write style
@@ -129,18 +128,33 @@
           property name is reported there with a line number.
        ================================================================ -->
 
-  <!-- ── STYLE BLOCK 1 of 3 · the page itself · NOT yours ───────────────── -->
+  <!-- ── STYLE BLOCK 1 of 2 · the page layout and the given pieces · NOT yours ── -->
   <style>
     /* ══════════════════════════════════════════════════════════════════
-       STYLE BLOCK 1 of 3 — THE PAGE ITSELF                   [ NOT YOURS ]
+       STYLE BLOCK 1 of 2 — THE PAGE LAYOUT AND THE GIVEN PIECES
+                                                              [ NOT YOURS ]
 
-       Everything in this block draws the page you are reading: the dark
-       background, the headings, the two-column grid, the cards and the
-       small labels. It is finished, and it has nothing to do with the
-       exercises.
+       Everything that is already finished, in three parts:
 
-       ★ Do not write anything in here. Your CSS goes in block 3.
+         (1) THE PAGE ITSELF — the dark background, the headings, the
+             two-column grid, the cards and the small labels. Nothing to
+             do with the exercises.
+
+         (2) HOW EACH SHAPE LOOKS — its stroke colour, its thickness and
+             the dash pattern it is drawn with. These rules say what each
+             shape LOOKS like. The rules that say how it MOVES are yours,
+             and they go in block 2.
+
+         (3) HOW EACH STRUCTURE IS BUILT — the layout of the nav bar, the
+             button pair, the info card, the chart, the tag row, the tiles
+             and the weather widget. Layout only: not one of them carries
+             any colour yet, and that is deliberate. You add the colour in
+             the <body> as style attributes, for exercises 3 and 6.
+
+       ★ Do not write anything in here. Your CSS goes in block 2.
        ══════════════════════════════════════════════════════════════════ */
+
+    /* ── (1) the page itself ────────────────────────────────────────── */
     body  { margin: 0; padding: 0; background-color: #0a1a30; color: #e8eff8;
             font-family: Trebuchet MS; }
     main  { width: 92%; max-width: 900px; margin: 0 auto; padding: 46px 0 40px; }
@@ -176,28 +190,8 @@
     .card p.job { margin: 0; font-size: .8rem; line-height: 1.5; color: #9db4d4; }
     .note { margin: 32px 0 0; font-size: .8rem; line-height: 1.7; color: #5f7695; }
     .hw   { color: #ffc107; }
-  </style>
 
-  <!-- ── STYLE BLOCK 2 of 3 · the given shapes and structures · NOT yours ── -->
-  <style>
-    /* ══════════════════════════════════════════════════════════════════
-       STYLE BLOCK 2 of 3 — THE SHAPES AND THE STRUCTURES     [ NOT YOURS ]
-
-       Two jobs, and both are already finished:
-
-         (a) how each SHAPE looks — its stroke colour, its thickness, and
-             the dash pattern it is drawn with. These rules say what each
-             shape LOOKS like. The rules that say how it MOVES are yours,
-             and they go in block 3.
-
-         (b) how each STRUCTURE is built — the layout of the nav bar, the
-             button pair, the info card, the chart, the tag row, the tiles
-             and the weather widget. Layout only: not one of them carries
-             any colour yet, and that is deliberate. You add the colour in
-             the <body> as style attributes, for exercises 3 and 6.
-
-       ★ Do not write anything in here either. Your CSS goes in block 3.
-       ══════════════════════════════════════════════════════════════════ */
+    /* ── (2) how each shape looks — colour, thickness, dash pattern ──── */
     .bar-track { stroke: #16304f; stroke-width: 12; stroke-linecap: round; }
     .bar-run   { stroke: #4da3ff; stroke-width: 12; stroke-linecap: round;
                  stroke-dasharray: 60 200; }
@@ -215,7 +209,9 @@
                   stroke-linecap: round; stroke-linejoin: round;
                   stroke-dasharray: 100 100; }
 
-    /* ── the seven structures · layout only, no colour yet ────────────── */
+    /* ── (3) the seven structures · layout only, no colour yet ─────────
+       Not one of them carries any colour yet, and that is deliberate: you
+       add it in the <body> as style attributes, for exercises 3 and 6. */
     .ui-nav { display: flex; align-items: center; gap: 10px; padding: 12px 14px;
               border-radius: 10px; font-size: .8rem; }
     .ui-nav .rule, .ui-nav .item:last-of-type { margin-left: auto; }
@@ -255,23 +251,23 @@
     .ui-weather .temp { font-size: .9rem; font-weight: 700; }
   </style>
 
-  <!-- ── STYLE BLOCK 3 of 3 · YOUR WORK STARTS HERE · this one is yours ──── -->
+  <!-- ── STYLE BLOCK 2 of 2 · YOUR WORK STARTS HERE · this one is yours ──── -->
   <style>
     /* ══════════════════════════════════════════════════════════════════
-       STYLE BLOCK 3 of 3 — THE MOTION AND THE COLOUR         [ YOURS ]
+       STYLE BLOCK 2 of 2 — THE MOTION AND THE COLOUR         [ YOURS ]
 
        This is the ONLY block you write in.
 
-       Above it are two blocks of finished CSS that draw the page and the
-       shapes — leave those alone. Below it, down in the <body>, are the
-       structures you colour for exercises 3 and 6.
+       Above it is one block of finished CSS of three parts — the page, the
+       shapes and the structures. Leave it alone. Below it, down in the
+       <body>, are the structures you colour for exercises 3 and 6.
 
        Each TODO asks for one small piece of CSS. Work through them in
        order, and look at the page after each one.
 
        ⚠ Every rule you write belongs in THIS block. If you accidentally put
-       one in block 1 or block 2 it will still work — which is exactly why
-       it is easy to lose track of your own work. Keep it here.
+       one in block 1 it will still work — which is exactly why it is easy
+       to lose track of your own work. Keep it here.
        ══════════════════════════════════════════════════════════════════ */
 
     /* ── Exercise 1 · Sliding bar ────────────────────────────────────────
@@ -282,7 +278,7 @@
 
          Steps:
            1. Work out the length of ONE full cycle of the pattern: the ink
-              plus the gap. Both numbers are already on .bar-run in block 2.
+              plus the gap. Both numbers are already on .bar-run in block 1.
            2. Write a @keyframes rule that moves the pattern's offset by
               exactly that distance. The ink travels forwards, so decide
               which sign the number needs.
@@ -301,7 +297,7 @@
 
          The cyan circle carries pathLength="100", so every dash value on it
          is a PERCENTAGE of the ring — you never have to work out 2 × π × r.
-         Its dash pattern is already set in block 2 as "ink 100, gap 100",
+         Its dash pattern is already set in block 1 as "ink 100, gap 100",
          so one whole cycle of the pattern is 200 long.
 
          That gives you two landmarks to find before you write anything:
