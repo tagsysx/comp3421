@@ -29,13 +29,24 @@
                         already.                          NOT yours
          block 2 of 2 — YOUR WORK. this is the only block you write in.
 
-       The three exercises you do in the lab come with STEPS: a short ordered
-       list of what to do, one line at a time. The steps give you the order
-       of the work and tell you which property each step is about — the CSS
-       itself is still yours to write, and so are all the numbers.
+       EVERY exercise gives you the same three things:
 
-       The three homework exercises come with the AIM only. Working out the
-       steps for those is part of the homework.
+         the AIM     one line: what the shape has to end up doing.
+         the STEPS   a short numbered list — the order of the work, and the
+                     property each step is about, so you always know WHY the
+                     next line is there.
+         the CODE    the finished CSS, printed under the steps. TYPE IT IN.
+                     Type it rather than pasting it: the typing is where the
+                     semicolons, the braces and the property names stick.
+
+       Read the steps as you type and the code stops being something to
+       memorise — you will be able to write the next one from the aim alone.
+
+       One exercise is deliberately open: exercise 5 asks for a shape and a
+       rhythm of your own, so its code is a starting point, not the answer.
+
+       The two colour exercises are the exception to "the code is in block 2":
+       their code is in the <body>, as style attributes on the structures.
 
        Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE
        before you move on.
@@ -262,8 +273,9 @@
        shapes and the structures. Leave it alone. Below it, down in the
        <body>, are the structures you colour for exercises 3 and 6.
 
-       Each TODO asks for one small piece of CSS. Work through them in
-       order, and look at the page after each one.
+       Each TODO prints the CSS it wants: the aim, the steps, and then the
+       finished code. Type the code in — do not paste it, the typing is where
+       the syntax sticks — then look at the page before you move on.
 
        ⚠ Every rule you write belongs in THIS block. If you accidentally put
        one in block 1 it will still work — which is exactly why it is easy
@@ -288,6 +300,20 @@
               down, and that is an easing keyword rather than a number.
            5. Watch the loop for a few seconds. If the pattern snaps back
               instead of rolling round, step 1 is wrong.
+
+         Now type it — two pieces, both of them in THIS block:
+
+             .bar-run { animation: slide 1.4s linear infinite; }
+
+             @keyframes slide {
+               from { stroke-dashoffset: 0; }
+               to   { stroke-dashoffset: -260; }
+             }
+
+         Where the numbers come from: 60 ink + 200 gap = 260, one whole
+         cycle — and the offset goes NEGATIVE because the pattern travels
+         forwards. 1.4s is a taste decision, not a calculated one: change it,
+         watch it, put it back.
                                                                          */
 
     /* ── Exercise 2 · Progress ring ──────────────────────────────────────
@@ -323,6 +349,25 @@
               starts filling from twelve o'clock instead of the right-hand
               side. Run it once WITHOUT that line first and look where it
               starts — then add the line and watch it move to the top.
+
+         Now type it. You do NOT have to repeat fill, stroke or
+         stroke-dasharray — block 1 already sets those, and a second rule with
+         the same selector simply adds to the first. That is the cascade:
+
+             .ring-arc {
+               transform: rotate(-90deg); transform-origin: 60px 60px;
+               animation: grow 2s linear infinite;
+             }
+
+             @keyframes grow {
+               0%   { stroke-dashoffset: 100; }
+               50%  { stroke-dashoffset: 0; }
+               100% { stroke-dashoffset: -100; }
+             }
+
+         Where the numbers come from: 100 is "nothing drawn", 0 is "the whole
+         ring", and the third stop carries on past zero to -100 so the ink
+         leaves by the door it came in instead of refilling backwards.
                                                                          */
 
     /* ── Exercise 3 · Choose the colours — see the <body> ───────────────
@@ -351,6 +396,14 @@
               scheme.
            5. Beside each structure, in a comment, name the scheme and write
               the hues you used, so the reasoning is visible to the marker.
+
+         The code is not in this block. Each of the four structures carries its
+         own worked example — a complete set of style attributes to type — in
+         the <body>, right above the element it colours.
+
+         All four are worked out on the SAME base hue, 285, so that you can see
+         what each scheme does to one hue side by side. That hue is the
+         exercise: put your own in and move every number with it.
                                                                          */
 
     /* ── Exercise 4 · Pulse dots ─────────────────────────────────────────
@@ -368,6 +421,29 @@
              animating a radius is not something CSS will do for you.
          Move the scale and the opacity together, so a dot is at its
          smallest exactly when it is at its faintest.
+
+         Now type it — one rule, two delay rules, and one @keyframes:
+
+             .dot {
+               transform-box: fill-box; transform-origin: center;
+               animation: beat 1.2s ease-in-out infinite;
+             }
+
+             .dot-2 { animation-delay: .2s; }
+             .dot-3 { animation-delay: .4s; }
+
+             @keyframes beat {
+               0%, 100% { transform: scale(.55); opacity: .35; }
+               50%      { transform: scale(1);   opacity: 1; }
+             }
+
+         Why: `transform-box: fill-box` with `transform-origin: center` is the
+         pair that makes each dot grow around ITSELF instead of around the
+         corner of the SVG canvas — that is the bit the primer §6 warns about.
+         The two `animation-delay` lines are the whole wave: one animation,
+         started at three different moments. .2s against a 1.2s cycle is a
+         sixth of the way round — change it to .6s and the dots fall out of
+         step with each other, which is exactly the point.
                                                                          */
 
     /* ── Exercise 5 · Your own ───────────────────────────────────────────
@@ -393,15 +469,51 @@
          Make it yours. Swap in a shape you drew, a colour of your own and a
          rhythm you chose — no two submissions should look alike. Say in a
          comment why you picked that rhythm.
+
+         Here is one answer to start from — the two-beat choreography, typed:
+
+             .tick-ring {
+               stroke-dashoffset: 100;
+               transform: rotate(-90deg); transform-origin: 60px 60px;
+               transition: stroke-dashoffset .65s ease-out;
+             }
+
+             .tick {
+               stroke-dashoffset: 100;
+               transition: stroke-dashoffset .45s ease-out .6s;
+             }
+
+             .card.mine .box:hover .tick-ring { stroke-dashoffset: 0; }
+             .card.mine .box:hover .tick      { stroke-dashoffset: 0; }
+
+         Why: `stroke-dashoffset: 100` parks both shapes at "nothing drawn" —
+         that is the resting state, the state the card sits in. The two
+         `:hover` rules hold the state the card moves to, and the two
+         `transition` lines are the choreography: the ring takes .65s, while
+         the tick carries a .6s DELAY on top of its own .45s, so it sets off
+         just before the ring lands. Set that delay to 0 and both run at once
+         — that is the difference between a loader and a wobble.
+
+         ⚠ The code above is a starting point, not the answer, and it is the
+         one exercise where that matters for marks. The marks are for a shape
+         and a rhythm that are yours: a path you drew, a colour of your own, a
+         different order or a different timing. Two submissions that differ
+         only in the numbers will not score well.
                                                                          */
 
     /* ── Exercise 6 · Choose your colours — see the <body> ──────────────
          TODO 6a–6c — three more structures, three more schemes.
                                                              [homework · 20 min]
 
-         Again, nothing goes in this block. This time no colours are worked
-         out for you anywhere: the three structures at the bottom of the
-         <body> each name a scheme, and the rest is yours.
+         Nothing goes in this block. The three structures at the bottom of
+         the <body> each carry a complete set of style attributes to type,
+         worked out on base hue 285 — the same hue exercise 3 used, so you can
+         read the two sets against each other.
+
+         One judgement is left to you, and it is the part worth taking home:
+         change the base hue and re-derive all three. On the tag row the fourth
+         tag has to borrow from outside the scheme — the example shows one way
+         of doing that, not the only way.
                                                                          */
 
   </style>
@@ -475,7 +587,31 @@
          The bar, the current item (“Courses”) and the short rule under it
          each want a colour, and all three have to come from the one hue this
          scheme is built on. Nothing here can clash, so the separation between
-         the three has to come from lightness — and so does the readability. -->
+         the three has to come from lightness — and so does the readability.
+
+         Type one style attribute onto each of these five elements. The first
+         one is written out in full so you have the shape of it:
+
+             <div class="ui-nav" style="background-color: hsl(285, 65%, 22%);">
+
+             .brand   (COMP3421)    color: hsl(285, 45%, 84%);
+             .item    ("Courses")   background-color: hsl(285, 65%, 78%);
+                                    color: hsl(285, 60%, 10%);
+             .item    ("Labs")      color: hsl(285, 45%, 84%);
+             <i class="rule">       background-color: hsl(285, 65%, 55%);
+
+         Why: 22% / 55% / 78% are the SAME hue at three weights — dark field,
+         mid mark, light pill. Nothing can clash, so lightness does all the
+         separating. The near-black on the pill is the one place a second
+         colour turns up, and it is there for readability rather than for looks:
+         a light background needs dark text.
+
+         Measured, so you can check yourself: the pale lavender on the bar is
+         8.5:1 and the pill's dark text is 9.1:1 — both clear 4.5:1 easily.
+
+         ⚠ 285 is only the hue this example was worked out on. Change it and
+         every number here has to move with it — that IS the exercise. Write the
+         scheme name and your hues in a comment when you are done.          -->
     <article class="card">
       <span class="tag">monochromatic</span>
       <div class="ui-nav">
@@ -494,7 +630,21 @@
     <!-- TODO 3b · Button pair — SCHEME: COMPLEMENTARY
          Two buttons on one bar: three colours to place. One button keeps the
          base hue and the other takes the hue diametrically across the colour
-         wheel from it. Decide which action deserves the loud one.          -->
+         wheel from it. Decide which action deserves the loud one.
+
+         Type the style attributes:
+
+             <div class="ui-buttons">  background-color: hsl(285, 65%, 22%);
+             .primary   ("Save")       background-color: hsl(285, 65%, 58%);
+                                       color: hsl(285, 70%, 8%);
+             .secondary ("Delete")     background-color: hsl(105, 65%, 58%);
+                                       color: hsl(105, 70%, 8%);
+
+         Why: 285 and 105 are 180° apart — as far as the wheel allows, and the
+         whole point of the scheme. Save keeps the base hue; Delete takes the
+         hue opposite it. Both buttons take near-black text, at 4.7:1 and
+         9.4:1, because both backgrounds sit at mid-lightness — that is the pair
+         most likely to fail contrast in this whole lab.                    -->
     <article class="card">
       <span class="tag">complementary</span>
       <div class="ui-buttons">
@@ -511,7 +661,24 @@
     <!-- TODO 3c · Info card — SCHEME: ANALOGOUS
          The card, its "Queued" badge and the rule at the bottom want a colour
          each. Three hues sitting next to one another on the wheel, within one
-         step either side of the base.                                      -->
+         step either side of the base.
+
+         Type the style attributes:
+
+             <div class="ui-card">     background-color: hsl(285, 60%, 20%);
+             the <h3>                  color: hsl(285, 50%, 90%);
+             the <p>                   color: hsl(285, 40%, 78%);
+             .badge  ("Queued")        background-color: hsl(255, 65%, 80%);
+                                       color: hsl(255, 65%, 14%);
+             <i class="rule">          background-color: hsl(315, 65%, 60%);
+
+         Why: 255 and 315 are the base one step either side — that is the
+         analogous set, and the calm it produces comes from having so little
+         distance to travel. The heading and the paragraph never leave the base
+         hue: they are the field colour lifted in lightness, at 10.9:1 and
+         7.6:1. Only the badge and the mark step away, and only by one step.
+         Lift the <p> too far and you lose the family resemblance; lift it too
+         little and 4.5:1 goes.                                             -->
     <article class="card">
       <span class="tag">analogous</span>
       <div class="ui-card">
@@ -531,7 +698,30 @@
     <!-- TODO 3d · Mini chart — SCHEME: TRIADIC
          Four colours: the chart's field plus one bar each. The three bars take
          the three hues of the scheme — evenly spaced around the wheel. The
-         bar heights are already set; do not change them.                   -->
+         bar heights are already set; do not change them.
+
+         Type the field first, then the three bars. The bars already carry a
+         height, so APPEND to the attribute that is there rather than
+         replacing it:
+
+             <div class="ui-chart">    background-color: hsl(285, 65%, 22%);
+             bar 1                     background-color: hsl(285, 65%, 55%);
+                                       height: 94%;
+             bar 2                     background-color: hsl(45, 65%, 55%);
+                                       height: 74%;
+             bar 3                     background-color: hsl(165, 65%, 55%);
+                                       height: 62%;
+
+         Why: 285 → 45 → 165 walks 120° a step and arrives back where it
+         started. Even spacing means no hue beats the others, which is why a
+         triadic set needs one of the three to lead — the tallest bar is the
+         obvious candidate, and it is already the tallest.
+
+         ⚠ This is the one place on the page where adding a second style
+         attribute silently does nothing. An element can carry only ONE style
+         attribute: the browser uses the first one and throws the other away
+         without a word — no error, no warning, just three bars that stay
+         transparent. Go INSIDE the quotes that are already there.          -->
     <article class="card">
       <span class="tag">triadic</span>
       <div class="ui-chart">
@@ -606,7 +796,26 @@
          One bar and four tags. Colour the bar from the base hue, then take
          the two hues that sit either side of the hue opposite it. You have
          four tags and three scheme hues — think about what the fourth tag
-         does to the set before you colour it.                             -->
+         does to the set before you colour it.
+
+         Type the style attributes:
+
+             <div class="ui-tags">     background-color: hsl(285, 65%, 22%);
+             tag "new"                 background-color: hsl(285, 65%, 58%);
+                                       color: hsl(285, 70%, 8%);
+             tag "urgent"              background-color: hsl(75, 65%, 58%);
+                                       color: hsl(75, 70%, 8%);
+             tag "done"                background-color: hsl(135, 65%, 58%);
+                                       color: hsl(135, 70%, 8%);
+             tag "mine"                background-color: hsl(45, 65%, 58%);
+                                       color: hsl(45, 70%, 8%);
+
+         Why: the opposite of 285 is 105, so the split pair is 75 and 135 —
+         those are "urgent" and "done". "new" keeps the base hue. That leaves
+         "mine" with nothing of its own, and the example borrows 45, which is
+         the third point of the triadic set rather than a fourth scheme hue.
+         Every tag still clears 4.5:1, at 4.7:1 or better. Decide for yourself
+         whether the borrowed tag helps the row or spoils it.               -->
     <article class="card">
       <span class="tag">split-complementary</span>
       <div class="ui-tags">
@@ -626,7 +835,22 @@
     <!-- TODO 6b · Four tiles — SCHEME: TETRADIC (a square on the wheel)
          The panel and four tiles: five colours, four of them evenly spaced
          around the wheel. Four hues give the eye nowhere to rest, so choose
-         which tile leads BEFORE you pick the rest.                        -->
+         which tile leads BEFORE you pick the rest.
+
+         Type the style attributes:
+
+             <div class="ui-tiles">    background-color: hsl(285, 60%, 22%);
+             tile 1                    background-color: hsl(285, 65%, 58%);
+             tile 2                    background-color: hsl(15, 65%, 58%);
+             tile 3                    background-color: hsl(105, 65%, 58%);
+             tile 4                    background-color: hsl(195, 65%, 58%);
+
+         Why: 285, 15, 105, 195 — 90° apart, a square drawn on the wheel. Tile 1
+         is the one this example decided should lead: it is the only tile that
+         keeps the base hue. Move that decision to another tile, or turn the
+         whole square by 45°, and you will feel how differently the same four
+         colours can read. There is no text on these tiles, so contrast is not
+         the test here — hierarchy is.                                      -->
     <article class="card">
       <span class="tag">tetradic</span>
       <div class="ui-tiles">
@@ -644,7 +868,22 @@
 
     <!-- TODO 6c · Weather widget — SCHEME: WARM &amp; COOL
          A cool field with a warm mark on it: the panel and the sun, and the
-         temperature reading has to stay legible over whichever you choose. -->
+         temperature reading has to stay legible over whichever you choose.
+
+         Type the style attributes:
+
+             <div class="ui-weather">  background-color: hsl(205, 45%, 22%);
+             .sun                      background-color: hsl(32, 85%, 58%);
+             .temp                     color: hsl(205, 40%, 88%);
+
+         Why: this scheme is not a distance on the wheel, it is temperature.
+         205 is a cool blue and it takes the entire field, so it settles back;
+         32 is a warm orange and it is allowed only a 30px disc, so it comes
+         forward. Warmth is the mark, cool is the ground, and the amount of each
+         is the whole design.
+
+         The reading keeps the cool hue too, at 8.7:1 — text that took the warm
+         colour would pull the eye off the sun and undo the effect.         -->
     <article class="card">
       <span class="tag">warm &amp; cool</span>
       <div class="ui-weather">
