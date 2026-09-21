@@ -29,30 +29,29 @@
                         already.                          NOT yours
          block 2 of 2 — YOUR WORK. this is the only block you write in.
 
-       EVERY exercise gives you the same three things:
+       The three exercises you do in the lab give you three things:
 
          the AIM     one line: what the shape has to end up doing.
          the STEPS   a short numbered list — the order of the work, and the
-                     property each step is about, so you always know WHY the
+                     property each step is about, so you always know why the
                      next line is there.
          the CODE    the finished CSS, printed under the steps. TYPE IT IN.
                      Type it rather than pasting it: the typing is where the
                      semicolons, the braces and the property names stick.
 
-       Read the steps as you type and the code stops being something to
-       memorise — you will be able to write the next one from the aim alone.
-
-       One exercise is deliberately open: exercise 5 asks for a shape and a
-       rhythm of your own, so its code is a starting point, not the answer.
-
-       The two colour exercises are the exception to "the code is in block 2":
-       their code is in the <body>, as style attributes on the structures.
+       The three homework exercises are the other way round: they give you
+       the AIM and nothing else — no steps written out, no code, no numbers.
+       Working out the steps is the homework. In the lab you are shown; at
+       home you are asked.
 
        Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE
        before you move on.
 
        The colour exercises work differently. There you write style
        attributes on the elements themselves, down here in the <body>.
+       Exercise 3's four structures each carry a worked example to type.
+       Exercise 6's three carry only the scheme name — that one is homework,
+       so its colours are not worked out for you anywhere.
 
        The shapes of exercises 1, 2, 4 and 5 are already drawn AND coloured:
        those say what each shape looks like, and you do not change them.
@@ -273,9 +272,13 @@
        shapes and the structures. Leave it alone. Below it, down in the
        <body>, are the structures you colour for exercises 3 and 6.
 
-       Each TODO prints the CSS it wants: the aim, the steps, and then the
-       finished code. Type the code in — do not paste it, the typing is where
-       the syntax sticks — then look at the page before you move on.
+       Each of the three LAB TODOs prints the CSS it wants: the aim, the
+       steps, and then the finished code. Type the code in — do not paste
+       it, the typing is where the syntax sticks — then look at the page
+       before you move on.
+
+       The three HOMEWORK TODOs — 4, 5 and 6 — carry the aim only. The CSS
+       for those is yours to write, and working it out is the point.
 
        ⚠ Every rule you write belongs in THIS block. If you accidentally put
        one in block 1 it will still work — which is exactly why it is easy
@@ -421,29 +424,6 @@
              animating a radius is not something CSS will do for you.
          Move the scale and the opacity together, so a dot is at its
          smallest exactly when it is at its faintest.
-
-         Now type it — one rule, two delay rules, and one @keyframes:
-
-             .dot {
-               transform-box: fill-box; transform-origin: center;
-               animation: beat 1.2s ease-in-out infinite;
-             }
-
-             .dot-2 { animation-delay: .2s; }
-             .dot-3 { animation-delay: .4s; }
-
-             @keyframes beat {
-               0%, 100% { transform: scale(.55); opacity: .35; }
-               50%      { transform: scale(1);   opacity: 1; }
-             }
-
-         Why: `transform-box: fill-box` with `transform-origin: center` is the
-         pair that makes each dot grow around ITSELF instead of around the
-         corner of the SVG canvas — that is the bit the primer §6 warns about.
-         The two `animation-delay` lines are the whole wave: one animation,
-         started at three different moments. .2s against a 1.2s cycle is a
-         sixth of the way round — change it to .6s and the dots fall out of
-         step with each other, which is exactly the point.
                                                                          */
 
     /* ── Exercise 5 · Your own ───────────────────────────────────────────
@@ -469,51 +449,15 @@
          Make it yours. Swap in a shape you drew, a colour of your own and a
          rhythm you chose — no two submissions should look alike. Say in a
          comment why you picked that rhythm.
-
-         Here is one answer to start from — the two-beat choreography, typed:
-
-             .tick-ring {
-               stroke-dashoffset: 100;
-               transform: rotate(-90deg); transform-origin: 60px 60px;
-               transition: stroke-dashoffset .65s ease-out;
-             }
-
-             .tick {
-               stroke-dashoffset: 100;
-               transition: stroke-dashoffset .45s ease-out .6s;
-             }
-
-             .card.mine .box:hover .tick-ring { stroke-dashoffset: 0; }
-             .card.mine .box:hover .tick      { stroke-dashoffset: 0; }
-
-         Why: `stroke-dashoffset: 100` parks both shapes at "nothing drawn" —
-         that is the resting state, the state the card sits in. The two
-         `:hover` rules hold the state the card moves to, and the two
-         `transition` lines are the choreography: the ring takes .65s, while
-         the tick carries a .6s DELAY on top of its own .45s, so it sets off
-         just before the ring lands. Set that delay to 0 and both run at once
-         — that is the difference between a loader and a wobble.
-
-         ⚠ The code above is a starting point, not the answer, and it is the
-         one exercise where that matters for marks. The marks are for a shape
-         and a rhythm that are yours: a path you drew, a colour of your own, a
-         different order or a different timing. Two submissions that differ
-         only in the numbers will not score well.
                                                                          */
 
     /* ── Exercise 6 · Choose your colours — see the <body> ──────────────
          TODO 6a–6c — three more structures, three more schemes.
                                                              [homework · 20 min]
 
-         Nothing goes in this block. The three structures at the bottom of
-         the <body> each carry a complete set of style attributes to type,
-         worked out on base hue 285 — the same hue exercise 3 used, so you can
-         read the two sets against each other.
-
-         One judgement is left to you, and it is the part worth taking home:
-         change the base hue and re-derive all three. On the tag row the fourth
-         tag has to borrow from outside the scheme — the example shows one way
-         of doing that, not the only way.
+         Again, nothing goes in this block. This time no colours are worked
+         out for you anywhere: the three structures at the bottom of the
+         <body> each name a scheme, and the rest is yours.
                                                                          */
 
   </style>
@@ -796,26 +740,7 @@
          One bar and four tags. Colour the bar from the base hue, then take
          the two hues that sit either side of the hue opposite it. You have
          four tags and three scheme hues — think about what the fourth tag
-         does to the set before you colour it.
-
-         Type the style attributes:
-
-             <div class="ui-tags">     background-color: hsl(285, 65%, 22%);
-             tag "new"                 background-color: hsl(285, 65%, 58%);
-                                       color: hsl(285, 70%, 8%);
-             tag "urgent"              background-color: hsl(75, 65%, 58%);
-                                       color: hsl(75, 70%, 8%);
-             tag "done"                background-color: hsl(135, 65%, 58%);
-                                       color: hsl(135, 70%, 8%);
-             tag "mine"                background-color: hsl(45, 65%, 58%);
-                                       color: hsl(45, 70%, 8%);
-
-         Why: the opposite of 285 is 105, so the split pair is 75 and 135 —
-         those are "urgent" and "done". "new" keeps the base hue. That leaves
-         "mine" with nothing of its own, and the example borrows 45, which is
-         the third point of the triadic set rather than a fourth scheme hue.
-         Every tag still clears 4.5:1, at 4.7:1 or better. Decide for yourself
-         whether the borrowed tag helps the row or spoils it.               -->
+         does to the set before you colour it.                             -->
     <article class="card">
       <span class="tag">split-complementary</span>
       <div class="ui-tags">
@@ -835,22 +760,7 @@
     <!-- TODO 6b · Four tiles — SCHEME: TETRADIC (a square on the wheel)
          The panel and four tiles: five colours, four of them evenly spaced
          around the wheel. Four hues give the eye nowhere to rest, so choose
-         which tile leads BEFORE you pick the rest.
-
-         Type the style attributes:
-
-             <div class="ui-tiles">    background-color: hsl(285, 60%, 22%);
-             tile 1                    background-color: hsl(285, 65%, 58%);
-             tile 2                    background-color: hsl(15, 65%, 58%);
-             tile 3                    background-color: hsl(105, 65%, 58%);
-             tile 4                    background-color: hsl(195, 65%, 58%);
-
-         Why: 285, 15, 105, 195 — 90° apart, a square drawn on the wheel. Tile 1
-         is the one this example decided should lead: it is the only tile that
-         keeps the base hue. Move that decision to another tile, or turn the
-         whole square by 45°, and you will feel how differently the same four
-         colours can read. There is no text on these tiles, so contrast is not
-         the test here — hierarchy is.                                      -->
+         which tile leads BEFORE you pick the rest.                        -->
     <article class="card">
       <span class="tag">tetradic</span>
       <div class="ui-tiles">
@@ -868,22 +778,7 @@
 
     <!-- TODO 6c · Weather widget — SCHEME: WARM &amp; COOL
          A cool field with a warm mark on it: the panel and the sun, and the
-         temperature reading has to stay legible over whichever you choose.
-
-         Type the style attributes:
-
-             <div class="ui-weather">  background-color: hsl(205, 45%, 22%);
-             .sun                      background-color: hsl(32, 85%, 58%);
-             .temp                     color: hsl(205, 40%, 88%);
-
-         Why: this scheme is not a distance on the wheel, it is temperature.
-         205 is a cool blue and it takes the entire field, so it settles back;
-         32 is a warm orange and it is allowed only a 30px disc, so it comes
-         forward. Warmth is the mark, cool is the ground, and the amount of each
-         is the whole design.
-
-         The reading keeps the cool hue too, at 8.7:1 — text that took the warm
-         colour would pull the eye off the sun and undo the effect.         -->
+         temperature reading has to stay legible over whichever you choose. -->
     <article class="card">
       <span class="tag">warm &amp; cool</span>
       <div class="ui-weather">
