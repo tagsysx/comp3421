@@ -75,8 +75,8 @@
     },
     {
       "id": "lab-03-loaders",
-      "name": "Lab 3 · Animate SVG loaders",
-      "desc": "practise @keyframes on SVG shapes — seven loaders, 60 minutes",
+      "name": "Lab 3 · Animate it, then colour it",
+      "desc": "practise @keyframes, transition and colour schemes — 60 min in the lab, three exercises at home",
       "examples": [
         "lab/lab3-loaders"
       ]
@@ -192,8 +192,8 @@
         },
         {
           "id": "lab3-loaders",
-          "name": "Lab 3 — Animate SVG loaders",
-          "desc": "Your practice file: 7 TODOs — @keyframes on six SVG loaders, plus your own",
+          "name": "Lab 3 — Animate it, then colour it",
+          "desc": "Your practice file: 8 exercises — @keyframes, transition and four colour schemes",
           "files": [
             "index.html"
           ]
