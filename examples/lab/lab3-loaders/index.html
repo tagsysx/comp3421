@@ -24,13 +24,24 @@
 
        HOW THIS PAGE WORKS — read this before you start
 
-       Every TODO tells you WHAT to achieve. None of them gives you the CSS:
-       working that out is the exercise. Each TODO names the effect you are
-       after and the pieces you will need, and stops there.
+       There are THREE <style> blocks on this page, and they are labelled:
 
-       Read the TODO, write the CSS in the <style> block near the top — in
-       the region marked "THE MOTION AND THE COLOUR — your work starts here"
-       — then LOOK AT THE PAGE before you move on.
+         block 1 of 3 — the page itself — the background, the headings,
+                        the grid, the cards.        finished · NOT yours
+         block 2 of 3 — how the given shapes look, and how the structures
+                        are built.                  finished · NOT yours
+         block 3 of 3 — YOUR WORK. this is the only block you write in.
+
+       The five exercises you do in the lab come with STEPS: a short ordered
+       list of what to do, one line at a time. The steps give you the order
+       of the work and tell you which property each step is about — the CSS
+       itself is still yours to write, and so are all the numbers.
+
+       The three homework exercises come with the AIM only. Working out the
+       steps for those is part of the homework.
+
+       Read the TODO, write the CSS in block 3, then LOOK AT THE PAGE
+       before you move on.
 
        The colour exercises work differently. There you write style
        attributes on the elements themselves, down here in the <body>.
@@ -110,8 +121,18 @@
           property name is reported there with a line number.
        ================================================================ -->
 
+  <!-- ── STYLE BLOCK 1 of 3 · the page itself · NOT yours ───────────────── -->
   <style>
-    /* ============================== the page ============================== */
+    /* ══════════════════════════════════════════════════════════════════
+       STYLE BLOCK 1 of 3 — THE PAGE ITSELF                   [ NOT YOURS ]
+
+       Everything in this block draws the page you are reading: the dark
+       background, the headings, the two-column grid, the cards and the
+       small labels. It is finished, and it has nothing to do with the
+       exercises.
+
+       ★ Do not write anything in here. Your CSS goes in block 3.
+       ══════════════════════════════════════════════════════════════════ */
     body  { margin: 0; padding: 0; background-color: #0a1a30; color: #e8eff8;
             font-family: Trebuchet MS; }
     main  { width: 92%; max-width: 900px; margin: 0 auto; padding: 46px 0 40px; }
@@ -146,10 +167,28 @@
     .card p.job { margin: 0; font-size: .8rem; line-height: 1.5; color: #9db4d4; }
     .note { margin: 32px 0 0; font-size: .8rem; line-height: 1.7; color: #5f7695; }
     .hw   { color: #ffc107; }
+  </style>
 
-    /* ========================= how the shapes look ========================
-       Already finished. The rules below say what each shape LOOKS like;
-       you write the rules that say how it MOVES.                            */
+  <!-- ── STYLE BLOCK 2 of 3 · the given shapes and structures · NOT yours ── -->
+  <style>
+    /* ══════════════════════════════════════════════════════════════════
+       STYLE BLOCK 2 of 3 — THE SHAPES AND THE STRUCTURES     [ NOT YOURS ]
+
+       Two jobs, and both are already finished:
+
+         (a) how each SHAPE looks — its stroke colour, its thickness, and
+             the dash pattern it is drawn with. These rules say what each
+             shape LOOKS like. The rules that say how it MOVES are yours,
+             and they go in block 3.
+
+         (b) how each STRUCTURE is built — the layout of the nav bar, the
+             button pair, the info card, the chart, the tag row, the tiles
+             and the weather widget. Layout only: not one of them carries
+             any colour yet, and that is deliberate. You add the colour in
+             the <body> as style attributes, for exercises 5 and 8.
+
+       ★ Do not write anything in here either. Your CSS goes in block 3.
+       ══════════════════════════════════════════════════════════════════ */
     .bar-track { stroke: #16304f; stroke-width: 12; stroke-linecap: round; }
     .bar-run   { stroke: #4da3ff; stroke-width: 12; stroke-linecap: round;
                  stroke-dasharray: 60 200; }
@@ -170,10 +209,7 @@
                   stroke-linecap: round; stroke-linejoin: round;
                   stroke-dasharray: 100 100; }
 
-    /* ==================== how the structures are built ====================
-       Layout only — every one of these is finished and none of them has any
-       colour on it yet. You add the colour in the <body>, as style
-       attributes. Nothing in this block needs to change.                    */
+    /* ── the six structures · layout only, no colour yet ──────────────── */
     .ui-nav { display: flex; align-items: center; gap: 10px; padding: 12px 14px;
               border-radius: 10px; font-size: .8rem; }
     .ui-nav .rule, .ui-nav .item:last-of-type { margin-left: auto; }
@@ -211,14 +247,26 @@
                   border-radius: 10px; }
     .ui-weather .sun { width: 30px; height: 30px; border-radius: 50%; flex: none; }
     .ui-weather .temp { font-size: .9rem; font-weight: 700; }
+  </style>
 
-    /* ==================================================================
-       THE MOTION AND THE COLOUR — your work starts here
+  <!-- ── STYLE BLOCK 3 of 3 · YOUR WORK STARTS HERE · this one is yours ──── -->
+  <style>
+    /* ══════════════════════════════════════════════════════════════════
+       STYLE BLOCK 3 of 3 — THE MOTION AND THE COLOUR         [ YOURS ]
 
-       Every TODO below asks for one small piece of CSS. The TODOs say what
-       to achieve; the CSS itself is yours to work out. Work through them
-       in order, and look at the page after each one.
-       ================================================================== */
+       This is the ONLY block you write in.
+
+       Above it are two blocks of finished CSS that draw the page and the
+       shapes — leave those alone. Below it, down in the <body>, are the
+       structures you colour for exercises 5 and 8.
+
+       Each TODO asks for one small piece of CSS. Work through them in
+       order, and look at the page after each one.
+
+       ⚠ Every rule you write belongs in THIS block. If you accidentally put
+       one in block 1 or block 2 it will still work — which is exactly why
+       it is easy to lose track of your own work. Keep it here.
+       ══════════════════════════════════════════════════════════════════ */
 
     /* ── Exercise 1 · Sliding bar ────────────────────────────────────────
          TODO 1 — put the blue line in motion.                          [8 min]
@@ -226,18 +274,18 @@
          Aim: a dash pattern that travels along the groove and comes back
          round without a visible jump.
 
-         You need two things:
-           · a @keyframes rule that moves the pattern's offset from 0 to
-             exactly ONE dash cycle. The groove is one line with a dash
-             pattern of 60 ink then 200 gap — add those up for the length
-             of a cycle, and mind the sign: the ink travels forward, so
-             which way does the offset have to go?
-           · a declaration that switches it on and repeats forever.
-             This loader should move at a constant speed — that is a
-             keyword, not a number.
-
-         Then check the loop. If the pattern snaps back instead of rolling
-         round, you have not travelled exactly one cycle.
+         Steps:
+           1. Work out the length of ONE full cycle of the pattern: the ink
+              plus the gap. Both numbers are already on .bar-run in block 2.
+           2. Write a @keyframes rule that moves the pattern's offset by
+              exactly that distance. The ink travels forwards, so decide
+              which sign the number needs.
+           3. Switch it on with an `animation` declaration — your keyframes
+              name, a duration, and a repeat count of `infinite`.
+           4. Choose the speed. A loading bar must not speed up and slow
+              down, and that is an easing keyword rather than a number.
+           5. Watch the loop for a few seconds. If the pattern snaps back
+              instead of rolling round, step 1 is wrong.
                                                                          */
 
     /* ── Exercise 2 · Progress ring ──────────────────────────────────────
@@ -249,20 +297,24 @@
          "A little ink and almost all gap" is a sliver of arc; turn those two
          numbers round and you have most of the ring.
 
-         Two animations run on the same element at the same time:
-           · one changes the dash pattern so the arc breathes out and back
-             in. Give it more than two stops, and drift the offset across the
-             cycle as well so the breathing does not sit still.
-           · one turns the circle through a full turn.
-         Give them the same duration so they stay in step, and pick the two
-         easings deliberately: which of the pair should be perfectly
-         constant, and which should ease?
+         Two animations run on the SAME element at the same time.
 
-         Then the trap from the primer (§6). Write both animations FIRST,
-         without naming a centre, and watch the ring swing around the corner
-         of the SVG. Now add the one line that pins it to its own centre and
-         watch it settle. That single line is the difference between a loader
-         and a bug.
+         Steps:
+           1. Write the breathing arc: a @keyframes rule that changes the
+              dash pattern from a sliver out to most of the ring and back.
+              Use more than two stops, and drift the offset across the cycle
+              as well, so the breathing does not sit still.
+           2. Write the turning ring: a @keyframes rule that rotates the
+              circle through one full turn.
+           3. Put BOTH of them on .ring-arc in one `animation` declaration,
+              separated by a comma, with the SAME duration so they stay in
+              step.
+           4. Pick the two easings deliberately: which of the pair should
+              turn at a perfectly constant rate, and which should ease?
+           5. Now the trap from the primer (§6). Run it exactly as it is and
+              watch the ring swing around the corner of the SVG. Then add
+              the one line that pins the shape to its own centre and watch it
+              settle. That line is the difference between a loader and a bug.
                                                                          */
 
     /* ── Exercise 3 · Icon morph ─────────────────────────────────────────
@@ -276,38 +328,50 @@
          way, the bottom line slides up and tilts the other way, and the
          middle line fades out. Move the pointer away and all three go back.
 
-         You need:
-           · a transition on each of the three lines. Two of them change
-             their transform; one only changes opacity. Different properties
-             suit different easings — choose them separately.
-           · one :hover rule per line, holding the state the line moves TO.
-             A tilt of 45° either way is what turns three lines into a ✓.
-         All three lines share one pivot — the centre of the icon, not the
-         corner of the SVG (primer §6).
+         Steps:
+           1. Settle the pivot first (primer §6). All three lines turn about
+              one shared centre — the centre of the icon, not the corner of
+              the SVG. Write that on the lines before you animate anything,
+              or you will spend the time debugging a shape that flies off the
+              card.
+           2. Write a `transition` on each of the three lines. Two of them
+              will change their transform; the middle one changes only its
+              opacity.
+           3. Pick the easing per line rather than once for all three — a
+              slide and a fade do not want the same one.
+           4. Write one :hover rule per line, holding the state that line
+              moves TO. A tilt of 45° either way is what turns three lines
+              into a ✓.
+           5. Move the pointer on and off while you tune it. Nothing here
+              repeats on its own — the pointer is the clock (primer §4).
                                                                          */
 
     /* ── Exercise 4 · Route tracing ──────────────────────────────────────
          TODO 4 — draw the route, then send the dot along it.          [10 min]
 
+         Aim: the route draws itself, holds for a beat, then the dot runs
+         along it and arrives as the line finishes.
+
          Two halves, one shared duration, so the dot sets off in time with
          the line.
 
-         (a) The line draws itself. Same trick as exercise 1 — a dash
-             pattern and a moving offset — but this path is only ever drawn
-             once per cycle, so the offset travels the path's full length
-             instead of one dash cycle. The path is not a closed loop, so
-             100 units is the whole route and 0 is "nothing drawn yet".
-             Decide which end means hidden, hold the finished route still for
-             a beat, then let it retreat.
+         Steps for (a) — the line draws itself:
+           1. Same trick as exercise 1: a dash pattern plus a moving offset.
+              The pattern is already on .route in block 2.
+           2. This path is drawn ONCE per cycle, not over and over, so the
+              offset travels the path's full length instead of one dash
+              cycle. The path is not a closed loop, so 100 is the whole route
+              and 0 is "nothing drawn yet".
+           3. Decide which end means hidden, hold the finished route still for
+              a beat, then let it retreat.
 
-         (b) The dot rides the path. CSS can do this with no JavaScript:
-             `offset-path` takes the same path data as the SVG `d`
-             attribute — copy it across — and `offset-distance`, running
-             from 0% to 100%, says how far along the dot is. Give the dot
-             the same stops and the same duration as the line so it arrives
-             exactly as the drawing finishes.
-
-         Aim: the route draws itself, then the dot runs along it.
+         Steps for (b) — the dot rides the path:
+           4. CSS can do this with no JavaScript. `offset-path` takes the
+              same path data as the SVG `d` attribute — copy it across.
+           5. `offset-distance` says how far along the route the dot is; run
+              it from 0% to 100%.
+           6. Give the dot the same stops and the SAME duration as the line,
+              so it arrives exactly as the drawing finishes.
                                                                          */
 
     /* ── Exercise 5 · Choose the colours — see the <body> ───────────────
@@ -316,6 +380,26 @@
          There is nothing to write in this <style> block for exercise 5.
          Scroll down to the four structures in the <body>: each one names the
          scheme it was designed with, and each one is waiting for its colour.
+
+         The method is the same for all four structures.
+
+         Steps:
+           1. Pick ONE base hue for the structure. It can be any hue you
+              like — but commit to it before you start, because every other
+              colour in the palette follows from it.
+           2. Derive the rest of the palette from that base hue using the
+              scheme named on the card. Tutorial 1 gives you the rule for
+              each scheme; the card only names it.
+           3. Decide the ROLES before you place any colour: which element is
+              the field, which is the mark, and which is the text. A scheme
+              hands you a set of hues, not a set of jobs.
+           4. Assign the colours, then check every text-on-background pair
+              you have created. Body text needs a contrast ratio of at least
+              4.5:1 (Tutorial 1 §5). If a pair fails, move its LIGHTNESS —
+              that is the one dial that fixes contrast without breaking the
+              scheme.
+           5. Beside each structure, in a comment, name the scheme and write
+              the hues you used, so the reasoning is visible to the marker.
                                                                          */
 
     /* ── Exercise 6 · Pulse dots ─────────────────────────────────────────
