@@ -7,25 +7,61 @@
 </head>
 <body>
   <h1>The box model</h1>
-  <p>Every element is a box with four layers — hover the boxes to inspect them.</p>
+  <p>Every element is a box. Read each one from the inside out: content,
+     padding, border, margin — and then the corner and the background.</p>
 
-  <!-- content-box (default): width = content only -->
-  <div class="box content-box">
-    <span class="tag">content-box</span>
-    <code>width: 200px</code> = the content only. Padding and border are added on top.
+  <!-- the running example: one rule, five layers -->
+  <div class="notice">
+    <h2>Week 4 lab</h2>
+    <p>Lay out a responsive page. Bring your own colour scheme.</p>
   </div>
 
-  <!-- border-box: width includes padding + border -->
-  <div class="box border-box">
-    <span class="tag">border-box</span>
-    <code>width: 200px</code> = content + padding + border. Easier to reason about.
-  </div>
-
+  <!-- the same four layers, nested so you can see the order -->
   <div class="layers">
     <div class="layer layer-margin">margin</div>
     <div class="layer layer-border">border</div>
     <div class="layer layer-padding">padding</div>
     <div class="layer layer-content">content</div>
+  </div>
+
+  <!-- border-style: without a style, nothing is drawn -->
+  <h2 class="section">border-style</h2>
+  <div class="row">
+    <p class="bs solid">solid</p>
+    <p class="bs dashed">dashed</p>
+    <p class="bs dotted">dotted</p>
+    <p class="bs double">double</p>
+    <p class="bs none">none</p>
+  </div>
+
+  <!-- padding takes one to four numbers, clockwise from the top -->
+  <h2 class="section">padding — one to four numbers</h2>
+  <div class="row">
+    <p class="pad p1">padding: 24px</p>
+    <p class="pad p2">padding: 8px 32px</p>
+    <p class="pad p3">padding: 8px 32px 20px</p>
+    <p class="pad p4">padding: 4px 32px 20px 8px</p>
+  </div>
+
+  <!-- border-radius rounds the corners -->
+  <h2 class="section">border-radius</h2>
+  <div class="row">
+    <p class="rad r0">0</p>
+    <p class="rad r1">12px</p>
+    <p class="rad r2">24px</p>
+    <p class="rad r3">999px</p>
+  </div>
+
+  <!-- box-sizing decides what a declared width actually measures -->
+  <h2 class="section">box-sizing</h2>
+  <div class="box content-box">
+    <span class="tag">content-box</span>
+    <code>width: 200px</code> = the content only. Padding and border are added on top.
+  </div>
+
+  <div class="box border-box">
+    <span class="tag">border-box</span>
+    <code>width: 200px</code> = content + padding + border. Easier to reason about.
   </div>
 </body>
 </html>

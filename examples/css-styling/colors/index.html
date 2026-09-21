@@ -19,5 +19,57 @@
   <p style="background-color: rgba(30, 79, 168, 0.5); color: #fff; padding: 8px;">
     <code>background-color: rgba(30, 79, 168, 0.5);</code> — a semi-transparent background
   </p>
+
+  <h2 style="color: #0e3f8c;">hsl() — the third number is lightness</h2>
+
+  <p style="color: #4a5568;">
+    Lightness runs from black (0%) through the pure colour (50%) to white (100%).
+    That is what makes <code>hsl()</code> the one to reach for when you are building a
+    palette: move one number and the hue and saturation stay exactly where they were.
+  </p>
+
+  <p>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hsl(219, 70%, 0%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">hsl(219, 70%, 0%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hsl(219, 70%, 20%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">hsl(219, 70%, 20%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hsl(219, 70%, 39%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">hsl(219, 70%, 39%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hsl(219, 70%, 50%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">hsl(219, 70%, 50%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hsl(219, 70%, 70%); color: #1a2230; font-size: 12px; line-height: 64px; text-align: center;">hsl(219, 70%, 70%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hsl(219, 70%, 100%); color: #1a2230; font-size: 12px; line-height: 64px; text-align: center;">hsl(219, 70%, 100%)</span>
+  </p>
+
+  <p style="background-color: #f0f5fc; color: #1a2230; padding: 12px;">
+    Read the ends: 0% is black and 100% is white. So lightness can reach both ends of
+    the scale, and the pure colour sits in the middle at 50%.
+  </p>
+
+  <h2 style="color: #0e3f8c;">hwb() — white and black as two separate dials</h2>
+
+  <p style="color: #4a5568;">
+    <code>hwb()</code> takes a hue, then how much <em>white</em> to mix in, then how much
+    <em>black</em>. Keeping the two apart is what makes it easy to reason about: adding
+    white makes a tint, adding black makes a shade, and adding both together just greys
+    the colour out.
+  </p>
+
+  <p>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 0% 0%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">hwb(219 0% 0%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 15% 0%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">+15% white</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 30% 0%); color: #1a2230; font-size: 12px; line-height: 64px; text-align: center;">+30% white</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 45% 0%); color: #1a2230; font-size: 12px; line-height: 64px; text-align: center;">+45% white</span>
+  </p>
+
+  <p>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 0% 0%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">hwb(219 0% 0%)</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 0% 15%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">+15% black</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 0% 30%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">+30% black</span>
+    <span style="display: inline-block; width: 150px; height: 64px; background-color: hwb(219 0% 45%); color: #ffffff; font-size: 12px; line-height: 64px; text-align: center;">+45% black</span>
+  </p>
+
+  <p style="background-color: #f0f5fc; color: #1a2230; padding: 12px;">
+    There is no <code>hsv()</code> in CSS. HSV is what a colour picker shows you — the
+    square is saturation across and value up — but a stylesheet only understands
+    <code>hsl()</code>, <code>hwb()</code>, <code>rgb()</code> and the rest. Convert before
+    you paste, and check the third number: in <code>hsl()</code> it is lightness, not value.
+  </p>
 </body>
 </html>

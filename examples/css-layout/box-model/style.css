@@ -1,4 +1,7 @@
-/* Box model — content, padding, border, margin, box-sizing */
+/* Box model — content, padding, border, margin, corners, background
+   ------------------------------------------------------------------
+   The running example is `.notice`, the same card the lecture slides
+   build up line by line. */
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
@@ -8,12 +11,105 @@ body {
 
 h1 { margin-top: 0; }
 
-/* A generic box to compare the two box-sizing modes */
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 32px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+/* ---- the running example: one rule, five layers ---- */
+.notice {
+  width: 320px;                  /* the content area */
+  padding: 20px;                 /* inside the edge — the background paints it */
+  border: 6px solid #185fa5;     /* the edge itself */
+  margin: 24px;                  /* outside — never painted, always transparent */
+  border-radius: 12px;           /* the corner */
+  background: #eef3fb;           /* the paint, under the content and the padding */
+}
+
+.notice h2 { margin: 0 0 6px; font-size: 17px; color: #0e3f8c; }
+.notice p  { margin: 0; font-size: 13px; line-height: 1.5; }
+
+/* ---- the four layers, nested ---- */
+.layers {
+  width: 260px;
+  margin-top: 28px;
+}
+
+.layer {
+  text-align: center;
+  font-size: 13px;
+  padding: 8px;
+  border: 2px dashed rgba(0, 0, 0, 0.15);
+}
+
+.layer-margin  { background: #ffe9b3; padding: 18px; }
+.layer-border  { background: #185fa5; color: #fff; }
+.layer-padding { background: #b9cdee; }
+
+/* the background shows through the content box too — that is the point:
+   the margin is the only layer it never reaches */
+.layer-content { background: #ffffff; }
+
+/* ---- border-style: the style is what makes a border visible ---- */
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+}
+
+.bs {
+  margin: 0;
+  padding: 12px 18px;
+  font-size: 13px;
+  color: #1a2230;
+}
+
+.solid  { border: 3px solid  #185fa5; }
+.dashed { border: 3px dashed #185fa5; }
+.dotted { border: 3px dotted #185fa5; }
+.double { border: 5px double #185fa5; }
+.none   { border: 3px none   #185fa5; background: #f4f6fa; }
+
+/* ---- padding: one to four numbers, clockwise from the top ---- */
+.pad {
+  margin: 0;
+  font-size: 12px;
+  background: #b9cdee;
+  border: 2px solid #185fa5;
+}
+
+.p1 { padding: 24px; }
+.p2 { padding: 8px 32px; }          /* top/bottom | left/right */
+.p3 { padding: 8px 32px 20px; }     /* top | left/right | bottom */
+.p4 { padding: 4px 32px 20px 8px; } /* top | right | bottom | left */
+
+/* ---- border-radius ---- */
+.rad {
+  width: 90px;
+  height: 90px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 13px;
+  background: #eef3fb;
+  border: 2px solid #185fa5;
+}
+
+.r0 { border-radius: 0; }
+.r1 { border-radius: 12px; }
+.r2 { border-radius: 24px; }
+.r3 { border-radius: 999px; }
+
+/* ---- box-sizing ---- */
 .box {
-  width: 200px;              /* the width property */
-  margin: 20px 0;            /* space OUTSIDE the border */
-  padding: 16px;             /* space between content and border */
-  border: 8px solid #185fa5; /* the border itself */
+  width: 200px;                  /* the width property */
+  margin: 20px 0;                /* space OUTSIDE the border */
+  padding: 16px;                 /* space between content and border */
+  border: 8px solid #185fa5;     /* the border itself */
   background: #eef3fb;
   font-size: 13px;
   line-height: 1.4;
@@ -37,21 +133,3 @@ h1 { margin-top: 0; }
   color: #185fa5;
   margin-bottom: 4px;
 }
-
-/* A visual, nested illustration of the four layers */
-.layers {
-  width: 240px;
-  margin-top: 28px;
-}
-
-.layer {
-  text-align: center;
-  font-size: 13px;
-  padding: 8px;
-  border: 2px dashed rgba(0, 0, 0, 0.15);
-}
-
-.layer-margin  { background: #ffe9b3; padding: 18px; }
-.layer-border  { background: #9dc0ee; }
-.layer-padding { background: #b9cdee; }
-.layer-content { background: #ffffff; }

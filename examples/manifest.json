@@ -516,7 +516,7 @@
         {
           "id": "box-model",
           "name": "Box model",
-          "desc": "Content, padding, border, margin and box-sizing",
+          "desc": "Content, padding, border, margin, corners and box-sizing",
           "files": [
             "index.html",
             "style.css"
@@ -534,7 +534,7 @@
         {
           "id": "backgrounds",
           "name": "Backgrounds",
-          "desc": "Colours, gradients, images, size and position",
+          "desc": "Colour, gradients, images, layers, blending and the shorthand",
           "files": [
             "index.html",
             "style.css"

@@ -7,6 +7,8 @@
 </head>
 <body>
   <h1>Backgrounds</h1>
+  <p>The background is a layer of the box: colour, then image, then whatever
+     you blend on top. It paints the content and the padding — never the margin.</p>
 
   <div class="row">
     <div class="card color">
@@ -25,9 +27,45 @@
     </div>
   </div>
 
+  <h2 class="section">background-image + size + position</h2>
   <div class="hero">
-    <h2>background-image + size + position</h2>
-    <p>A repeating pattern image, tiled and centred.</p>
+    <h3>Repeat, position, size</h3>
+    <p>A tile drawn once, centred, on top of a pale colour.</p>
   </div>
+
+  <h2 class="section">the background shorthand</h2>
+  <div class="tile">
+    <h3>One line, five properties</h3>
+    <p>background: #185fa5 url(...) 0 0 / 24px 24px repeat;</p>
+  </div>
+
+  <h2 class="section">layered backgrounds</h2>
+  <div class="stacked">
+    <h3>Two images, one element</h3>
+    <p>The first image sits on top; the colour goes at the very back.</p>
+  </div>
+
+  <h2 class="section">mix-blend-mode</h2>
+  <div class="blend-row">
+    <figure class="blend-cell">
+      <div class="blend b-normal"></div>
+      <figcaption>normal</figcaption>
+    </figure>
+    <figure class="blend-cell">
+      <div class="blend b-multiply"></div>
+      <figcaption>multiply</figcaption>
+    </figure>
+    <figure class="blend-cell">
+      <div class="blend b-screen"></div>
+      <figcaption>screen</figcaption>
+    </figure>
+    <figure class="blend-cell">
+      <div class="blend b-darken"></div>
+      <figcaption>darken</figcaption>
+    </figure>
+  </div>
+  <p class="note">Every square is #185fa5, blended with the #ffc107 panel behind
+     it — the mode alone decides what comes out. The captions stay outside the
+     blended boxes, or they would be blended too.</p>
 </body>
 </html>
