@@ -3,30 +3,54 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Loading… — Lab 3 practice</title>
+  <title>Animate it, then colour it — Lab 3 practice</title>
 
   <!-- ================================================================
-       LAB 3 — ANIMATE SVG LOADERS
+       LAB 3 — ANIMATE IT, THEN COLOUR IT
 
-       You are given a "Loading…" screen with seven SVG shapes in it.
-       The shapes are finished — what is missing is the animation.
+       Eight exercises in two halves.
 
-       Every TODO asks for one small block of CSS: an @keyframes rule
-       that says what happens, plus the animation declaration that
-       switches it on. Read the TODO, paste the block where it belongs,
-       then LOOK AT THE PAGE.
+         PART 1 · IN THE LAB — 60 minutes
+           1 · Sliding bar          a dash pattern travelling along a line
+           2 · Progress ring        an arc that breathes while the ring turns
+           3 · Icon morph           three lines that answer the pointer
+           4 · Route tracing        a path that draws itself, and a dot on it
+           5 · Choose the colours   four structures, one named scheme each
 
-       Work in the live editor (source on the left, result on the right)
-       or in any editor + browser. Open target-preview.png (in the lab
-       folder) to see what the finished page looks like.
+         PART 2 · HOMEWORK — done at home
+           6 · Pulse dots           one animation, three start times
+           7 · Your own             your shape, your rhythm
+           8 · Colour theory        four more structures, four more schemes
+
+       HOW THIS PAGE WORKS — read this before you start
+
+       Every TODO tells you WHAT to achieve. None of them gives you the CSS:
+       working that out is the exercise. Each TODO names the effect you are
+       after and the pieces you will need, and stops there.
+
+       Read the TODO, write the CSS in the <style> block near the top — in
+       the region marked "THE MOTION AND THE COLOUR — your work starts here"
+       — then LOOK AT THE PAGE before you move on.
+
+       The colour exercises work differently. There you write style
+       attributes on the elements themselves, down here in the <body>.
+
+       The shapes of exercises 1–4, 6 and 7 are already drawn AND coloured:
+       those say what each shape looks like, and you do not change them.
+       The structures of exercises 5 and 8 carry no colour at all —
+       choosing the colour is the exercise.
+
+       Work in the live editor (source on the left, result on the right) or
+       in any editor + browser. Open target-preview.png (in the lab folder)
+       to see one finished version.
 
        When you are done, press  ⬇ Download .zip  and submit that file.
 
-       Total: 7 exercises, 60 minutes — each TODO shows its minutes.
+       Each TODO shows its minutes. In the lab: 8 + 11 + 8 + 10 + 23 = 60.
        ================================================================ -->
 
   <!-- ================================================================
-       CSS ANIMATION IN 90 SECONDS — read this once before you start
+       CSS MOTION IN 90 SECONDS — read this once before you start
 
        1. A rule begins with a SELECTOR: which elements it applies to.
               .bar-run { … }     every element with class="bar-run"
@@ -34,329 +58,631 @@
        2. A DECLARATION is  property: value;  — and it ends with a
           SEMICOLON. A missing one is the #1 reason CSS "does nothing".
 
-       3. An animation needs TWO pieces:
+       3. Motion that repeats needs TWO pieces: a @keyframes rule that says
+          what happens, and a declaration that switches it on. The example
+          below is NOT on this page — it is only here to show you the shape
+          of the two pieces:
 
-              @keyframes slide {              what happens, step by step
-                from { stroke-dashoffset: 0; }
-                to   { stroke-dashoffset: -260; }
+              @keyframes fade {              what happens, step by step
+                from { opacity: 0; }
+                to   { opacity: 1; }
               }
 
-              .bar-run { animation: slide 1.4s linear infinite; }
-                                          |     |      |      |
-                                        name  duration easing repeat
+              .example { animation: fade 2s linear infinite; }
+                                       |   |   |      |
+                                     name dur easing repeat
 
           Shorthand order: name duration easing delay iteration-count
-          direction fill-mode. Only the name and the duration are
-          required — but every loader here ends with `infinite`.
+          direction fill-mode. Only the name and the duration are required —
+          but every repeating animation on this page ends with `infinite`.
+          A stop can be `from` / `to`, or a percentage; write more than two
+          stops when the motion has to do something in the middle of the way.
 
-       4. What you can animate on an SVG shape: stroke-dashoffset,
+       4. Motion that answers the POINTER needs no @keyframes and no clock.
+          `transition` simply tweens a property whenever that property
+          changes, and the change is written in a :hover rule:
+
+              .example { transition: opacity .3s linear; }
+              .example:hover { opacity: 0; }
+
+          The element carries its own resting state; the :hover rule holds
+          the state it moves to. Move the pointer away and back it goes.
+          Two of your cards work this way — exercises 3 and 7.
+
+       5. What you can animate on an SVG shape: stroke-dashoffset,
           stroke-dasharray, opacity, fill, stroke, and `transform`
-          (rotate / scale / translate).
+          (rotate / scale / translate). Animating `r` or `cx` does not
+          work — reach for transform instead.
 
-       5. NOTE — SVG shapes do NOT rotate or scale around their own
-          centre by default. A rotation swings around the corner of the
-          SVG canvas unless you name the centre:
+       6. Where does a shape turn or grow from? NOT its own centre by
+          default — it swings around the corner of the SVG canvas unless
+          you name the point:
 
-              transform-origin: 66px 66px;   /* SVG coordinates   */
-              transform-box: fill-box;       /* …or "this shape's box" */
+              transform-origin: <x> <y>;  /* the shape's centre, in SVG coordinates */
+              transform-box: fill-box;    /* …or: "use this shape's own box"      */
 
-          Every exercise that moves a shape tells you which to use.
+          Exercises 2, 3, 6 and 7 each need one of these two lines. If a shape
+          flies off the page, or three dots drift apart, one of them is
+          missing.
 
-       6. If the page shows nothing moving, check the browser Console
+       7. If the page shows nothing moving, check the browser Console
           (F12). A missing semicolon, a missing brace or a misspelled
           property name is reported there with a line number.
        ================================================================ -->
 
   <style>
-    /* ===================== the page — already done ===================== */
+    /* ============================== the page ============================== */
     body  { margin: 0; padding: 0; background-color: #0a1a30; color: #e8eff8;
-            font-family: Trebuchet MS; text-align: center; }
-    main  { width: 92%; max-width: 700px; margin: 0 auto; padding: 54px 0 40px; }
-    .kicker { margin: 0 0 16px; font-size: .76rem; font-weight: 700;
+            font-family: Trebuchet MS; }
+    main  { width: 92%; max-width: 900px; margin: 0 auto; padding: 46px 0 40px; }
+    .kicker { margin: 0 0 14px; font-size: .76rem; font-weight: 700;
               letter-spacing: .3em; text-transform: uppercase; color: #7fb6ff; }
-    h1    { margin: 0 0 10px; font-size: 3rem; font-weight: 400;
-            line-height: 1; color: #ffffff; }
-    .sub  { margin: 0 0 42px; font-size: .95rem; line-height: 1.6; color: #9db4d4; }
-    .stage   { display: block; margin: 0 auto; }
-    .caption { margin: 12px 0 36px; font-size: .82rem; line-height: 1.5; color: #7c93b3; }
-    .note { margin: 40px 0 0; font-size: .78rem; line-height: 1.6; color: #5f7695; }
+    h1    { margin: 0 0 10px; font-size: 2.5rem; font-weight: 400; line-height: 1.05; color: #fff; }
+    .sub  { margin: 0 0 34px; font-size: .95rem; line-height: 1.6; color: #9db4d4; max-width: 76ch; }
+    h2.part { margin: 40px 0 6px; font-size: 1.05rem; font-weight: 700; color: #fff;
+              letter-spacing: .04em; }
+    h2.part span { display: block; margin-top: 3px; font-size: .74rem; font-weight: 400;
+                   letter-spacing: .12em; text-transform: uppercase; color: #7fb6ff; }
+    h3.group { margin: 46px 0 10px; font-size: 1.15rem; font-weight: 700; color: #fff; }
+    h3.group em { display: block; margin-top: 4px; font-size: .74rem; font-style: normal;
+                  font-weight: 400; letter-spacing: .1em; text-transform: uppercase;
+                  color: #7fb6ff; }
 
-    /* ================= the shapes — colours, widths, dash patterns =====
-       Already finished. These say what each shape LOOKS like; the rules
-       further down say how it MOVES.                                      */
+    .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 16px; margin-top: 14px; }
+    .card { background: #10233d; border: 1px solid #1b3a63; border-radius: 14px;
+            padding: 14px 16px 16px; display: flex; flex-direction: column; }
+    .tag  { align-self: flex-start; margin: 0 0 6px; padding: 2px 9px; border-radius: 999px;
+            background: #1b3a63; color: #a8d4ff; font-size: .66rem; letter-spacing: .08em;
+            text-transform: uppercase; font-weight: 700; }
+    .box  { height: 132px; display: flex; align-items: center; justify-content: center; }
+    .card h2 { margin: 8px 0 4px; font-size: .98rem; color: #ffffff; font-weight: 700; }
+    .tech { margin: 0 0 7px; font-family: Consolas; font-size: .72rem; color: #7fb6ff; }
+    .card p.job { margin: 0; font-size: .8rem; line-height: 1.5; color: #9db4d4; }
+    .note { margin: 32px 0 0; font-size: .8rem; line-height: 1.7; color: #5f7695; }
+    .hw   { color: #ffc107; }
+
+    /* ========================= how the shapes look ========================
+       Already finished. The rules below say what each shape LOOKS like;
+       you write the rules that say how it MOVES.                            */
     .bar-track { stroke: #16304f; stroke-width: 12; stroke-linecap: round; }
     .bar-run   { stroke: #4da3ff; stroke-width: 12; stroke-linecap: round;
                  stroke-dasharray: 60 200; }
 
     .ring-track { fill: none; stroke: #16304f; stroke-width: 10; }
-    .ring-arc   { fill: none; stroke: #22d3ee; stroke-width: 10;
-                  stroke-linecap: round; stroke-dasharray: 25 75; }
+    .ring-arc   { fill: none; stroke: #22d3ee; stroke-width: 10; stroke-linecap: round;
+                  stroke-dasharray: 25 75; }
 
-    .bolt { fill: none; stroke: #ffc107; stroke-width: 7;
-            stroke-linecap: round; stroke-linejoin: round;
-            stroke-dasharray: 100 100; }
+    .route { fill: none; stroke: #4da3ff; stroke-width: 5; stroke-linecap: round;
+             stroke-dasharray: 100 100; }
 
-    .ring-a { fill: none; stroke: #a78bfa; stroke-width: 8;
-              stroke-linecap: round; stroke-dasharray: 14 36; }
-    .ring-b { fill: none; stroke: #f472b6; stroke-width: 8;
-              stroke-linecap: round; stroke-dasharray: 6 19; }
+    .dot { fill: #4da3ff; }
 
-    .dot      { fill: #4da3ff; }
-    .skeleton { fill: #4d8ce0; }
+    .tick-track { fill: none; stroke: #16304f; stroke-width: 6; }
+    .tick-ring  { fill: none; stroke: #4da3ff; stroke-width: 6; stroke-linecap: round;
+                  stroke-dasharray: 100 100; }
+    .tick       { fill: none; stroke: #4da3ff; stroke-width: 9;
+                  stroke-linecap: round; stroke-linejoin: round;
+                  stroke-dasharray: 100 100; }
+
+    /* ==================== how the structures are built ====================
+       Layout only — every one of these is finished and none of them has any
+       colour on it yet. You add the colour in the <body>, as style
+       attributes. Nothing in this block needs to change.                    */
+    .ui-nav { display: flex; align-items: center; gap: 10px; padding: 12px 14px;
+              border-radius: 10px; font-size: .8rem; }
+    .ui-nav .rule, .ui-nav .item:last-of-type { margin-left: auto; }
+    .ui-nav .item + .item { margin-left: 0; }
+    .ui-nav .brand { font-weight: 700; letter-spacing: .1em; text-transform: uppercase;
+                     font-size: .7rem; }
+    .ui-nav .item { padding: 4px 10px; border-radius: 999px; }
+
+    .ui-buttons { display: flex; gap: 10px; padding: 14px; }
+    .ui-buttons .primary, .ui-buttons .secondary {
+      padding: 8px 16px; border-radius: 8px; font-size: .78rem; font-weight: 700; }
+
+    .ui-card { padding: 14px; border-radius: 10px; }
+    .ui-card h3 { margin: 0 0 6px; font-size: .88rem; }
+    .ui-card p  { margin: 0 0 10px; font-size: .76rem; line-height: 1.5; }
+    .ui-card .badge { display: inline-block; padding: 3px 10px; border-radius: 999px;
+                      font-size: .68rem; font-weight: 700; letter-spacing: .06em;
+                      text-transform: uppercase; }
+
+    .ui-chart { display: flex; align-items: flex-end; gap: 8px; height: 96px;
+                padding: 12px 14px 0; }
+    .ui-chart i { flex: 1; border-radius: 6px 6px 0 0; }
+
+    .ui-nav .rule { display: block; width: 26px; height: 4px; border-radius: 2px; }
+    .ui-card .rule { display: block; margin-top: 10px; width: 100%; height: 4px;
+                     border-radius: 2px; }
+
+    .ui-tags { display: flex; flex-wrap: wrap; gap: 7px; padding: 14px; border-radius: 10px; }
+    .ui-tags span { padding: 4px 11px; border-radius: 999px; font-size: .7rem;
+                    font-weight: 700; letter-spacing: .05em; }
+    .ui-tiles { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; padding: 14px;
+                border-radius: 10px; }
+    .ui-tiles i { display: block; height: 42px; border-radius: 8px; }
+    .ui-weather { display: flex; align-items: center; gap: 12px; padding: 16px 14px;
+                  border-radius: 10px; }
+    .ui-weather .sun { width: 30px; height: 30px; border-radius: 50%; flex: none; }
+    .ui-weather .temp { font-size: .9rem; font-weight: 700; }
+    .ui-blank { display: flex; align-items: center; justify-content: center; height: 88px;
+                border: 1px dashed #24507f; border-radius: 10px; font-size: .78rem;
+                font-family: Consolas; }
 
     /* ==================================================================
-       THE ANIMATION — your work starts here
+       THE MOTION AND THE COLOUR — your work starts here
+
+       Every TODO below asks for one small piece of CSS. The TODOs say what
+       to achieve; the CSS itself is yours to work out. Work through them
+       in order, and look at the page after each one.
        ================================================================== */
 
     /* ── Exercise 1 · Sliding bar ────────────────────────────────────────
-         TODO 1 — paste this:
+         TODO 1 — put the blue line in motion.                          [8 min]
 
-             .bar-run { animation: slide 1.4s linear infinite; }
+         Aim: a dash pattern that travels along the groove and comes back
+         round without a visible jump.
 
-             @keyframes slide {
-               from { stroke-dashoffset: 0; }
-               to   { stroke-dashoffset: -260; }
-             }
+         You need two things:
+           · a @keyframes rule that moves the pattern's offset from 0 to
+             exactly ONE dash cycle. The groove is one line with a dash
+             pattern of 60 ink then 200 gap — add those up for the length
+             of a cycle, and mind the sign: the ink travels forward, so
+             which way does the offset have to go?
+           · a declaration that switches it on and repeats forever.
+             This loader should move at a constant speed — that is a
+             keyword, not a number.
 
-         Why: the blue line is 260 units long (270 − 10) and its dash
-         pattern is 60 ink + 200 gap = 260. Sliding the offset by exactly
-         one cycle returns the pattern to where it started, which is what
-         makes the loop seamless instead of jumping.                  [7 min] */
+         Then check the loop. If the pattern snaps back instead of rolling
+         round, you have not travelled exactly one cycle.
+                                                                         */
 
     /* ── Exercise 2 · Progress ring ──────────────────────────────────────
-         TODO 2 — paste this:
+         TODO 2 — an arc that grows and shrinks while the whole ring turns.
+                                                                        [11 min]
 
-             .ring-arc {
-               transform-origin: 66px 66px;
-               animation: sweep 1.8s ease-in-out infinite,
-                          spin  1.8s linear     infinite;
-             }
+         The cyan circle carries pathLength="100", so every dash value on it
+         is a PERCENTAGE of the ring — you never have to work out 2 × π × r.
+         "A little ink and almost all gap" is a sliver of arc; turn those two
+         numbers round and you have most of the ring.
 
-             @keyframes sweep {
-              0%   { stroke-dasharray: 2 98; }
-              50%  { stroke-dasharray: 62 38; }
-              100% { stroke-dasharray: 2 98; stroke-dashoffset: -100; }
-             }
+         Two animations run on the same element at the same time:
+           · one changes the dash pattern so the arc breathes out and back
+             in. Give it more than two stops, and drift the offset across the
+             cycle as well so the breathing does not sit still.
+           · one turns the circle through a full turn.
+         Give them the same duration so they stay in step, and pick the two
+         easings deliberately: which of the pair should be perfectly
+         constant, and which should ease?
 
-             @keyframes spin { to { transform: rotate(360deg); } }
+         Then the trap from the primer (§6). Write both animations FIRST,
+         without naming a centre, and watch the ring swing around the corner
+         of the SVG. Now add the one line that pins it to its own centre and
+         watch it settle. That single line is the difference between a loader
+         and a bug.
+                                                                         */
 
-         Why: pathLength="100" on the circle rescales it to 100 units, so
-         "2 98" is a sliver of arc and "62 38" is most of the ring — the
-         arc grows and shrinks. Two animations run at once: the first
-         changes the dash, the second turns the circle.
+    /* ── Exercise 3 · Icon morph ─────────────────────────────────────────
+         TODO 3 — hover the icon: three lines fold into a cross.        [8 min]
 
-         Experiment (30 seconds): delete the transform-origin line and
-         look. The ring now swings around the corner of the SVG instead
-         of its own centre. Put the line back. That one line is the
-         difference between a loader and a bug.                      [10 min] */
+         This card answers your POINTER, not the clock, so it uses
+         `transition` rather than `animation` (primer §4). :hover is the
+         trigger; the element keeps its own resting state.
 
-    /* ── Exercise 3 · Draw-on bolt ───────────────────────────────────────
-         TODO 3 — paste this:
+         Aim: on hover the top line slides down to the middle and tilts one
+         way, the bottom line slides up and tilts the other way, and the
+         middle line fades out. Move the pointer away and all three go back.
 
-             .bolt { animation: draw 2.2s ease-in-out infinite; }
+         You need:
+           · a transition on each of the three lines. Two of them change
+             their transform; one only changes opacity. Different properties
+             suit different easings — choose them separately.
+           · one :hover rule per line, holding the state the line moves TO.
+             A tilt of 45° either way is what turns three lines into a ✓.
+         All three lines share one pivot — the centre of the icon, not the
+         corner of the SVG (primer §6).
+                                                                         */
 
-             @keyframes draw {
-              0%   { stroke-dashoffset: 100; }
-              55%  { stroke-dashoffset: 0; }
-              75%  { stroke-dashoffset: 0; opacity: 1; }
-              100% { stroke-dashoffset: -100; opacity: 0; }
-             }
+    /* ── Exercise 4 · Route tracing ──────────────────────────────────────
+         TODO 4 — draw the route, then send the dot along it.          [10 min]
 
-         Why: pathLength="100" makes the bolt a 100-unit path, so 100 is
-         "all of it hidden" and 0 is "all of it drawn". The 75% stop holds
-         the finished bolt still for a beat, then the last quarter slides
-         it out of its own tail while fading. Try changing 55% to 35% and
-         see how the rhythm changes.                                  [8 min] */
+         Two halves, one shared duration, so the dot sets off in time with
+         the line.
 
-    /* ── Exercise 4 · Double ring ────────────────────────────────────────
-         TODO 4 — paste this:
+         (a) The line draws itself. Same trick as exercise 1 — a dash
+             pattern and a moving offset — but this path is only ever drawn
+             once per cycle, so the offset travels the path's full length
+             instead of one dash cycle. The path is not a closed loop, so
+             100 units is the whole route and 0 is "nothing drawn yet".
+             Decide which end means hidden, hold the finished route still for
+             a beat, then let it retreat.
 
-             .ring-a {
-               transform-origin: 66px 66px;
-               animation: spin-cw 1.4s linear infinite;
-             }
-             .ring-b {
-               transform-origin: 66px 66px;
-               animation: spin-ccw 2.2s linear infinite;
-             }
+         (b) The dot rides the path. CSS can do this with no JavaScript:
+             `offset-path` takes the same path data as the SVG `d`
+             attribute — copy it across — and `offset-distance`, running
+             from 0% to 100%, says how far along the dot is. Give the dot
+             the same stops and the same duration as the line so it arrives
+             exactly as the drawing finishes.
 
-             @keyframes spin-cw  { to { transform: rotate(360deg); } }
-             @keyframes spin-ccw { to { transform: rotate(-360deg); } }
+         Aim: the route draws itself, then the dot runs along it.
+                                                                         */
 
-         Why: same dash trick as exercise 2, but here nothing changes size
-         — the rings only turn. Their dash rhythms differ (14 + 36 = half
-         the ring; 6 + 19 = a quarter), their durations differ, and they
-         turn in opposite directions. Two full turns of the inner ring
-         take 4.4s while the outer takes 2.8s, so the pair never repeats
-         the same pose.                                               [8 min] */
+    /* ── Exercise 5 · Choose the colours — see the <body> ───────────────
+         TODO 5a–5d — four structures, four named schemes.             [23 min]
 
-    /* ── Exercise 5 · Pulse dots ─────────────────────────────────────────
-         TODO 5 — paste this:
+         There is nothing to write in this <style> block for exercise 5.
+         Scroll down to the four structures in the <body>: each one names the
+         scheme it was designed with, and each one is waiting for its colour.
+                                                                         */
 
-             .dot {
-               transform-box: fill-box;
-               transform-origin: center;
-               animation: beat 1.2s ease-in-out infinite;
-             }
-             .dot-2 { animation-delay: .2s; }
-             .dot-3 { animation-delay: .4s; }
+    /* ── Exercise 6 · Pulse dots ─────────────────────────────────────────
+         TODO 6 — three dots that ripple.                     [homework · 10 min]
 
-             @keyframes beat {
-              0%, 100% { transform: scale(.55); opacity: .35; }
-              50%      { transform: scale(1);   opacity: 1; }
-             }
+         One animation, three start times: the middle dot sets off after the
+         first, the third after the middle. That is the whole difference
+         between a blink and a wave.
 
-         Why: transform-box: fill-box tells the browser "this shape's own
-         box is the reference", so transform-origin: center means the
-         centre of the dot. Without those two lines each dot grows away
-         from the SVG's top-left corner and the three of them drift apart.
+         Two things to get right:
+           · the dots must grow around their OWN centre. Without the right
+             pair of lines from the primer (§6) each dot grows away from the
+             corner of the SVG and the three of them drift apart.
+           · leave r="9" alone. Animate the dot's scale with transform —
+             animating a radius is not something CSS will do for you.
+         Move the scale and the opacity together, so a dot is at its
+         smallest exactly when it is at its faintest.
+                                                                         */
 
-         animation-delay is what makes the dots ripple instead of blink:
-         one animation, three start times.                            [6 min] */
+    /* ── Exercise 7 · Your own ───────────────────────────────────────────
+         TODO 7 — your own loader, triggered by the pointer.
+                                                             [homework · 20 min]
 
-    /* ── Exercise 6 · Skeleton bars ──────────────────────────────────────
-         TODO 6 — paste this:
+         The markup in card 7 is ONE worked example: a progress ring that
+         fills from nothing to a full circle, and only then does the tick
+         draw itself. Both beats are the same trick as exercises 1 and 4 —
+         a dash pattern revealed by moving its offset — turned on by :hover
+         and tweened by transition.
 
-             .skeleton {
-               animation: breathe 1.6s ease-in-out infinite;
-             }
-             .skeleton-b { animation-delay: .25s; }
-             .skeleton-c { animation-delay: .5s; }
+         The choreography is the part worth planning: two beats, one after
+         the other. The tick must not start until the ring has landed — that
+         is what a transition delay is for.
 
-             @keyframes breathe {
-              0%, 100% { opacity: .22; }
-              50%      { opacity: .85; }
-             }
+         One more thing, and it is easy to miss: right now the ring is drawn
+         all the way round, and when it fills it would start from the
+         right-hand side. A progress ring should start at the top. Turning a
+         circle is a transform, and a transform on an SVG shape needs its
+         centre named (primer §6).
 
-         Why: a skeleton bar stands in for text that has not loaded yet,
-         so it should suggest activity without demanding attention —
-         opacity only, no movement. Three rows, one animation, three
-         delays: the light travels down the list.                     [6 min] */
+         Make it yours. Swap in a shape you drew, a colour of your own and a
+         rhythm you chose — no two submissions should look alike. Say in a
+         comment why you picked that rhythm.
+                                                                         */
 
-    /* ── Exercise 7 · Make it yours ──────────────────────────────────────
-         TODO 7 — your own loader, written from scratch. See the long note
-         in the <body> below for the full requirements.              [15 min] */
+    /* ── Exercise 8 · Colour theory, round two — see the <body> ─────────
+         TODO 8a–8d — four more structures, four more schemes. [homework · 25 min]
+
+         Again, nothing goes in this block. This time no colours are worked
+         out for you anywhere: the four structures at the bottom of the
+         <body> each name a scheme, and the rest is yours.
+                                                                         */
 
   </style>
 </head>
 
 <body>
-
 <main>
 
-  <p class="kicker">The Hong Kong Polytechnic University</p>
+  <p class="kicker">COMP3421 &middot; motion &amp; colour</p>
+  <h1>Animate it, then colour it</h1>
+  <p class="sub">
+    Part 1: three animations that run on their own, one that answers your pointer, and four
+    structures to colour. Part 2 takes three more exercises home. The shapes are drawn for
+    you — the motion and the colour are not.
+  </p>
 
-  <h1>Loading&hellip;</h1>
+  <h2 class="part">Part 1 &middot; in the lab <span>four pieces of motion + a palette exercise</span></h2>
 
-  <p class="sub">COMP3421 &middot; campus app &middot; connecting to the timetable service</p>
+  <div class="grid">
 
-  <!-- ── Exercise 1 · Sliding bar [7 min] ───────────────────────────────
-       The two lines below are the loader. .bar-track is the dark groove,
-       .bar-run is the blue ink that travels along it. Your TODO 1 puts
-       the blue line in motion. -->
-  <svg class="stage" width="280" height="26" viewBox="0 0 280 26">
-    <line class="bar-track" x1="10" y1="13" x2="270" y2="13" />
-    <line class="bar-run"   x1="10" y1="13" x2="270" y2="13" />
-  </svg>
-  <p class="caption">01 &middot; Sliding bar</p>
+    <!-- TODO 1 · Sliding bar — see the notes in the <style> block above.
+         Two <line> elements on top of each other: the dark groove and the
+         blue ink. Making the ink move is your job.                       -->
+    <article class="card">
+      <span class="tag">waiting</span>
+      <div class="box">
+        <svg width="240" height="26" viewBox="0 0 240 26">
+          <line class="bar-track" x1="10" y1="13" x2="230" y2="13" />
+          <line class="bar-run"   x1="10" y1="13" x2="230" y2="13" />
+        </svg>
+      </div>
+      <h2>1 &middot; Sliding bar</h2>
+      <p class="tech">stroke-dashoffset</p>
+      <p class="job">The classic “still loading” line: a dash pattern travelling along a
+         fixed line, one whole cycle at a time, so the loop never jumps.</p>
+    </article>
 
-  <!-- ── Exercise 2 · Progress ring [10 min] ─────────────────────────────
-       The pale circle is the track; the cyan circle is the arc that sweeps
-       around it. Both are r="50" so the ring is 2 × π × 50 ≈ 314 units
-       around — which is why we use pathLength="100" and think in
-       percentages instead. -->
-  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
-    <circle class="ring-track" cx="66" cy="66" r="50" />
-    <circle class="ring-arc" pathLength="100" cx="66" cy="66" r="50" />
-  </svg>
-  <p class="caption">02 &middot; Progress ring</p>
+    <!-- TODO 2 · Progress ring — see the notes in the <style> block above.
+         The pale circle is the track; the cyan circle is the arc that has to
+         sweep around it. Neither circle carries any animation yet.        -->
+    <article class="card">
+      <span class="tag">syncing</span>
+      <div class="box">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="ring-track" cx="60" cy="60" r="46" />
+          <circle class="ring-arc" pathLength="100" cx="60" cy="60" r="46" />
+        </svg>
+      </div>
+      <h2>2 &middot; Progress ring</h2>
+      <p class="tech">stroke-dasharray + rotate</p>
+      <p class="job">A ring that says “working, amount unknown”: the arc breathes while
+         the whole ring turns. Two animations on one element.</p>
+    </article>
 
-  <!-- ── Exercise 3 · Draw-on bolt [8 min] ──────────────────────────────
-       A <path> drawn with straight-line commands: M (move), L (line),
-       Z (close). Twelve commands, one shape. pathLength="100" is on the
-       <path> itself — it is an attribute, not CSS. -->
-  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
-    <path class="bolt" pathLength="100"
-          d="M68 16 L42 68 L62 68 L56 114 L88 58 L68 58 Z" />
-  </svg>
-  <p class="caption">03 &middot; Draw-on bolt</p>
+    <!-- TODO 3 · Icon morph — see the notes in the <style> block above.
+         Three lines. Hovering the icon has to fold them into a cross. The
+         colours and widths are already set on the <g>; what is missing is
+         the change of state.                                             -->
+    <article class="card morph">
+      <span class="tag">switching &middot; hover it</span>
+      <div class="box">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <g stroke="#4da3ff" stroke-width="9" stroke-linecap="round">
+            <line class="m-top" x1="34" y1="42" x2="86" y2="42" />
+            <line class="m-mid" x1="34" y1="60" x2="86" y2="60" />
+            <line class="m-bot" x1="34" y1="78" x2="86" y2="78" />
+          </g>
+        </svg>
+      </div>
+      <h2>3 &middot; Icon morph</h2>
+      <p class="tech">transition + :hover — hover the icon</p>
+      <p class="job">A menu button that becomes a close button. Nothing here runs on its
+         own: the shape answers your pointer, and the <em>shape is the state</em>.</p>
+    </article>
 
-  <!-- ── Exercise 4 · Double ring [8 min] ───────────────────────────────
-       Two circles, two dash rhythms, two directions. The inner circle sits
-       at r="36" and the outer at r="54", so they never overlap. -->
-  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
-    <circle class="ring-a" pathLength="100" cx="66" cy="66" r="54" />
-    <circle class="ring-b" pathLength="100" cx="66" cy="66" r="36" />
-  </svg>
-  <p class="caption">04 &middot; Double ring</p>
+    <!-- TODO 4 · Route tracing — see the notes in the <style> block above.
+         The <path> is the route; the <circle> is the dot that has to ride
+         it. The dot currently sits at the top-left corner of the SVG, which
+         is exactly where an unpositioned dot belongs.                    -->
+    <article class="card">
+      <span class="tag">travelling</span>
+      <div class="box">
+        <svg width="250" height="132" viewBox="0 0 250 132">
+          <path class="route" pathLength="100"
+                d="M18 116 C 56 116, 60 52, 100 52 S 148 116, 190 116 S 214 34, 232 26" />
+          <circle class="runner" cx="0" cy="0" r="8" fill="#ffc107" />
+        </svg>
+      </div>
+      <h2>4 &middot; Route tracing</h2>
+      <p class="tech">stroke-dashoffset + offset-path</p>
+      <p class="job">A delivery route: the line draws itself, then a dot rides the very
+         same path. <code>offset-path</code> is CSS's way of moving something along a
+         route.</p>
+    </article>
 
-  <!-- ── Exercise 5 · Pulse dots [6 min] ────────────────────────────────
-       Three identical circles. Their r="9" never changes — the animation
-       scales them. Right now they are static and all the same size. -->
-  <svg class="stage" width="200" height="42" viewBox="0 0 200 42">
-    <circle class="dot"       cx="80"  cy="21" r="9" />
-    <circle class="dot dot-2" cx="100" cy="21" r="9" />
-    <circle class="dot dot-3" cx="120" cy="21" r="9" />
-  </svg>
-  <p class="caption">05 &middot; Pulse dots</p>
+  </div>
 
-  <!-- ── Exercise 6 · Skeleton bars [6 min] ─────────────────────────────
-       Three <rect> placeholder rows of different lengths, each with
-       rx="7" so the corners are rounded. Give them the breathing light. -->
-  <svg class="stage" width="280" height="66" viewBox="0 0 280 66">
-    <rect class="skeleton"   x="0" y="0"  width="200" height="14" rx="7" />
-    <rect class="skeleton skeleton-b" x="0" y="26" width="252" height="14" rx="7" />
-    <rect class="skeleton skeleton-c" x="0" y="52" width="164" height="14" rx="7" />
-  </svg>
-  <p class="caption">06 &middot; Skeleton bars</p>
+  <h3 class="group">5 &middot; Choose the colours
+    <em>four structures &middot; one named scheme each</em></h3>
 
-  <!-- ── Exercise 7 · Make it yours ─────────────────────────────────────
-       TODO 7 — your own loader, in the empty <svg> below (132 × 132).
-       This is the marked part of the lab: no two submissions should look
-       alike. Work through (a)–(e):
+  <p class="sub" style="margin-bottom:12px;">
+    Four structures, each naming the scheme it was built with. Give each one at least three
+    colours of that scheme, then write the scheme's name and the hues you chose in a comment
+    beside it. Every word has to stay readable on whatever ends up behind it.
+  </p>
 
-         (a) SHAPE — you choose. A star, a heart, a crescent, an arrow,
-             a polygon, several circles, or a letter of your own name.
-             Write it as real markup: <circle>, <rect>, <line>, <polygon>
-             or <path>. If you use <path>, keep d= short enough to read.
+  <div class="grid">
 
-         (b) COLOUR — your own stroke (or fill). Do not reuse #4da3ff,
-             #22d3ee, #ffc107, #a78bfa, #f472b6 or #4d8ce0 — those are the
-             six colours already on this page. A light colour is best:
-             the page background is #0a1a30, so anything dark will vanish.
+    <!-- TODO 5a · Navigation bar — SCHEME: MONOCHROMATIC
+         The bar, the current item (“Courses”) and the short rule under it
+         each want a colour, and all three have to come from the one hue this
+         scheme is built on. Nothing here can clash, so the separation between
+         the three has to come from lightness — and so does the readability. -->
+    <article class="card">
+      <span class="tag">monochromatic</span>
+      <div class="ui-nav">
+        <span class="brand">COMP3421</span>
+        <span class="item">Courses</span>
+        <span class="item">Labs</span>
+        <i class="rule"></i>
+      </div>
+      <h2>5a &middot; Navigation bar</h2>
+      <p class="tech">scheme: monochromatic</p>
+      <p class="job">One hue, three different weights of it. When everything comes from the
+         same hue nothing can clash — which leaves lightness to do all the work, both for
+         separating the parts and for keeping the text readable.</p>
+    </article>
 
-         (c) TECHNIQUE — at least one of the three from this lab:
-               · a dash pattern sliding along a path  (stroke-dashoffset)
-               · a shape drawing itself               (dashoffset 100 → 0)
-               · a rotation or a scale                (transform)
-             Combining two is allowed and usually looks better.
+    <!-- TODO 5b · Button pair — SCHEME: COMPLEMENTARY
+         Two buttons on one bar: three colours to place. One button keeps the
+         base hue and the other takes the hue diametrically across the colour
+         wheel from it. Decide which action deserves the loud one.          -->
+    <article class="card">
+      <span class="tag">complementary</span>
+      <div class="ui-buttons">
+        <span class="primary">Save</span>
+        <span class="secondary">Delete</span>
+      </div>
+      <h2>5b &middot; Button pair</h2>
+      <p class="tech">scheme: complementary</p>
+      <p class="job">Two hues as far apart as the wheel allows: the safe action keeps the
+         base hue, the dangerous one takes the hue directly opposite. Maximum contrast,
+         placed exactly where you want the eye to stop.</p>
+    </article>
 
-         (d) TIMING — a duration between 0.8s and 3s, and `infinite`.
-             ease-in-out, linear or cubic-bezier() — your choice. Say
-             somewhere in a comment why you picked that rhythm.
+    <!-- TODO 5c · Info card — SCHEME: ANALOGOUS
+         The card, its "Queued" badge and the rule at the bottom want a colour
+         each. Three hues sitting next to one another on the wheel, within one
+         step either side of the base.                                      -->
+    <article class="card">
+      <span class="tag">analogous</span>
+      <div class="ui-card">
+        <h3>Submission received</h3>
+        <p>Your file is in the queue. You will get an email when marking
+           finishes.</p>
+        <span class="badge">Queued</span>
+        <i class="rule"></i>
+      </div>
+      <h2>5c &middot; Info card</h2>
+      <p class="tech">scheme: analogous</p>
+      <p class="job">Three neighbouring hues, a step either side of the base. The set reads
+         as one family, which is what makes it feel calm rather than loud — and it is also
+         why you have to be deliberate about which part dominates.</p>
+    </article>
 
-         (e) KEEP — class="stage" on your <svg> (that is what centres it),
-             and the <p class="caption"> line below it.
+    <!-- TODO 5d · Mini chart — SCHEME: TRIADIC
+         Four colours: the chart's field plus one bar each. The three bars take
+         the three hues of the scheme — evenly spaced around the wheel. The
+         bar heights are already set; do not change them.                   -->
+    <article class="card">
+      <span class="tag">triadic</span>
+      <div class="ui-chart">
+        <i style="height: 94%;"></i>
+        <i style="height: 74%;"></i>
+        <i style="height: 62%;"></i>
+      </div>
+      <h2>5d &middot; Mini chart</h2>
+      <p class="tech">scheme: triadic</p>
+      <p class="job">Three hues evenly spaced around the wheel, one per bar. Bold but
+         balanced — no hue wins on symmetry, which is exactly why a triadic set needs one of
+         the three to dominate the other two.</p>
+    </article>
 
-       Common mistakes to avoid:
-         · forgetting stroke-linecap="round" — the ends look cut off
-         · putting pathLength on the <style> rule instead of the element
-         · animating `r` or `cx` in CSS instead of using transform
-         · a rotate() with no transform-origin — your shape flies off
+  </div>
 
-       Self-check before you move on:
-         · the page still has exactly one <body>
-         · your loader moves smoothly and loops with no jump
-         · nothing spills outside the card / off the right edge
-         · you can say out loud which property your animation changes    -->
+  <h2 class="part">Part 2 &middot; homework <span class="hw">take these three home</span></h2>
 
-  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
-  </svg>
-  <p class="caption">07 &middot; Your own loader</p>
+  <div class="grid">
 
-  <p class="note">Practice page for COMP3421 &mdash; a made-up app, not a real service.</p>
+    <!-- TODO 6 · Pulse dots — see the notes in the <style> block above.
+         Three identical circles, all the same size and all perfectly still.
+         r="9" is correct and stays.                                      -->
+    <article class="card">
+      <span class="tag">typing</span>
+      <div class="box">
+        <svg width="180" height="40" viewBox="0 0 180 40">
+          <circle class="dot"       cx="70"  cy="20" r="9" />
+          <circle class="dot dot-2" cx="90"  cy="20" r="9" />
+          <circle class="dot dot-3" cx="110" cy="20" r="9" />
+        </svg>
+      </div>
+      <h2>6 &middot; Pulse dots <span class="hw">(homework)</span></h2>
+      <p class="tech">transform: scale + animation-delay</p>
+      <p class="job">Somebody is typing. One animation, three delays, and the dots
+         ripple instead of blinking.</p>
+    </article>
+
+    <!-- TODO 7 · Your own — see the notes in the <style> block above.
+         A ring and a tick, both drawn but both fully visible. What is missing
+         is the two-beat choreography on hover — and your own mark on it.   -->
+    <article class="card mine">
+      <span class="tag">done &middot; hover it</span>
+      <div class="box">
+        <svg width="120" height="120" viewBox="0 0 120 120">
+          <circle class="tick-track" cx="60" cy="60" r="52" />
+          <circle class="tick-ring" pathLength="100" cx="60" cy="60" r="52" />
+          <path class="tick" pathLength="100" d="M36 62 L54 80 L86 42" />
+        </svg>
+      </div>
+      <h2>7 &middot; Your own <span class="hw">(homework)</span></h2>
+      <p class="tech">transition + :hover &middot; two beats, one after the other</p>
+      <p class="job">The open task, with one worked example to start from: hover it and the
+         ring fills from nothing to a full circle, and only then does the tick draw itself.
+         Both beats are a dash pattern revealed by moving its offset — the same trick as
+         exercises 1 and 4.</p>
+    </article>
+
+  </div>
+
+  <h3 class="group">8 &middot; Colour theory, round two
+    <em class="hw">homework &middot; four more structures, four more schemes</em></h3>
+
+  <p class="sub" style="margin-bottom:6px;">
+    Same idea, four more structures — and this time nothing at all is worked out for you.
+    Each card names its scheme; the colours, the placement and the comment are yours.
+  </p>
+
+  <div class="grid">
+
+    <!-- TODO 8a · Tag row — SCHEME: SPLIT-COMPLEMENTARY
+         One bar and four tags. Colour the bar from the base hue, then take
+         the two hues that sit either side of the hue opposite it. You have
+         four tags and three scheme hues — think about what the fourth tag
+         does to the set before you colour it.                             -->
+    <article class="card">
+      <span class="tag">split-complementary</span>
+      <div class="ui-tags">
+        <span>new</span>
+        <span>urgent</span>
+        <span>done</span>
+        <span>mine</span>
+      </div>
+      <h2>8a &middot; Tag row</h2>
+      <p class="tech">scheme: split-complementary</p>
+      <p class="job">One base hue plus the two hues either side of its opposite — the softer
+         cousin of a complementary pair. There are four tags and three scheme hues, so the
+         fourth tag has to borrow from somewhere: decide whether that helps the row or
+         spoils it.</p>
+    </article>
+
+    <!-- TODO 8b · Four tiles — SCHEME: TETRADIC (a square on the wheel)
+         The panel and four tiles: five colours, four of them evenly spaced
+         around the wheel. Four hues give the eye nowhere to rest, so choose
+         which tile leads BEFORE you pick the rest.                        -->
+    <article class="card">
+      <span class="tag">tetradic</span>
+      <div class="ui-tiles">
+        <i></i>
+        <i></i>
+        <i></i>
+        <i></i>
+      </div>
+      <h2>8b &middot; Four tiles</h2>
+      <p class="tech">scheme: tetradic</p>
+      <p class="job">A square drawn on the wheel — four hues, evenly spaced. Four is the hard
+         one: no hue dominates, so the eye has nowhere to rest unless you decide in advance
+         which tile is the important one.</p>
+    </article>
+
+    <!-- TODO 8c · Weather widget — SCHEME: WARM &amp; COOL
+         A cool field with a warm mark on it: the panel and the sun, and the
+         temperature reading has to stay legible over whichever you choose. -->
+    <article class="card">
+      <span class="tag">warm &amp; cool</span>
+      <div class="ui-weather">
+        <span class="sun"></span>
+        <span class="temp">28&deg;C &middot; sunny</span>
+      </div>
+      <h2>8c &middot; Weather widget</h2>
+      <p class="tech">scheme: warm &amp; cool</p>
+      <p class="job">Here it is temperature, not distance on the wheel, that does the work:
+         a cool field settles back and a warm mark comes forward. Build it, look at it, then
+         swap the two and notice how much more agitated the card becomes.</p>
+    </article>
+
+    <!-- TODO 8d · Your own structure — ANY SCHEME
+         Design one more structure yourself — a badge, a progress bar, a
+         pricing card — and colour it with a scheme from Tutorial 1. Name the
+         scheme and the hues in a comment, and say in one line why that scheme
+         suits that structure.                                              -->
+    <article class="card">
+      <span class="tag">your scheme</span>
+      <div class="ui-blank">your structure here</div>
+      <h2>8d &middot; Your own</h2>
+      <p class="tech">any scheme &middot; your structure, your hues</p>
+      <p class="job">Design one more structure of your own — a badge, a progress bar, a
+         pricing card — and colour it with a scheme from Tutorial 1. Name the scheme and the
+         hues in a comment, and say in one line why that scheme suits that structure.</p>
+    </article>
+
+  </div>
+
+  <p class="note">
+    Practice page for COMP3421 &mdash; a made-up interface, not a real service.
+    Four properties, six shapes, eight structures:
+    <code>stroke-dashoffset</code> · <code>stroke-dasharray</code> ·
+    <code>transform</code> · <code>opacity</code>, plus <code>hsl()</code>.
+  </p>
 
 </main>
-
 </body>
 </html>
