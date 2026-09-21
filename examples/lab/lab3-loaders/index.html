@@ -20,7 +20,7 @@
          PART 2 · HOMEWORK — done at home
            6 · Pulse dots           one animation, three start times
            7 · Your own             your shape, your rhythm
-           8 · Colour theory        four more structures, four more schemes
+           8 · Colour theory        three more structures, three more schemes
 
        HOW THIS PAGE WORKS — read this before you start
 
@@ -130,6 +130,11 @@
 
     .grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
             gap: 16px; margin-top: 14px; }
+    /* Part 1 sits 2 × 2 — two across, two down. Written out rather than left
+       to auto-fit, so the four cards land in the same arrangement whatever
+       width the window is. Collapses to one column on a narrow screen. */
+    .grid.pair { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    @media (max-width: 640px) { .grid.pair { grid-template-columns: 1fr; } }
     .card { background: #10233d; border: 1px solid #1b3a63; border-radius: 14px;
             padding: 14px 16px 16px; display: flex; flex-direction: column; }
     .tag  { align-self: flex-start; margin: 0 0 6px; padding: 2px 9px; border-radius: 999px;
@@ -206,9 +211,6 @@
                   border-radius: 10px; }
     .ui-weather .sun { width: 30px; height: 30px; border-radius: 50%; flex: none; }
     .ui-weather .temp { font-size: .9rem; font-weight: 700; }
-    .ui-blank { display: flex; align-items: center; justify-content: center; height: 88px;
-                border: 1px dashed #24507f; border-radius: 10px; font-size: .78rem;
-                font-family: Consolas; }
 
     /* ==================================================================
        THE MOTION AND THE COLOUR — your work starts here
@@ -359,10 +361,11 @@
                                                                          */
 
     /* ── Exercise 8 · Colour theory, round two — see the <body> ─────────
-         TODO 8a–8d — four more structures, four more schemes. [homework · 25 min]
+         TODO 8a–8c — three more structures, three more schemes.
+                                                             [homework · 20 min]
 
          Again, nothing goes in this block. This time no colours are worked
-         out for you anywhere: the four structures at the bottom of the
+         out for you anywhere: the three structures at the bottom of the
          <body> each name a scheme, and the rest is yours.
                                                                          */
 
@@ -382,7 +385,7 @@
 
   <h2 class="part">Part 1 &middot; in the lab <span>four pieces of motion + a palette exercise</span></h2>
 
-  <div class="grid">
+  <div class="grid pair">
 
     <!-- TODO 1 · Sliding bar — see the notes in the <style> block above.
          Two <line> elements on top of each other: the dark groove and the
@@ -470,7 +473,7 @@
     beside it. Every word has to stay readable on whatever ends up behind it.
   </p>
 
-  <div class="grid">
+  <div class="grid pair">
 
     <!-- TODO 5a · Navigation bar — SCHEME: MONOCHROMATIC
          The bar, the current item (“Courses”) and the short rule under it
@@ -594,10 +597,10 @@
   </div>
 
   <h3 class="group">8 &middot; Colour theory, round two
-    <em class="hw">homework &middot; four more structures, four more schemes</em></h3>
+    <em class="hw">homework &middot; three more structures, three more schemes</em></h3>
 
   <p class="sub" style="margin-bottom:6px;">
-    Same idea, four more structures — and this time nothing at all is worked out for you.
+    Same idea, three more structures — and this time nothing at all is worked out for you.
     Each card names its scheme; the colours, the placement and the comment are yours.
   </p>
 
@@ -659,26 +662,11 @@
          swap the two and notice how much more agitated the card becomes.</p>
     </article>
 
-    <!-- TODO 8d · Your own structure — ANY SCHEME
-         Design one more structure yourself — a badge, a progress bar, a
-         pricing card — and colour it with a scheme from Tutorial 1. Name the
-         scheme and the hues in a comment, and say in one line why that scheme
-         suits that structure.                                              -->
-    <article class="card">
-      <span class="tag">your scheme</span>
-      <div class="ui-blank">your structure here</div>
-      <h2>8d &middot; Your own</h2>
-      <p class="tech">any scheme &middot; your structure, your hues</p>
-      <p class="job">Design one more structure of your own — a badge, a progress bar, a
-         pricing card — and colour it with a scheme from Tutorial 1. Name the scheme and the
-         hues in a comment, and say in one line why that scheme suits that structure.</p>
-    </article>
-
   </div>
 
   <p class="note">
     Practice page for COMP3421 &mdash; a made-up interface, not a real service.
-    Four properties, six shapes, eight structures:
+    Four properties, six shapes, seven structures:
     <code>stroke-dashoffset</code> · <code>stroke-dasharray</code> ·
     <code>transform</code> · <code>opacity</code>, plus <code>hsl()</code>.
   </p>
