@@ -1,0 +1,362 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Loading… — Lab 3 practice</title>
+
+  <!-- ================================================================
+       LAB 3 — ANIMATE SVG LOADERS
+
+       You are given a "Loading…" screen with seven SVG shapes in it.
+       The shapes are finished — what is missing is the animation.
+
+       Every TODO asks for one small block of CSS: an @keyframes rule
+       that says what happens, plus the animation declaration that
+       switches it on. Read the TODO, paste the block where it belongs,
+       then LOOK AT THE PAGE.
+
+       Work in the live editor (source on the left, result on the right)
+       or in any editor + browser. Open target-preview.png (in the lab
+       folder) to see what the finished page looks like.
+
+       When you are done, press  ⬇ Download .zip  and submit that file.
+
+       Total: 7 exercises, 60 minutes — each TODO shows its minutes.
+       ================================================================ -->
+
+  <!-- ================================================================
+       CSS ANIMATION IN 90 SECONDS — read this once before you start
+
+       1. A rule begins with a SELECTOR: which elements it applies to.
+              .bar-run { … }     every element with class="bar-run"
+
+       2. A DECLARATION is  property: value;  — and it ends with a
+          SEMICOLON. A missing one is the #1 reason CSS "does nothing".
+
+       3. An animation needs TWO pieces:
+
+              @keyframes slide {              what happens, step by step
+                from { stroke-dashoffset: 0; }
+                to   { stroke-dashoffset: -260; }
+              }
+
+              .bar-run { animation: slide 1.4s linear infinite; }
+                                          |     |      |      |
+                                        name  duration easing repeat
+
+          Shorthand order: name duration easing delay iteration-count
+          direction fill-mode. Only the name and the duration are
+          required — but every loader here ends with `infinite`.
+
+       4. What you can animate on an SVG shape: stroke-dashoffset,
+          stroke-dasharray, opacity, fill, stroke, and `transform`
+          (rotate / scale / translate).
+
+       5. NOTE — SVG shapes do NOT rotate or scale around their own
+          centre by default. A rotation swings around the corner of the
+          SVG canvas unless you name the centre:
+
+              transform-origin: 66px 66px;   /* SVG coordinates   */
+              transform-box: fill-box;       /* …or "this shape's box" */
+
+          Every exercise that moves a shape tells you which to use.
+
+       6. If the page shows nothing moving, check the browser Console
+          (F12). A missing semicolon, a missing brace or a misspelled
+          property name is reported there with a line number.
+       ================================================================ -->
+
+  <style>
+    /* ===================== the page — already done ===================== */
+    body  { margin: 0; padding: 0; background-color: #0a1a30; color: #e8eff8;
+            font-family: Trebuchet MS; text-align: center; }
+    main  { width: 92%; max-width: 700px; margin: 0 auto; padding: 54px 0 40px; }
+    .kicker { margin: 0 0 16px; font-size: .76rem; font-weight: 700;
+              letter-spacing: .3em; text-transform: uppercase; color: #7fb6ff; }
+    h1    { margin: 0 0 10px; font-size: 3rem; font-weight: 400;
+            line-height: 1; color: #ffffff; }
+    .sub  { margin: 0 0 42px; font-size: .95rem; line-height: 1.6; color: #9db4d4; }
+    .stage   { display: block; margin: 0 auto; }
+    .caption { margin: 12px 0 36px; font-size: .82rem; line-height: 1.5; color: #7c93b3; }
+    .note { margin: 40px 0 0; font-size: .78rem; line-height: 1.6; color: #5f7695; }
+
+    /* ================= the shapes — colours, widths, dash patterns =====
+       Already finished. These say what each shape LOOKS like; the rules
+       further down say how it MOVES.                                      */
+    .bar-track { stroke: #16304f; stroke-width: 12; stroke-linecap: round; }
+    .bar-run   { stroke: #4da3ff; stroke-width: 12; stroke-linecap: round;
+                 stroke-dasharray: 60 200; }
+
+    .ring-track { fill: none; stroke: #16304f; stroke-width: 10; }
+    .ring-arc   { fill: none; stroke: #22d3ee; stroke-width: 10;
+                  stroke-linecap: round; stroke-dasharray: 25 75; }
+
+    .bolt { fill: none; stroke: #ffc107; stroke-width: 7;
+            stroke-linecap: round; stroke-linejoin: round;
+            stroke-dasharray: 100 100; }
+
+    .ring-a { fill: none; stroke: #a78bfa; stroke-width: 8;
+              stroke-linecap: round; stroke-dasharray: 14 36; }
+    .ring-b { fill: none; stroke: #f472b6; stroke-width: 8;
+              stroke-linecap: round; stroke-dasharray: 6 19; }
+
+    .dot      { fill: #4da3ff; }
+    .skeleton { fill: #4d8ce0; }
+
+    /* ==================================================================
+       THE ANIMATION — your work starts here
+       ================================================================== */
+
+    /* ── Exercise 1 · Sliding bar ────────────────────────────────────────
+         TODO 1 — paste this:
+
+             .bar-run { animation: slide 1.4s linear infinite; }
+
+             @keyframes slide {
+               from { stroke-dashoffset: 0; }
+               to   { stroke-dashoffset: -260; }
+             }
+
+         Why: the blue line is 260 units long (270 − 10) and its dash
+         pattern is 60 ink + 200 gap = 260. Sliding the offset by exactly
+         one cycle returns the pattern to where it started, which is what
+         makes the loop seamless instead of jumping.                  [7 min] */
+
+    /* ── Exercise 2 · Progress ring ──────────────────────────────────────
+         TODO 2 — paste this:
+
+             .ring-arc {
+               transform-origin: 66px 66px;
+               animation: sweep 1.8s ease-in-out infinite,
+                          spin  1.8s linear     infinite;
+             }
+
+             @keyframes sweep {
+              0%   { stroke-dasharray: 2 98; }
+              50%  { stroke-dasharray: 62 38; }
+              100% { stroke-dasharray: 2 98; stroke-dashoffset: -100; }
+             }
+
+             @keyframes spin { to { transform: rotate(360deg); } }
+
+         Why: pathLength="100" on the circle rescales it to 100 units, so
+         "2 98" is a sliver of arc and "62 38" is most of the ring — the
+         arc grows and shrinks. Two animations run at once: the first
+         changes the dash, the second turns the circle.
+
+         Experiment (30 seconds): delete the transform-origin line and
+         look. The ring now swings around the corner of the SVG instead
+         of its own centre. Put the line back. That one line is the
+         difference between a loader and a bug.                      [10 min] */
+
+    /* ── Exercise 3 · Draw-on bolt ───────────────────────────────────────
+         TODO 3 — paste this:
+
+             .bolt { animation: draw 2.2s ease-in-out infinite; }
+
+             @keyframes draw {
+              0%   { stroke-dashoffset: 100; }
+              55%  { stroke-dashoffset: 0; }
+              75%  { stroke-dashoffset: 0; opacity: 1; }
+              100% { stroke-dashoffset: -100; opacity: 0; }
+             }
+
+         Why: pathLength="100" makes the bolt a 100-unit path, so 100 is
+         "all of it hidden" and 0 is "all of it drawn". The 75% stop holds
+         the finished bolt still for a beat, then the last quarter slides
+         it out of its own tail while fading. Try changing 55% to 35% and
+         see how the rhythm changes.                                  [8 min] */
+
+    /* ── Exercise 4 · Double ring ────────────────────────────────────────
+         TODO 4 — paste this:
+
+             .ring-a {
+               transform-origin: 66px 66px;
+               animation: spin-cw 1.4s linear infinite;
+             }
+             .ring-b {
+               transform-origin: 66px 66px;
+               animation: spin-ccw 2.2s linear infinite;
+             }
+
+             @keyframes spin-cw  { to { transform: rotate(360deg); } }
+             @keyframes spin-ccw { to { transform: rotate(-360deg); } }
+
+         Why: same dash trick as exercise 2, but here nothing changes size
+         — the rings only turn. Their dash rhythms differ (14 + 36 = half
+         the ring; 6 + 19 = a quarter), their durations differ, and they
+         turn in opposite directions. Two full turns of the inner ring
+         take 4.4s while the outer takes 2.8s, so the pair never repeats
+         the same pose.                                               [8 min] */
+
+    /* ── Exercise 5 · Pulse dots ─────────────────────────────────────────
+         TODO 5 — paste this:
+
+             .dot {
+               transform-box: fill-box;
+               transform-origin: center;
+               animation: beat 1.2s ease-in-out infinite;
+             }
+             .dot-2 { animation-delay: .2s; }
+             .dot-3 { animation-delay: .4s; }
+
+             @keyframes beat {
+              0%, 100% { transform: scale(.55); opacity: .35; }
+              50%      { transform: scale(1);   opacity: 1; }
+             }
+
+         Why: transform-box: fill-box tells the browser "this shape's own
+         box is the reference", so transform-origin: center means the
+         centre of the dot. Without those two lines each dot grows away
+         from the SVG's top-left corner and the three of them drift apart.
+
+         animation-delay is what makes the dots ripple instead of blink:
+         one animation, three start times.                            [6 min] */
+
+    /* ── Exercise 6 · Skeleton bars ──────────────────────────────────────
+         TODO 6 — paste this:
+
+             .skeleton {
+               animation: breathe 1.6s ease-in-out infinite;
+             }
+             .skeleton-b { animation-delay: .25s; }
+             .skeleton-c { animation-delay: .5s; }
+
+             @keyframes breathe {
+              0%, 100% { opacity: .22; }
+              50%      { opacity: .85; }
+             }
+
+         Why: a skeleton bar stands in for text that has not loaded yet,
+         so it should suggest activity without demanding attention —
+         opacity only, no movement. Three rows, one animation, three
+         delays: the light travels down the list.                     [6 min] */
+
+    /* ── Exercise 7 · Make it yours ──────────────────────────────────────
+         TODO 7 — your own loader, written from scratch. See the long note
+         in the <body> below for the full requirements.              [15 min] */
+
+  </style>
+</head>
+
+<body>
+
+<main>
+
+  <p class="kicker">The Hong Kong Polytechnic University</p>
+
+  <h1>Loading&hellip;</h1>
+
+  <p class="sub">COMP3421 &middot; campus app &middot; connecting to the timetable service</p>
+
+  <!-- ── Exercise 1 · Sliding bar [7 min] ───────────────────────────────
+       The two lines below are the loader. .bar-track is the dark groove,
+       .bar-run is the blue ink that travels along it. Your TODO 1 puts
+       the blue line in motion. -->
+  <svg class="stage" width="280" height="26" viewBox="0 0 280 26">
+    <line class="bar-track" x1="10" y1="13" x2="270" y2="13" />
+    <line class="bar-run"   x1="10" y1="13" x2="270" y2="13" />
+  </svg>
+  <p class="caption">01 &middot; Sliding bar</p>
+
+  <!-- ── Exercise 2 · Progress ring [10 min] ─────────────────────────────
+       The pale circle is the track; the cyan circle is the arc that sweeps
+       around it. Both are r="50" so the ring is 2 × π × 50 ≈ 314 units
+       around — which is why we use pathLength="100" and think in
+       percentages instead. -->
+  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
+    <circle class="ring-track" cx="66" cy="66" r="50" />
+    <circle class="ring-arc" pathLength="100" cx="66" cy="66" r="50" />
+  </svg>
+  <p class="caption">02 &middot; Progress ring</p>
+
+  <!-- ── Exercise 3 · Draw-on bolt [8 min] ──────────────────────────────
+       A <path> drawn with straight-line commands: M (move), L (line),
+       Z (close). Twelve commands, one shape. pathLength="100" is on the
+       <path> itself — it is an attribute, not CSS. -->
+  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
+    <path class="bolt" pathLength="100"
+          d="M68 16 L42 68 L62 68 L56 114 L88 58 L68 58 Z" />
+  </svg>
+  <p class="caption">03 &middot; Draw-on bolt</p>
+
+  <!-- ── Exercise 4 · Double ring [8 min] ───────────────────────────────
+       Two circles, two dash rhythms, two directions. The inner circle sits
+       at r="36" and the outer at r="54", so they never overlap. -->
+  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
+    <circle class="ring-a" pathLength="100" cx="66" cy="66" r="54" />
+    <circle class="ring-b" pathLength="100" cx="66" cy="66" r="36" />
+  </svg>
+  <p class="caption">04 &middot; Double ring</p>
+
+  <!-- ── Exercise 5 · Pulse dots [6 min] ────────────────────────────────
+       Three identical circles. Their r="9" never changes — the animation
+       scales them. Right now they are static and all the same size. -->
+  <svg class="stage" width="200" height="42" viewBox="0 0 200 42">
+    <circle class="dot"       cx="80"  cy="21" r="9" />
+    <circle class="dot dot-2" cx="100" cy="21" r="9" />
+    <circle class="dot dot-3" cx="120" cy="21" r="9" />
+  </svg>
+  <p class="caption">05 &middot; Pulse dots</p>
+
+  <!-- ── Exercise 6 · Skeleton bars [6 min] ─────────────────────────────
+       Three <rect> placeholder rows of different lengths, each with
+       rx="7" so the corners are rounded. Give them the breathing light. -->
+  <svg class="stage" width="280" height="66" viewBox="0 0 280 66">
+    <rect class="skeleton"   x="0" y="0"  width="200" height="14" rx="7" />
+    <rect class="skeleton skeleton-b" x="0" y="26" width="252" height="14" rx="7" />
+    <rect class="skeleton skeleton-c" x="0" y="52" width="164" height="14" rx="7" />
+  </svg>
+  <p class="caption">06 &middot; Skeleton bars</p>
+
+  <!-- ── Exercise 7 · Make it yours ─────────────────────────────────────
+       TODO 7 — your own loader, in the empty <svg> below (132 × 132).
+       This is the marked part of the lab: no two submissions should look
+       alike. Work through (a)–(e):
+
+         (a) SHAPE — you choose. A star, a heart, a crescent, an arrow,
+             a polygon, several circles, or a letter of your own name.
+             Write it as real markup: <circle>, <rect>, <line>, <polygon>
+             or <path>. If you use <path>, keep d= short enough to read.
+
+         (b) COLOUR — your own stroke (or fill). Do not reuse #4da3ff,
+             #22d3ee, #ffc107, #a78bfa, #f472b6 or #4d8ce0 — those are the
+             six colours already on this page. A light colour is best:
+             the page background is #0a1a30, so anything dark will vanish.
+
+         (c) TECHNIQUE — at least one of the three from this lab:
+               · a dash pattern sliding along a path  (stroke-dashoffset)
+               · a shape drawing itself               (dashoffset 100 → 0)
+               · a rotation or a scale                (transform)
+             Combining two is allowed and usually looks better.
+
+         (d) TIMING — a duration between 0.8s and 3s, and `infinite`.
+             ease-in-out, linear or cubic-bezier() — your choice. Say
+             somewhere in a comment why you picked that rhythm.
+
+         (e) KEEP — class="stage" on your <svg> (that is what centres it),
+             and the <p class="caption"> line below it.
+
+       Common mistakes to avoid:
+         · forgetting stroke-linecap="round" — the ends look cut off
+         · putting pathLength on the <style> rule instead of the element
+         · animating `r` or `cx` in CSS instead of using transform
+         · a rotate() with no transform-origin — your shape flies off
+
+       Self-check before you move on:
+         · the page still has exactly one <body>
+         · your loader moves smoothly and loops with no jump
+         · nothing spills outside the card / off the right edge
+         · you can say out loud which property your animation changes    -->
+
+  <svg class="stage" width="132" height="132" viewBox="0 0 132 132">
+  </svg>
+  <p class="caption">07 &middot; Your own loader</p>
+
+  <p class="note">Practice page for COMP3421 &mdash; a made-up app, not a real service.</p>
+
+</main>
+
+</body>
+</html>

@@ -74,6 +74,14 @@
       ]
     },
     {
+      "id": "lab-03-loaders",
+      "name": "Lab 3 · Animate SVG loaders",
+      "desc": "practise @keyframes on SVG shapes — seven loaders, 60 minutes",
+      "examples": [
+        "lab/lab3-loaders"
+      ]
+    },
+    {
       "id": "lecture-04-css-layout",
       "name": "Lecture 4 · CSS II — Box Model & Responsive",
       "desc": "The box model, positioning, backgrounds, media queries",
@@ -178,6 +186,14 @@
           "id": "lab2-poster",
           "name": "Lab 2 — Style a poster",
           "desc": "Your practice file: 19 TODOs, style attributes only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lab3-loaders",
+          "name": "Lab 3 — Animate SVG loaders",
+          "desc": "Your practice file: 7 TODOs — @keyframes on six SVG loaders, plus your own",
           "files": [
             "index.html"
           ]
