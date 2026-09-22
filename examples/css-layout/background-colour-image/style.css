@@ -1,3 +1,12 @@
+/* background-color & background-image — the paint layer of the box model
+   ----------------------------------------------------------------------------
+   The image is a real file next to this page, not an inline SVG:
+
+     img_tree.png   200 x 358, a PNG that is transparent around the tree
+
+   That transparency is the point of the second card: you can see the colour
+   everywhere the file has no pixels. */
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 24px;
@@ -28,8 +37,6 @@ h2.section {
   margin: 6px 0 0;
 }
 
-/* background-color & background-image — the paint layer of the box model */
-
 .card {
   max-width: 420px;
   margin: 0;
@@ -47,19 +54,32 @@ h2.section {
   color: #fff;
 }
 
-/* colour underneath, image in front — a transparent image lets the colour show */
+/* colour underneath, image in front.  The PNG is transparent, so the colour
+   behind it is still doing half the work — and the text is set well clear of
+   the tree, on plain blue. */
 .over {
   background-color: #185fa5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='40' height='40'%3E%3Ccircle cx='20' cy='20' r='4' fill='%23185fa5'/%3E%3C/svg%3E");
-  background-size: 40px 40px;
+  background-image: url("img_tree.png");
+  background-position: right 18px center;
+  background-size: 76px 136px;         /* the tree's own 0.56 aspect ratio */
+  background-repeat: no-repeat;
   color: #fff;
+  min-height: 168px;
+  padding-right: 108px;
 }
 
 /* A dashed edge, so you can see that the background really is painted all the
-   way out to the border box — the dashes have gaps and the colour shows through.
-   background-clip: border-box is the default, which is why. */
-.edge {
+   way out to the border box — the dashes have gaps, and the image shows through
+   them.  background-clip: border-box is the default, which is why.
+
+   There is no text inside this box on purpose: it is the figure, the caption is
+   the paragraph underneath. */
+.edge-box {
+  height: 132px;
+  margin: 14px 0 0;
   background-color: #eef3fb;
+  background-image: url("img_tree.png");
+  background-size: 54px 97px;          /* tiled, so every gap in the dashes is covered */
+  background-repeat: repeat;
   border: 14px dashed #3d7bd9;
-  color: #0e3f8c;
 }

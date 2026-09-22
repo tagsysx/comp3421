@@ -1,3 +1,17 @@
+/* Layered backgrounds — one property, several comma-separated images
+   ----------------------------------------------------------------------------
+   Two real files sit next to this page, not inline SVG:
+
+     img_tree.png      200 x 358   a PNG, transparent around the tree
+     img_flowers.jpg   460 x 345   a photograph, opaque
+
+   The two panels hold exactly the same two layers and differ only in the order
+   of the list, which is the whole point of the example.
+
+   The layers live in a box of their own with no text on it: white-on-a-photo
+   and navy-on-a-photo cannot both be readable, so the caption sits underneath
+   instead — the same shape as a <figure> in a paper. */
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 24px;
@@ -6,20 +20,12 @@ body {
 
 h1 { margin-top: 0; }
 
-h2.section {
-  font-size: 15px;
-  color: #0e3f8c;
-  margin: 28px 0 10px;
-  padding-bottom: 4px;
-  border-bottom: 2px solid #c9d8ef;
-}
-
 .row {
   display: flex;
-  gap: 14px;
+  gap: 18px;
   flex-wrap: wrap;
   align-items: flex-start;
-  margin: 14px 0;
+  margin: 18px 0 12px;
 }
 
 .note {
@@ -28,31 +34,39 @@ h2.section {
   margin: 6px 0 0;
 }
 
-/* Layered backgrounds — one property, several comma-separated images */
-
 .layer {
-  max-width: 360px;
+  flex: 1;
+  min-width: 320px;
+  max-width: 460px;
   margin: 0;
-  padding: 20px;
-  border-radius: 10px;
-  min-height: 140px;
-  background-color: #eef3fb;
   font-size: 13px;
+}
+
+/* the box the two layers are painted in — no text inside */
+.art {
+  height: 176px;
+  margin-bottom: 12px;
+  border-radius: 10px;
+  background-color: #eef3fb;
 }
 
 .layer h3 { margin: 0 0 6px; color: #0e3f8c; font-size: 15px; }
 .layer p  { margin: 0; color: #4a5568; }
 
-/* first listed = frontmost. Each list is matched up by position. */
+/* first listed = frontmost.  Each list is matched up by position, so the first
+   position / size / repeat value belongs to img_tree.png. */
 .stacked {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='9' fill='%23185fa5'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%23b9cdee' stroke-width='3'/%3E%3C/svg%3E");
-  background-position: center, 0 0;
-  background-repeat: no-repeat, repeat;
+  background-image: url("img_tree.png"), url("img_flowers.jpg");
+  background-repeat: repeat, no-repeat;
+  background-position: 0 0, center;
+  background-size: 46px 82px, 150px 113px;
 }
 
-/* the same two images the other way round: now the stripes are in front */
+/* the same two images the other way round: now the photograph is in front and
+   paints over the trees wherever the two overlap */
 .flipped {
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%23b9cdee' stroke-width='3'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='9' fill='%23185fa5'/%3E%3C/svg%3E");
-  background-position: 0 0, center;
-  background-repeat: repeat, no-repeat;
+  background-image: url("img_flowers.jpg"), url("img_tree.png");
+  background-repeat: no-repeat, repeat;
+  background-position: center, 0 0;
+  background-size: 150px 113px, 46px 82px;
 }

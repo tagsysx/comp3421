@@ -1,3 +1,14 @@
+/* the background shorthand
+   ----------------------------------------------------------------------------
+   The background image is a real file next to this page, not an inline SVG:
+
+     img_mountains.jpg   600 x 400, opaque
+
+   The panel is 520 x 150 — 3.5 : 1 against the photo's 1.5 : 1 — so `cover` has
+   to enlarge the picture and crop it.  The declaration is printed under the
+   panel instead of on top of it: white type over a photograph is only readable
+   where the photograph happens to be dark, and this one is mostly sky. */
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 24px;
@@ -14,39 +25,26 @@ h2.section {
   border-bottom: 2px solid #c9d8ef;
 }
 
-.row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin: 14px 0;
-}
-
 .note {
   font-size: 12.5px;
   color: #4a5568;
-  margin: 6px 0 0;
+  margin: 0 0 4px;
+  max-width: 560px;
 }
 
-/* the background shorthand */
-
-.hero {
-  max-width: 460px;
-  margin: 0;
-  padding: 22px;
+/* the figure — a picture box with nothing typed on it */
+.art {
+  max-width: 520px;
+  height: 150px;
+  margin-bottom: 10px;
   border-radius: 10px;
-  min-height: 120px;
-  font-size: 13px;
-  color: #fff;
+  box-sizing: border-box;
 }
-
-.hero h3 { margin: 0 0 6px; font-size: 16px; }
-.hero p  { margin: 0; }
 
 /* five properties, one at a time */
 .longhand {
-  background-color: #185fa5;
-  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%233d7bd9' stroke-width='3'/%3E%3C/svg%3E");
+  background-color: #0e3f8c;
+  background-image: url("img_mountains.jpg");
   background-position: center;
   background-size: cover;
   background-repeat: no-repeat;
@@ -54,14 +52,13 @@ h2.section {
 
 /* the same five values in one declaration, in the same order */
 .shorthand {
-  background: #185fa5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%233d7bd9' stroke-width='3'/%3E%3C/svg%3E") center / cover no-repeat;
+  background: #0e3f8c url("img_mountains.jpg") center / cover no-repeat;
 }
 
 /* The size needs its slash. Without it this whole line is invalid, and the
    element falls back to no background at all — not to "the rest of the values".
    The dashed outline is the only thing you can see, because there is no paint. */
 .broken {
-  background: #185fa5 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%233d7bd9' stroke-width='3'/%3E%3C/svg%3E") center cover no-repeat;
-  color: #4a5568;
+  background: #0e3f8c url("img_mountains.jpg") center cover no-repeat;
   border: 1px dashed #c9d8ef;
 }

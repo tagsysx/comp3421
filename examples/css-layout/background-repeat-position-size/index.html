@@ -7,31 +7,34 @@
 </head>
 <body>
   <h1>background-repeat · position · size</h1>
+  <p>One real image file, copied as many times as the box needs. Three files sit next
+     to this page: <code>img_flowers.jpg</code>, <code>img_tree.png</code> — a PNG
+     whose background is transparent — and <code>img_mountains.jpg</code>.</p>
 
   <h2 class="section">repeat — tiles by default</h2>
   <div class="row">
-    <div class="tile t-repeat">repeat</div>
-    <div class="tile t-x">repeat-x</div>
-    <div class="tile t-y">repeat-y</div>
-    <div class="tile t-none">no-repeat</div>
-    <div class="tile t-space">space</div>
-    <div class="tile t-round">round</div>
+    <div class="box repeat-box t-repeat"><span class="cap">repeat</span></div>
+    <div class="box repeat-box t-x"><span class="cap">repeat-x</span></div>
+    <div class="box repeat-box t-y"><span class="cap">repeat-y</span></div>
+    <div class="box repeat-box t-none"><span class="cap">no-repeat</span></div>
+    <div class="box repeat-box t-space"><span class="cap">space</span></div>
+    <div class="box repeat-box t-round"><span class="cap">round</span></div>
   </div>
 
   <h2 class="section">position — where the image is anchored</h2>
   <div class="row">
-    <div class="tile big p-tl">top left</div>
-    <div class="tile big p-center">center</div>
-    <div class="tile big p-br">bottom right</div>
-    <div class="tile big p-off">40px 20px</div>
+    <div class="box pos-box p-tl"><span class="cap">top left</span></div>
+    <div class="box pos-box p-center"><span class="cap">center</span></div>
+    <div class="box pos-box p-br"><span class="cap">bottom right</span></div>
+    <div class="box pos-box p-off"><span class="cap">40px 20px</span></div>
   </div>
 
   <h2 class="section">size</h2>
   <div class="row">
-    <div class="tile big s-auto">auto</div>
-    <div class="tile big s-contain">contain</div>
-    <div class="tile big s-cover">cover</div>
-    <div class="tile big s-px">80px 80px</div>
+    <div class="box size-box s-auto"><span class="cap">auto</span></div>
+    <div class="box size-box s-contain"><span class="cap">contain</span></div>
+    <div class="box size-box s-cover"><span class="cap">cover</span></div>
+    <div class="box size-box s-px"><span class="cap">80px auto</span></div>
   </div>
 
   <p class="note"><code>cover</code> fills the box and crops the overflow;

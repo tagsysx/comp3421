@@ -29,20 +29,22 @@
 
   <h2 class="section">background-image + size + position</h2>
   <div class="hero">
-    <h3>Repeat, position, size</h3>
-    <p>A tile drawn once, centred, on top of a pale colour.</p>
+    <h3>One real image file</h3>
+    <p><code>img_tree.png</code> — 200 × 358 pixels, transparent around the tree — is
+       drawn once, anchored to the right, over a pale colour. The pale colour is still
+       visible everywhere the file has no pixels.</p>
   </div>
 
   <h2 class="section">the background shorthand</h2>
-  <div class="tile">
-    <h3>One line, five properties</h3>
-    <p>background: #185fa5 url(...) 0 0 / 24px 24px repeat;</p>
-  </div>
+  <div class="tile-band"></div>
+  <p class="note">One line, five properties —
+     <code>background: #185fa5 url("img_tree.png") 0 0 / 34px 61px repeat;</code></p>
 
   <h2 class="section">layered backgrounds</h2>
   <div class="stacked">
     <h3>Two images, one element</h3>
-    <p>The first image sits on top; the colour goes at the very back.</p>
+    <p>The tree is listed first, so it is in front — and it is transparent, which is how
+       you can still see the photograph behind it.</p>
   </div>
 
   <h2 class="section">mix-blend-mode</h2>

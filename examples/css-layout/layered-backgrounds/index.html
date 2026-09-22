@@ -8,17 +8,28 @@
 <body>
   <h1>Layered backgrounds</h1>
   <p>One property, several images, separated by commas. The <strong>first</strong> image in
-     the list is the one closest to you.</p>
+     the list is the one closest to you — here <code>img_tree.png</code> (a transparent
+     PNG) and <code>img_flowers.jpg</code> (a photograph), both real files next to this
+     page.</p>
 
   <div class="row">
-    <div class="layer stacked">
-      <h3>two images + a colour</h3>
-      <p>A big circle, once, centred — over a tiled stripe — over the background colour.</p>
-    </div>
-    <div class="layer flipped">
-      <h3>the same two, swapped</h3>
-      <p>Swap the order in the list and the stripes cover the circle. Nothing else changed.</p>
-    </div>
+    <figure class="layer">
+      <div class="art stacked"></div>
+      <figcaption>
+        <h3>two images + a colour</h3>
+        <p>The tiled tree is in front, the photograph behind it. The tree's
+           transparent background is why you can see both at once.</p>
+      </figcaption>
+    </figure>
+
+    <figure class="layer">
+      <div class="art flipped"></div>
+      <figcaption>
+        <h3>the same two, swapped</h3>
+        <p>Swap the order in the list and the photograph covers the trees. Nothing
+           else changed.</p>
+      </figcaption>
+    </figure>
   </div>
 
   <p class="note">Each layer answers its own list: <code>background-position: center, 0 0;</code>

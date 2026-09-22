@@ -7,25 +7,27 @@
 </head>
 <body>
   <h1>the background shorthand</h1>
+  <p>All three panels below ask for the same thing — <code>img_mountains.jpg</code>,
+     a real photograph sitting next to this page, full-bleed over a dark blue.
+     The declarations are printed underneath rather than on top, so the picture
+     stays a picture.</p>
 
   <h2 class="section">longhand — five properties</h2>
-  <div class="hero longhand">
-    <h3>the long way</h3>
-    <p>background-color, -image, -position, -size and -repeat, written out.</p>
-  </div>
+  <div class="art longhand"></div>
+  <p class="note">background-color, background-image, background-position,
+     background-size and background-repeat, one declaration each.</p>
 
   <h2 class="section">shorthand — the same thing, one line</h2>
-  <div class="hero shorthand">
-    <h3>the short way</h3>
-    <p>Nothing about the panel changes. Only the stylesheet got shorter.</p>
-  </div>
+  <div class="art shorthand"></div>
+  <p class="note"><code>background: #0e3f8c url("img_mountains.jpg") center / cover no-repeat;</code>
+     — nothing about the picture changes. Only the stylesheet got shorter.</p>
 
   <h2 class="section">and the one way that fails</h2>
-  <div class="hero broken">
-    <h3>no slash</h3>
-    <p>This panel declares the same shorthand without the <code>/</code> before the size.
-       The declaration is invalid, so the browser drops it — no colour, no image.</p>
-  </div>
+  <div class="art broken"></div>
+  <p class="note">The same shorthand without the <code>/</code> before the size. The
+     declaration is invalid, so the browser drops it whole — no colour, no image. The
+     dashed outline is the only thing left, because there is no paint at all.</p>
+
   <p class="note">The slash separates <em>where</em> the image sits from <em>how big</em> it
      is. Without it the declaration is thrown away whole — not just the size part.</p>
 </body>

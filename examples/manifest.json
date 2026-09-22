@@ -704,7 +704,9 @@
           "desc": "Colour, gradients, images, layers, blending and the shorthand",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_tree.png",
+            "img_flowers.jpg"
           ]
         },
         {
@@ -805,7 +807,8 @@
           "desc": "one radius, four radii, the slash, and shapes you would not expect",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_flowers.jpg"
           ]
         },
         {
@@ -859,7 +862,8 @@
           "desc": "a flat colour, an image on top of it, and where the paint stops",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_tree.png"
           ]
         },
         {
@@ -868,7 +872,10 @@
           "desc": "repeat / no-repeat / space / round, where it is anchored, how big it is",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_tree.png",
+            "img_flowers.jpg",
+            "img_mountains.jpg"
           ]
         },
         {
@@ -886,7 +893,9 @@
           "desc": "commas, not semicolons — and the first image is on top",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_tree.png",
+            "img_flowers.jpg"
           ]
         },
         {
@@ -895,7 +904,8 @@
           "desc": "five properties in one line, and the slash that cannot be left out",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_mountains.jpg"
           ]
         },
         {
