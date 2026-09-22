@@ -1,26 +1,90 @@
-/* Pseudo-class — a position among siblings, or a form state */
+/* Pseudo-class — a position among siblings, or a form state
+   ---------------------------------------------------------
+   `.feed` has five children of three different tags:
 
-/* the first child of its parent */
-li:first-child {
-  font-weight: bold;
+       1 h3     2 p     3 figure     4 p     5 p
+
+   That mix is the whole point of this page.  :nth-child counts every
+   sibling; :nth-of-type counts only the ones with the same tag.  So the
+   same number, "2", lands on two different paragraphs below. */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
 }
 
-/* 2n = 2, 4, 6 … — a zebra stripe, with no extra classes in the HTML */
-li:nth-child(2n) {
-  background: #EEF3FB;
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 32px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
 }
 
-/* counts only siblings of the same tag */
-li:nth-of-type(3) {
-  color: #1E4FA8;
+.note {
+  font-size: 13px;
+  line-height: 1.5;
+  color: #4a5568;
+  max-width: 46em;
 }
 
-/* everything that does not match */
-p:not(.intro) {
-  color: #4A5568;
+/* the small "child N · tag" badge, so you can count along with the browser */
+.n {
+  font-size: 11px;
+  font-weight: normal;
+  color: #6b7280;
+  white-space: nowrap;
 }
 
-/* the label right after a ticked checkbox */
-input:checked + label {
-  font-weight: bold;
+/* ---- the five children, plainly boxed so the positions are visible ---- */
+.feed {
+  margin: 16px 0 12px;
+  max-width: 34em;
 }
+
+.feed > * {
+  margin: 0 0 8px;
+  padding: 10px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+}
+
+.feed h3 { margin: 0; font-size: 16px; }
+.feed p  { margin: 0; font-size: 13px; }
+
+.feed .pic {
+  height: 44px;
+  margin-bottom: 6px;
+  background: #e6eaf2;
+  border: 1px dashed #9db3d4;
+  color: #4a5568;
+  font-size: 12px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.feed figcaption { font-size: 11px; }
+
+/* ---- position among ALL the siblings, whatever the tag ---- */
+.feed > :first-child { color: #1e4fa8; }
+.feed > :last-child  { color: #1e4fa8; }
+
+/* "2" = the 2nd child.  That child happens to be a <p>, so this matches it. */
+.feed p:nth-child(2) { background: #cfe0f8; }
+
+/* "2" = the 2nd <p>, ignoring the h3 and the figure — that is child 4. */
+.feed p:nth-of-type(2) { background: #ffe08a; }
+
+/* ---- everything that is not .intro ---- */
+.notes p:not(.intro) { color: #4a5568; }
+
+/* the one the rule above leaves alone */
+.notes .intro { font-weight: bold; }
+
+/* ---- a form state, with no JavaScript anywhere ---- */
+input:checked + label { font-weight: bold; }
