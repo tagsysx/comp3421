@@ -61,6 +61,25 @@ h2.section {
 .b3 { border-radius: 100% 0 0 0; }
 .b4 { border-radius: 0 100% 0 0; }
 
+/* The same box the slides draw: 288 x 96 px, so a single radius and a pair of
+   radii can be compared without anything else changing. */
+.wide {
+  width: 288px;
+  height: 96px;
+  margin: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  box-sizing: border-box;
+  font-size: 11.5px;
+  color: #4a5568;
+  background: #eef3fb;
+  border: 2px solid #185fa5;
+}
+
+.w1 { border-radius: 32px; }          /* 32px across, 32px down — a circle */
+.w2 { border-radius: 120px / 16px; }  /* 120px across, 16px down — an ellipse */
+
 /* Four pairs of radii, one pair per corner. These are the same three lines of CSS
    every "blob generator" produces. */
 .c1 { border-radius: 30% 70% 70% 30% / 30% 30% 70% 70%; }

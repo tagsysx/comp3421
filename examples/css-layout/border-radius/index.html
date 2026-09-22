@@ -16,9 +16,10 @@
     <p class="sq r3">50%</p>
     <p class="sq r4">999px</p>
   </div>
-  <p class="note"><code>50%</code> on a square gives a circle; <code>999px</code> on any box
-     gives a pill. Four values go clockwise from the top-left —
-     <code>8px 24px 8px 24px</code> rounds two opposite corners more than the other two.</p>
+  <p class="note"><code>50%</code> on a square gives a circle; <code>999px</code> is clamped to
+     half the shortest side, so a <em>wide</em> box becomes a pill. Four values go clockwise from
+     the top-left — <code>8px 24px 8px 24px</code> rounds two opposite corners more than the
+     other two.</p>
 
   <h2 class="section">the slash — a different radius across and down</h2>
   <div class="row">
@@ -29,6 +30,16 @@
   </div>
   <p class="note">Before the slash: the horizontal radius of each corner. After it: the
      vertical radius. Two numbers instead of eight covers all four corners.</p>
+
+  <h2 class="section">one box, a circle corner then an ellipse corner</h2>
+  <div class="row">
+    <p class="wide w1">border-radius: 32px;</p>
+    <p class="wide w2">border-radius: 120px / 16px;</p>
+  </div>
+  <p class="note">Both boxes are 288 x 96 px. The first corner is a quarter <em>circle</em> — one
+     radius, the same across and down. The second reaches 120px across but only 16px down, so that
+     corner is a quarter <em>ellipse</em>. Same box, same border, same background; only the pair
+     of radii differs.</p>
 
   <h2 class="section">blobs</h2>
   <div class="row">
