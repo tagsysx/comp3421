@@ -59,7 +59,8 @@
         "css-styling/length-units",
         "css-styling/text",
         "css-styling/font",
-        "css-styling/webfont"
+        "css-styling/webfont",
+        "css-cascade/inheritance"
       ]
     },
     {
@@ -101,6 +102,7 @@
         "css-selectors/pseudo-class-structure",
         "css-selectors/pseudo-element",
         "css-cascade/cascade",
+        "css-cascade/placement",
         "css-layout/box-model",
         "css-layout/border-style",
         "css-layout/border-width-colour",
@@ -646,6 +648,25 @@
           "id": "cascade",
           "name": "Cascade & specificity",
           "desc": "Which rule wins, inheritance and !important",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
+,
+        {
+          "id": "placement",
+          "name": "Three ways to add CSS",
+          "desc": "External file, embedded <style>, inline attribute — and who wins",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "inheritance",
+          "name": "Inheritance",
+          "desc": "Colour, font and size flow down; padding, margin and border do not",
           "files": [
             "index.html",
             "style.css"

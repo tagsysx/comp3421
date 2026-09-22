@@ -1,0 +1,49 @@
+/* Inheritance — text properties flow down, box properties stay put */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { color: #0e3f8c; margin-top: 0; }
+
+h2 {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 28px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+code {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.9em;
+  color: #185fa5;
+}
+
+/* The parent. The first three properties inherit; the rest do not. */
+.parent {
+  color: #1e4fa8;              /* inherited */
+  font-family: Georgia, serif; /* inherited */
+  font-size: 18px;             /* inherited */
+  padding: 16px;               /* NOT inherited */
+  margin-bottom: 22px;         /* NOT inherited */
+  border: 2px solid #9dc0ee;   /* NOT inherited */
+  background: #f0f5fc;         /* NOT inherited */
+}
+
+/* a child that declares it itself: the parent's value stops here */
+.own {
+  color: #d9534f;
+}
+
+.parent h3 {
+  margin: 0 0 8px;
+  font-size: 20px;
+}
+
+.plain {
+  margin: 0 0 8px;
+}

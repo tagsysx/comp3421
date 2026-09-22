@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Inheritance</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Inheritance</h1>
+  <p>A property set on a parent is handed down to its children. A child that sets nothing
+     of its own simply uses the parent's value.</p>
+
+  <h2>Colour, font and size flow down</h2>
+  <div class="parent">
+    <h3>This heading declares nothing — it uses the parent's colour and font</h3>
+    <p>So does this paragraph.</p>
+    <div>
+      <p>And this one is two levels down: the value keeps flowing to every descendant.</p>
+    </div>
+    <p class="own">This one sets <code>color: #d9534f</code> itself, so the parent's colour
+       stops here.</p>
+  </div>
+
+  <h2>The box properties do not flow down</h2>
+  <div class="parent">
+    <p class="plain">The parent has padding, a border and a background. This paragraph has
+       none of them, and its own width is not shared either — box properties stay on the
+       element you set them on.</p>
+    <p class="plain">That is why one <code>color</code> on a parent can colour a whole block,
+       but one <code>padding</code> cannot.</p>
+  </div>
+
+  <p class="note">Rule of thumb: the text properties inherit — colour, font, alignment,
+     spacing between letters. The box properties do not — padding, margin, border, width,
+     background.</p>
+</body>
+</html>

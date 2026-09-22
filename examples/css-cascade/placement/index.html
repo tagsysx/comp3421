@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Three ways to add CSS</title>
+
+  <!-- 1 — EXTERNAL: its own .css file, pulled in by <link> -->
+  <link rel="stylesheet" href="style.css" />
+
+  <!-- 2 — EMBEDDED: a <style> block in the head, written AFTER the link -->
+  <style>
+    /* Embedded — the same selector and the same weight as the rule in style.css,
+       but this block comes later in the document, so source order picks this one. */
+    .embedded-wins {
+      color: #185fa5;
+    }
+
+    /* Also here, so the third paragraph is now set by all three homes. */
+    .all-three {
+      color: #185fa5;
+    }
+  </style>
+</head>
+<body>
+  <h1>Three ways to add CSS</h1>
+  <p>One declaration, three homes. The closer the style sits to the element, the
+     stronger it is — and the harder it is to reuse.</p>
+
+  <h2>1 · external — its own file</h2>
+  <p class="external-only">Only <code>style.css</code> styles this paragraph. This is the
+     default: write it once, and every page that links the file gets it.</p>
+
+  <h2>2 · embedded — a <code>&lt;style&gt;</code> block</h2>
+  <p class="embedded-wins">Both <code>style.css</code> and the <code>&lt;style&gt;</code>
+     block set this colour green and blue. Same selector, same weight — the block written
+     <strong>later</strong> wins, so this is blue.</p>
+
+  <h2>3 · inline — the style attribute</h2>
+  <p class="all-three" style="color: #d9534f;">All three homes set this colour. The
+     inline attribute sits on the element itself, so it wins — this is red. It also has to
+     be repeated on every element you want it on.</p>
+
+  <p class="note">View source: the colour of this page comes from three different places,
+     and the two rules that disagree are decided by order — not by importance.</p>
+</body>
+</html>

@@ -1,0 +1,48 @@
+/* The external file — linked from the <head> of index.html
+   ---------------------------------------------------------
+   Everything here loses to a later <style> block with the same selector, and
+   everything everywhere loses to an inline style attribute. */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { color: #0e3f8c; margin-top: 0; }
+
+h2 {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 28px 0 6px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+code {
+  font-family: ui-monospace, Menlo, monospace;
+  font-size: 0.92em;
+  color: #185fa5;
+}
+
+/* only this file sets it */
+.external-only {
+  color: #2e7d32;
+}
+
+/* the embedded block sets this too, and comes later — so the page shows blue,
+   even though this rule is identical apart from the colour */
+.embedded-wins {
+  color: #2e7d32;
+}
+
+/* the embedded block sets this too, and the element also has an inline style */
+.all-three {
+  color: #2e7d32;
+}
+
+.note {
+  color: #4a5568;
+  font-size: 13px;
+}
