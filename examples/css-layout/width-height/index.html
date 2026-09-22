@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Width & height</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>width &amp; height</h1>
+
+  <h2 class="section">a percentage is a share of the parent</h2>
+  <div class="parent">
+    <p class="wh w40">width: 40%</p>
+    <p class="wh w70">width: 70%</p>
+    <p class="wh w100">width: 100%</p>
+  </div>
+
+  <h2 class="section">max-width is a ceiling</h2>
+  <div class="parent">
+    <p class="wh w100 capped">width: 100%; max-width: 320px</p>
+  </div>
+  <p class="note">Shrink the window and the second box stops growing at 320px —
+     <code>max-width</code> wins whenever the two disagree.</p>
+
+  <h2 class="section">height: auto follows the content</h2>
+  <div class="row">
+    <p class="wh h-auto">height: auto — this box is as tall as its text. Add a line and it
+       grows, and nothing has to be recalculated by hand.</p>
+    <p class="wh h-fixed">height: 96px — fixed, so longer text would spill out.</p>
+  </div>
+</body>
+</html>

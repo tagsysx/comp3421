@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Blend modes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>mix-blend-mode</h1>
+  <p>How an element's own content mixes with whatever is painted behind it. Every square
+     below is the same <code>#185fa5</code>, over the same <code>#ffc107</code> —
+     only the mode changes, and the colour under each one is the result.</p>
+
+  <div class="blend-row">
+    <figure class="cell"><figcaption>normal</figcaption>
+      <div class="blend b-normal"></div><p class="hex">#185FA5</p></figure>
+    <figure class="cell"><figcaption>multiply</figcaption>
+      <div class="blend b-multiply"></div><p class="hex">#184805</p></figure>
+    <figure class="cell"><figcaption>screen</figcaption>
+      <div class="blend b-screen"></div><p class="hex">#FFD8A7</p></figure>
+    <figure class="cell"><figcaption>darken</figcaption>
+      <div class="blend b-darken"></div><p class="hex">#185F07</p></figure>
+    <figure class="cell"><figcaption>lighten</figcaption>
+      <div class="blend b-lighten"></div><p class="hex">#FFC1A5</p></figure>
+  </div>
+
+  <p class="note">Nothing here was picked by hand: multiply keeps both colours and goes
+     dark, screen is its opposite, darken and lighten keep one channel at a time.
+     <strong>A blend mode needs something behind it</strong> — put one on a box with a
+     transparent backdrop and nothing happens.</p>
+</body>
+</html>

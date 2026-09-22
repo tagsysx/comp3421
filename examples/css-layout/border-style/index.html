@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Border style</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>border-style</h1>
+  <p>Set a width and a colour but leave the <em>style</em> out and nothing is drawn at
+     all — the style is what makes an edge appear. Here all ten values, 6px thick:</p>
+
+  <h2 class="section">the flat ones</h2>
+  <div class="row">
+    <p class="bs s-none">none</p>
+    <p class="bs s-hidden">hidden</p>
+    <p class="bs s-dotted">dotted</p>
+    <p class="bs s-dashed">dashed</p>
+    <p class="bs s-solid">solid</p>
+    <p class="bs s-double">double</p>
+  </div>
+
+  <h2 class="section">the ones that carve the edge</h2>
+  <div class="row">
+    <p class="bs s-groove">groove</p>
+    <p class="bs s-ridge">ridge</p>
+    <p class="bs s-inset">inset</p>
+    <p class="bs s-outset">outset</p>
+  </div>
+
+  <p class="note"><code>none</code> and <code>hidden</code> both draw nothing.
+     <code>hidden</code> only differs when two borders meet in a table — it loses the
+     argument to its neighbour, <code>none</code> does not. The pale background on the
+     first two is only there so you can see where the box is.</p>
+</body>
+</html>

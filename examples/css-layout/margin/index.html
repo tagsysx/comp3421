@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Margin</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>margin</h1>
+  <p>Margin is the clear space <strong>outside</strong> the edge. Nothing is ever painted
+     there — if you can see a colour, you are looking at padding.</p>
+
+  <h2 class="section">one to four numbers, same order as padding</h2>
+  <div class="row">
+    <p class="mg m1">margin: 8px</p>
+    <p class="mg m2">margin: 8px 32px</p>
+    <p class="mg m3">margin: 8px 32px 24px</p>
+    <p class="mg m4">margin: 8px 32px 24px 4px</p>
+  </div>
+
+  <h2 class="section">0 auto — the centring trick</h2>
+  <div class="parent">
+    <p class="mg centred">margin: 0 auto — equal space on both sides</p>
+  </div>
+
+  <h2 class="section">a negative margin pulls instead of pushes</h2>
+  <div class="pull">
+    <p class="mg pv">margin-bottom: 0</p>
+    <p class="mg pv pulled">margin-top: -12px — this box climbs up over the gap</p>
+  </div>
+
+  <p class="note">A block only centres with <code>margin: 0 auto</code> if it has a
+     <code>width</code> narrower than its parent — otherwise there is no space to share.</p>
+</body>
+</html>

@@ -1,0 +1,58 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 28px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 14px 0;
+}
+
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  margin: 6px 0 0;
+}
+
+/* Layered backgrounds — one property, several comma-separated images */
+
+.layer {
+  max-width: 360px;
+  margin: 0;
+  padding: 20px;
+  border-radius: 10px;
+  min-height: 140px;
+  background-color: #eef3fb;
+  font-size: 13px;
+}
+
+.layer h3 { margin: 0 0 6px; color: #0e3f8c; font-size: 15px; }
+.layer p  { margin: 0; color: #4a5568; }
+
+/* first listed = frontmost. Each list is matched up by position. */
+.stacked {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='9' fill='%23185fa5'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%23b9cdee' stroke-width='3'/%3E%3C/svg%3E");
+  background-position: center, 0 0;
+  background-repeat: no-repeat, repeat;
+}
+
+/* the same two images the other way round: now the stripes are in front */
+.flipped {
+  background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='24' height='24'%3E%3Cpath d='M0 24 L24 0' stroke='%23b9cdee' stroke-width='3'/%3E%3C/svg%3E"), url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='60' height='60'%3E%3Ccircle cx='30' cy='30' r='9' fill='%23185fa5'/%3E%3C/svg%3E");
+  background-position: 0 0, center;
+  background-repeat: repeat, no-repeat;
+}

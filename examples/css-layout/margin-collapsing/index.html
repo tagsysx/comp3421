@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Margin collapsing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Margin collapsing</h1>
+  <p>Two vertical margins that touch do not add up — the larger one wins.</p>
+
+  <h2 class="section">20px below + 30px above = a 30px gap</h2>
+  <div class="stack">
+    <p class="box top">margin-bottom: 20px</p>
+    <p class="box bottom">margin-top: 30px</p>
+  </div>
+  <p class="note">Measure the gap in dev tools: 30px, not 50px.</p>
+
+  <h2 class="section">a parent and its first child collapse too</h2>
+  <div class="frames">
+    <div class="frame">
+      <div class="child">a <code>margin-top: 24px</code> child inside a frame with no
+        padding — the margin escapes the frame and pushes the whole frame down</div>
+    </div>
+    <div class="frame walled">
+      <div class="child">the same child, but the frame has
+        <code>padding-top: 1px</code> — now the margin has something to push against and
+        stays inside</div>
+    </div>
+  </div>
+  <p class="note">Look at the top edge of each frame: in the first one the child's margin
+     has left the frame and become the frame's own, so the grey starts right at the child;
+     in the second it stays put. Not a flex row on purpose — a flex container never
+     collapses, which would hide the whole effect.</p>
+
+  <h2 class="section">side by side they always add up</h2>
+  <div class="sidebyside"><p class="box side left">margin-right: 20px</p><p class="box side right">margin-left: 30px</p></div>
+  <p class="note">Horizontal margins never collapse: the space between these two is 50px.
+     The two tags sit on one source line on purpose — a newline between inline-blocks is a
+     whitespace character, and it would add 5px to the gap.</p>
+</body>
+</html>

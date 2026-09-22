@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Layered backgrounds</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Layered backgrounds</h1>
+  <p>One property, several images, separated by commas. The <strong>first</strong> image in
+     the list is the one closest to you.</p>
+
+  <div class="row">
+    <div class="layer stacked">
+      <h3>two images + a colour</h3>
+      <p>A big circle, once, centred — over a tiled stripe — over the background colour.</p>
+    </div>
+    <div class="layer flipped">
+      <h3>the same two, swapped</h3>
+      <p>Swap the order in the list and the stripes cover the circle. Nothing else changed.</p>
+    </div>
+  </div>
+
+  <p class="note">Each layer answers its own list: <code>background-position: center, 0 0;</code>
+     and <code>background-repeat: no-repeat, repeat;</code> are matched up with the images by
+     position in the list — first value with the first image, and so on.</p>
+</body>
+</html>

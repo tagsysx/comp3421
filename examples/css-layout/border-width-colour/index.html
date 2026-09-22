@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Border width & colour</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>border-width &amp; border-color</h1>
+
+  <h2 class="section">all three parts, or nothing</h2>
+  <div class="row">
+    <p class="bx ok">border: 4px solid #185fa5 — all three parts</p>
+    <p class="bx no-paint">border-width + border-color, no style — nothing is drawn</p>
+  </div>
+
+  <h2 class="section">keywords</h2>
+  <div class="row">
+    <p class="bx k-thin">thin</p>
+    <p class="bx k-medium">medium</p>
+    <p class="bx k-thick">thick</p>
+  </div>
+
+  <h2 class="section">lengths</h2>
+  <div class="row">
+    <p class="bx n-one">border-width: 3px</p>
+    <p class="bx n-two">border-width: 10px 2px</p>
+  </div>
+
+  <p class="note">The <code>border</code> shorthand takes <strong>one</strong> width —
+     it applies to all four edges. For different sides use
+     <code>border-width: 10px 2px;</code> (top/bottom · left/right) and set the style and
+     colour alongside it. Writing <code>border: 10px 2px solid</code> is invalid and the
+     whole declaration is dropped.</p>
+
+  <p class="note">With no style the width does not even survive as a number: the second
+     box declares <code>border-width: 4px</code>, and dev tools will report
+     <code>border-width: 0px</code>. Nothing to draw, so there is nothing to measure.</p>
+</body>
+</html>

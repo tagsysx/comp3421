@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Gradients</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>gradients</h1>
+  <p>A gradient is just an image the browser draws — no file, sharp at any size.</p>
+
+  <h2 class="section">linear-gradient — direction, then the stops</h2>
+  <div class="row">
+    <div class="g g1"><span>to right</span></div>
+    <div class="g g2"><span>to bottom right</span></div>
+    <div class="g g3"><span>45deg, three stops</span></div>
+    <div class="g g4"><span>90deg, hard stops</span></div>
+  </div>
+
+  <h2 class="section">radial-gradient — outward from a centre</h2>
+  <div class="row">
+    <div class="g g5"><span>circle at 30% 30%</span></div>
+    <div class="g g6"><span>circle, three stops</span></div>
+    <div class="g g7"><span>ellipse at center</span></div>
+  </div>
+
+  <p class="note">The angle is measured clockwise from the top, so <code>90deg</code> goes
+     left to right. List two stops or ten — the browser interpolates between them. A
+     repeated gradient is <code>repeating-linear-gradient()</code>.</p>
+</body>
+</html>

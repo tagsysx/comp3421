@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Background repeat, position & size</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>background-repeat · position · size</h1>
+
+  <h2 class="section">repeat — tiles by default</h2>
+  <div class="row">
+    <div class="tile t-repeat">repeat</div>
+    <div class="tile t-x">repeat-x</div>
+    <div class="tile t-y">repeat-y</div>
+    <div class="tile t-none">no-repeat</div>
+    <div class="tile t-space">space</div>
+    <div class="tile t-round">round</div>
+  </div>
+
+  <h2 class="section">position — where the image is anchored</h2>
+  <div class="row">
+    <div class="tile big p-tl">top left</div>
+    <div class="tile big p-center">center</div>
+    <div class="tile big p-br">bottom right</div>
+    <div class="tile big p-off">40px 20px</div>
+  </div>
+
+  <h2 class="section">size</h2>
+  <div class="row">
+    <div class="tile big s-auto">auto</div>
+    <div class="tile big s-contain">contain</div>
+    <div class="tile big s-cover">cover</div>
+    <div class="tile big s-px">80px 80px</div>
+  </div>
+
+  <p class="note"><code>cover</code> fills the box and crops the overflow;
+     <code>contain</code> fits the whole image inside and leaves a gap. Every full-bleed
+     hero image on the web is <code>cover</code>.</p>
+</body>
+</html>

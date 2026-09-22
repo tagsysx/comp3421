@@ -1,0 +1,58 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 28px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 14px 0;
+}
+
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  margin: 6px 0 0;
+}
+
+/* box-sizing — what a declared size measures */
+
+.bx {
+  width: 240px;
+  padding: 20px;
+  border: 6px solid #185fa5;
+  background: #eef3fb;
+  font-size: 12.5px;
+  line-height: 1.5;
+}
+
+/* the default: the declared width is the content box, and the padding and the
+   border are added outside it */
+.content-box {
+  box-sizing: content-box;
+}
+
+/* the declared width is the border box — everything fits inside it */
+.border-box {
+  box-sizing: border-box;
+}
+
+.tag {
+  display: block;
+  font-weight: bold;
+  color: #185fa5;
+  margin-bottom: 6px;
+}

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Background colour & image</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>background-color &amp; background-image</h1>
+
+  <h2 class="section">a flat colour</h2>
+  <div class="row">
+    <div class="card colour">
+      <h3>background-color: #185fa5</h3>
+      <p>One colour behind everything in the box.</p>
+    </div>
+  </div>
+
+  <h2 class="section">an image painted on top of the colour</h2>
+  <div class="row">
+    <div class="card over">
+      <h3>colour + image</h3>
+      <p>The colour is painted first, the image sits in front of it. Where the image is
+         transparent, the colour shows through.</p>
+    </div>
+  </div>
+
+  <h2 class="section">the paint stops at the border</h2>
+  <div class="row">
+    <div class="card edge">
+      <h3>a 14px dashed border, over a background</h3>
+      <p>The background is painted out to the outside of the border — you can see it
+         through the gaps in the dashes. It never crosses into the margin, which is
+         always transparent.</p>
+    </div>
+  </div>
+
+  <p class="note">That last one is the whole box model in one box: the background
+     covers the content, the padding and the border area, the border is drawn on top
+     of it, and the margin outside stays clear.</p>
+</body>
+</html>

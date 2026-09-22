@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>box-sizing</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>box-sizing</h1>
+  <p>Both boxes below declare <code>width: 240px</code>, and both have the same
+     <code>padding</code> and <code>border</code>. They are not the same width.</p>
+
+  <div class="row">
+    <div class="bx content-box">
+      <span class="tag">content-box — the default</span>
+      <code>width: 240px</code> is the <strong>content only</strong>. Padding and the edge
+      are added on top: 240 + 20×2 + 6×2 = 292px.
+    </div>
+    <div class="bx border-box">
+      <span class="tag">border-box</span>
+      <code>width: 240px</code> is the <strong>whole box</strong> — content, padding and
+      edge all fit inside. It stays 240px.
+    </div>
+  </div>
+
+  <p class="note">Most projects set <code>* { box-sizing: border-box; }</code> once at the
+     top of the stylesheet, so a declared width is the width you get. This page does not,
+     because the difference is the whole point of the demo.</p>
+</body>
+</html>

@@ -102,7 +102,22 @@
         "css-selectors/pseudo-element",
         "css-cascade/cascade",
         "css-layout/box-model",
-        "css-layout/backgrounds"
+        "css-layout/border-style",
+        "css-layout/border-width-colour",
+        "css-layout/border-sides",
+        "css-layout/border-radius",
+        "css-layout/padding",
+        "css-layout/margin",
+        "css-layout/margin-collapsing",
+        "css-layout/width-height",
+        "css-layout/box-sizing",
+        "css-layout/backgrounds",
+        "css-layout/background-colour-image",
+        "css-layout/background-repeat-position-size",
+        "css-layout/gradients",
+        "css-layout/layered-backgrounds",
+        "css-layout/background-shorthand",
+        "css-layout/blend-modes"
       ]
     },
     {
@@ -729,6 +744,142 @@
           "id": "variables",
           "name": "CSS variables",
           "desc": "Custom properties --name and var() for theming",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
+,
+        {
+          "id": "border-style",
+          "name": "Border — style",
+          "desc": "solid · dashed · dotted · double · groove … all ten, and none",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "border-width-colour",
+          "name": "Border — width & colour",
+          "desc": "thin / medium / thick, lengths, and why a border needs all three parts",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "border-sides",
+          "name": "Border — sides & number order",
+          "desc": "1, 2, 3 or 4 numbers — always clockwise from the top",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "border-radius",
+          "name": "Border radius — corners",
+          "desc": "one radius, four radii, the slash, and shapes you would not expect",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "padding",
+          "name": "Padding",
+          "desc": "space inside the edge — one value, two, three, four, or one side",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "margin",
+          "name": "Margin",
+          "desc": "space outside the edge — 1-4 numbers, 0 auto, and negative values",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "margin-collapsing",
+          "name": "Margin collapsing",
+          "desc": "two vertical margins that touch become the larger one",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "width-height",
+          "name": "Width & height",
+          "desc": "percentages, max-width, and height: auto",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "box-sizing",
+          "name": "box-sizing",
+          "desc": "what a declared width actually measures",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "background-colour-image",
+          "name": "Background — colour & image",
+          "desc": "a flat colour, an image on top of it, and where the paint stops",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "background-repeat-position-size",
+          "name": "Background — repeat, position & size",
+          "desc": "repeat / no-repeat / space / round, where it is anchored, how big it is",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "gradients",
+          "name": "Gradients",
+          "desc": "linear-gradient, radial-gradient and as many stops as you like",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "layered-backgrounds",
+          "name": "Layered backgrounds",
+          "desc": "commas, not semicolons — and the first image is on top",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "background-shorthand",
+          "name": "Background — shorthand",
+          "desc": "five properties in one line, and the slash that cannot be left out",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "blend-modes",
+          "name": "Blend modes",
+          "desc": "mix-blend-mode — the five results are computed, not chosen",
           "files": [
             "index.html",
             "style.css"

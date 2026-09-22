@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>The background shorthand</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>the background shorthand</h1>
+
+  <h2 class="section">longhand — five properties</h2>
+  <div class="hero longhand">
+    <h3>the long way</h3>
+    <p>background-color, -image, -position, -size and -repeat, written out.</p>
+  </div>
+
+  <h2 class="section">shorthand — the same thing, one line</h2>
+  <div class="hero shorthand">
+    <h3>the short way</h3>
+    <p>Nothing about the panel changes. Only the stylesheet got shorter.</p>
+  </div>
+
+  <h2 class="section">and the one way that fails</h2>
+  <div class="hero broken">
+    <h3>no slash</h3>
+    <p>This panel declares the same shorthand without the <code>/</code> before the size.
+       The declaration is invalid, so the browser drops it — no colour, no image.</p>
+  </div>
+  <p class="note">The slash separates <em>where</em> the image sits from <em>how big</em> it
+     is. Without it the declaration is thrown away whole — not just the size part.</p>
+</body>
+</html>

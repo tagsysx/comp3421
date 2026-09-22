@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Border sides</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Border sides &amp; the number order</h1>
+  <p>One number to four, read clockwise from the top: <strong>top · right · bottom · left</strong>.
+     The colour is set in the same order here so you can see which edge is which —
+     top <span class="c1">#185fa5</span>, right <span class="c2">#3d7bd9</span>,
+     bottom <span class="c3">#0e3f8c</span>, left <span class="c4">#b9cdee</span>.</p>
+
+  <h2 class="section">one, two, three, four</h2>
+  <div class="row">
+    <p class="bs1">border-width: 4px</p>
+    <p class="bs2">border-width: 4px 12px</p>
+    <p class="bs3">border-width: 4px 12px 20px</p>
+    <p class="bs4">border-width: 4px 12px 20px 8px</p>
+  </div>
+
+  <h2 class="section">one side at a time</h2>
+  <div class="row">
+    <p class="bsl">border-left-width: 10px</p>
+    <p class="bsr">border-top-width: 10px</p>
+  </div>
+
+  <p class="note">The same 1-4 order drives <code>padding</code> and <code>margin</code> —
+     learn it once and it works three times.</p>
+</body>
+</html>

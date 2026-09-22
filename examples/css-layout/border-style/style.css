@@ -1,0 +1,58 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 28px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+.row {
+  display: flex;
+  gap: 14px;
+  flex-wrap: wrap;
+  align-items: flex-start;
+  margin: 14px 0;
+}
+
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  margin: 6px 0 0;
+}
+
+/* border-style — the one part of a border you cannot leave out */
+
+.bs {
+  display: inline-block;
+  margin: 0;
+  padding: 10px 18px;
+  border-width: 6px;              /* no border-style here — each class sets its own */
+  border-color: #185fa5;
+  font-size: 13px;
+}
+
+/* nothing is painted */
+.s-none   { border-style: none;   background: #f4f6fa; }
+.s-hidden { border-style: hidden; background: #f4f6fa; }
+
+/* broken lines */
+.s-dotted { border-style: dotted; }
+.s-dashed { border-style: dashed; }
+
+/* unbroken lines */
+.s-solid  { border-style: solid; }
+.s-double { border-style: double; }
+
+/* these four need the thickness — with a thin border they read as solid */
+.s-groove { border-style: groove; }
+.s-ridge  { border-style: ridge; }
+.s-inset  { border-style: inset; }
+.s-outset { border-style: outset; }
