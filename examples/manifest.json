@@ -444,7 +444,7 @@
         {
           "id": "text",
           "name": "Text properties",
-          "desc": "align, decoration, transform, indent, spacing — inline style only",
+          "desc": "align, decoration, spacing, direction, whitespace, vertical-align, shadow — inline style only",
           "files": [
             "index.html"
           ]

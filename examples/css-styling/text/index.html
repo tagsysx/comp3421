@@ -17,5 +17,51 @@
   <a href="#" style="text-decoration: none; color: #185fa5;">
     A link with no underline — <code>text-decoration: none;</code>
   </a>
+
+  <hr />
+
+  <h2 style="color: #185fa5;">direction</h2>
+  <p style="direction: ltr;">Hello World — the line starts on the left — <code>direction: ltr;</code></p>
+  <p style="direction: rtl;">مرحبا بالعالم — the line starts on the right — <code>direction: rtl;</code></p>
+
+  <h2 style="color: #185fa5;">white-space</h2>
+  <p style="white-space: normal;">normal:     three    spaces    collapse to one — <code>white-space: normal;</code></p>
+  <p style="white-space: pre;">pre:     three    spaces    stay, and the line never wraps — <code>white-space: pre;</code></p>
+  <p><code>white-space: nowrap;</code> — the line below runs past the box instead of wrapping:</p>
+  <div style="width: 16em; border: 1px dashed #999; padding: 6px; overflow: hidden;">
+    <p style="white-space: nowrap; margin: 0;">This line refuses to wrap, so it runs past the right edge.</p>
+  </div>
+
+  <h2 style="color: #185fa5;">vertical-align</h2>
+  <p style="font-size: 40px;">
+    <span style="display: inline-block; height: 44px; width: 3px; background: #185fa5;"></span>
+    <span style="font-size: 16px; vertical-align: baseline;">baseline</span> ·
+    <span style="font-size: 16px; vertical-align: middle;">middle</span> ·
+    <span style="font-size: 16px; vertical-align: top;">top</span> ·
+    <span style="font-size: 16px; vertical-align: bottom;">bottom</span>
+  </p>
+  <p>The thin blue bar is the line box. The four labels are the same 16px text, aligned against it four different ways.</p>
+  <p>
+    H<sub style="vertical-align: sub;">2</sub>O and x<sup style="vertical-align: super;">2</sup>
+    — <code>vertical-align: sub;</code> and <code>vertical-align: super;</code>
+  </p>
+
+  <h2 style="color: #185fa5;">text-shadow</h2>
+  <p style="font-size: 22px; text-shadow: 2px 2px 0 #d9534f;">
+    Hard shadow, no blur — <code>text-shadow: 2px 2px 0 #d9534f;</code>
+  </p>
+  <p style="font-size: 22px; text-shadow: 1px 1px 2px #999;">
+    A soft shadow — <code>text-shadow: 1px 1px 2px #999;</code>
+  </p>
+  <p style="font-size: 22px; text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);">
+    Bigger offset, more blur — <code>text-shadow: 4px 4px 8px rgba(0, 0, 0, 0.4);</code>
+  </p>
+  <p style="font-size: 22px; color: #185fa5; text-shadow: 0 0 8px #185fa5;">
+    No offset, only blur — a glow — <code>text-shadow: 0 0 8px #185fa5;</code>
+  </p>
+  <p style="font-size: 22px; text-shadow: 1px 1px 0 #d9534f, 3px 3px 6px rgba(0, 0, 0, 0.35);">
+    Two shadows at once — <code>text-shadow: 1px 1px 0 #d9534f, 3px 3px 6px rgba(0, 0, 0, 0.35);</code>
+  </p>
+  <p>x-offset · y-offset · blur · colour — <code>text-shadow: 4px 4px 8px #999;</code></p>
 </body>
 </html>
