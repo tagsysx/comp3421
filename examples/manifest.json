@@ -117,8 +117,6 @@
         "css-layout/backgrounds",
         "css-layout/background-colour-image",
         "css-layout/background-repeat-position-size",
-        "css-layout/gradients",
-        "css-layout/layered-backgrounds",
         "css-layout/background-shorthand",
         "css-layout/blend-modes"
       ]
