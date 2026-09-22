@@ -1,0 +1,14 @@
+/* General sibling — every <p> AFTER .abc in the same parent */
+
+.abc ~ p {
+  background: #FDF3C8;
+}
+
+/* It only looks forwards: a <p> before .abc is left alone. */
+
+/* (a light box, so you can see which element .abc is) */
+
+.abc {
+  background: #F0F5FC;
+  padding: 12px;
+}

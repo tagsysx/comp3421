@@ -1,0 +1,18 @@
+/* Universal selector — every element, all at once */
+
+/* 1 — the classic reset: no element keeps a default margin or padding */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* 2 — this is why * is a very big brush: one rule paints everything */
+* {
+  color: #1E4FA8;
+}
+
+/* ...and this is the only reason the page has any breathing room at all */
+body {
+  padding: 24px;
+}

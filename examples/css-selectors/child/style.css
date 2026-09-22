@@ -1,0 +1,14 @@
+/* Child — the <p> that is a DIRECT child of .abc … */
+
+.abc > p {
+  font-weight: bold;
+}
+
+/* … so the grandchild stays plain. One level only. */
+
+/* (a light box, so you can see where .abc begins and ends) */
+
+.abc {
+  background: #F0F5FC;
+  padding: 12px;
+}

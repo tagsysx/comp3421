@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Attribute selector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Attribute selector</h1>
+
+  <ul>
+    <li><a href="https://www.polyu.edu.hk/">polyu.edu.hk</a> — <code>a[href^="https"]</code>, <code>a[href*="polyu"]</code></li>
+    <li><a href="https://www.polyu.edu.hk/report.pdf">report.pdf</a> — <code>a[href$=".pdf"]</code></li>
+    <li><a href="https://www.polyu.edu.hk/report.PDF">report.PDF</a> — the <code>i</code> flag makes it match as well</li>
+    <li><a href="/notes.pdf">/notes.pdf</a> — ends with .pdf, but does not start with https</li>
+    <li><a href="#here" target="_blank">a link with target</a> — <code>a[target]</code> and <code>a[target="_blank"]</code></li>
+    <li><a href="#plain">a plain link</a> — no attribute rule matches it</li>
+  </ul>
+
+  <p><span title="a yellow flower">title="a yellow flower"</span> — <code>[title~="flower"]</code></p>
+  <p><span lang="en-GB">lang="en-GB"</span> — <code>[lang|="en"]</code> matches en, and en- anything</p>
+</body>
+</html>

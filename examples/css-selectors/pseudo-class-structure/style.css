@@ -1,0 +1,26 @@
+/* Pseudo-class — a position among siblings, or a form state */
+
+/* the first child of its parent */
+li:first-child {
+  font-weight: bold;
+}
+
+/* 2n = 2, 4, 6 … — a zebra stripe, with no extra classes in the HTML */
+li:nth-child(2n) {
+  background: #EEF3FB;
+}
+
+/* counts only siblings of the same tag */
+li:nth-of-type(3) {
+  color: #1E4FA8;
+}
+
+/* everything that does not match */
+p:not(.intro) {
+  color: #4A5568;
+}
+
+/* the label right after a ticked checkbox */
+input:checked + label {
+  font-weight: bold;
+}

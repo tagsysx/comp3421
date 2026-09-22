@@ -1,0 +1,14 @@
+/* Adjacent sibling — the one element right after .abc */
+
+.abc + p {
+  font-weight: bold;
+}
+
+/* Both elements must share a parent, and nothing may sit between them. */
+
+/* (a light box, so you can see which element .abc is) */
+
+.abc {
+  background: #F0F5FC;
+  padding: 12px;
+}

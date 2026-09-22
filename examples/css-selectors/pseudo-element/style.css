@@ -1,0 +1,28 @@
+/* Pseudo-element — styles a PART of an element */
+
+/* the first letter, twice the size — a drop cap */
+p::first-letter {
+  font-size: 200%;
+}
+
+/* the whole first line, whatever it happens to be */
+p::first-line {
+  font-variant: small-caps;
+}
+
+/* content before an element — the content property is required */
+.note::before {
+  content: "\00BB  ";
+}
+
+h1::after {
+  content: " \2713";
+}
+
+/* the part the user has selected */
+::selection {
+  background: #FFC107;
+}
+
+/* content only works with ::before and ::after — the other pseudo-elements
+   style something that is already there. */

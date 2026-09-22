@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Adjacent sibling selector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Adjacent sibling selector</h1>
+
+  <p>Not matched — this paragraph comes before <code>.abc</code>.</p>
+
+  <div class="abc">Message</div>
+  <p>Matched — the sibling immediately after <code>.abc</code>, same parent.</p>
+
+  <h2>A heading gets in the way</h2>
+  <p>Not matched — a heading sits between <code>.abc</code> and this paragraph, so
+     this one is no longer the neighbour.</p>
+
+  <section>
+    <p>Not matched — this <code>&lt;p&gt;</code> is inside a section, so it is not a sibling of
+       <code>.abc</code> at all.</p>
+  </section>
+</body>
+</html>

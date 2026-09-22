@@ -48,8 +48,8 @@
     },
     {
       "id": "lecture-03-css",
-      "name": "Lecture 3 · CSS I — Styling, Selectors & Cascade",
-      "desc": "Inline styles, stylesheets, selectors, specificity",
+      "name": "Lecture 3 · CSS I — Styling the Web",
+      "desc": "The style attribute, colour, units, text, font & inheritance",
       "examples": [
         "css-styling/showcase",
         "css-styling/colors",
@@ -59,10 +59,7 @@
         "css-styling/length-units",
         "css-styling/text",
         "css-styling/font",
-        "css-styling/webfont",
-        "css-selectors/hello",
-        "css-selectors/selectors",
-        "css-cascade/cascade"
+        "css-styling/webfont"
       ]
     },
     {
@@ -85,24 +82,40 @@
     },
     {
       "id": "lecture-04-css-layout",
-      "name": "Lecture 4 · CSS II — Box Model & Responsive",
-      "desc": "The box model, positioning, backgrounds, media queries",
+      "name": "Lecture 4 · CSS II — Selectors, Cascade & the Box Model",
+      "desc": "How rules target elements, which declaration wins, the parts of a box",
       "examples": [
+        "css-selectors/hello",
+        "css-selectors/selectors",
+        "css-selectors/element",
+        "css-selectors/id",
+        "css-selectors/class",
+        "css-selectors/universal",
+        "css-selectors/grouping",
+        "css-selectors/descendant",
+        "css-selectors/child",
+        "css-selectors/adjacent-sibling",
+        "css-selectors/general-sibling",
+        "css-selectors/attribute",
+        "css-selectors/pseudo-class-state",
+        "css-selectors/pseudo-class-structure",
+        "css-selectors/pseudo-element",
+        "css-cascade/cascade",
         "css-layout/box-model",
-        "css-layout/positioning",
-        "css-layout/backgrounds",
-        "css-layout/responsive"
+        "css-layout/backgrounds"
       ]
     },
     {
       "id": "lecture-05-css-advanced",
-      "name": "Lecture 5 · CSS III — Flexbox, Grid & Motion",
-      "desc": "Flexbox, grid, transforms, animations, CSS variables",
+      "name": "Lecture 5 · CSS III — Layout, Animation & Miscellaneous",
+      "desc": "Flexbox, grid, positioning, responsive, transforms, animations, variables",
       "examples": [
         "css-layout/transform",
         "css-layout/animation",
         "css-layout/flexbox",
         "css-layout/grid",
+        "css-layout/positioning",
+        "css-layout/responsive",
         "css-layout/variables",
         "css-layout/card"
       ]
@@ -485,6 +498,123 @@
           "id": "selectors",
           "name": "Selectors",
           "desc": "Element, class, id, combinators and pseudo-classes",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "element",
+          "name": "Element selector",
+          "desc": "p { } — every paragraph on the page, wherever it sits",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "id",
+          "name": "ID selector",
+          "desc": "#para1 — the one element carrying that id",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "class",
+          "name": "Class selector",
+          "desc": ".center and p.center — the reusable styling hook",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "universal",
+          "name": "Universal selector",
+          "desc": "* { } — every element at once, and the classic reset",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "grouping",
+          "name": "Grouping selectors",
+          "desc": "h1, h2, p { } — one rule, several selectors",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "descendant",
+          "name": "Descendant selector",
+          "desc": ".abc p — a <p> inside .abc, at any depth",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "child",
+          "name": "Child selector",
+          "desc": ".abc > p — only the direct children",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "adjacent-sibling",
+          "name": "Adjacent sibling",
+          "desc": ".abc + p — the sibling immediately after",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "general-sibling",
+          "name": "General sibling",
+          "desc": ".abc ~ p — every later sibling, not just the next one",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "attribute",
+          "name": "Attribute selector",
+          "desc": "a[target] · a[href$=\".pdf\"] — match on an attribute or part of its value",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "pseudo-class-state",
+          "name": "Pseudo-class — states",
+          "desc": ":link :visited :hover :active :focus — styling a state, no JavaScript",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "pseudo-class-structure",
+          "name": "Pseudo-class — structure",
+          "desc": ":first-child :nth-child :nth-of-type :not :checked — position, not state",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "pseudo-element",
+          "name": "Pseudo-elements",
+          "desc": "::first-letter ::first-line ::before ::after ::selection — styling part of an element",
           "files": [
             "index.html",
             "style.css"

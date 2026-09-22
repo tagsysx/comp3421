@@ -1,0 +1,41 @@
+/* Attribute selectors — the HTML already declares it, no extra hook needed */
+
+/* [attr] — the attribute is there, whatever it is set to */
+a[target] {
+  font-weight: bold;
+}
+
+/* [attr="v"] — the value is exactly v */
+a[target="_blank"] {
+  color: #D9534F;
+}
+
+/* [attr~="v"] — v is one whole word in a space-separated list */
+[title~="flower"] {
+  background: #FDF3C8;
+}
+
+/* [attr|="v"] — v exactly, or v- followed by anything */
+[lang|="en"] {
+  font-variant: small-caps;
+}
+
+/* [attr^="v"] — the value begins with v */
+a[href^="https"] {
+  color: #1E4FA8;
+}
+
+/* [attr$="v"] — the value ends with v */
+a[href$=".pdf"] {
+  color: #B26A00;
+}
+
+/* [attr*="v"] — the value contains v */
+a[href*="polyu"] {
+  background: #E8EFF8;
+}
+
+/* add i before the ] for a case-insensitive match */
+a[href$=".PDF" i] {
+  border-bottom: 2px solid #1E4FA8;
+}

@@ -1,0 +1,9 @@
+/* Element selector — every <p> element on the page */
+
+p {
+  text-align: center;
+  color: #1E4FA8;
+}
+
+/* Nothing else is styled: the <h1> and the <section> keep the browser's own
+   look, because only the tag name p matches. */

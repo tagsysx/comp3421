@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Descendant selector</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Descendant selector</h1>
+
+  <div class="abc">
+    <p>Hello there! — one level down, a direct child.</p>
+    <div>
+      <p>And this one is two levels down — still a descendant, so still matched.</p>
+    </div>
+  </div>
+
+  <p>This paragraph is outside <code>.abc</code>, so the space did not reach it.</p>
+</body>
+</html>

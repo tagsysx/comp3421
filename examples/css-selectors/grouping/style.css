@@ -1,0 +1,28 @@
+/* Grouping — one rule for several selectors */
+
+/* three rules, one per element … */
+h1 {
+  text-align: center;
+  color: #1E4FA8;
+}
+
+h2 {
+  text-align: center;
+  color: #1E4FA8;
+}
+
+p {
+  text-align: center;
+  color: #1E4FA8;
+}
+
+/* … become one rule, with no change to the page */
+h1, h2, p {
+  font-weight: bold;
+}
+
+/* A comma is "and also". A space is "inside": there is no <p> inside an <h2>,
+   so this rule matches nothing — compare it with .abc p in the next demo. */
+h2 p {
+  color: #D9534F;
+}

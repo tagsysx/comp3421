@@ -1,0 +1,9 @@
+/* ID selector — the one element with id="para1" */
+
+#para1 {
+  text-align: center;
+  color: #1E4FA8;
+}
+
+/* An id is unique within a page, so this rule can only ever match one element.
+   Save ids for JavaScript and in-page links (#hash). */

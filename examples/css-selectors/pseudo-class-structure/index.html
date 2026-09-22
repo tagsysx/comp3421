@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Pseudo-class — structure</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Pseudo-class — structure</h1>
+
+  <h2>Position among siblings</h2>
+  <ul>
+    <li>first-child — bold</li>
+    <li>2n — shaded</li>
+    <li>nth-of-type(3) — blue</li>
+    <li>2n — shaded</li>
+    <li>fifth</li>
+    <li>2n — shaded</li>
+  </ul>
+
+  <h2>Everything except one</h2>
+  <p class="intro">This paragraph has <code>class="intro"</code>, so <code>p:not(.intro)</code> skips it.</p>
+  <p>This paragraph is grey — it matched <code>p:not(.intro)</code>.</p>
+
+  <h2>Form state</h2>
+  <p><input type="checkbox" id="agree" />
+     <label for="agree">tick the box — <code>input:checked + label</code></label></p>
+</body>
+</html>

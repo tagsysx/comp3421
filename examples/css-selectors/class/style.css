@@ -1,0 +1,15 @@
+/* Class selector — the hook you write in class="…" */
+
+.center {
+  text-align: center;
+}
+
+/* tag it down: only <p> elements carrying the class */
+p.center {
+  color: #1E4FA8;
+}
+
+/* more than one class at a time: class="center large" */
+.large {
+  font-size: 24px;
+}

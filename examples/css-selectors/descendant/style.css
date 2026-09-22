@@ -1,0 +1,12 @@
+/* Descendant — every <p> that sits inside .abc, at any depth */
+
+.abc p {
+  font-weight: bold;
+}
+
+/* (a light box, so you can see where .abc begins and ends) */
+
+.abc {
+  background: #F0F5FC;
+  padding: 12px;
+}
