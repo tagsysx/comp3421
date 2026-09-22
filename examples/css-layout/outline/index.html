@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Outline</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Outline</h1>
+  <p>An outline is a line drawn around an element, <strong>outside the border</strong>, to make it
+     stand out. It is not part of the box: it never changes the element's width or height.</p>
+
+  <h2>A border grows the box — an outline does not</h2>
+  <div class="compare">
+    <div class="spec with-border">
+      <span class="tag">border: 6px</span>
+      <code>offsetWidth</code> grows to <b>256px</b>
+    </div>
+    <div class="spec with-outline">
+      <span class="tag">outline: 6px</span>
+      <code>offsetWidth</code> stays <b>244px</b>
+    </div>
+  </div>
+  <p class="note">Both elements declare the same <code>width: 220px</code>. Dev tools will show the
+     first one 12px wider — the border sits inside the box, the outline sits outside it.</p>
+
+  <h2>outline-style — the same keywords as border-style</h2>
+  <div class="row">
+    <span class="os o-none">none</span>
+    <span class="os o-dotted">dotted</span>
+    <span class="os o-dashed">dashed</span>
+    <span class="os o-solid">solid</span>
+    <span class="os o-double">double</span>
+    <span class="os o-groove">groove</span>
+    <span class="os o-ridge">ridge</span>
+  </div>
+
+  <h2>outline-offset — transparent space between the border and the outline</h2>
+  <div class="row">
+    <span class="box off0">0</span>
+    <span class="box off4">4px</span>
+    <span class="box off12">12px</span>
+    <span class="box offneg">-6px</span>
+  </div>
+  <p class="note">A negative offset pulls the outline <em>over</em> the border — useful when the
+     outline would otherwise collide with a neighbouring element.</p>
+
+  <h2>The reason it exists — a focus ring</h2>
+  <p><button class="focusable">Tab to me, or click me</button>
+     <button class="no-outline">outline: none — do not do this</button></p>
+  <p class="note">The browser draws a focus outline for free. Removing it without putting something
+     else in its place leaves keyboard users with no idea where they are — it is one of the most
+     common accessibility mistakes there is.</p>
+
+  <h2>One ring, no sides</h2>
+  <p class="note">There is no <code>outline-top</code> or <code>outline-left</code>: an outline is a
+     single ring around the whole element. The properties are
+     <code>outline-style</code>, <code>outline-color</code>, <code>outline-width</code>,
+     <code>outline-offset</code>, and the <code>outline</code> shorthand.</p>
+</body>
+</html>

@@ -111,6 +111,7 @@
         "css-layout/padding",
         "css-layout/margin",
         "css-layout/margin-collapsing",
+        "css-layout/outline",
         "css-layout/width-height",
         "css-layout/box-sizing",
         "css-layout/backgrounds",
@@ -901,6 +902,16 @@
           "id": "blend-modes",
           "name": "Blend modes",
           "desc": "mix-blend-mode — the five results are computed, not chosen",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        }
+,
+        {
+          "id": "outline",
+          "name": "Outline",
+          "desc": "A ring outside the border — it never changes the size of the box",
           "files": [
             "index.html",
             "style.css"

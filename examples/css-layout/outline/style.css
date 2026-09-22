@@ -1,0 +1,105 @@
+/* Outline — a line outside the border that is NOT part of the box */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  line-height: 1.55;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { color: #0e3f8c; margin-top: 0; }
+
+h2 {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 30px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+.row { display: flex; gap: 22px; flex-wrap: wrap; align-items: center; margin: 18px 0; }
+.note { font-size: 13px; color: #4a5568; }
+code { font-family: ui-monospace, Menlo, monospace; font-size: 0.92em; color: #185fa5; }
+
+/* ---- border grows the box, outline does not ---------------------------- */
+
+.compare { display: flex; gap: 44px; flex-wrap: wrap; margin: 24px 0; align-items: flex-start; }
+
+.spec {
+  width: 220px;                  /* both declare the same width */
+  box-sizing: content-box;
+  padding: 12px;
+  background: #eef3fb;
+  font-size: 13px;
+}
+
+.with-border {
+  border: 6px solid #185fa5;     /* inside the box: 220 + 24 + 12 = 256px on screen */
+}
+
+.with-outline {
+  outline: 6px solid #d9534f;    /* outside the box: the element stays 244px */
+}
+
+.tag {
+  display: block;
+  font-weight: bold;
+  color: #0e3f8c;
+  margin-bottom: 4px;
+}
+
+/* ---- the style keywords ------------------------------------------------ */
+
+.os {
+  display: inline-block;
+  padding: 10px 16px;
+  background: #eef3fb;
+  font-size: 12.5px;
+  outline-width: 5px;
+  outline-color: #185fa5;
+}
+
+.o-none   { outline-style: none; background: #f4f6fa; }
+.o-dotted { outline-style: dotted; }
+.o-dashed { outline-style: dashed; }
+.o-solid  { outline-style: solid; }
+.o-double { outline-style: double; }
+.o-groove { outline-style: groove; }
+.o-ridge  { outline-style: ridge; }
+
+/* ---- offset ------------------------------------------------------------ */
+
+.box {
+  display: inline-block;
+  padding: 14px 22px;
+  background: #eef3fb;
+  border: 3px solid #185fa5;
+  outline: 3px solid #d9534f;
+  font-size: 12.5px;
+}
+
+.off0   { outline-offset: 0; }
+.off4   { outline-offset: 4px; }
+.off12  { outline-offset: 12px; }
+.offneg { outline-offset: -6px; color: #4a5568; }
+
+/* ---- the real use: a focus ring ---------------------------------------- */
+
+.focusable, .no-outline {
+  font: inherit;
+  padding: 10px 18px;
+  border: 2px solid #185fa5;
+  background: #eef3fb;
+  color: #0e3f8c;
+  margin-right: 12px;
+  cursor: pointer;
+}
+
+.focusable:focus {
+  outline: 3px solid #d9534f;
+  outline-offset: 3px;
+}
+
+.no-outline:focus {
+  outline: none;               /* and nothing put in its place — avoid */
+}
