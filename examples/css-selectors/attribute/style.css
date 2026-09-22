@@ -1,41 +1,113 @@
-/* Attribute selectors — the HTML already declares it, no extra hook needed */
+/* Attribute selectors — the HTML already declares it, no extra hook needed
+   -------------------------------------------------------------------------
+   Five forms, and the last three are the ones that carry their weight:
+
+     [attr]        the attribute is there at all
+     [attr="v"]    the value is exactly v
+
+     [attr^="v"]   the value BEGINS WITH v      <- the three position tests
+     [attr$="v"]   the value ENDS WITH v
+     [attr*="v"]   the value CONTAINS v
+
+   The element name and the attribute name are free: a[href], input[type],
+   abbr[title] — the same three operators work on every attribute. */
+
+/* ---------------------------------------------------------------- shell -- */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 30px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 46em;
+  margin: 0 0 10px;
+}
+
+ul {
+  max-width: 46em;
+  padding-left: 22px;
+}
+
+li {
+  margin-bottom: 10px;
+  line-height: 1.5;
+}
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* ------------------------------------- 1 · [attr] and [attr="v"] -------- */
 
 /* [attr] — the attribute is there, whatever it is set to */
 a[target] {
   font-weight: bold;
 }
 
-/* [attr="v"] — the value is exactly v */
+/* [attr="v"] — the value is exactly v, character for character */
 a[target="_blank"] {
-  color: #D9534F;
+  color: #C0392B;
 }
 
-/* [attr~="v"] — v is one whole word in a space-separated list */
-[title~="flower"] {
-  background: #FDF3C8;
-}
+/* ------------------------------------- 2 · the three position tests ----- */
 
-/* [attr|="v"] — v exactly, or v- followed by anything */
-[lang|="en"] {
-  font-variant: small-caps;
-}
-
-/* [attr^="v"] — the value begins with v */
+/* [attr^="v"] — BEGINS WITH v: every link that leaves over https */
 a[href^="https"] {
   color: #1E4FA8;
 }
 
-/* [attr$="v"] — the value ends with v */
+/* [attr$="v"] — ENDS WITH v: every link that points at a PDF */
 a[href$=".pdf"] {
-  color: #B26A00;
+  color: #9A5B00;
 }
 
-/* [attr*="v"] — the value contains v */
+/* [attr*="v"] — CONTAINS v, anywhere in the value */
 a[href*="polyu"] {
   background: #E8EFF8;
 }
 
-/* add i before the ] for a case-insensitive match */
-a[href$=".PDF" i] {
+/* ------------------------------------- 3 · any element, any attribute --- */
+
+/* the same "contains", on a title instead of a href — no word boundary is
+   needed, which is what * gets you and ^ / $ do not */
+[title*="flower"] {
+  background: #FDF3C8;
+}
+
+/* a prefix on another attribute: date and datetime-local both begin with
+   "date", so one rule styles both */
+input[type^="date"] {
+  border: 2px solid #1E4FA8;
+  border-radius: 4px;
+  padding: 2px 4px;
+}
+
+/* [attr] with no value at all — any element that carries the attribute */
+abbr[title] {
+  text-decoration: underline dotted #1E4FA8;
+  cursor: help;
+}
+
+/* ------------------------------------- 4 · the i flag ------------------- */
+
+/* add i before the ] for a case-insensitive match: .pdf, .PDF, .Pdf */
+a[href$=".pdf" i] {
   border-bottom: 2px solid #1E4FA8;
 }

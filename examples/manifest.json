@@ -603,7 +603,7 @@
         {
           "id": "attribute",
           "name": "Attribute selector",
-          "desc": "a[target] · a[href$=\".pdf\"] — match on an attribute or part of its value",
+          "desc": "a[target] · a[href^=\"https\"] · a[href$=\".pdf\"] · a[href*=\"polyu\"] — match on an attribute, or on where the text sits in its value",
           "files": [
             "index.html",
             "style.css"

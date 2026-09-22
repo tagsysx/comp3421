@@ -8,16 +8,42 @@
 <body>
   <h1>Attribute selector</h1>
 
+  <p class="note">The attribute is already written in the HTML, so this selector needs no extra
+     hook — no class, no id. Three of the forms ask <em>where</em> in the value the text sits:
+     the beginning, the end, or anywhere inside.</p>
+
+  <!-- ========================= 1 ========================= -->
+  <h2 class="section">1 · Is the attribute there, and is it exactly this?</h2>
+
   <ul>
-    <li><a href="https://www.polyu.edu.hk/">polyu.edu.hk</a> — <code>a[href^="https"]</code>, <code>a[href*="polyu"]</code></li>
-    <li><a href="https://www.polyu.edu.hk/report.pdf">report.pdf</a> — <code>a[href$=".pdf"]</code></li>
-    <li><a href="https://www.polyu.edu.hk/report.PDF">report.PDF</a> — the <code>i</code> flag makes it match as well</li>
-    <li><a href="/notes.pdf">/notes.pdf</a> — ends with .pdf, but does not start with https</li>
-    <li><a href="#here" target="_blank">a link with target</a> — <code>a[target]</code> and <code>a[target="_blank"]</code></li>
-    <li><a href="#plain">a plain link</a> — no attribute rule matches it</li>
+    <li><a href="#one" target="_blank">target="_blank"</a> — <code>a[target]</code> matches it, and so does <code>a[target="_blank"]</code> (bold + red)</li>
+    <li><a href="#two">a link with no target</a> — plain, because <code>a[target]</code> no longer matches</li>
   </ul>
 
-  <p><span title="a yellow flower">title="a yellow flower"</span> — <code>[title~="flower"]</code></p>
-  <p><span lang="en-GB">lang="en-GB"</span> — <code>[lang|="en"]</code> matches en, and en- anything</p>
+  <!-- ========================= 2 ========================= -->
+  <h2 class="section">2 · Where in the value — begins with · ends with · contains</h2>
+
+  <ul>
+    <li><a href="https://www.polyu.edu.hk/">https://www.polyu.edu.hk/</a> — <code>a[href^="https"]</code> · <code>a[href*="polyu"]</code></li>
+    <li><a href="https://www.polyu.edu.hk/report.pdf">https://www.polyu.edu.hk/report.pdf</a> — the same two, plus <code>a[href$=".pdf"]</code></li>
+    <li><a href="/notes.pdf">/notes.pdf</a> — only <code>a[href$=".pdf"]</code>: it ends with .pdf, but it is not https and mentions no polyu</li>
+    <li><a href="#three">a link inside this page</a> — none of the three matches it</li>
+  </ul>
+
+  <!-- ========================= 3 ========================= -->
+  <h2 class="section">3 · Any element, any attribute — not only a[href]</h2>
+
+  <ul>
+    <li><span title="a yellow flower">title="a yellow flower"</span> — <code>[title*="flower"]</code> finds the word inside the sentence</li>
+    <li><input type="date" /> <input type="datetime-local" /> — one rule, <code>input[type^="date"]</code>, styles both</li>
+    <li><abbr title="Cascading Style Sheets">CSS</abbr> — <code>abbr[title]</code> draws the dotted line under it</li>
+  </ul>
+
+  <!-- ========================= 4 ========================= -->
+  <h2 class="section">4 · The <code>i</code> flag — ignore case</h2>
+
+  <ul>
+    <li><a href="https://www.polyu.edu.hk/report.PDF">https://www.polyu.edu.hk/report.PDF</a> — only <code>a[href$=".pdf" i]</code> catches it, because of the <code>i</code> before the <code>]</code></li>
+  </ul>
 </body>
 </html>
