@@ -665,10 +665,9 @@
         {
           "id": "inheritance",
           "name": "Inheritance",
-          "desc": "Colour, font and size flow down; padding, margin and border do not",
+          "desc": "Colour, font and size flow down; padding, margin and border do not — every declaration inline, no selectors",
           "files": [
-            "index.html",
-            "style.css"
+            "index.html"
           ]
         }
       ]

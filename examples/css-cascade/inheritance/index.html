@@ -3,35 +3,48 @@
 <head>
   <meta charset="utf-8" />
   <title>Inheritance</title>
-  <link rel="stylesheet" href="style.css" />
 </head>
-<body>
-  <h1>Inheritance</h1>
-  <p>A property set on a parent is handed down to its children. A child that sets nothing
-     of its own simply uses the parent's value.</p>
+<!-- Lecture 3 — no stylesheet and no selectors yet: every declaration in this
+     file sits on the element itself, in a style attribute. Inheritance needs
+     nothing more — a child that declares nothing takes its parent's value. -->
+<body style="font-family: system-ui, -apple-system, sans-serif; line-height: 1.55; margin: 24px; color: #1a2230;">
 
-  <h2>Colour, font and size flow down</h2>
-  <div class="parent">
+  <h1 style="font-size: 26px; color: #0e3f8c; margin: 0 0 10px;">Inheritance</h1>
+  <p style="margin: 0 0 26px;">A property set on a parent is handed down to its children. A child
+     that sets nothing of its own simply uses the parent's value.</p>
+
+  <h2 style="font-size: 15px; color: #0e3f8c; margin: 0 0 10px; padding-bottom: 4px; border-bottom: 2px solid #c9d8ef; text-transform: uppercase; letter-spacing: 0.04em;">
+     Colour, font and size flow down
+  </h2>
+
+  <!-- The parent declares colour, font and size. Now look at the children: not
+       one of them repeats those properties, yet all of them are blue Georgia. -->
+  <div style="color: #1e4fa8; font-family: Georgia, serif; font-size: 18px; padding: 16px; border: 2px solid #9dc0ee; background: #f0f5fc; margin: 0 0 26px;">
     <h3>This heading declares nothing — it uses the parent's colour and font</h3>
     <p>So does this paragraph.</p>
     <div>
       <p>And this one is two levels down: the value keeps flowing to every descendant.</p>
     </div>
-    <p class="own">This one sets <code>color: #d9534f</code> itself, so the parent's colour
-       stops here.</p>
+    <p style="color: #d9534f; margin-bottom: 0;">This one sets <code>color</code> itself, so the
+       parent's colour stops here.</p>
   </div>
 
-  <h2>The box properties do not flow down</h2>
-  <div class="parent">
-    <p class="plain">The parent has padding, a border and a background. This paragraph has
-       none of them, and its own width is not shared either — box properties stay on the
-       element you set them on.</p>
-    <p class="plain">That is why one <code>color</code> on a parent can colour a whole block,
-       but one <code>padding</code> cannot.</p>
+  <h2 style="font-size: 15px; color: #0e3f8c; margin: 0 0 10px; padding-bottom: 4px; border-bottom: 2px solid #c9d8ef; text-transform: uppercase; letter-spacing: 0.04em;">
+     The box properties do not flow down
+  </h2>
+
+  <div style="padding: 16px; border: 2px solid #9dc0ee; background: #f0f5fc; margin: 0 0 26px;">
+    <p style="margin-top: 0;">The parent has padding, a border and a background. This paragraph has
+       none of them, and its own width is not shared either — box properties stay on the element you
+       set them on.</p>
+    <p style="margin-bottom: 0;">That is why one <code>color</code> on a parent can colour a whole
+       block, but one <code>padding</code> cannot.</p>
   </div>
 
-  <p class="note">Rule of thumb: the text properties inherit — colour, font, alignment,
-     spacing between letters. The box properties do not — padding, margin, border, width,
-     background.</p>
+  <p style="padding: 12px 16px; border-left: 4px solid #1e4fa8; background: #eef3fb; margin: 0; font-size: 15px;">
+    Rule of thumb: the text properties inherit — colour, font, alignment, spacing between letters.
+    The box properties do not — padding, margin, border, width, background.
+  </p>
+
 </body>
 </html>
