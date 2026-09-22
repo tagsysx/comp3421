@@ -73,3 +73,14 @@ h2.section {
 .b-screen   { mix-blend-mode: screen; }
 .b-darken   { mix-blend-mode: darken; }
 .b-lighten  { mix-blend-mode: lighten; }
+
+/* the blend formulas, one per mode — the same arithmetic the squares above show */
+.formulas {
+  margin: 0 0 8px;
+  padding-left: 22px;
+  font-size: 13.5px;
+  line-height: 1.7;
+  color: #4a5568;
+}
+
+.formulas code { color: #185fa5; }

@@ -24,6 +24,21 @@
       <div class="blend b-lighten"></div><p class="hex">#FFC1A5</p></figure>
   </div>
 
+  <h2>The arithmetic</h2>
+  <p class="note">Every mode works one channel at a time. <code>a</code> is the layer behind,
+     <code>b</code> the layer on top, both 0 to 255:</p>
+  <ul class="formulas">
+    <li><code>normal</code> — <code>b</code> — the top layer simply wins</li>
+    <li><code>multiply</code> — <code>a * b / 255</code></li>
+    <li><code>screen</code> — <code>255 - (255-a)*(255-b)/255</code></li>
+    <li><code>darken</code> — <code>min(a, b)</code></li>
+    <li><code>lighten</code> — <code>max(a, b)</code></li>
+  </ul>
+  <p class="note">Check one channel: the greens above are 193 (behind) and 95 (on top).
+     Multiply gives 193 × 95 ÷ 255 = 71.9, which rounds to <b>72</b> — and 72 is
+     <code>0x48</code>, the green in <code>#184805</code>. Screen gives
+     255 − 62 × 160 ÷ 255 = 216 = <code>0xD8</code>, the green in <code>#FFD8A7</code>.</p>
+
   <p class="note">Nothing here was picked by hand: multiply keeps both colours and goes
      dark, screen is its opposite, darken and lighten keep one channel at a time.
      <strong>A blend mode needs something behind it</strong> — put one on a box with a
