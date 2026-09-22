@@ -630,10 +630,13 @@
         {
           "id": "pseudo-element",
           "name": "Pseudo-elements",
-          "desc": "::first-letter ::first-line ::before ::after ::selection — styling part of an element",
+          "desc": "::first-letter ::first-line ::before ::after ::selection — plus pictures via content: url()",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "star.svg",
+            "check.png",
+            "underline.svg"
           ]
         }
       ]

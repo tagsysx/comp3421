@@ -1,28 +1,209 @@
-/* Pseudo-element — styles a PART of an element */
+/* Pseudo-elements — styling a part of an element you never wrote
+   -------------------------------------------------------------
+   Every picture on this page is placed by this file:
 
-/* the first letter, twice the size — a drop cap */
-p::first-letter {
-  font-size: 200%;
+       star.svg        24 x 24 vector — handed to `content: url()`
+       check.png       24 x 24 raster — sized by `background-size`
+       underline.svg   120 x 10 vector — stretched to the width of a word
+
+   index.html contains no <img> element at all.  Open both files and compare
+   them side by side: the markup says what the content *is*, the stylesheet
+   says what it *looks like*. */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
 }
 
-/* the whole first line, whatever it happens to be */
-p::first-line {
-  font-variant: small-caps;
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 32px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
 }
 
-/* content before an element — the content property is required */
-.note::before {
-  content: "\00BB  ";
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
 }
 
-h1::after {
-  content: " \2713";
+/* explanatory paragraphs — and the marker demo below is why they all start
+   with a chevron */
+.note, .hint {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 46em;
+  margin: 0 0 10px;
 }
+
+/* ---- the shell every demo uses: a live stage, plus the rule behind it ---- */
+.demo { margin: 16px 0 22px; max-width: 46em; }
+
+.demo .stage {
+  position: relative;
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+}
+
+.demo .stage > :first-child { margin-top: 0; }
+.demo .stage > :last-child  { margin-bottom: 0; }
+
+.demo .rule {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #6b7280;
+  margin: 7px 0 0;
+}
+.demo .rule code { color: #1e4fa8; }
+
+/* ================== 1. parts of what you already wrote ==================
+   Scoped to .prose on purpose: a bare `p::first-letter` would also blow up
+   the first letter of every caption on this page. */
+
+.prose p::first-letter { font-size: 200%; }
+.prose p::first-line   { font-variant: small-caps; }
 
 /* the part the user has selected */
-::selection {
-  background: #FFC107;
+::selection { background: #FFC107; }
+
+/* ================== 2. content that only exists in the CSS ================== */
+
+/* the title checkmark */
+h1::after { content: " \2713"; color: #2E9E5B; }
+
+/* the chevron in front of every note on this page */
+.note::before { content: "\00BB  "; color: #1e4fa8; font-weight: bold; }
+
+.stage p.sub {
+  font-size: 12px;
+  color: #6b7280;
+  margin: 8px 0 0;
 }
 
-/* content only works with ::before and ::after — the other pseudo-elements
-   style something that is already there. */
+/* ================== 3. images ================== */
+
+/* --- 3a: the picture as the value of content --- */
+.star { font-size: 15px; margin: 0 0 10px; }
+.star::after { content: url("star.svg"); }
+
+/* --- 3b: an empty box you fill with a background --- */
+.checks {
+  list-style: none;          /* switch the built-in bullet off first */
+  margin: 0;
+  padding: 0;
+}
+
+.checks li {
+  font-size: 13px;
+  line-height: 1.6;
+}
+
+.checks li + li { margin-top: 6px; }
+
+.checks li::before {
+  content: "";
+  display: inline-block;
+  width: 18px;
+  height: 18px;
+  margin-right: 8px;
+  vertical-align: -4px;
+  background: url("check.png") center / contain no-repeat;
+}
+
+/* --- 3c: a picture stretched under one word --- */
+.lined { font-size: 13px; line-height: 1.7; margin: 0; }
+
+.hl { position: relative; }
+
+.hl::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  right: 0;
+  bottom: -5px;
+  height: 7px;
+  background: url("underline.svg") no-repeat;
+  background-size: 100% 100%;    /* stretch the 120 x 10 stroke to the word */
+}
+
+/* ================== 4. content read out of the HTML ================== */
+
+.toolrow { margin: 0; padding: 4px 0 42px; }
+
+.tag {
+  position: relative;
+  display: inline-block;
+  padding: 3px 10px;
+  background: #eef3fb;
+  border: 1px solid #c9d8ef;
+  border-radius: 3px;
+  font-size: 12px;
+  color: #1e4fa8;
+}
+.tag + .tag { margin-left: 10px; }
+
+.tag::after {
+  content: attr(data-hint);
+  position: absolute;
+  left: 0;
+  top: 100%;
+  margin-top: 7px;
+  padding: 5px 9px;
+  background: #0e3f8c;
+  color: #ffffff;
+  border-radius: 3px;
+  font-size: 11.5px;
+  white-space: nowrap;
+  opacity: 0;
+}
+
+.tag:hover::after,
+.tag.pinned::after { opacity: 1; }
+
+/* ================== 5. a shape drawn with borders ================== */
+
+.bubble {
+  position: relative;
+  width: fit-content;
+  margin: 0 0 16px;
+  padding: 12px 16px;
+  background: #0e3f8c;
+  border-radius: 8px;
+  font-size: 13px;
+  line-height: 1.6;
+  color: #ffffff;
+}
+
+/* the page's own <code> colour is navy -- on this navy box it would vanish */
+.bubble code { color: #ffffff; }
+
+.bubble::after {
+  content: "";
+  position: absolute;
+  left: 30px;
+  top: 100%;                    /* the 16px box starts at the bubble's bottom edge */
+  border: 8px solid transparent;
+  border-top-color: #0e3f8c;    /* ...and only its top triangle is painted */
+}
+
+/* ================== 6. what they cannot do ================== */
+
+.gotchas {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4a5568;
+  max-width: 46em;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.gotchas li + li { margin-top: 7px; }
+.gotchas b { color: #1a2230; }

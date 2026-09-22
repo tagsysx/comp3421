@@ -8,13 +8,143 @@
 <body>
   <h1>Pseudo-elements</h1>
 
-  <p>The first letter of this paragraph is twice the size, and the first line is set in
-     small caps — both without touching the HTML.</p>
+  <p class="note">A pseudo-element styles a <b>part</b> of an element — a part you never wrote.
+     The browser builds it, and it vanishes the moment the rule goes away. Two colons:
+     <code>::</code> is a part, <code>:</code> is a state.</p>
 
-  <p>A second paragraph gets the same treatment, because the rules are not tied to a class.</p>
+  <!-- ========================= 1 ========================= -->
+  <h2 class="section">1 — Parts of text you already have</h2>
 
-  <p class="note">A note — the » before this line is inserted by ::before.</p>
+  <section class="prose">
+    <p>The first letter of this paragraph is twice the size, and the first line is set in
+       small caps — both without touching the HTML.</p>
 
-  <p><small>Drag across the text on this page to see ::selection.</small></p>
+    <p>A second paragraph gets the same treatment, because the rules are not tied to a class.</p>
+  </section>
+
+  <p class="hint">Drag across the text on this page to see <code>::selection</code>.</p>
+
+  <!-- ========================= 2 ========================= -->
+  <h2 class="section">2 — ::before and ::after: content you never wrote</h2>
+
+  <p class="note">Both of them need <code>content</code>. Without it the rule is silent — the
+     pseudo-element is never generated, and it takes up no room at all. Note that the string
+     <code>"\00BB  "</code> carries <b>two</b> spaces: the first one ends the <code>\00BB</code>
+     escape sequence, so only the second one reaches the page.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <p class="note">This line starts with a mark that exists only in the CSS.</p>
+      <p class="note">So does the line before it, and every other note on this page — one
+         rule, every element carrying the class.</p>
+      <p class="sub">The page title has one too:
+         <code>h1::after { content: " \2713"; color: #2E9E5B; }</code></p>
+    </div>
+    <p class="rule"><code>.note::before { content: "\00BB  "; color: #1e4fa8;
+       font-weight: bold; }</code> — the same rule is drawing the chevron at the start of
+       every grey note on this page.</p>
+  </div>
+
+  <!-- ========================= 3 ========================= -->
+  <h2 class="section">3 — Putting a picture in, three ways</h2>
+
+  <p class="note">The three pictures below are the files <code>star.svg</code>,
+     <code>check.png</code> and <code>underline.svg</code>, sitting next to this page — and
+     there is no <code>&lt;img&gt;</code> element anywhere in this document. All three are
+     placed by the stylesheet.</p>
+
+  <!-- 3a — content: url() -->
+  <div class="demo">
+    <div class="stage">
+      <h3 class="star">Starred heading — the picture is one declaration away</h3>
+      <h3 class="star">A shorter one</h3>
+    </div>
+    <p class="rule"><code>.star::after { content: url("star.svg"); }</code> — the picture is the
+       <em>value</em> of the property, so it obeys the rules of inline content: it sits on the
+       text baseline, the 24 × 24 SVG brings its own size, and the heading's line box grows to
+       make room for it.</p>
+  </div>
+
+  <!-- 3b — content:"" + background-image -->
+  <div class="demo">
+    <div class="stage">
+      <ul class="checks">
+        <li><code>content: ""</code> generates an empty box that you are allowed to size.</li>
+        <li><code>background-image</code> puts the picture inside that box.</li>
+        <li><code>background-size</code> decides how big the picture is drawn.</li>
+      </ul>
+    </div>
+    <p class="rule"><code>.checks { list-style: none; margin: 0; padding: 0; }</code> — the
+       built-in bullet is switched off first, so the tick is the only mark left.</p>
+    <p class="rule"><code>.checks li::before { content: ""; display: inline-block;
+       width: 18px; height: 18px; margin-right: 8px; vertical-align: -4px;
+       background: url("check.png") center / contain no-repeat; }</code></p>
+  </div>
+
+  <!-- 3c — a picture stretched to fit a word -->
+  <div class="demo">
+    <div class="stage">
+      <p class="lined">The word <span class="hl">highlighted</span> wears a second SVG
+         underneath it — a marker stroke that stretches to whatever width the word turns
+         out to be.</p>
+    </div>
+    <p class="rule"><code>.hl { position: relative; }</code></p>
+    <p class="rule"><code>.hl::after { content: ""; position: absolute; left: 0; right: 0;
+       bottom: -5px; height: 7px; background: url("underline.svg") no-repeat;
+       background-size: 100% 100%; }</code> — zero pixels of HTML were added around that word.</p>
+  </div>
+
+  <!-- ========================= 4 ========================= -->
+  <h2 class="section">4 — Content that comes from the HTML</h2>
+
+  <p class="note">The value does not have to be a string you typed into the CSS.
+     <code>attr()</code> reads it out of an attribute instead — which is how tooltips and
+     badges were built long before anybody reached for JavaScript.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <p class="toolrow">
+        <span class="tag" data-hint="Read out of this element's own attribute">hover me</span>
+        <span class="tag pinned" data-hint="The same rule, opacity forced to 1">this one is pinned</span>
+      </p>
+    </div>
+    <p class="rule"><code>.tag::after { content: attr(data-hint); position: absolute; left: 0;
+       top: 100%; opacity: 0; }</code> — <code>content</code> reads the attribute and
+       <code>opacity</code> hides it; everything else in that block is paint, placement and
+       spacing.</p>
+    <p class="rule"><code>.tag:hover::after, .tag.pinned::after { opacity: 1; }</code> — a
+       pseudo-class switching a pseudo-element on, with the wording left in the markup where
+       somebody can edit it.</p>
+  </div>
+
+  <!-- ========================= 5 ========================= -->
+  <h2 class="section">5 — Not every mark needs a picture</h2>
+
+  <p class="note">A shape you can draw with borders is a shape you do not have to download.
+     The tail under this box is four transparent borders with only the top one coloured.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <p class="bubble">This box is an ordinary paragraph. The tail below it is an
+         <code>::after</code> with nothing in it but borders.</p>
+    </div>
+    <p class="rule"><code>.bubble::after { content: ""; position: absolute; left: 30px;
+       top: 100%; border: 8px solid transparent; border-top-color: #0e3f8c; }</code></p>
+  </div>
+
+  <!-- ========================= 6 ========================= -->
+  <h2 class="section">6 — What they cannot do</h2>
+
+  <ul class="gotchas">
+    <li><b>No <code>content</code>, no pseudo-element.</b> The rule parses, looks harmless, and
+        does nothing at all — the quietest failure in this whole chapter.</li>
+    <li><b>One of each, per element.</b> An element can have a <code>::before</code> and an
+        <code>::after</code>, and no more.</li>
+    <li><b>Not in the DOM.</b> <code>querySelector</code> cannot find them, selecting the text
+        does not copy them, and you cannot nest one inside another.</li>
+    <li><b>Decorative by default.</b> Screen readers do not reliably announce generated text,
+        and <code>content: url()</code> carries no text alternative. If a picture carries
+        meaning, write a real <code>&lt;img&gt;</code> with a real <code>alt</code>.</li>
+  </ul>
 </body>
 </html>
