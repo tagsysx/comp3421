@@ -1,0 +1,222 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Image Sprites</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Image Sprites</h1>
+
+  <p class="note">A box paints its background inside its padding edge, and
+     <code>background-position</code> decides which part of the picture lands in there.
+     Put those two facts together and one file becomes a hundred pictures: make the box
+     exactly one cell, then slide the background by whole cells. The two files next to
+     this page hold <b>102</b> pictures between them — twelve animation frames and ninety
+     icons — and no element on this page is an <code>&lt;img&gt;</code>.</p>
+
+  <!-- ========================= 1 ========================= -->
+  <h2 class="section">1 — The file is the gallery</h2>
+
+  <p class="note">Both sheets were re-cut onto an exact grid, so that one cell is a whole
+     number of pixels. The red square marks one cell of the first sheet: everything below
+     is that square, moved around.</p>
+
+  <div class="demo">
+    <div class="stage sheets">
+      <figure class="sheet">
+        <div class="grid" style="--cell:96px">
+          <img src="character.png" width="384" height="288"
+               alt="Twelve poses of a low-poly figure: four facings across, three rows down" />
+          <span class="mark" style="--col:0;--row:0"></span>
+        </div>
+        <figcaption><code>character.png</code> — 512 × 384, twelve frames of 128 × 128</figcaption>
+      </figure>
+      <figure class="sheet">
+        <div class="grid" style="--cell:48px">
+          <img src="icons.png" width="480" height="432"
+               alt="Ninety round platform icons, ten across and nine down" />
+        </div>
+        <figcaption><code>icons.png</code> — 960 × 864, ninety icons of 96 × 96</figcaption>
+      </figure>
+    </div>
+    <p class="rule">The grid is two <code>repeating-linear-gradient</code> layers drawn by this
+       page, not pixels saved into the file: <code>--cell: 96px</code> is a number we chose, and
+       the browser draws a line every 96 px on top of the picture.</p>
+  </div>
+
+  <!-- ========================= 2 ========================= -->
+  <h2 class="section">2 — The box is a window onto the file</h2>
+
+  <p class="note">Six identical boxes, six different pictures, one file, one declaration
+     different. Nothing is cropped, nothing is copied: the background is simply slid further
+     up and to the left.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <div class="frames">
+        <figure><span class="frame" style="--pos:0 0"></span><figcaption>0 0</figcaption></figure>
+        <figure><span class="frame" style="--pos:-128px 0"></span><figcaption>-128px 0</figcaption></figure>
+        <figure><span class="frame" style="--pos:-256px 0"></span><figcaption>-256px 0</figcaption></figure>
+        <figure><span class="frame" style="--pos:-384px 0"></span><figcaption>-384px 0</figcaption></figure>
+      </div>
+      <div class="frames">
+        <figure><span class="frame" style="--pos:0 -128px"></span><figcaption>0 -128px</figcaption></figure>
+        <figure><span class="frame" style="--pos:0 -256px"></span><figcaption>0 -256px</figcaption></figure>
+      </div>
+    </div>
+    <p class="rule"><code>.frame { width: 128px; height: 128px;
+       background: url("character.png") no-repeat var(--pos); }</code></p>
+    <p class="rule">The numbers are negative on purpose. The picture slides up and left
+       <em>behind</em> the box, so the cell you want moves into view. <code>0 -256px</code> is
+       the third row down, second column in — the box never moves.</p>
+  </div>
+
+  <div class="demo">
+    <div class="stage">
+      <div class="frames">
+        <figure><span class="frame tiled"></span><figcaption>default: <code>repeat</code></figcaption></figure>
+        <figure><span class="frame"></span><figcaption><code>no-repeat</code></figcaption></figure>
+      </div>
+    </div>
+    <p class="rule">Leave out <code>no-repeat</code> and the sheet tiles across the box — the
+       neighbours on the shelf come along. A sprite box is always
+       <code>no-repeat</code>, because the file is a shelf, not a texture.</p>
+  </div>
+
+  <!-- ========================= 3 ========================= -->
+  <h2 class="section">3 — Frames in motion</h2>
+
+  <p class="note">An animation is nothing but a list of <code>background-position</code>
+     values. <code>steps(4)</code> is the timing function that makes a strip look like a
+     sprite rather than a slow slide: four frames, no blending, no in-between. The row is
+     <code>4 × 128px = 512px</code> wide, and that is how far the background travels.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <div class="frames">
+        <figure><span class="hero r1"></span><figcaption>row 1 — standing</figcaption></figure>
+        <figure><span class="hero r2"></span><figcaption>row 2 — working</figcaption></figure>
+        <figure><span class="hero r3"></span><figcaption>row 3 — arms out</figcaption></figure>
+        <figure><span class="hero down"></span><figcaption>one column, three rows</figcaption></figure>
+      </div>
+    </div>
+    <p class="rule"><code>.hero { --s: 1; --c: 0; --r: 0;
+       width: calc(128px * var(--s)); height: calc(128px * var(--s));
+       background: url("character.png") no-repeat;
+       background-size: calc(512px * var(--s)) calc(384px * var(--s));
+       animation: face 1.2s steps(4) infinite; }</code></p>
+    <p class="rule"><code>@keyframes face {
+       from { background-position: 0 calc(var(--r) * -128px * var(--s)); }
+       to { background-position: calc(-512px * var(--s))
+                                        calc(var(--r) * -128px * var(--s)); } }</code></p>
+    <p class="rule">The row and the column are <em>indices</em> here, not pixel offsets —
+       <code>.r2 { --r: 1; }</code> — so one set of keyframes drives three different
+       animations out of one file, and <code>--s</code> scales the frames and the travel
+       together. Count the steps wrong and the frames drift inside the cell; count them
+       right and each one lands exactly on it.</p>
+    <p class="rule">The fourth box runs <em>down</em> the sheet instead: same idea,
+       <code>@keyframes action</code> with <code>steps(3)</code>, and the travel on the
+       other axis — <code>calc(-384px * var(--s))</code>, three rows of three. The axis is
+       just an axis.</p>
+  </div>
+
+  <!-- ========================= 4 ========================= -->
+  <h2 class="section">4 — Ninety icons, one download</h2>
+
+  <p class="note">Every icon here is the same 44 KB file. A cell is 96 px, so an icon's
+     position is <code>column × −96px</code> and <code>row × −96px</code> — the arithmetic a
+     build tool would normally do for you when it packs the sheet.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <p class="icons">
+        <span class="ic" style="--c:0;--r:0" title="Facebook"></span>
+        <span class="ic" style="--c:1;--r:0" title="X"></span>
+        <span class="ic" style="--c:2;--r:0" title="LinkedIn"></span>
+        <span class="ic" style="--c:5;--r:0" title="Instagram"></span>
+        <span class="ic" style="--c:4;--r:0" title="YouTube"></span>
+        <span class="ic" style="--c:3;--r:1" title="Reddit"></span>
+        <span class="ic" style="--c:0;--r:3" title="Telegram"></span>
+        <span class="ic" style="--c:1;--r:3" title="WhatsApp"></span>
+        <span class="ic" style="--c:5;--r:8" title="GitHub"></span>
+        <span class="ic" style="--c:4;--r:4" title="Apple"></span>
+        <span class="ic" style="--c:9;--r:4" title="Location"></span>
+        <span class="ic" style="--c:5;--r:5" title="Link"></span>
+        <span class="ic" style="--c:7;--r:5" title="RSS feed"></span>
+        <span class="ic" style="--c:9;--r:5" title="Email"></span>
+        <span class="ic" style="--c:6;--r:7" title="Line"></span>
+        <span class="ic" style="--c:5;--r:7" title="Paw"></span>
+      </p>
+    </div>
+    <p class="rule"><code>.ic { width: 48px; height: 48px;
+       background: url("icons.png") no-repeat; background-size: 480px 432px;
+       background-position: calc(var(--c) * -48px) calc(var(--r) * -48px); }</code></p>
+    <p class="rule">Hover one. The picture becomes a different cell of the same file — no
+       request, nothing to wait for. That is where sprites came from: a button's normal and
+       hover state in one download, so the second state was in the cache before the pointer
+       ever arrived. The names above come from <code>title</code> in the markup, because a
+       background image cannot carry text of its own.</p>
+  </div>
+
+  <!-- ========================= 5 ========================= -->
+  <h2 class="section">5 — One variable, every size</h2>
+
+  <p class="note">The cell and the file scale together, so a single number resizes every
+     frame. You never resize a frame — you resize the sheet and let each window follow.</p>
+
+  <div class="demo">
+    <div class="stage">
+      <p class="icons">
+        <span class="ic s24" style="--c:0;--r:0"></span>
+        <span class="ic s48" style="--c:0;--r:0"></span>
+        <span class="ic s72" style="--c:0;--r:0"></span>
+        <span class="ic s24" style="--c:5;--r:8"></span>
+        <span class="ic s48" style="--c:5;--r:8"></span>
+        <span class="ic s72" style="--c:5;--r:8"></span>
+        <span class="ic s24" style="--c:9;--r:5"></span>
+        <span class="ic s48" style="--c:9;--r:5"></span>
+        <span class="ic s72" style="--c:9;--r:5"></span>
+      </p>
+      <p class="icons">
+        <span class="hero mini"></span>
+      </p>
+    </div>
+    <p class="rule"><code>.ic { --s: 0.5; width: calc(96px * var(--s)); height: calc(96px * var(--s));
+       background-size: calc(960px * var(--s)) calc(864px * var(--s));
+       background-position: calc(var(--c) * -96px * var(--s))
+                            calc(var(--r) * -96px * var(--s)); }</code></p>
+    <p class="rule"><code>.s24 { --s: 0.25; }  .s48 { --s: 0.5; }  .s72 { --s: 0.75; }</code>
+       — 24, 48 and 72 px out of the same 960 × 864 file. The browser resamples the whole
+       sheet once and every window into it stays sharp, which is why one file serves a 24 px
+       toolbar and a 72 px card equally well.</p>
+    <p class="rule">The little one at the end is the animation at a quarter size:
+       <code>.hero.mini { --s: 0.375; }</code> — a 48 px sprite, the same keyframes, the same
+       file. Geometry and motion are the same <code>calc()</code>, so they cannot disagree.</p>
+  </div>
+
+  <!-- ========================= 6 ========================= -->
+  <h2 class="section">6 — What it costs, and when not to</h2>
+
+  <ul class="gotchas">
+    <li><b>One request instead of a hundred.</b> Ninety separate icon files would be ninety
+        requests. <code>icons.png</code> is 44 KB, fetched once, and the browser draws all
+        ninety out of its own image cache.</li>
+    <li><b>Every cell has to be the same shape.</b> The circles in this file are 109–118 px
+        across in the original, so they sit centred in identical cells with slightly
+        different air around them. A grid only works if it is regular — one cell out by a
+        pixel and every frame after it is wrong.</li>
+    <li><b>You download the ones you do not use.</b> A page that needs a single icon still
+        fetches all ninety. Sprites pay off for a set you use many of; for one logo, one
+        small file wins.</li>
+    <li><b>No text, no alt, no knocking out.</b> A background image carries no alt text and
+        cannot be recoloured with <code>currentColor</code>. An icon that carries meaning
+        still needs a real word in the markup.</li>
+    <li><b>For icons, inline SVG is usually the better tool now</b> — it scales to any size,
+        takes the current text colour, and is still one file. Sprites have stayed the right
+        answer for <em>animation frames</em>: the frames are pixels, there are a dozen or a
+        hundred of them, and one cacheable file beats a dozen requests at exactly the moment
+        the animation starts.</li>
+  </ul>
+</body>
+</html>

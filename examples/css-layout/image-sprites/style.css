@@ -1,0 +1,241 @@
+/* Image sprites — many pictures inside one file
+   -------------------------------------------------------------
+   Two files sit next to this page:
+
+       character.png   512 x 384   12 frames of 128 x 128   (4 across, 3 down)
+       icons.png       960 x 864   90 icons of  96 x  96    (10 across, 9 down)
+
+   Both were re-cut from the sheets the lecture showed, onto an exact grid:
+   `background-position: -128px 0` lands on a clean frame only if every cell is
+   exactly 128 px. Their original backdrops — a flat beige page, and plain white
+   — are gone, because a background image is never clipped by
+   `background-position`: a backdrop baked into the file would travel with every
+   frame and paint a rectangle around it.
+
+   Notice what is *not* here: no <img> element, no per-frame file, no sprite
+   position written out by hand for the animation. The geometry lives in three
+   custom properties — --c, --r for the cell, --s for the scale — and every
+   frame on this page is one `calc()` away from any other. */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 32px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* explanatory paragraphs */
+.note, .hint {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 46em;
+  margin: 0 0 10px;
+}
+
+/* ---- the shell every demo uses: a live stage, plus the rule behind it ---- */
+.demo { margin: 16px 0 22px; max-width: 52em; }
+
+.demo .stage {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+}
+
+.demo .stage > :first-child { margin-top: 0; }
+.demo .stage > :last-child  { margin-bottom: 0; }
+
+.demo .rule {
+  font-size: 12px;
+  line-height: 1.55;
+  color: #6b7280;
+  margin: 7px 0 0;
+}
+.demo .rule code { color: #1e4fa8; }
+
+figure { margin: 0; }
+
+/* ================== 1. the file, with the grid drawn over it ==================
+   The grid is not part of the file — it is two repeating gradients laid on top,
+   which is also the neatest way to *check* that a sheet is on a clean grid. */
+
+.sheets { display: flex; flex-wrap: wrap; gap: 20px; align-items: flex-start; }
+
+.sheet .grid {
+  position: relative;
+  display: inline-block;
+  line-height: 0;                 /* no descender gap under the image */
+  border: 1px solid #dde3ee;
+}
+
+.sheet img { display: block; }
+
+.sheet .grid::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background-image:
+    repeating-linear-gradient(to right,  rgba(14, 63, 140, .20) 0 1px, transparent 1px var(--cell)),
+    repeating-linear-gradient(to bottom, rgba(14, 63, 140, .20) 0 1px, transparent 1px var(--cell));
+  pointer-events: none;
+}
+
+/* the one cell we are talking about */
+.sheet .mark {
+  position: absolute;
+  left:   calc(var(--col) * var(--cell));
+  top:    calc(var(--row) * var(--cell));
+  width:  var(--cell);
+  height: var(--cell);
+  box-shadow: inset 0 0 0 2px #c0392b;
+  pointer-events: none;
+}
+
+.sheet figcaption {
+  font-size: 12px;
+  line-height: 1.5;
+  color: #6b7280;
+  margin-top: 6px;
+}
+
+/* ================== 2. the box is a window onto the file ==================
+   The box never moves and the file is never cut: the picture slides behind the
+   box, so the numbers are negative.  A 128px box on a 512x384 sheet shows
+   exactly one frame — that is why the box must match the cell. */
+
+.frames { display: flex; flex-wrap: wrap; gap: 16px; }
+.frames + .frames { margin-top: 18px; }
+.frames figure { display: flex; flex-direction: column; }
+
+.frame {
+  --pos: 0 0;
+  display: block;
+  width:  128px;
+  height: 128px;
+  background-color: #f7f9fc;
+  background-image: url("character.png");
+  background-repeat: no-repeat;
+  background-position: var(--pos);
+  border: 1px solid #dde3ee;
+}
+
+/* the same box with the default repeat, for contrast */
+.frame.tiled { background-repeat: repeat; }
+
+.frames figcaption {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 11px;
+  color: #6b7280;
+  margin-top: 5px;
+}
+
+/* ================== 3. frames in motion ==================
+   One cell is 128px at --s: 1.  --c and --r are *indices*, not pixels, so the
+   same keyframes drive any row of the sheet and --s scales geometry and
+   animation together — no second sheet for a small sprite.
+
+   steps(4) is the whole trick: without it the background slides smoothly and
+   you see three-quarters of two frames at once.  The travel distance is the
+   width of the strip, never the width of one frame. */
+
+.hero {
+  --s: 1;
+  --c: 0;
+  --r: 0;
+  display: block;
+  width:  calc(128px * var(--s));
+  height: calc(128px * var(--s));
+  background-image: url("character.png");
+  background-repeat: no-repeat;
+  background-size: calc(512px * var(--s)) calc(384px * var(--s));
+  animation: face 1.2s steps(4) infinite;
+}
+
+/* across a row: four frames, 4 x 128px */
+@keyframes face {
+  from { background-position: 0 calc(var(--r) * -128px * var(--s)); }
+  to   { background-position: calc(-512px * var(--s)) calc(var(--r) * -128px * var(--s)); }
+}
+
+/* down a column: three frames, 3 x 128px */
+@keyframes action {
+  from { background-position: calc(var(--c) * -128px * var(--s)) 0; }
+  to   { background-position: calc(var(--c) * -128px * var(--s)) calc(-384px * var(--s)); }
+}
+
+.hero.r2 { --r: 1; }
+.hero.r3 { --r: 2; }
+
+.hero.down {
+  animation-name: action;
+  animation-duration: 1.5s;
+  animation-timing-function: steps(3);
+}
+
+/* a 48px sprite out of the same file: one number changes */
+.hero.mini { --s: 0.375; }
+
+/* ================== 4 + 5. the icon sheet ==================
+   One cell is 96px at --s: 1, so --s: 0.5 draws a 48px icon. The browser
+   resamples the whole sheet once and every window into it stays sharp —
+   which is why the same file is right for 24px in a toolbar and 72px on a
+   contact card. */
+
+.icons {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  align-items: center;
+  margin: 0;
+  padding: 0;
+}
+
+.ic {
+  --s: 0.5;
+  --c: 0;
+  --r: 0;
+  display: inline-block;
+  width:  calc(96px * var(--s));
+  height: calc(96px * var(--s));
+  background-image: url("icons.png");
+  background-repeat: no-repeat;
+  background-size: calc(960px * var(--s)) calc(864px * var(--s));
+  background-position: calc(var(--c) * -96px * var(--s)) calc(var(--r) * -96px * var(--s));
+}
+
+/* the second state of a button, already in the cache: one more cell, no request */
+.ic:hover { background-position: 0 calc(var(--s) * -192px); }
+
+.ic.s24 { --s: 0.25; }
+.ic.s48 { --s: 0.5; }
+.ic.s72 { --s: 0.75; }
+
+/* ================== 6. what it costs ================== */
+
+.gotchas {
+  font-size: 13px;
+  line-height: 1.7;
+  color: #4a5568;
+  max-width: 46em;
+  padding-left: 20px;
+  margin: 0;
+}
+
+.gotchas li + li { margin-top: 7px; }
+.gotchas b { color: #1a2230; }

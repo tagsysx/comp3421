@@ -118,7 +118,8 @@
         "css-layout/background-colour-image",
         "css-layout/background-repeat-position-size",
         "css-layout/background-shorthand",
-        "css-layout/blend-modes"
+        "css-layout/blend-modes",
+        "css-layout/image-sprites"
       ]
     },
     {
@@ -925,6 +926,17 @@
           "files": [
             "index.html",
             "style.css"
+          ]
+        },
+        {
+          "id": "image-sprites",
+          "name": "Image sprites",
+          "desc": "102 pictures in two files — a box the size of one cell, and steps() for the frames",
+          "files": [
+            "index.html",
+            "style.css",
+            "character.png",
+            "icons.png"
           ]
         }
       ]
