@@ -82,6 +82,14 @@
       ]
     },
     {
+      "id": "lab-04-selectors",
+      "name": "Lab 4 · Find it, then style it",
+      "desc": "practise selectors and a font of your own — 60 min in the lab, three exercises at home",
+      "examples": [
+        "lab/lab4-selectors"
+      ]
+    },
+    {
       "id": "lecture-04-css-layout",
       "name": "Lecture 4 · CSS II — Selectors, Cascade & the Box Model",
       "desc": "How rules target elements, which declaration wins, the parts of a box",
@@ -249,6 +257,14 @@
           "id": "lab3-sample-route",
           "name": "Lab 3 sample — A dot riding a path",
           "desc": "Worked sample: a path that draws itself while a dot follows it with offset-path",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lab4-selectors",
+          "name": "Lab 4 — Find it, then style it",
+          "desc": "Your practice file: 9 exercises — @font-face, then every selector form (6 in the lab, 3 at home)",
           "files": [
             "index.html"
           ]
