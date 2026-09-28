@@ -6,7 +6,7 @@
 <!-- ================================================================
      LAB 4 — FIND IT, THEN STYLE IT
 
-     Nine exercises on one page, in two halves.
+     Nine exercises on one page, split into two halves.
 
        PART 1 · IN THE LAB — 60 minutes
          1 · A font of our own        @font-face, then use the name      6 min
@@ -21,26 +21,26 @@
          8 · Hit only what you mean   four precise selectors        18 min
          9 · A page of your own       your own section, your rules  24 min
 
-     HOW THIS PAGE WORKS — read this before you start
+     HOW THIS PAGE WORKS — read before you begin
 
-     The page you are styling is the poster down in the <body>: the dark
-     block and its big word, the notice, the three cards, the reading list,
-     the two-column block, the form, the "Make it win" paragraph and the
-     "About me" section. Not one of those elements carries a style of its
-     own yet — that is the point of the exercise.
+     You are styling the poster below in the <body>: the dark block and its
+     big word, the notice, the three cards, the reading list, the two-column
+     block, the form, the "Make it win" paragraph and the "About me" section.
+     None of these elements has its own style yet. That is the point of the
+     exercise.
 
-     There are TWO <style> blocks on this page, and they are labelled:
+     This page has TWO <style> blocks, labelled:
 
-       block 1 of 2 — the shell of THIS practice page: the grey
-                      background, the small kicker, the heading and the
-                      note at the bottom. All of it finished.  NOT yours
+       block 1 of 2 — the shell of THIS practice page: the grey background,
+                      the small kicker, the heading and the note at the
+                      bottom. It is all finished. NOT yours
        block 2 of 2 — YOUR WORK. this is the only block you write in.
 
-     Every selector form used here is one the lecture already covered:
-     Lecture 04, section 02 for the selectors, and Lecture 03, section 05
-     for the font rule in exercise 1. Nothing here is new syntax.
+     The lecture already covered every selector form used here: Lecture 04,
+     section 02 covers the selectors, and Lecture 03, section 05 covers the
+     font rule in exercise 1. There is no new syntax.
 
-     The six exercises you do in the lab give you three things:
+     The six lab exercises give you three things:
 
        the AIM     one line: what the page has to end up looking like.
        the STEPS   a short numbered list — the order of the work, and the
@@ -50,24 +50,23 @@
                    Type rather than paste: the typing is where the dots,
                    the brackets and the attribute names stick.
 
-     The three homework exercises are the other way round: they give you
-     the AIM and nothing else — no steps written out, no code, no numbers.
-     Working out the selectors is the homework. In the lab you are shown;
-     at home you are asked.
+     The three homework exercises work the other way round: they give you the
+     AIM and nothing else — no written steps, code or numbers. Working out the
+     selectors is the homework. In the lab you are shown; at home you are
+     asked.
 
      Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE before
-     you move on. A selector that matches nothing looks exactly like a
-     selector that is wrong.
+     moving on. A selector that matches nothing looks exactly like a wrong
+     selector.
 
-     Work in the live editor (source on the left, result on the right) or
-     in any editor + browser. Open target-preview.png, in this folder, to
-     see one finished version. Two things in it cannot be shown by a still
-     picture — the link hover in exercise 5 and the button hover in 8b —
-     so hover-states.png freezes both for you.
+     Use the live editor (source on the left, result on the right), or any
+     editor + browser. Open target-preview.png in this folder to see one
+     finished version. A still picture cannot show two things: the link hover
+     in exercise 5 and the button hover in 8b. hover-states.png freezes both.
 
-     When you are done, press  ⬇ Download .zip  and submit that file.
+     When you are done, press ⬇ Download .zip and submit that file.
 
-     Each TODO shows its minutes. In the lab: 6 + 10 + 12 + 10 + 10 + 12 = 60.
+     Each TODO gives its minutes. In the lab: 6 + 10 + 12 + 10 + 10 + 12 = 60.
      ================================================================ -->
 <title>Find it, then style it — COMP3421 Lab 4</title>
 
@@ -77,12 +76,11 @@
      STYLE BLOCK 1 of 2 — THE SHELL OF THIS PRACTICE PAGE   [ NOT YOURS ]
 
      Everything here is finished, and none of it belongs to an exercise.
-     It styles the page AROUND the poster you are styling: the cool grey
-     surrounding it, the small kicker, the heading and the note at the
-     bottom. The poster itself is down in the body, and it carries no
-     style of its own yet.
+     It styles the page around the poster: the cool grey around it, the
+     small kicker, the heading and the note at the bottom. The poster
+     itself is further down in the body and has no style of its own yet.
 
-     ★ Do not write anything in here. Your CSS goes in block 2.
+     ★ Do not write anything here. Write your CSS in block 2.
      ══════════════════════════════════════════════════════════════════ */
   * { box-sizing: border-box; }
 
@@ -110,45 +108,43 @@
 
      This is the ONLY block you write in.
 
-     Above it is block 1: the shell of this practice page — the cool grey
+     Block 1 is above: the shell of this practice page — the cool grey
      around the poster, the small kicker, the heading and the note at the
-     bottom. Finished. Leave it alone.
+     bottom. It is finished. Leave it alone.
 
-     Below it, down in the <body>, is the poster itself. Not one of those
-     elements carries a style of its own yet, and that is deliberate:
-     everything the poster needs is written HERE, in this block.
+     The poster is below, in the <body>. None of its elements has its own
+     style yet. This is deliberate: write everything the poster needs
+     HERE, in this block.
 
-     Nine exercises, in the order they appear. The six done in the lab
-     print the CSS they want — the aim, a numbered Steps list, then the
-     finished code to type in. The three homework exercises print the aim
-     and nothing else.
+     Nine exercises appear in order. The six lab exercises give the CSS
+     they want: the aim, a numbered Steps list, then the finished code to
+     type. The three homework exercises give only the aim.
 
-     ⚠ Every rule you write belongs in THIS block. A rule written in
-     block 1 still works — which is exactly why it is easy to lose track
-     of your own work. Keep it here.
+     ⚠ Every rule you write belongs in THIS block. A rule in block 1
+     still works, so it is easy to lose track of your work. Keep it here.
      ══════════════════════════════════════════════════════════════════ */
 
   /* ── Exercise 1 · A font of your own ────────────────────────────────
        TODO 1 — give the poster a typeface that is not on this machine.
                                                                    [6 min]
 
-       Aim: the big word at the top is set in a display face that is
-       fetched from an address rather than installed on the computer, and
-       the poster only starts to look like a poster once it is.
+       Aim: set the big word at the top in a display face fetched from an
+       address rather than installed on the computer. The poster only
+       starts to look like a poster when you do.
 
        Steps:
-         1. A font file has no name as far as the browser is concerned.
-            @font-face is the rule that pairs an address with a name — so
-            start by inventing a name. Any name you like.
-         2. Point at the file: `src` takes url( ... ) with the address of
-            the .woff2 inside the brackets.
-         3. Say what kind of file it is, right after the address:
-            format('woff2'). Leave it out and the browser has to guess.
-         4. Now use the name like any other font — put it on the h1. The
-            size and the colour come in exercise 3.
+         1. A font file has no name to the browser. @font-face pairs an
+            address with a name, so start by inventing one. Any name you
+            like.
+         2. Point to the file: `src` takes url( ... ) with the .woff2
+            address inside the brackets.
+         3. State the file type straight after the address:
+            format('woff2'). Without it, the browser has to guess.
+         4. Use the name like any other font — put it on the h1. Exercise
+            3 gives you the size and colour.
 
-       Now type it. The address is long, and a single wrong character
-       fails silently — read it back against the note when you are done:
+       Now type it. The address is long, and one wrong character fails
+       silently. When you finish, read it back against the note:
 
            @font-face {
              font-family: 'Poster';
@@ -158,8 +154,8 @@
            h1 { font-family: 'Poster'; }
 
        If the big word stays in an ordinary bold sans face, the font did
-       not load. Open the Console (F12) and look for the request that
-       failed. Nothing else in the poster changes at this stage — the
+       not load. Open the Console (F12) and find the request that failed.
+       Nothing else in the poster changes at this stage — only the
        letterforms do.
                                                                        */
 
@@ -167,26 +163,26 @@
        TODO 2 — set the tone of the whole poster with element selectors.
                                                                   [10 min]
 
-       Aim: one rule per kind of element — the poster's typeface, size,
-       line height and ink; a gap between paragraphs; links; lists; and a
-       table whose borders land where you expect them.
+       Aim: use one rule for each kind of element — the poster's typeface,
+       size, line height and ink; a gap between paragraphs; links; lists;
+       and a table with borders where you expect them.
 
        Steps:
-         1. Start with `*`. One universal rule, and it is the classic
-            one: make every element measure its width the way a designer
-            expects a box to be measured.
-         2. `body` is the top of the page. Font, size, line height and
-            colour go here, and everything inside inherits them — which
-            is why they are written once.
-         3. Paragraphs, links, lists. Which margin do you want on a
-            paragraph, the top one or the bottom one?
-         4. The table. `border-collapse: collapse` is the line that turns
-            a doubled border into a single one. Then the two cell kinds:
-            `th` gets a heavy rule under it, `td` a hairline.
+         1. Start with `*`. It is the classic universal rule: make every
+            element measure its width as a designer expects a box to be
+            measured.
+         2. `body` is at the top of the page. Put the font, size, line
+            height and colour here, so everything inside inherits them.
+            That is why you write them once.
+         3. For paragraphs, links and lists, choose whether the paragraph
+            margin goes at the top or bottom.
+         4. The table. `border-collapse: collapse` turns a doubled border
+            into a single one. Then use the two cell kinds: `th` gets a
+            heavy rule below it, and `td` gets a hairline.
          5. `footer` closes the poster with a rule across the top.
-         6. `button` is the one form control worth dressing here: an amber
-            block with a solid edge, so the form reads as part of the
-            poster rather than as a browser default dropped into it.
+         6. `button` is the only form control worth styling here: an amber
+            block with a solid edge. It makes the form part of the poster
+            instead of a browser default dropped into it.
 
          Now type it:
 
@@ -212,8 +208,8 @@
              button { background-color: #ffd166; color: #101418; border: 2px solid #101418;
                       padding: 9px 18px; font-size: .9rem; font-weight: 700; }
 
-         ⚠ `th` and `td` carry three identical declarations between them.
-         Exercise 3 starts by doing something about that.
+         ⚠ `th` and `td` have three identical declarations. Exercise 3
+         starts by dealing with that.
                                                                        */
 
   /* ── Exercise 3 · Hooks ─────────────────────────────────────────────
@@ -221,33 +217,32 @@
        poster a poster.
                                                                   [12 min]
 
-       Aim: the three headings share one colour through a single rule; the
-       dark block at the top and its three lines of type are built; the
-       notice, the three cards and the two-column block each get the hook
-       written on them in the HTML.
+       Aim: give the three headings one colour with a single rule; build
+       the dark block at the top and its three lines of type; and give the
+       notice, the three cards and the two-column block the hooks written
+       on them in the HTML.
 
        Steps:
-         1. The three headings all want the same colour. That is one rule
-            and three selectors, with a comma between them.
-         2. Do the same to `th` and `td`: one rule, two selectors — then
-            delete the two rules it replaces.
-         3. h1 is the poster's one big idea: a display face at a very
-            large size, tight line height, set in capitals. It sits on
-            the dark block, so it needs its own colour — and here is the
-            thing to notice: the rule in step 1 already coloured it, and
-            this rule beats it because it names one element instead of
-            three. Same weight, later rule wins.
-         4. h2 and h3 are the opposite job — small, widely spaced
-            capitals for a section label, and an ordinary weight for a
-            card title. A poster is made of exactly this contrast.
+         1. The three headings need the same colour. Use one rule and
+            three selectors, with a comma between them.
+         2. Do the same for `th` and `td`: use one rule and two selectors
+            — then delete the two rules it replaces.
+         3. The h1 is the poster's one big idea: a display face at a very
+            large size, with tight line height and capitals. It sits on
+            the dark block, so it needs its own colour. The rule in step 1
+            already coloured it, but this rule wins because it names one
+            element instead of three. Same weight, later rule wins.
+         4. The h2 and h3 do the opposite job — small, widely spaced
+            capitals for a section label, and ordinary weight for a card
+            title. A poster uses exactly this contrast.
          5. The four hooks: `.kicker` is the small label on the dark
-            block, `.site-head` is the dark block itself, `.lead` is the
-            line under the big word, `.note` is the paragraph that
-            exercise 7 comes back to.
-         6. `#notice` is the boxed paragraph. A hash, then the id — there
-            is exactly one of it on the page.
+            block, `.site-head` is the dark block, `.lead` is the line
+            below the big word, and `.note` is the paragraph that exercise
+            7 returns to.
+         6. `#notice` is the boxed paragraph. Use a hash, then the id —
+            there is exactly one on the page.
          7. `.site` is the sheet of paper. `.cards` holds the three cards,
-            and `.card` is the card itself — white, black-bordered, with
+            and `.card` is the card itself: white, black-bordered, with
             room to breathe.
 
          Now type it:
@@ -275,35 +270,35 @@
              .card { flex: 1; background-color: #ffffff; border: 2px solid #101418;
                      padding: 20px 18px 18px; }
 
-         ⚠ `.note` colours one paragraph a deep red. Exercise 7 comes back
-         to that paragraph, so do not skip it.
+         ⚠ `.note` gives one paragraph a deep red colour. Exercise 7
+         returns to that paragraph, so do not skip it.
                                                                        */
 
   /* ── Exercise 4 · The tree ──────────────────────────────────────────
-       TODO 4 — pick elements out by how they sit relative to others.
+       TODO 4 — select elements by their position relative to others.
                                                                   [10 min]
 
        Aim: one rule reaches deep into the poster, one stops at the first
        level, one gives the two-column block its columns, and two more use
-       a heading as an anchor for what comes after it.
+       a heading as the anchor for what follows.
 
        Steps:
-         1. A space means "inside". `.site-head p` is every paragraph
-            anywhere within the dark block, however deep — that is how its
-            three lines are pulled tight.
-         2. The second space rule earns its place: the card row is a flex
-            container, which turns EVERY child into a flex item. The
-            heading inside it would be squeezed into the same row as the
-            cards. One rule makes it take a line of its own.
+         1. A space means "inside". `.site-head p` selects every paragraph
+            in the dark block, however deeply nested. That is how its three
+            lines are pulled tight.
+         2. The second space rule matters because the card row is a flex
+            container, so EVERY child becomes a flex item. Its heading
+            would be squeezed into the same row as the cards. One rule
+            gives it a line of its own.
          3. `>` means "a direct child, and nothing deeper". The two-column
-            block is a flex container and its two sections each want half
-            of it — so write the container and its children together, and
-            say to yourself which of the two rules is which.
-         4. `+` means "the sibling immediately after" — a heading and its
-            own first paragraph belong together, so take the gap off.
-         5. `~` means "every later sibling": every paragraph that follows
-            a heading, not just the next one.
-         6. `.card a` reaches into the cards for their links.
+            block is a flex container, and each of its two sections wants
+            half of it. Write the container and its children together, and
+            ask yourself which of the two rules does which.
+         4. `+` means "the sibling immediately after". A heading and its
+            first paragraph belong together, so remove the gap.
+         5. `~` means "every later sibling". It selects every paragraph
+            after a heading, not only the next one.
+         6. `.card a` reaches into the cards to select their links.
 
          Now type it:
 
@@ -315,38 +310,38 @@
              h2 ~ p { color: #5c6470; }
              .card a { font-size: .85rem; }
 
-         ⚠ Steps 4 and 5 both land on the paragraph directly under a
-         heading — that is meant, because `+` is a subset of `~`. Here they
-         set different properties, so nothing overrides anything.
+         ⚠ Steps 4 and 5 both target the paragraph directly below a
+         heading. This is intentional because `+` is a subset of `~`. They
+         set different properties, so neither overrides the other.
                                                                        */
 
   /* ── Exercise 5 · Attributes and states ─────────────────────────────
-       TODO 5 — reach into the HTML for what it carries, and answer the
-       pointer and the keyboard.
+       TODO 5 — select HTML by what it carries, and respond to the pointer
+       and keyboard.
                                                                   [10 min]
 
-       Aim: the outside links look different from the internal one; the
-       PDF links are marked; links react to the pointer; the field reacts
-       to the keyboard; and a ticked box changes its own label.
+       Aim: external links look different from the internal one; PDF links
+       are marked; links respond to the pointer; the field responds to the
+       keyboard; and a ticked box changes its own label.
 
        Steps:
-         1. `[href^="https"]` — begins with. The caret points the way the
-            value runs; this is every link that leaves the site.
-         2. `[href$=".pdf"]` — ends with. Note the quotes around the
-            value: they are part of the syntax, not decoration.
-         3. Two controls, two attribute selectors. The checkbox wants a
-            size; the text field wants an edge and some room inside it.
-            Attribute and value inside square brackets, no dot and no hash.
+         1. `[href^="https"]` — begins with. The caret shows which way the
+            value runs; this selects every link that leaves the site.
+         2. `[href$=".pdf"]` — ends with. The quotes around the value are
+            part of the syntax, not decoration.
+         3. Two controls, two attribute selectors. The checkbox needs a
+            size; the text field needs an edge and room inside it. Put the
+            attribute and value inside square brackets, with no dot or
+            hash.
          4. The pointer. `:hover` is a state, and CSS already knows the
-            pointer is there — nothing has to tell it. Changing a link's
-            colour AND taking its underline away is a two-declaration
-            rule, and both belong on the same line.
-         5. The keyboard. `:focus` marks whatever is focused, and for
-            someone who cannot use a mouse it is the only feedback there
-            is.
-         6. The ticked box. `input:checked + label` is the checkbox's own
-            state, plus the sibling relationship from exercise 4 — the two
-            ideas meeting in one selector.
+            pointer is there, so you do not need to tell it. Change a
+            link's colour AND remove its underline in a two-declaration
+            rule, with both declarations on the same line.
+         5. The keyboard. `:focus` marks whatever has focus. For someone
+            who cannot use a mouse, it is the only feedback.
+         6. The ticked box. `input:checked + label` combines the checkbox's
+            own state with the sibling relationship from exercise 4. It
+            brings the two ideas together in one selector.
 
          Now type it:
 
@@ -360,43 +355,42 @@
              input:focus { outline: 3px solid #1e4fa8; }
              input:checked + label { font-weight: 700; }
 
-         The link back to the notice is internal, so rule 1 leaves it
-         alone. A selector that matches exactly what you meant is the whole
-         point of this exercise.
+         The link back to the notice is internal, so rule 1 does not affect
+         it. The point of this exercise is a selector that matches exactly
+         what you mean.
                                                                        */
 
   /* ── Exercise 6 · Positions and parts ───────────────────────────────
-       TODO 6 — count among siblings, exclude one thing, and style a part
-       of an element instead of the element.
+       TODO 6 — count siblings, exclude one thing, and style part of an
+       element instead of the whole element.
                                                                   [12 min]
 
        Aim: the first link in a list is bold and the rest are not; the
-       table gets stripes; two rules that both say 2 land on different
-       cards; and three pieces of decoration appear that are not in the
-       HTML at all.
+       table gets stripes; two rules that both say 2 target different
+       cards; and three decorations appear that are not in the HTML at all.
 
        Steps:
-         1. `li:first-child` — the first child of its parent. One list
-            item changes; the other three stay as they were.
+         1. `li:first-child` — the first child of its parent. One list item
+            changes; the other three stay as they were.
          2. `tbody tr:nth-child(even)` — counts every sibling, whatever it
-            is. In a table body the children are all rows, so the count and
-            the position agree. It is worth knowing when that agreement is
-            a coincidence.
-         3. Now the pair this exercise is built around. In the card row the
-            children are a heading first and then three articles — so the
-            FIRST card is child number 2.
+            is. In a table body, the children are all rows, so the count
+            and position agree. It helps to know when that agreement is
+            only a coincidence.
+         3. This is the pair the exercise is built around. The card row has
+            a heading first and then three articles. The FIRST card is
+            therefore child number 2.
               article:nth-child(2)     counts every child   -> card 1
               article:nth-of-type(2)   counts only articles -> card 2
             Write both. Give one a red top border and the other a blue
-            bottom border so you can see which rule landed where.
+            bottom border so you can see where each rule lands.
          4. `:not(.lead)` — everything except the intro line. The selector
             inside the brackets is excluded, not selected.
-         5. Now the decoration, and this is the part of the poster that
-            cannot be written in HTML: `::before` inserts a box that was
-            never there. One goes in front of every section heading as a
-            short bar; one sits at the top of every card. Both need
-            `content`, even when the content is empty — a generated box
-            with no content property does not exist.
+         5. Now add the decoration. This part of the poster cannot be
+            written in HTML: `::before` inserts a box that was never there.
+            Put one before every section heading as a short bar and one at
+            the top of every card. Both need `content`, even when the
+            content is empty. A generated box without a content property
+            does not exist.
          6. `::first-letter` styles one letter of a block rather than the
             block. Two colons: a part of an element, not a state of one.
 
@@ -416,8 +410,8 @@
              #notice p::first-letter { font-size: 1.7em; font-weight: 700; color: #1e4fa8; }
 
          After step 3, look at the three cards and say out loud which rule
-         put the red line where. That question, and its answer, is the
-         whole reason `:nth-of-type` exists.
+         put the red line where. That question and its answer are the whole
+         reason `:nth-of-type` exists.
                                                                        */
 
   /* ── Exercise 7 · Make it win ───────────────────────────────────────
@@ -425,16 +419,15 @@
        charge.                                        [homework · 18 min]
 
        Aim: the paragraph in the "Make it win" section is red. Make it
-       green — without writing `!important`, and without editing either of
-       the two rules that are already fighting over it.
+       green without writing `!important`, and without editing either of
+       the two rules that already compete to style it.
 
        `p { }` from exercise 2 and `.note { }` from exercise 3 both match
-       that paragraph. Work out which of them is winning and why, then add
-       a rule of your own that beats them both.
+       that paragraph. Work out which one wins and why, then add a rule of
+       your own that beats them both.
 
-       Say in a comment which rule you expected to win and which one
-       actually did — and if they are not the same, that is worth a line of
-       its own.
+       In a comment, say which rule you expected to win and which one
+       actually did. If they are not the same, give that its own line.
                                                                        */
 
   /* ── Exercise 8 · Hit only what you mean ────────────────────────────
@@ -443,12 +436,12 @@
        Aim: four things change and nothing else does. A rule that catches
        one element too many is as wrong as one that catches none.
 
-         8a · only the SECOND card turns cream. The first and the third
-              stay white.
-              ⚠ The card row has a heading in it before the cards begin,
-              and `nth-child` counts it.
-         8b · the submit button turns dark while the pointer is over it,
-              and only while.
+         8a · only the SECOND card turns cream. The first and third stay
+              white.
+              ⚠ The card row has a heading before the cards, and
+              `nth-child` counts it.
+         8b · the submit button turns dark only while the pointer is over
+              it.
          8c · the link in the LAST row of the reading list gains an
               underline. The links in the other rows keep theirs off.
          8d · only the link to w3.org turns italic.
@@ -459,20 +452,20 @@
   /* ── Exercise 9 · A page of your own ────────────────────────────────
        TODO 9 — the open one.                         [homework · 24 min]
 
-       Aim: the "About me" section at the bottom is yours — your words,
-       styled with selectors of your own. None of the other eight
-       exercises may be changed to make room for it.
+       Aim: the "About me" section at the bottom is yours: your words,
+       styled with selectors of your own. Do not change any of the other
+       eight exercises to make room for it.
 
          1. Replace every line of the "About me" section with something
             real: your name and student number, what you want to build
             with CSS, and one page you think is well designed. Keep the
-            same kinds of element — a heading, two paragraphs, a list and
+            same kinds of element: a heading, two paragraphs, a list and
             a link.
-         2. Style it with at least six selectors of your own. Between
-            them they must include an element selector, a class, a
-            descendant rule, and either a `:hover` or an `:nth-child`.
+         2. Style it with at least six selectors of your own. Together,
+            they must include an element selector, a class, a descendant
+            rule, and either a `:hover` or an `:nth-child`.
          3. No two submissions should look alike. Say in a comment why
-            you chose what you chose.
+            you made your choices.
                                                                        */
 
 </style>
