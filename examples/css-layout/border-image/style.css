@@ -1,0 +1,38 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  color: #1a2230;
+  padding: 32px;
+}
+
+h2 { font-size: 15px; color: #0e3f8c; margin: 26px 0 12px; }
+h2:first-child { margin-top: 0; }
+
+.src {
+  width: 180px;
+  height: 180px;
+  image-rendering: pixelated;
+  border: 1px solid #c9d8ef;
+  border-radius: 4px;
+}
+
+/* A border needs a width and a style before border-image can replace how
+   it is drawn. 30px of border, sliced at 30px, so nothing is scaled. */
+.panel {
+  width: 320px;
+  padding: 18px;
+  font-size: 14px;
+  color: #4a5568;
+  background: #fff;
+  border: 30px solid transparent;
+  border-image: url(frame.png) 30 stretch;
+}
+
+.round { border-image: url(frame.png) 30 round; }
+
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  max-width: 620px;
+  margin-top: 26px;
+}

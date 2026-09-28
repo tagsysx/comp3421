@@ -125,15 +125,22 @@
     {
       "id": "lecture-05-css-advanced",
       "name": "Lecture 5 · CSS III — Layout, Animation & Miscellaneous",
-      "desc": "Flexbox, grid, positioning, responsive, transforms, animations, variables",
+      "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, gradients, shadows, display",
       "examples": [
-        "css-layout/transform",
-        "css-layout/animation",
+        "css-layout/positioning",
         "css-layout/flexbox",
         "css-layout/grid",
-        "css-layout/positioning",
         "css-layout/responsive",
         "css-layout/variables",
+        "css-layout/transform",
+        "css-layout/transform-3d",
+        "css-layout/animation",
+        "css-layout/gradients",
+        "css-layout/layered-backgrounds",
+        "css-layout/shadow",
+        "css-layout/border-image",
+        "css-layout/display",
+        "css-layout/icons",
         "css-layout/card"
       ]
     },
@@ -937,6 +944,52 @@
             "style.css",
             "character.png",
             "icons.png"
+          ]
+        },
+        {
+          "id": "transform-3d",
+          "name": "3D transforms",
+          "desc": "perspective on the parent, rotateY on the child — a two-sided card",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "shadow",
+          "name": "box-shadow",
+          "desc": "depth, a focus ring, inset — offsets, blur, spread and colour",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "border-image",
+          "name": "border-image",
+          "desc": "one 90 × 90 image sliced at 30 into nine tiles, stretched or tiled",
+          "files": [
+            "index.html",
+            "style.css",
+            "frame.png"
+          ]
+        },
+        {
+          "id": "display",
+          "name": "display",
+          "desc": "block, inline, inline-block and none on the same three tags",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "icons",
+          "name": "Icons",
+          "desc": "an icon font and inline SVG, both following currentColor",
+          "files": [
+            "index.html",
+            "style.css"
           ]
         }
       ]

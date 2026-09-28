@@ -1,0 +1,40 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  color: #1a2230;
+  padding: 32px;
+}
+
+h2 { font-size: 15px; color: #0e3f8c; margin: 24px 0 10px; }
+h2:first-child { margin-top: 0; }
+
+.panel {
+  background: #fff;
+  padding: 12px;
+  border-radius: 10px;
+  border: 1px dashed #c9d8ef;
+}
+
+.tag {
+  background: #e8eff8;
+  border: 1px solid #c9d8ef;
+  color: #0e3f8c;
+  padding: 6px 12px;
+  border-radius: 6px;
+  font-size: 14px;
+  box-sizing: border-box;   /* so a width means the whole box, not just the text */
+}
+
+/* block: starts a new line and fills the width you give it */
+.panel .tag { display: block; width: 160px; margin-bottom: 6px; }
+
+/* inline: the width and height are ignored — the box hugs its text */
+.i .tag { display: inline; width: 160px; }
+
+/* inline-block: sits in the line, but takes a size */
+.ib .tag { display: inline-block; width: 120px; text-align: center; }
+
+/* none: gone from the layout as if it were not in the HTML at all.
+   NOTE the selector: ".panel .tag" above is more specific than a bare ".gone",
+   so the rule that hides it has to match that specificity too. */
+.panel .gone { display: none; }

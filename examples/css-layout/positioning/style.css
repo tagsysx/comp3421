@@ -54,6 +54,26 @@ h1 { margin-top: 0; }
   background: #d9534f;
 }
 
+/* z-index decides which of two overlapping positioned boxes is in front.
+   Without it they paint in document order — the later one wins. */
+.stack {
+  position: relative;   /* the stacking context these two compete in */
+  height: 96px;
+}
+
+.z-low,
+.z-high {
+  position: absolute;
+  top: 12px;
+  width: 100px;
+  height: 60px;
+  line-height: 60px;
+  font-size: 12px;
+}
+
+.z-low  { left: 12px; z-index: 1; background: #3d7bd9; }
+.z-high { left: 62px; z-index: 2; background: #0e3f8c; }
+
 /* anchored to the viewport — stays put while scrolling */
 .fixed {
   position: fixed;

@@ -1,0 +1,35 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  color: #1a2230;
+  padding: 32px;
+}
+
+h2 { font-size: 15px; color: #0e3f8c; margin: 24px 0 8px; }
+h2:first-child { margin-top: 0; }
+
+.line {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  font-size: 22px;
+  margin: 8px 0 0;
+}
+
+/* An inline SVG is drawn from the page, so CSS sizes and colours it. */
+.ic {
+  width: 1em;
+  height: 1em;
+  fill: currentColor;
+  vertical-align: -0.125em;
+}
+
+/* whatever colour the text is, the icons are too */
+.line.red { color: #d9534f; }
+
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  max-width: 620px;
+  margin-top: 24px;
+}

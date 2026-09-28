@@ -31,6 +31,18 @@ body {
 /* transform-origin changes the pivot point */
 .t2 { transform-origin: bottom left; }
 
+/* The same two functions in two orders — both are drawn with the transform
+   already applied, so the difference can be compared side by side. */
+.wide {
+  width: 240px;
+  font-size: 11.5px;
+  padding: 8px;
+  box-sizing: border-box;
+  text-align: center;
+}
+.o1 { transform: translateX(20px) rotate(20deg); }
+.o2 { transform: rotate(20deg) translateX(20px); }
+
 .hint {
   margin-top: 24px;
   color: #555;

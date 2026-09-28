@@ -22,6 +22,18 @@
   </div>
 
   <div class="panel">
+    <h2>z-index</h2>
+    <p>Both boxes are positioned and they overlap. The one with the higher
+       <code>z-index</code> is painted on top — and it is declared <em>first</em>
+       in the HTML, so without <code>z-index</code> the <em>other</em> one would
+       have won. That is the whole point: the number beats document order.</p>
+    <div class="stack">
+      <div class="box z-high">z-index: 2</div>
+      <div class="box z-low">z-index: 1</div>
+    </div>
+  </div>
+
+  <div class="panel">
     <h2>fixed</h2>
     <p>The badge below is fixed to the viewport — scroll and it stays put.</p>
     <div class="box fixed">fixed</div>

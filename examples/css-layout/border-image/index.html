@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>border-image</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>The source: one 90 &times; 90 image, sliced at 30</h2>
+  <img class="src" src="frame.png" alt="the border source image, 90 by 90" />
+
+  <h2>stretch — each edge is one copy, stretched</h2>
+  <div class="panel stretch">border-image: url(frame.png) 30 stretch;</div>
+
+  <h2>round — each edge tiles, scaled to fit exactly</h2>
+  <div class="panel round">border-image: url(frame.png) 30 round;</div>
+
+  <p class="note">Nine tiles: four corners placed whole, four edges repeated, and the
+     middle slice thrown away. The frame grows with its box, and nothing is ever
+     stretched out of shape.</p>
+</body>
+</html>

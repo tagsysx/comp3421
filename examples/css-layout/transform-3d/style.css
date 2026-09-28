@@ -1,0 +1,61 @@
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  color: #1a2230;
+  padding: 32px;
+}
+
+h2 { font-size: 15px; color: #0e3f8c; margin: 26px 0 12px; }
+h2:first-child { margin-top: 0; }
+
+/* perspective lives on the PARENT — it is the distance from your eye */
+.stage {
+  perspective: 800px;
+  width: 220px;
+  height: 140px;
+}
+
+.card {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  transition: transform 0.7s ease;
+  transform-style: preserve-3d;
+}
+
+.stage:hover .card { transform: rotateY(180deg); }
+
+.face {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  color: #fff;
+  font-size: 18px;
+  backface-visibility: hidden;
+}
+
+.front { background: #185fa5; }
+.back  { background: #0e3f8c; transform: rotateY(180deg); }
+
+.lean {
+  width: 100%;
+  height: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #3d7bd9;
+  color: #fff;
+  font-size: 15px;
+  transform: rotateX(50deg);
+}
+
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  max-width: 620px;
+  margin-top: 26px;
+}

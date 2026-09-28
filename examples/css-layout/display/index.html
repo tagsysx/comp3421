@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>display</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>block — one per line, the width is respected</h2>
+  <div class="panel">
+    <span class="tag">HTML</span>
+    <span class="tag">CSS</span>
+    <span class="tag">JavaScript</span>
+  </div>
+
+  <h2>inline — they run together, width does nothing</h2>
+  <div class="panel i">
+    <span class="tag">HTML</span>
+    <span class="tag">CSS</span>
+    <span class="tag">JavaScript</span>
+  </div>
+
+  <h2>inline-block — in the line, but a box you can size</h2>
+  <div class="panel ib">
+    <span class="tag">HTML</span>
+    <span class="tag">CSS</span>
+    <span class="tag">JavaScript</span>
+  </div>
+
+  <h2>none — not rendered, takes no space</h2>
+  <div class="panel">
+    <span class="tag gone">hidden</span>
+    <span class="tag">visible</span>
+  </div>
+</body>
+</html>

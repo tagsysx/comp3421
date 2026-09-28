@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icons</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>An icon font — one class name per icon</h2>
+  <p class="line">
+    <i class="fa-solid fa-cloud"></i>
+    <i class="fa-solid fa-heart"></i>
+    <i class="fa-solid fa-car"></i>
+    <i class="fa-solid fa-bars"></i>
+  </p>
+
+  <h2>Inline SVG — the shape is part of the page</h2>
+  <p class="line">
+    <svg class="ic" viewBox="0 0 24 24"><path d="M12 2 2 22h20Z" /></svg>
+    <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /></svg>
+    <svg class="ic" viewBox="0 0 24 24"><rect x="4" y="4" width="16" height="16" rx="5" /></svg>
+  </p>
+
+  <h2>Both follow the text colour</h2>
+  <p class="line red">
+    Red text, red icons
+    <i class="fa-solid fa-heart"></i>
+    <svg class="ic" viewBox="0 0 24 24"><circle cx="12" cy="12" r="9" /></svg>
+  </p>
+
+  <p class="note">An inline SVG is a box like any other: size it in <code>em</code> so it
+     scales with the text, and give it <code>fill: currentColor</code> so it takes the
+     colour of the sentence it sits in.</p>
+</body>
+</html>

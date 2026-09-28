@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>3D transforms</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>Hover the card — the parent supplies the depth</h2>
+  <div class="stage">
+    <div class="card">
+      <div class="face front">front</div>
+      <div class="face back">back</div>
+    </div>
+  </div>
+
+  <h2>rotateX and translateZ</h2>
+  <div class="stage">
+    <div class="lean">rotateX(50deg)</div>
+  </div>
+
+  <p class="note">Delete <code>perspective</code> from the stage and the same rotation
+     looks flat. <code>backface-visibility: hidden</code> hides whichever face is turned
+     away from you, which is what makes a two-sided card work.</p>
+</body>
+</html>

@@ -21,6 +21,8 @@ body {
   transform: translateY(-4px);
 }
 
+.note { font-size: 12.5px; color: #4a5568; margin-top: 10px; }
+
 /* --- animation: a reusable sequence of steps --- */
 .ball {
   width: 60px;
@@ -34,4 +36,85 @@ body {
 @keyframes bounce {
   from { transform: translateY(0); }
   to   { transform: translateY(120px); }
+}
+
+/* --- timing functions: same distance, same duration, four curves --------- */
+.tracks { display: flex; flex-direction: column; gap: 10px; margin-top: 14px; }
+
+.track {
+  position: relative;
+  width: 340px;
+  height: 34px;
+  border-radius: 17px;
+  background: #e8eff8;
+  overflow: hidden;
+}
+
+.track b {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #4a5568;
+}
+
+.dot {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #185fa5;
+  transition: transform 1.2s;          /* the curve is set per track below */
+}
+
+.track:hover .dot { transform: translateX(124px); }
+
+.t-ease   .dot { transition-timing-function: ease; }
+.t-linear .dot { transition-timing-function: linear; }
+.t-bez    .dot { transition-timing-function: cubic-bezier(.34, 1.56, .64, 1); }
+.t-steps  .dot { transition-timing-function: steps(5, jump-end); }
+
+/* --- keyframes with more than two stops --------------------------------- */
+.traffic {
+  width: 90px;
+  height: 90px;
+  margin-top: 14px;
+  border-radius: 12px;
+  animation: traffic 3s linear infinite;
+}
+
+@keyframes traffic {
+  0%        { background: #d9534f; }
+  40%       { background: #ffc107; }
+  70%, 100% { background: #3d9970; }   /* two stops in one block */
+}
+
+/* --- direction: which way round the sequence runs ----------------------- */
+.row { display: flex; gap: 14px; margin-top: 14px; }
+
+.pill {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 14px;
+  background: #fff;
+  border: 1px solid #c9d8ef;
+  color: #0e3f8c;
+  animation: grow 2s ease-in-out infinite;
+}
+
+.p-normal    { animation-direction: normal; }
+.p-alternate { animation-direction: alternate; }
+.p-reverse   { animation-direction: reverse; }
+
+@keyframes grow {
+  from { transform: scale(1);    box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12); }
+  to   { transform: scale(1.12); box-shadow: 0 8px 18px rgba(0, 0, 0, 0.22); }
+}
+
+/* --- and always respect the reader's system setting --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .dot, .pill, .ball, .traffic, .btn { animation: none; transition: none; }
 }

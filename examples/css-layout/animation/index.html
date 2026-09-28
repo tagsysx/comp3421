@@ -10,7 +10,31 @@
   <h2>Transition on hover</h2>
   <button class="btn">Hover me</button>
 
+  <h2>Timing functions &mdash; same distance, same time, four curves</h2>
+  <div class="tracks">
+    <div class="track t-ease"><span class="dot"></span><b>ease</b></div>
+    <div class="track t-linear"><span class="dot"></span><b>linear</b></div>
+    <div class="track t-bez"><span class="dot"></span><b>cubic-bezier(.34, 1.56, .64, 1)</b></div>
+    <div class="track t-steps"><span class="dot"></span><b>steps(5)</b></div>
+  </div>
+  <p class="note">Hover a track. The dot always covers the same distance in the same
+     time &mdash; only the curve changes. The third overshoots and settles; the fourth
+     arrives in five jumps.</p>
+
   <h2>Keyframe animation</h2>
   <div class="ball"></div>
+
+  <h2>More than two stops in @keyframes</h2>
+  <div class="traffic"></div>
+
+  <h2>animation-direction</h2>
+  <div class="row">
+    <div class="pill p-normal">normal</div>
+    <div class="pill p-alternate">alternate</div>
+    <div class="pill p-reverse">reverse</div>
+  </div>
+
+  <p class="note">Every animation on this page is switched off for readers who ask for
+     less motion &mdash; see the media query at the end of <code>style.css</code>.</p>
 </body>
 </html>

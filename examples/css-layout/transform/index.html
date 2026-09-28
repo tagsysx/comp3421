@@ -14,6 +14,15 @@
     <div class="box t3">scale</div>
     <div class="box t4">skew</div>
   </div>
+  <h2>Order matters &mdash; the list is applied right to left</h2>
+  <div class="row">
+    <div class="box wide o1">translateX(20px) rotate(20deg)</div>
+    <div class="box wide o2">rotate(20deg) translateX(20px)</div>
+  </div>
+  <p class="hint">The same two functions, swapped. The first travels along the page's X
+     axis and <em>then</em> the whole box turns. The second turns first, so its 20px points
+     along the axis it has just rotated onto &mdash; a diagonal.</p>
+
   <p class="hint">Hover any box — the transform changes. Try editing the values.</p>
 </body>
 </html>

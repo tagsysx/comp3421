@@ -55,6 +55,25 @@ h2.section {
   background: linear-gradient(90deg, #185fa5 0 50%, #b9cdee 50% 100%);
 }
 
+/* conic: the colour sweeps around a centre — pies and colour wheels */
+.g8 { background: conic-gradient(from 0deg, #d9534f, #ffc107, #3d9970, #185fa5, #d9534f); }
+.g9 {
+  background: conic-gradient(#d9534f 0 25%, #ffc107 25% 50%,
+                             #3d9970 50% 75%, #185fa5 75% 100%);
+}
+
+/* Alpha stops: the same alpha channel rgba() always had, used inside a
+   gradient.  The colour underneath is written separately, so it is obvious
+   what the transparency is letting through. */
+.g10 {
+  background-color: #3d7bd9;
+  background-image: linear-gradient(rgba(0, 0, 0, 0.65), rgba(0, 0, 0, 0));
+}
+.g11 {
+  background-color: #0e3f8c;
+  background-image: linear-gradient(#000000cc, #00000000);   /* #RRGGBBAA */
+}
+
 /* radial: a shape, a centre, then the stops */
 .g5 { background: radial-gradient(circle at 30% 30%, #3d7bd9, #0e3f8c); }
 .g6 { background: radial-gradient(circle, #ffc107, #3d7bd9, #0e3f8c); }
