@@ -1,8 +1,11 @@
 /* position: static — no positioning at all: the browser lays the page out itself */
 
+/* No margin and no padding on the body, and no width on anything below it: the
+   boxes get the whole window. That is deliberate — the point of this page is to
+   resize the window and watch the browser place the boxes again. */
 body {
   margin: 0;
-  padding: 32px;
+  padding: 0;
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 15px;
   line-height: 1.5;
@@ -10,7 +13,7 @@ body {
   color: #1a2230;
 }
 
-h1 { font-size: 24px; color: #0e3f8c; margin: 0 0 8px; }
+h1 { font-size: 24px; color: #0e3f8c; margin: 0 32px 8px; }
 
 code {
   font-family: Menlo, Consolas, monospace;
@@ -21,20 +24,20 @@ code {
   border-radius: 4px;
 }
 
-.lede, .note { max-width: 68ch; color: #4a5568; margin: 0 0 12px; }
+.lede, .note { color: #4a5568; margin: 0 32px 12px; }
 .lede { font-size: 14.5px; }
 .note { font-size: 13.5px; }
+.note:last-child { margin-bottom: 24px; }
 
 /* ---------- the page the boxes are laid out in ----------
-   Deliberately no width and no max-width: it takes whatever the window gives it.
-   That is the whole point of this example — narrow the window and the boxes below
-   have to be placed again from scratch. */
+   No width, no max-width, no side margin: it is as wide as the window, so the
+   boxes below are placed again from scratch on every resize. */
 .stage {
   box-sizing: border-box;
   padding: 16px;
-  margin: 0 0 18px;
-  border: 1px dashed #c9d8ef;
-  border-radius: 10px;
+  margin: 0;
+  border-top: 1px dashed #c9d8ef;
+  border-bottom: 1px dashed #c9d8ef;
   background: #fff;
   font-size: 0;          /* inline-blocks: no whitespace between them.
                             Without this the newline in the HTML is a space, and
@@ -58,24 +61,29 @@ code {
   font-weight: 600;
 }
 
-/* ten widths, all in pixels — not one percentage anywhere, so the layout is
+/* twenty widths, all in pixels — not one percentage anywhere, so the layout is
    re-decided every time the window changes size */
-.w300 { width: 300px; }
-.w220 { width: 220px; }
-.w260 { width: 260px; }
-.w180 { width: 180px; }
-.w340 { width: 340px; }
-.w240 { width: 240px; }
-.w200 { width: 200px; }
-.w420 { width: 420px; }
-.w320 { width: 320px; }
+.w90  { width: 90px; }
+.w100 { width: 100px; }
 .w120 { width: 120px; }
+.w160 { width: 160px; }
+.w180 { width: 180px; }
+.w200 { width: 200px; }
+.w220 { width: 220px; }
+.w240 { width: 240px; }
+.w260 { width: 260px; }
+.w280 { width: 280px; }
+.w300 { width: 300px; }
+.w320 { width: 320px; }
+.w340 { width: 340px; }
+.w380 { width: 380px; }
+.w420 { width: 420px; }
 
 /* box 3: these two declarations are read, and then ignored, because the box is
    static — the offsets do nothing until position changes */
 .offset { top: 24px; left: 24px; }
 
-/* ---------- box 5: a box holding three boxes ---------- */
+/* ---------- box 5: a box holding six boxes ---------- */
 .nest {
   box-sizing: border-box;
   display: inline-block;
@@ -87,7 +95,7 @@ code {
   border: 2px solid #0e3f8c;
   border-radius: 8px;
   background: #eef4fd;
-  font-size: 0;              /* its three children are inline-blocks too */
+  font-size: 0;              /* its six children are inline-blocks too */
 }
 
 .nest-label {
@@ -97,7 +105,7 @@ code {
   color: #0e3f8c;
 }
 
-/* its three children — dashed, so it is obvious which box they belong to */
+/* its six children — dashed, so it is obvious which box they belong to */
 .child {
   background: #fff;
   border: 1px dashed #3d7bd9;

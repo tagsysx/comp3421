@@ -740,7 +740,7 @@
         {
           "id": "position-static",
           "name": "position: static",
-          "desc": "Nothing positioned: ten bordered boxes in document order, one of them holding three more",
+          "desc": "Twenty pixel-width boxes, nothing positioned — resize the window and watch them re-flow",
           "files": [
             "index.html",
             "style.css"
