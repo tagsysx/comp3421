@@ -10,34 +10,38 @@
   <h1>position: <code>static</code> — ten boxes</h1>
   <p class="lede">
     Not one box on this page has <code>position</code> set, so every one of them is
-    <code>static</code>. The browser places them itself — in the order they appear in
-    the HTML, left to right along the line, and onto a new line when the next box is
-    too wide for what is left. Ten borders and ten different widths make it visible.
+    <code>static</code>. The browser places them itself — left to right along the line,
+    and onto a new line when the next box is too wide for what is left.
+  </p>
+  <p class="lede">
+    Every width below is a plain number of pixels and nothing sets a percentage, on
+    purpose: shrink or stretch this page and the layout has to be worked out again from
+    scratch. Narrow the window a little and watch the rows change.
   </p>
 
   <div class="stage">
-    <div class="box w100">1 · width: 100%</div>
-    <div class="box w310">2 · width: 310px</div>
-    <div class="box w47 offset">3 · width: 47%</div>
-    <div class="box w74">4 · width: 74%</div>
+    <div class="box w300">1 · width: 300px</div>
+    <div class="box w220">2 · width: 220px</div>
+    <div class="box w260 offset">3 · width: 260px</div>
+    <div class="box w180">4 · width: 180px</div>
     <div class="nest">
-      <p class="nest-label">5 · a box with three other boxes inside it</p>
-      <div class="box child w62">5a · width: 62%</div>
-      <div class="box child w30">5b · width: 30%</div>
-      <div class="box child w78">5c · width: 78%</div>
+      <p class="nest-label">5 · width: 460px, with three boxes inside it</p>
+      <div class="box child w240">5a · width: 240px</div>
+      <div class="box child w120">5b · width: 120px</div>
+      <div class="box child w180">5c · width: 180px</div>
     </div>
-    <div class="box w160">6 · width: 160px</div>
-    <div class="box w86">7 · width: 86%</div>
-    <div class="box w240">8 · width: 240px</div>
-    <div class="box w58">9 · width: 58%</div>
-    <div class="box w69">10 · width: 69%</div>
+    <div class="box w340">6 · width: 340px</div>
+    <div class="box w240">7 · width: 240px</div>
+    <div class="box w200">8 · width: 200px</div>
+    <div class="box w420">9 · width: 420px</div>
+    <div class="box w320">10 · width: 320px</div>
   </div>
 
   <p class="note">
-    Look at the lines. Box 2 (310px) and box 3 (47%) fit together, so they share one —
-    and box 4 (74%) is too wide for what is left, so it starts a new line. Box 6 is only
-    160px, but box 7 at 86% will not fit beside it, so it too waits for a line of its own.
-    Whatever is left at the end of a line stays empty.
+    Which boxes share a line is decided by how much room the page gives them — the
+    widths are all fixed, so the answer changes whenever the window does. Narrow it and
+    the row of four becomes two rows of two; widen it and the four come back together.
+    Whatever is left at the end of a line just stays empty.
   </p>
   <p class="note">
     Box 3 also carries <code>top: 24px; left: 24px;</code>. Find it: it is butted right
@@ -46,9 +50,9 @@
     with the offsets.
   </p>
   <p class="note">
-    Box 5 holds three boxes, and they are placed by the very same rule inside it: 5a and
-    5b share the line, 5c is too wide for the remainder and wraps. Box 5 also grew taller
-    to hold them, because nobody gave it a height.
+    Box 5 holds three boxes, laid out by the very same rule inside it: 5a and 5b share
+    a line, 5c is too wide for what is left and wraps. Box 5 also grew taller to hold
+    them, because nobody gave it a height.
   </p>
 </body>
 </html>

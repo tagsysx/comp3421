@@ -25,10 +25,12 @@ code {
 .lede { font-size: 14.5px; }
 .note { font-size: 13.5px; }
 
-/* ---------- the page the boxes are laid out in ---------- */
+/* ---------- the page the boxes are laid out in ----------
+   Deliberately no width and no max-width: it takes whatever the window gives it.
+   That is the whole point of this example — narrow the window and the boxes below
+   have to be placed again from scratch. */
 .stage {
   box-sizing: border-box;
-  max-width: 760px;
   padding: 16px;
   margin: 0 0 18px;
   border: 1px dashed #c9d8ef;
@@ -56,19 +58,18 @@ code {
   font-weight: 600;
 }
 
-/* ten widths, chosen so that no two boxes look alike */
-.w100 { width: 100%; }
-.w310 { width: 310px; }
-.w47  { width: 47%; }
-.w74  { width: 74%; }
-.w160 { width: 160px; }
-.w86  { width: 86%; }
+/* ten widths, all in pixels — not one percentage anywhere, so the layout is
+   re-decided every time the window changes size */
+.w300 { width: 300px; }
+.w220 { width: 220px; }
+.w260 { width: 260px; }
+.w180 { width: 180px; }
+.w340 { width: 340px; }
 .w240 { width: 240px; }
-.w58  { width: 58%; }
-.w69  { width: 69%; }
-.w62  { width: 62%; }
-.w30  { width: 30%; }
-.w78  { width: 78%; }
+.w200 { width: 200px; }
+.w420 { width: 420px; }
+.w320 { width: 320px; }
+.w120 { width: 120px; }
 
 /* box 3: these two declarations are read, and then ignored, because the box is
    static — the offsets do nothing until position changes */
@@ -79,7 +80,8 @@ code {
   box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
-  width: 100%;               /* 100%, so this one takes the line to itself */
+  width: 460px;              /* a width of its own, so its inside does not depend
+                                on the window */
   padding: 14px;
   margin: 0 0 10px;
   border: 2px solid #0e3f8c;
