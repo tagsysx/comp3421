@@ -48,5 +48,4 @@ code {
 
 .t-ease   .dot { transition-timing-function: ease; }
 .t-linear .dot { transition-timing-function: linear; }
-.t-bez    .dot { transition-timing-function: cubic-bezier(.34, 1.56, .64, 1); }
 .t-steps  .dot { transition-timing-function: steps(5, jump-end); }
