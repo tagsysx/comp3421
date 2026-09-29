@@ -7,29 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>position: <code>relative</code> — ten boxes</h1>
-  <p class="lede">
-    Ten boxes, laid out by the browser exactly as on the static page. Two of them also
-    carry <code>position: relative</code> and an offset — find them.
-  </p>
-
-  <div class="stage">
-    <div class="box w300">1 · width: 300px</div>
-    <div class="box w220">2 · width: 220px</div>
-    <div class="box w260 moved-both">3 · width: 260px</div>
-    <div class="box w180">4 · width: 180px</div>
-    <div class="box w340">5 · width: 340px</div>
-    <div class="box w240">6 · width: 240px</div>
-    <div class="box w200">7 · width: 200px</div>
-    <div class="box w420 moved-down">8 · width: 420px</div>
-    <div class="box w320">9 · width: 320px</div>
-    <div class="box w280">10 · width: 280px</div>
+  <h2>Using position: relative;</h2>
+  <p>An element with position: relative; is positioned relative to its normal position:</p>
+  <div> Left </div>
+  <div class="relative">
+  Mid
   </div>
-
-  <p class="note">
-    Box 3 has moved down and right; box 8 has moved straight down. The other eight have
-    not moved at all, and the two slots they came from are still reserved — that is all
-    <code>position: relative</code> does.
-  </p>
+  <div> right</div>
 </body>
 </html>

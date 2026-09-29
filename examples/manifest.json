@@ -759,7 +759,7 @@
         {
           "id": "position-relative",
           "name": "position: relative",
-          "desc": "Ten boxes — two of them slide out of line, and their slots stay reserved",
+          "desc": "Three identical boxes, the middle one nudged 30px to the right",
           "files": [
             "index.html",
             "style.css"

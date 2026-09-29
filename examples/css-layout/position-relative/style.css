@@ -1,89 +1,20 @@
-/* position: relative — a box slides, its slot stays where it was */
+/* Only the two rules at the bottom matter — the top one is page chrome, so this
+   page looks like the other examples on this site (the snippet on its own would be
+   Times, jammed into the corner of the window). */
 
-/* No margin and no padding on the body, and no width on anything below it: the
-   boxes get the whole window, so resizing it re-decides how many fit on a line. */
 body {
-  margin: 0;
-  padding: 0;
+  margin: 24px;
   font-family: system-ui, -apple-system, sans-serif;
-  font-size: 15px;
-  line-height: 1.5;
-  background: #f0f5fc;
-  color: #1a2230;
 }
 
-h1 { font-size: 24px; color: #0e3f8c; margin: 28px 32px 10px; }
-
-code {
-  font-family: Menlo, Consolas, monospace;
-  font-size: 0.9em;
-  background: #e8eff8;
-  color: #1e4fa8;
-  padding: 1px 5px;
-  border-radius: 4px;
-}
-
-.lede, .note { color: #4a5568; margin: 0 32px 12px; }
-.lede { font-size: 14.5px; }
-.note { font-size: 13.5px; }
-.note:last-child { margin-bottom: 24px; }
-
-/* ---------- the page the ten boxes are laid out in ---------- */
-.stage {
-  box-sizing: border-box;
-  padding: 16px 16px 56px;   /* the extra room at the bottom is for the box that
-                               slides down out of the last row */
-  border-top: 1px dashed #c9d8ef;
-  border-bottom: 1px dashed #c9d8ef;
-  background: #fff;
-  font-size: 0;          /* inline-blocks: no whitespace between them */
-}
-
-/* ---------- a box ---------- */
-.box {
-  box-sizing: border-box;
+div {
   display: inline-block;
-  vertical-align: top;
-  position: static;          /* the default — only the two below leave it */
-  color: #1e4fa8;
-  background: #f7fbff;
-  border: 2px solid #1e4fa8;
-  border-radius: 6px;
-  padding: 10px 14px;
-  margin: 0 32px 44px 0;     /* 32px to the right and 44px below: both offsets
-                                slide into this gap, at any window width */
-  font-size: 13.5px;
-  font-weight: 600;
+  width: 300px;
+  border: 3px solid black;
 }
 
-.w300 { width: 300px; }
-.w220 { width: 220px; }
-.w260 { width: 260px; }
-.w180 { width: 180px; }
-.w340 { width: 340px; }
-.w240 { width: 240px; }
-.w200 { width: 200px; }
-.w420 { width: 420px; }
-.w320 { width: 320px; }
-.w280 { width: 280px; }
-
-/* ---------- the two boxes that leave static ---------- */
-
-/* box 3 — shifted from its own slot, and the slot stays reserved */
-.moved-both {
+div.relative {
   position: relative;
-  top: 24px;
-  left: 24px;
-  color: #fff;
-  background: #1e4fa8;
-  border-color: #1e4fa8;
-}
-
-/* box 8 — the same idea, one axis only */
-.moved-down {
-  position: relative;
-  top: 32px;
-  color: #fff;
-  background: #1e4fa8;
-  border-color: #1e4fa8;
+  left: 30px;
+  border: 3px solid #73AD21;
 }
