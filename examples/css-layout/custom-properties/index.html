@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Custom properties</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Declare on :root, use it later — the W3Schools two-variable page</h2>
+  <div class="site">
+    <h1>Headline</h1>
+    <p>Body text, in the colour the page was given.</p>
+    <button class="btn">A button</button>
+  </div>
+  <p class="note">Change the two values in <code>:root</code> and everything above changes with
+     them. That is the whole point: the colour is written once and read everywhere.</p>
+
+  <h2>Any value, not only a colour</h2>
+  <div class="bars">
+    <div class="bar gap"></div>
+    <div class="bar pad"></div>
+  </div>
+  <p class="note">A custom property can hold a length (<code>--gap: 12px</code>), a font stack,
+     even a whole <code>box-shadow</code>. Names start with two dashes and are
+     <strong>case-sensitive</strong>: <code>--brand</code> and <code>--Brand</code> are two
+     different variables.</p>
+
+</body>
+</html>

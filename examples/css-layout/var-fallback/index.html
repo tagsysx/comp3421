@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>var() and fallbacks</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Read a value: var(--name)</h2>
+  <div class="row">
+    <div class="pill defined">--brand was declared</div>
+    <div class="pill missing">--nope was never declared</div>
+  </div>
+  <p class="note">The second pill asks for <code>var(--nope, #d9534f)</code>. When a variable has
+     never been declared, the <strong>fallback</strong> — everything after the comma — is used
+     instead. Give no fallback and the declaration is thrown away, so the property keeps the
+     value it would have had anyway.</p>
+
+  <h2>Composable — one variable built from another</h2>
+  <div class="box">padding: calc(var(--gap) * 2)</div>
+  <p class="note">A variable can be used inside another value, so one number can drive a padding,
+     a gap and a width at the same time.</p>
+
+</body>
+</html>

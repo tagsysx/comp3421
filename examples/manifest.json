@@ -148,6 +148,9 @@
         "css-layout/flexbox-in-the-wild",
         "css-layout/responsive",
         "css-layout/variables",
+        "css-layout/custom-properties",
+        "css-layout/var-fallback",
+        "css-layout/var-scope",
         "css-layout/transform",
         "css-layout/transform-3d",
         "css-layout/transition",
@@ -157,11 +160,17 @@
         "css-layout/animation-direction",
         "css-layout/looping-motion",
         "css-layout/reduced-motion",
-        "css-layout/gradients",
+        "css-layout/gradients-linear",
+        "css-layout/gradients-radial-conic",
+        "css-layout/gradients-stops",
         "css-layout/layered-backgrounds",
         "css-layout/shadow",
+        "css-layout/shadow-recipes",
         "css-layout/border-image",
+        "css-layout/border-image-repeat",
         "css-layout/display",
+        "css-layout/display-outer-box",
+        "css-layout/hiding",
         "css-layout/icons",
         "css-layout/card"
       ]
@@ -958,6 +967,33 @@
           ]
         },
         {
+          "id": "custom-properties",
+          "name": "Custom properties",
+          "desc": "declare once on :root, read it everywhere",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "var-fallback",
+          "name": "var() and fallbacks",
+          "desc": "the value after the comma, and one variable inside another",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "var-scope",
+          "name": "Scope and inheritance",
+          "desc": "the same variable at three scopes, override one subtree",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
           "id": "border-width-colour",
           "name": "Border — width & colour",
           "desc": "thin / medium / thick, lengths, and why a border needs all three parts",
@@ -1053,9 +1089,27 @@
           ]
         },
         {
-          "id": "gradients",
-          "name": "Gradients",
-          "desc": "linear-gradient, radial-gradient and as many stops as you like",
+          "id": "gradients-linear",
+          "name": "Linear gradients",
+          "desc": "direction and stops, plus a repeating pattern",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "gradients-radial-conic",
+          "name": "Radial and conic gradients",
+          "desc": "outward from a point, and swept around one",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "gradients-stops",
+          "name": "Gradient stops",
+          "desc": "hard edges, uneven bands and alpha stops",
           "files": [
             "index.html",
             "style.css"
@@ -1131,6 +1185,15 @@
           ]
         },
         {
+          "id": "shadow-recipes",
+          "name": "Shadow recipes",
+          "desc": "five box-shadow recipes you can copy",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
           "id": "border-image",
           "name": "border-image",
           "desc": "one 90 × 90 image sliced at 30 into nine tiles, stretched or tiled",
@@ -1141,9 +1204,36 @@
           ]
         },
         {
+          "id": "border-image-repeat",
+          "name": "border-image repeat",
+          "desc": "stretch, repeat, round and space, side by side",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
           "id": "display",
           "name": "display",
           "desc": "block, inline, inline-block and none on the same three tags",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "display-outer-box",
+          "name": "display - the outer box type",
+          "desc": "block, inline, inline-block, flex and none on the same boxes",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "hiding",
+          "name": "Hiding things three ways",
+          "desc": "display:none, visibility:hidden, opacity:0 — space and clicks",
           "files": [
             "index.html",
             "style.css"

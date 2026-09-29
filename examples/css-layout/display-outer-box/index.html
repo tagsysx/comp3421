@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>display - the outer box type</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>The same three boxes — five display values</h2>
+  <p class="label">display: block — one per line, the width is respected</p>
+  <div class="demo block"><span>1</span><span>2</span><span>3</span></div>
+
+  <p class="label">display: inline — they run together, width and height are ignored</p>
+  <div class="demo inline"><span>1</span><span>2</span><span>3</span></div>
+
+  <p class="label">display: inline-block — in the line, but a box you can size</p>
+  <div class="demo ib"><span>1</span><span>2</span><span>3</span></div>
+
+  <p class="label">display: flex — a block box whose children are flex items</p>
+  <div class="demo flex"><span>1</span><span>2</span><span>3</span></div>
+
+  <p class="label">display: none — not rendered at all, so no space is taken</p>
+  <div class="demo block"><span class="gone">1</span><span>2</span><span>3</span></div>
+
+</body>
+</html>

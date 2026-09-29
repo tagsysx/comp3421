@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Hiding things three ways</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>The same missing box, three ways</h2>
+  <div class="row">
+    <div class="cell">
+      <b>display: none</b>
+      <div class="seat"><span class="box a">A</span><span class="box gone">hidden</span><span class="box a">C</span></div>
+      <p class="note">takes no space — C moves up</p>
+    </div>
+    <div class="cell">
+      <b>visibility: hidden</b>
+      <div class="seat"><span class="box a">A</span><span class="box inv">hidden</span><span class="box a">C</span></div>
+      <p class="note">keeps its space — the gap stays</p>
+    </div>
+    <div class="cell">
+      <b>opacity: 0</b>
+      <div class="seat"><span class="box a">A</span><span class="box clickable">hidden</span><span class="box a">C</span></div>
+      <p class="note">keeps its space <em>and still takes clicks</em></p>
+    </div>
+  </div>
+  <p class="note">Press the invisible middle box in the third column — the counter below goes up,
+     because <code>opacity: 0</code> only makes it see-through: the element is still there.</p>
+  <p class="tally">clicks on the invisible box: <span id="n">0</span></p>
+  <script>
+    let n = 0;
+    document.querySelector(".clickable").addEventListener("click", () => {
+      document.getElementById("n").textContent = ++n;
+    });
+  </script>
+
+</body>
+</html>

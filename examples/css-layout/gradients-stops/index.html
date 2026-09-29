@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Gradient stops</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Stops are positions — put two at the same place for a hard edge</h2>
+  <div class="row">
+    <div class="g s1"><span>50% / 50%: a hard edge</span></div>
+    <div class="g s2"><span>20% · 60%: uneven bands</span></div>
+  </div>
+  <p class="note">Every stop is a colour plus where it starts. Two stops at the same percentage
+     leave nothing to blend, so the edge is sharp; move them apart and the blend comes back.</p>
+
+  <h2>Alpha stops — a gradient that fades out</h2>
+  <div class="row">
+    <div class="g a1"><span>rgba() into transparent</span></div>
+    <div class="g a2"><span>#RRGGBBAA</span></div>
+  </div>
+  <p class="note">The last stop can be transparent, which is how a photo is faded into the page
+     instead of being covered with a solid strip.</p>
+
+</body>
+</html>

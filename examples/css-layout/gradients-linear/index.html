@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Linear gradients</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>background-image: linear-gradient(direction, stop, stop)</h2>
+  <div class="row">
+    <div class="g g1"><span>to right</span></div>
+    <div class="g g2"><span>to bottom right</span></div>
+    <div class="g g3"><span>45deg, three stops</span></div>
+    <div class="g g4"><span>90deg, hard stops</span></div>
+  </div>
+  <p class="note">A gradient is an <em>image</em> the browser draws — no file, sharp at any size.
+     The angle is measured clockwise from the top, so <code>90deg</code> runs left to right; the
+     keywords <code>to right</code> and <code>to bottom right</code> say the same thing in words.</p>
+
+  <h2>A repeating gradient is a pattern</h2>
+  <div class="strip"></div>
+  <p class="note"><code>repeating-linear-gradient(45deg, #fff 0 9px, #eef3fb 9px 18px)</code> —
+     the same idea, tiled.</p>
+
+</body>
+</html>

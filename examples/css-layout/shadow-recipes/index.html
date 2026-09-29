@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Shadow recipes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Five shadows you can copy</h2>
+  <div class="row">
+    <div class="card subtle">Subtle elevation<br><code>0 1px 3px rgba(0,0,0,.12)</code></div>
+    <div class="card raised">Raised<br><code>0 12px 24px rgba(0,0,0,.18)</code></div>
+    <div class="card focus">Focus ring<br><code>0 0 0 3px rgba(24,95,165,.35)</code></div>
+    <div class="card inset">Pressed in<br><code>inset 0 2px 6px rgba(0,0,0,.22)</code></div>
+  </div>
+  <p class="note">Two numbers set the offset, then the blur, then the colour — and
+     <code>0 0 0 3px</code> with no offset and no blur is a ring around the box, which is how a
+     focus state is usually drawn.</p>
+
+</body>
+</html>
