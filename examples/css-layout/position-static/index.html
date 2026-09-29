@@ -11,8 +11,8 @@
   <p class="lede">
     Not one box on this page has <code>position</code> set, so every one of them is
     <code>static</code>. The browser places them itself — in the order they appear in
-    the HTML, top to bottom, each one starting a new line. Give ten boxes a border and
-    a different width, and you can see exactly where it put them.
+    the HTML, left to right along the line, and onto a new line when the next box is
+    too wide for what is left. Ten borders and ten different widths make it visible.
   </p>
 
   <div class="stage">
@@ -23,8 +23,8 @@
     <div class="nest">
       <p class="nest-label">5 · a box with three other boxes inside it</p>
       <div class="box child w62">5a · width: 62%</div>
-      <div class="box child w38">5b · width: 38%</div>
-      <div class="box child w80">5c · width: 80%</div>
+      <div class="box child w30">5b · width: 30%</div>
+      <div class="box child w78">5c · width: 78%</div>
     </div>
     <div class="box w160">6 · width: 160px</div>
     <div class="box w86">7 · width: 86%</div>
@@ -34,19 +34,21 @@
   </div>
 
   <p class="note">
-    Box 3 also carries <code>top: 24px; left: 24px;</code>. Look at where it ended up:
-    on its own line, in order, its left edge level with all nine others. The browser
-    read the two declarations and did nothing with them — that is what
-    <code>static</code> does with the offsets.
+    Look at the lines. Box 2 (310px) and box 3 (47%) fit together, so they share one —
+    and box 4 (74%) is too wide for what is left, so it starts a new line. Box 6 is only
+    160px, but box 7 at 86% will not fit beside it, so it too waits for a line of its own.
+    Whatever is left at the end of a line stays empty.
   </p>
   <p class="note">
-    Box 5 holds three boxes. They are placed by the same rule, inside box 5: in order,
-    one per line — and box 5 grew taller to hold them, because nobody gave it a height.
+    Box 3 also carries <code>top: 24px; left: 24px;</code>. Find it: it is butted right
+    up against box 2, no 24px shove to the right and no 24px drop. The browser read the
+    two declarations and did nothing with them — that is what <code>static</code> does
+    with the offsets.
   </p>
   <p class="note">
-    No two of the ten share a line, however narrow they are: box 6 is only 160px wide
-    and box 7 still starts on a new line. That is normal flow, and normal flow is what
-    <code>static</code> means.
+    Box 5 holds three boxes, and they are placed by the very same rule inside it: 5a and
+    5b share the line, 5c is too wide for the remainder and wraps. Box 5 also grew taller
+    to hold them, because nobody gave it a height.
   </p>
 </body>
 </html>

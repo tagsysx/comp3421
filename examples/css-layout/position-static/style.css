@@ -34,18 +34,24 @@ code {
   border: 1px dashed #c9d8ef;
   border-radius: 10px;
   background: #fff;
+  font-size: 0;          /* inline-blocks: no whitespace between them.
+                            Without this the newline in the HTML is a space, and
+                            every box on a line would sit ~4px apart. */
 }
 
 /* ---------- a box ---------- */
 .box {
   box-sizing: border-box;
+  display: inline-block;     /* a display decision, not a position one: it takes the
+                                boxes off the stack and puts them along the line */
+  vertical-align: top;
   position: static;          /* the default — nothing here needs to write it */
   color: #1e4fa8;
   background: #f7fbff;
   border: 2px solid #1e4fa8;
   border-radius: 6px;
   padding: 10px 14px;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   font-size: 13.5px;
   font-weight: 600;
 }
@@ -61,8 +67,8 @@ code {
 .w58  { width: 58%; }
 .w69  { width: 69%; }
 .w62  { width: 62%; }
-.w38  { width: 38%; }
-.w80  { width: 80%; }
+.w30  { width: 30%; }
+.w78  { width: 78%; }
 
 /* box 3: these two declarations are read, and then ignored, because the box is
    static — the offsets do nothing until position changes */
@@ -71,11 +77,15 @@ code {
 /* ---------- box 5: a box holding three boxes ---------- */
 .nest {
   box-sizing: border-box;
+  display: inline-block;
+  vertical-align: top;
+  width: 100%;               /* 100%, so this one takes the line to itself */
   padding: 14px;
-  margin-bottom: 10px;
+  margin: 0 0 10px;
   border: 2px solid #0e3f8c;
   border-radius: 8px;
   background: #eef4fd;
+  font-size: 0;              /* its three children are inline-blocks too */
 }
 
 .nest-label {
@@ -89,6 +99,5 @@ code {
 .child {
   background: #fff;
   border: 1px dashed #3d7bd9;
-  margin-bottom: 8px;
+  margin: 0 6px 8px 0;
 }
-.child:last-child { margin-bottom: 0; }
