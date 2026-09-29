@@ -1,0 +1,60 @@
+/* normal flow — fifty identical boxes, laid out by the browser alone */
+
+/* No margin and no padding on the body, and no width on anything below it: the
+   boxes get the whole window, so resizing it re-decides how many fit on a line. */
+body {
+  margin: 0;
+  padding: 0;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #f0f5fc;
+  color: #1a2230;
+}
+
+h1 { font-size: 24px; color: #0e3f8c; margin: 28px 32px 10px; }
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: #e8eff8;
+  color: #1e4fa8;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.lede, .note { color: #4a5568; margin: 0 32px 12px; }
+.lede { font-size: 14.5px; }
+.note { font-size: 13.5px; }
+.note:last-child { margin-bottom: 24px; }
+
+/* ---------- the page the fifty boxes are laid out in ----------
+   No width, no max-width, no side margin — as wide as the window. */
+.stage {
+  box-sizing: border-box;
+  padding: 16px;
+  border-top: 1px dashed #c9d8ef;
+  border-bottom: 1px dashed #c9d8ef;
+  background: #fff;
+  font-size: 0;          /* inline-blocks: no whitespace between them.
+                            Without this the newline in the HTML is a space, and
+                            every box would carry an extra ~4px gap. */
+}
+
+/* ---------- the box: one size, fifty of them ---------- */
+.box {
+  box-sizing: border-box;
+  display: inline-block;     /* the only layout instruction on this page */
+  vertical-align: top;
+  width: 120px;
+  height: 90px;
+  line-height: 86px;         /* height minus the two 2px borders: centred number */
+  text-align: center;
+  font-size: 15px;
+  font-weight: 700;
+  color: #1e4fa8;
+  background: #f7fbff;
+  border: 2px solid #1e4fa8;
+  border-radius: 6px;
+  margin: 0 6px 6px 0;       /* a 6px gap, so each box takes 126px of the line */
+}

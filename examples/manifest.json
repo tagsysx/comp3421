@@ -136,6 +136,7 @@
       "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, gradients, shadows, display",
       "examples": [
         "css-layout/normal-flow",
+        "css-layout/normal-flow-50",
         "css-layout/positioning",
         "css-layout/position-static",
         "css-layout/position-relative",
@@ -723,6 +724,15 @@
           "id": "normal-flow",
           "name": "Normal flow",
           "desc": "Bordered boxes with their own widths, stacking down the page and wrapping inside a parent",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "normal-flow-50",
+          "name": "Normal flow — fifty boxes",
+          "desc": "Fifty identical inline-blocks: count a line, resize the window, count again",
           "files": [
             "index.html",
             "style.css"
