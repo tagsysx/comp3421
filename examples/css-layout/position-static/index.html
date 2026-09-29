@@ -7,50 +7,46 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>position: <code>static</code></h1>
+  <h1>position: <code>static</code> — ten boxes</h1>
   <p class="lede">
-    Every element is <code>static</code> until you say otherwise. It takes part in
-    normal flow — top to bottom, left to right — and the four offsets
-    (<code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>)
-    do nothing at all.
+    Not one box on this page has <code>position</code> set, so every one of them is
+    <code>static</code>. The browser places them itself — in the order they appear in
+    the HTML, top to bottom, each one starting a new line. Give ten boxes a border and
+    a different width, and you can see exactly where it put them.
   </p>
 
-  <h2>1 · Box 2 declares an offset, and does not move</h2>
   <div class="stage">
-    <div class="box">1</div>
-    <div class="box subject">2</div>
-    <div class="box">3</div>
-  </div>
-  <p class="note">
-    Box 2 carries <code>top: 24px; left: 24px;</code>. Compare the two gaps:
-    1&nbsp;→&nbsp;2 and 2&nbsp;→&nbsp;3 are still the same width, so the declarations
-    were parsed and then dropped.
-  </p>
-
-  <h2>2 · The offset drawn as a target</h2>
-  <div class="stage tall">
-    <div class="box">1</div>
-    <div class="slot">
-      <div class="box subject">2</div>
-      <div class="ghost">top / left target</div>
+    <div class="box w100">1 · width: 100%</div>
+    <div class="box w310">2 · width: 310px</div>
+    <div class="box w47 offset">3 · width: 47%</div>
+    <div class="box w74">4 · width: 74%</div>
+    <div class="nest">
+      <p class="nest-label">5 · a box with three other boxes inside it</p>
+      <div class="box child w62">5a · width: 62%</div>
+      <div class="box child w38">5b · width: 38%</div>
+      <div class="box child w80">5c · width: 80%</div>
     </div>
-    <div class="box">3</div>
+    <div class="box w160">6 · width: 160px</div>
+    <div class="box w86">7 · width: 86%</div>
+    <div class="box w240">8 · width: 240px</div>
+    <div class="box w58">9 · width: 58%</div>
+    <div class="box w69">10 · width: 69%</div>
   </div>
-  <p class="note">
-    The red dashed outline is where box 2 would have landed if <code>position</code>
-    were <code>relative</code>. A <code>static</code> box never uses the offsets: the
-    declarations are there in the rule, and the box stays in its slot.
-  </p>
 
-  <h2>3 · The five values at a glance</h2>
-  <table>
-    <tr><th>value</th><th>what the offsets do</th></tr>
-    <tr><td><code>static</code></td><td>nothing — all four are ignored</td></tr>
-    <tr><td><code>relative</code></td><td>nudge the box away from its own spot</td></tr>
-    <tr><td><code>absolute</code></td><td>pin it to the nearest positioned ancestor</td></tr>
-    <tr><td><code>fixed</code></td><td>pin it to the viewport</td></tr>
-    <tr><td><code>sticky</code></td><td>behave as relative until it reaches the offset</td></tr>
-  </table>
-  <p class="note">The other four values each have their own page in this folder.</p>
+  <p class="note">
+    Box 3 also carries <code>top: 24px; left: 24px;</code>. Look at where it ended up:
+    on its own line, in order, its left edge level with all nine others. The browser
+    read the two declarations and did nothing with them — that is what
+    <code>static</code> does with the offsets.
+  </p>
+  <p class="note">
+    Box 5 holds three boxes. They are placed by the same rule, inside box 5: in order,
+    one per line — and box 5 grew taller to hold them, because nobody gave it a height.
+  </p>
+  <p class="note">
+    No two of the ten share a line, however narrow they are: box 6 is only 160px wide
+    and box 7 still starts on a new line. That is normal flow, and normal flow is what
+    <code>static</code> means.
+  </p>
 </body>
 </html>

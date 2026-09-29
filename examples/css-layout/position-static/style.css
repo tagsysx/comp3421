@@ -1,4 +1,4 @@
-/* position: static — the default, and the only value that ignores the offsets */
+/* position: static — no positioning at all: the browser lays the page out itself */
 
 body {
   margin: 0;
@@ -11,8 +11,6 @@ body {
 }
 
 h1 { font-size: 24px; color: #0e3f8c; margin: 0 0 8px; }
-h2 { font-size: 15px; color: #0e3f8c; margin: 28px 0 10px; }
-h2:nth-of-type(1) { margin-top: 22px; }
 
 code {
   font-family: Menlo, Consolas, monospace;
@@ -23,92 +21,74 @@ code {
   border-radius: 4px;
 }
 
-.lede, .note { max-width: 68ch; color: #4a5568; margin: 0; }
+.lede, .note { max-width: 68ch; color: #4a5568; margin: 0 0 12px; }
 .lede { font-size: 14.5px; }
-.note { font-size: 13.5px; margin-top: 12px; }
+.note { font-size: 13.5px; }
 
-/* ---------- the demo stage: a plain white card ---------- */
+/* ---------- the page the boxes are laid out in ---------- */
 .stage {
-  background: #fff;
+  box-sizing: border-box;
+  max-width: 760px;
+  padding: 16px;
+  margin: 0 0 18px;
   border: 1px dashed #c9d8ef;
   border-radius: 10px;
-  padding: 18px;
-  font-size: 0;            /* inline-blocks: kill the whitespace gap */
+  background: #fff;
 }
-.stage.tall { padding-bottom: 58px; }   /* room for the target marker below */
-.stage > * { margin-left: 40px; }       /* the gap we compare in section 1 */
-.stage > *:first-child { margin-left: 0; }
 
+/* ---------- a box ---------- */
 .box {
-  display: inline-block;
-  vertical-align: top;
   box-sizing: border-box;
-  width: 110px;
-  height: 64px;
-  line-height: 62px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 700;
+  position: static;          /* the default — nothing here needs to write it */
   color: #1e4fa8;
-  background: #e8eff8;
-  border: 1px solid #b9cdee;
-  border-radius: 8px;
-}
-
-/* the one box this page is about */
-.subject { color: #fff; background: #1e4fa8; border-color: #1e4fa8; }
-
-/* ---------- static ---------- */
-
-/* the default — writing it out changes nothing at all */
-.box { position: static; }
-
-/* box 2 carries these two declarations … and goes nowhere.
-   getComputedStyle(box).top reads back as "auto": the declaration is dropped. */
-.subject {
-  top: 24px;
-  left: 24px;
-}
-
-/* ---------- the target marker — decoration, not the lesson ---------- */
-.slot {
-  display: inline-block;
-  vertical-align: top;
-  position: relative;      /* only so the marker can be placed inside it */
-}
-
-.ghost {
-  position: absolute;
-  top: 24px;               /* … the very offsets static refused to apply */
-  left: 24px;
-  box-sizing: border-box;
-  width: 110px;
-  height: 64px;
-  line-height: 60px;
-  text-align: center;
-  font-size: 11px;
-  color: #d9534f;
-  background: #fff;
-  border: 1px dashed #d9534f;
-  border-radius: 8px;
-}
-
-/* ---------- the recap table ---------- */
-table {
-  border-collapse: collapse;
+  background: #f7fbff;
+  border: 2px solid #1e4fa8;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin-bottom: 10px;
   font-size: 13.5px;
-  background: #fff;
-  border: 1px solid #c9d8ef;
-  border-radius: 10px;
-  overflow: hidden;
+  font-weight: 600;
 }
-th, td { text-align: left; padding: 9px 16px; border-bottom: 1px solid #e8eff8; }
-th {
-  background: #e8eff8;
+
+/* ten widths, chosen so that no two boxes look alike */
+.w100 { width: 100%; }
+.w310 { width: 310px; }
+.w47  { width: 47%; }
+.w74  { width: 74%; }
+.w160 { width: 160px; }
+.w86  { width: 86%; }
+.w240 { width: 240px; }
+.w58  { width: 58%; }
+.w69  { width: 69%; }
+.w62  { width: 62%; }
+.w38  { width: 38%; }
+.w80  { width: 80%; }
+
+/* box 3: these two declarations are read, and then ignored, because the box is
+   static — the offsets do nothing until position changes */
+.offset { top: 24px; left: 24px; }
+
+/* ---------- box 5: a box holding three boxes ---------- */
+.nest {
+  box-sizing: border-box;
+  padding: 14px;
+  margin-bottom: 10px;
+  border: 2px solid #0e3f8c;
+  border-radius: 8px;
+  background: #eef4fd;
+}
+
+.nest-label {
+  margin: 0 0 10px;
+  font-size: 13.5px;
+  font-weight: 700;
   color: #0e3f8c;
-  font-size: 12px;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
 }
-tr:last-child td { border-bottom: 0; }
-td:first-child { width: 130px; }
+
+/* its three children — dashed, so it is obvious which box they belong to */
+.child {
+  background: #fff;
+  border: 1px dashed #3d7bd9;
+  margin-bottom: 8px;
+}
+.child:last-child { margin-bottom: 0; }

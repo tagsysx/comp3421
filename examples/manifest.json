@@ -740,7 +740,7 @@
         {
           "id": "position-static",
           "name": "position: static",
-          "desc": "The default &mdash; the offsets are ignored",
+          "desc": "Nothing positioned: ten bordered boxes in document order, one of them holding three more",
           "files": [
             "index.html",
             "style.css"
