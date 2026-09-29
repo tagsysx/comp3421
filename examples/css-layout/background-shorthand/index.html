@@ -1,32 +1,24 @@
 <!DOCTYPE html>
-<html lang="en">
+<html>
 <head>
-  <meta charset="utf-8" />
-  <title>The background shorthand</title>
-  <link rel="stylesheet" href="style.css" />
+<style>
+body {
+  background: #ffffff url("img_tree.png") no-repeat right top;
+  margin-right: 200px;
+}
+</style>
 </head>
 <body>
-  <h1>The background shorthand</h1>
-  <div class="note">One declaration can set the colour, the image, the position, the size and the repeat together. It is the five properties you have just used, written as a single line.</div>
 
-  <h2 class="section">Longhand</h2>
-  <div class="code">body {
-  background-color: #ffffff;
-  background-image: url("img_tree.png");
-  background-repeat: no-repeat;
-  background-position: right top;
-}</div>
-  <div class="note">Four lines, four properties — and each one can be changed and debugged on its own.</div>
+<h1>The background Property</h1>
 
-  <h2 class="section">The same thing in one line</h2>
-  <div class="code">body {
-  background: #ffffff url("img_tree.png")
-              no-repeat right top;
-}</div>
-  <div class="live ">
-    <div class="sh">background: #ffffff url("img_tree.png") no-repeat right top;</div>
-  </div>
-  <div class="note">Colour first, then the image, then repeat, then position. It does not matter if one of the parts is missing, as long as the ones that are there keep this order. Two warnings: the shorthand <b>resets</b> every background property you leave out, and the <code>/</code> between position and size is not optional — <code>background: url(t.png) center / cover no-repeat;</code>. W3Schools writes this on <code>body</code>; here it is on the demo box.</div>
+<p>The background property is a shorthand property for specifying all the background properties in one declaration.</p>
+
+<p>Here, the background image is only shown once, and it is also positioned in the top-right corner.</p>
+
+<p>We have also added a right margin, so that the text will not write over the background image.</p>
 
 </body>
 </html>
+
+

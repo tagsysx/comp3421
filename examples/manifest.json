@@ -123,8 +123,11 @@
         "css-layout/width-height",
         "css-layout/box-sizing",
         "css-layout/backgrounds",
-        "css-layout/background-colour-image",
-        "css-layout/background-repeat-position-size",
+        "css-layout/background-color",
+        "css-layout/background-image",
+        "css-layout/background-repeat",
+        "css-layout/background-position",
+        "css-layout/background-attachment",
         "css-layout/background-shorthand",
         "css-layout/blend-modes",
         "css-layout/image-sprites"
@@ -1068,24 +1071,47 @@
           ]
         },
         {
-          "id": "background-colour-image",
-          "name": "Background — colour & image",
-          "desc": "a flat colour, an image on top of it, and where the paint stops",
+          "id": "background-color",
+          "name": "background-color",
+          "desc": "h1 / div / p, three colours — the w3schools example, copied unchanged",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "background-image",
+          "name": "background-image",
+          "desc": "one small tile on body, repeated until it covers the page",
           "files": [
             "index.html",
-            "style.css",
             "paper.gif"
           ]
         },
         {
-          "id": "background-repeat-position-size",
-          "name": "Background — repeat, position & size",
-          "desc": "repeat / no-repeat / space / round, where it is anchored, how big it is",
+          "id": "background-repeat",
+          "name": "background-repeat",
+          "desc": "repeat-x turns a one-line image into a header band",
           "files": [
             "index.html",
-            "style.css",
-            "img_tree.png",
             "gradient_bg.png"
+          ]
+        },
+        {
+          "id": "background-position",
+          "name": "background-position",
+          "desc": "no-repeat plus right top — one copy of the image, kept off the text",
+          "files": [
+            "index.html",
+            "img_tree.png"
+          ]
+        },
+        {
+          "id": "background-attachment",
+          "name": "background-attachment",
+          "desc": "fixed pins the image to the viewport — scroll the page to see it",
+          "files": [
+            "index.html",
+            "img_tree.png"
           ]
         },
         {
@@ -1128,11 +1154,10 @@
         },
         {
           "id": "background-shorthand",
-          "name": "Background — shorthand",
-          "desc": "five properties in one line, and the slash that cannot be left out",
+          "name": "background",
+          "desc": "colour, image, repeat and position in a single declaration",
           "files": [
             "index.html",
-            "style.css",
             "img_tree.png"
           ]
         },
