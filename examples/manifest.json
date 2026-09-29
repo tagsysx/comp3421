@@ -135,6 +135,7 @@
       "name": "Lecture 5 · CSS III — Layout, Animation & Miscellaneous",
       "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, gradients, shadows, display",
       "examples": [
+        "css-layout/normal-flow",
         "css-layout/positioning",
         "css-layout/position-static",
         "css-layout/position-relative",
@@ -713,6 +714,15 @@
           "id": "box-model",
           "name": "Box model",
           "desc": "Content, padding, border, margin, corners and box-sizing",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "normal-flow",
+          "name": "Normal flow",
+          "desc": "Bordered boxes with their own widths, stacking down the page and wrapping inside a parent",
           "files": [
             "index.html",
             "style.css"

@@ -1,0 +1,125 @@
+/* normal flow — the layout you get before you ask for one */
+
+body {
+  margin: 0;
+  padding: 32px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #f0f5fc;
+  color: #1a2230;
+}
+
+h1 { font-size: 24px; color: #0e3f8c; margin: 0 0 8px; }
+h2 { font-size: 15px; color: #0e3f8c; margin: 28px 0 10px; }
+h2:nth-of-type(1) { margin-top: 22px; }
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: #e8eff8;
+  color: #1e4fa8;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.lede, .note { max-width: 68ch; color: #4a5568; margin: 0; }
+.lede { font-size: 14.5px; margin-bottom: 6px; }
+.note { font-size: 13.5px; margin-top: 12px; }
+.note.try { color: #1e4fa8; background: #e8eff8; border-radius: 10px; padding: 12px 16px; }
+.note.try code { background: #fff; }
+
+/* ---------- the frame: the page the boxes are laid out in ----------
+   The stripes are the point of this example: a stripe you can see is page
+   that no box decided to use.  Every box paints its own white background,
+   so the stripes never sit behind any text. */
+.frame {
+  max-width: 720px;
+  padding: 16px;
+  border: 1px dashed #c9d8ef;
+  border-radius: 10px;
+  background-image: repeating-linear-gradient(45deg, #ffffff 0 9px, #f1f7ff 9px 18px);
+}
+.frame.narrow { max-width: 324px; font-size: 0; }   /* inline-blocks: no whitespace gap */
+
+/* ---------- a block box ---------- */
+.box {
+  box-sizing: border-box;      /* so the printed width is the box you can see */
+  color: #1e4fa8;
+  background: #fff;
+  border: 2px solid #1e4fa8;
+  border-radius: 6px;
+  padding: 10px 14px;
+  font-size: 13.5px;
+  font-weight: 600;
+}
+
+/* section 1 — widths.  width: auto is the default, written out for the label */
+.fill   { width: auto; }
+.pct100 { width: 100%; }
+.pct80  { width: 80%; }
+.pct62  { width: 62%; }
+.pct55  { width: 55%; }
+.px220  { width: 220px; }
+.px120  { width: 120px; }
+
+/* section 2 — a box with children boxes inside it */
+.outer {
+  box-sizing: border-box;
+  width: 440px;
+  padding: 14px;
+  border: 2px solid #0e3f8c;
+  border-radius: 8px;
+  background: #eef4fd;
+}
+.inner {
+  box-sizing: border-box;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px dashed #3d7bd9;
+  border-radius: 8px;
+  background: #e2ecfb;
+}
+.child { margin-bottom: 10px; }
+.outer .box:last-child, .inner .box:last-child { margin-bottom: 0; }
+
+.lbl { margin: 0 0 10px; font-size: 12.5px; color: #4a5568; }
+
+/* section 3 — inline boxes */
+.chip {
+  display: inline-block;
+  box-sizing: border-box;
+  width: 84px;
+  height: 44px;
+  line-height: 40px;
+  text-align: center;
+  color: #1e4fa8;
+  background: #fff;
+  border: 2px solid #3d7bd9;
+  border-radius: 6px;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+/* section 4 — margins */
+.gap { margin: 28px 0 28px 64px; }
+
+/* ---------- the summary table ---------- */
+table {
+  border-collapse: collapse;
+  font-size: 13.5px;
+  background: #fff;
+  border: 1px solid #c9d8ef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+th, td { text-align: left; padding: 9px 16px; border-bottom: 1px solid #e8eff8; }
+th {
+  background: #e8eff8;
+  color: #0e3f8c;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tr:last-child td { border-bottom: 0; }
+td:first-child { width: 210px; }

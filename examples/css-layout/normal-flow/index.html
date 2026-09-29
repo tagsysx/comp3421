@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>normal flow</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>Normal flow</h1>
+  <p class="lede">
+    Left to right, top to bottom — and that is the whole of it. Every element is in
+    normal flow until you change <code>display</code>, set <code>position</code>, or
+    put it inside a flex or grid container.
+  </p>
+  <p class="lede">
+    Every box below has a border, so you can see where it starts and where it stops.
+    The frame behind them is striped: any stripe you can see is page the boxes did
+    <em>not</em> use.
+  </p>
+
+  <h2>1 · A block box takes a whole line</h2>
+  <div class="frame">
+    <div class="box fill">1 · <code>width: auto</code> — all of the line</div>
+    <div class="box pct100">2 · <code>width: 100%</code> — the same thing, written out</div>
+    <div class="box pct80">3 · <code>width: 80%</code></div>
+    <div class="box pct55">4 · <code>width: 55%</code></div>
+    <div class="box px220">5 · <code>width: 220px</code></div>
+    <div class="box px120">6 · <code>width: 120px</code></div>
+  </div>
+  <p class="note">
+    Six boxes, six lines. All six start at the same left edge, and not one of them
+    moves up into the empty space beside a narrow neighbour — a block box owns its
+    whole line however narrow it is drawn. That is why two block boxes never sit
+    side by side, and why <code>width</code> alone never makes a row.
+  </p>
+
+  <h2>2 · A box with other boxes inside it</h2>
+  <div class="frame">
+    <div class="outer">
+      <p class="lbl">outer box · <code>width: 440px</code></p>
+      <div class="box child">child A · <code>width: auto</code> → all of the outer box</div>
+      <div class="box child pct62">child B · <code>width: 62%</code> of the outer box's inside</div>
+      <div class="inner">
+        <p class="lbl">a box inside the outer box, with a child of its own</p>
+        <div class="box child pct80">child C · <code>width: 80%</code> of <em>this</em> box — 80% again, a narrower box</div>
+      </div>
+    </div>
+  </div>
+  <p class="note">
+    The children are laid out inside their parent, by exactly the same rules, and the
+    parent's height grows to fit them — nobody set a height. A percentage is measured
+    against the parent's <em>content box</em>: child B is 62% of the outer box's
+    inside, child C is 80% of the dashed box's inside. The same number two levels
+    down gives a much narrower box.
+  </p>
+
+  <h2>3 · Inline boxes share one line, then wrap</h2>
+  <div class="frame narrow">
+    <div class="chip">1</div><div class="chip">2</div><div class="chip">3</div><div class="chip">4</div><div class="chip">5</div><div class="chip">6</div><div class="chip">7</div><div class="chip">8</div><div class="chip">9</div>
+  </div>
+  <p class="note">
+    Nine boxes with <code>display: inline-block</code>: they flow <em>along</em> the
+    line instead of stacking down it, and a box that does not fit starts the next
+    line. Same rule as section 1, running sideways — and the reason a row of cards
+    used to mean floats and clearfixes.
+  </p>
+
+  <h2>4 · A margin moves everything that comes after it</h2>
+  <div class="frame">
+    <div class="box fill">no margin</div>
+    <div class="box pct55 gap">margin: 28px 0 28px 64px</div>
+    <div class="box pct55">pushed down and right by the box above</div>
+  </div>
+  <p class="note">
+    The left margin moves this box in from the edge; the top margin moves it — and
+    every box after it — down. Nothing is pulled up to fill the gap, on either side.
+  </p>
+
+  <h2>5 · What normal flow decides for you</h2>
+  <table>
+    <tr><th>question</th><th>answer</th></tr>
+    <tr><td>which line is it on?</td><td>the order it appears in the HTML</td></tr>
+    <tr><td>where on that line?</td><td>left to right, in the writing direction</td></tr>
+    <tr><td>how wide is a block box?</td><td>your <code>width</code> — or all of the parent</td></tr>
+    <tr><td>how tall is it?</td><td>as tall as its own content, unless you set <code>height</code></td></tr>
+    <tr><td>when does a line end?</td><td>when the next box no longer fits</td></tr>
+  </table>
+
+  <p class="note try">
+    <strong>Try it in the editor.</strong> Give box 4 <code>width: 100%</code> and the
+    stripes beside it disappear. Take the <code>width</code> off box 6 and it fills the
+    line too. Now set <code>display: inline-block</code> on boxes 4 and 5 and watch them
+    climb onto one line.
+  </p>
+</body>
+</html>
