@@ -939,7 +939,7 @@
         {
           "id": "looping-motion",
           "name": "Looping motion",
-          "desc": "spin, pulse, float and shake, ready to copy",
+          "desc": "Twelve loops from real interfaces — loaders, ambient motion, and why each one moves",
           "files": [
             "index.html",
             "style.css"

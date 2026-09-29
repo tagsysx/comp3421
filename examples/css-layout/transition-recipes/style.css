@@ -135,7 +135,6 @@ input:checked + .tbox.chk {
   box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
   font-size: 11.5px;
   color: #4a5568;
-  will-change: transform;
   transition: transform 0.2s ease, box-shadow 0.2s ease;
 }
 .lift:hover {
@@ -422,8 +421,3 @@ input:checked ~ .reveal { max-height: 90px; }
 }
 .nope li { margin-bottom: 7px; }
 .nope b { color: #1a2230; }
-
-/* ---------- courtesy guard ---------- */
-@media (prefers-reduced-motion: reduce) {
-  * { transition: none !important; }
-}

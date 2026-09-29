@@ -8,25 +8,200 @@
 </head>
 <body>
 
-  <h2>Four loops you can copy</h2>
-  <div class="row">
-    <div class="demo spin"><span>spin</span></div>
-    <div class="demo pulse"><span>pulse</span></div>
-    <div class="demo float"><span>float</span></div>
-    <div class="demo shake"><span>shake</span></div>
-  </div>
-  <p class="note">Every one is <code>animation: &lt;name&gt; &lt;duration&gt; infinite</code> plus a
-     four-line <code>@keyframes</code>. Keep the whole loop a whole number of seconds if several
-     elements should stay in step.</p>
+  <h2>1 &middot; Loaders you can ship today</h2>
+  <p class="lead">Every loader on this page is one <code>@keyframes</code> block plus
+     <code>animation: &lt;name&gt; &lt;time&gt; infinite</code> — no JavaScript, no image
+     file, no library. The animation line printed under each card is the one you copy.</p>
 
-  <h2>Add a little ease</h2>
-  <div class="row">
-    <div class="demo float smooth"><span>ease-in-out</span></div>
-    <div class="demo float"><span>linear (harsh)</span></div>
+  <div class="rec">
+    <div class="stage"><div class="ring"></div></div>
+    <div class="txt">
+      <b>Ring spinner</b>
+      <p class="when">A round border with one side coloured. The default answer to
+         &ldquo;something is happening&rdquo;.</p>
+      <code>animation: spin 0.8s linear infinite;</code>
+    </div>
   </div>
-  <p class="note">The same float, with and without
-     <code>animation-timing-function: ease-in-out</code>. A loop that reverses should ease,
-     or it looks mechanical.</p>
+
+  <div class="rec">
+    <div class="stage"><div class="ring2"><span></span></div></div>
+    <div class="txt">
+      <b>Counter-rotating rings</b>
+      <p class="when">Two arcs turning opposite ways. Adding <code>reverse</code> to the
+         inner one is the whole effect — no second keyframe anywhere.</p>
+      <code>animation: spin 0.9s linear infinite reverse;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="dots"><span></span><span></span><span></span></div></div>
+    <div class="txt">
+      <b>Bouncing dots</b>
+      <p class="when">One keyframe, three elements, a different delay on each. That is the
+         whole wave — chat apps have been drawing it this way for twenty years.</p>
+      <code>animation: dot 1.2s ease-in-out infinite;   /* delays 0.15s, 0.3s */</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="bars">
+        <span></span><span></span><span></span><span></span>
+        <span></span><span></span><span></span><span></span>
+      </div>
+    </div>
+    <div class="txt">
+      <b>Eight-bar spinner</b>
+      <p class="when">The classic operating-system one: eight bars on a single keyframe,
+         each a step further along. A <em>negative</em> delay starts the loop already in
+         motion, so nothing pops in when the page loads.</p>
+      <code>animation: bar 1s linear infinite;   animation-delay: -0.5s;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="track"><span class="bar"><span class="fill"></span></span></div></div>
+    <div class="txt">
+      <b>Indeterminate progress bar</b>
+      <p class="when">We do not know how long it will take, so the bar never fills. One
+         element slides along the track while a second stretches and shrinks inside it.</p>
+      <code>animation: slide 1.5s ease-in-out infinite;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage wide">
+      <div class="skcard">
+        <span class="sk avatar"></span>
+        <span class="lines">
+          <span class="sk line w70"></span>
+          <span class="sk line w95"></span>
+          <span class="sk line w45"></span>
+        </span>
+      </div>
+    </div>
+    <div class="txt">
+      <b>Skeleton card</b>
+      <p class="when">The real thing, not a symbol: draw the shape of the content you are
+         waiting for, then sweep a highlight across it. The grey blocks never move — only
+         the light does.</p>
+      <code>animation: sweep 1.5s ease-in-out infinite;</code>
+    </div>
+  </div>
+
+  <h2>2 &middot; Ambient loops you already recognise</h2>
+  <p class="lead">A loader announces an event. These instead run quietly in the background
+     of pages you have used a hundred times.</p>
+
+  <div class="rec">
+    <div class="stage"><div class="live"><span class="dot"></span></div></div>
+    <div class="txt">
+      <b>Live dot</b>
+      <p class="when">Two circles in the same place: a solid dot, and a copy of it that
+         grows and fades away. Dashboards, chat presence, &ldquo;recording&rdquo;.</p>
+      <code>animation: ping 1.8s ease-out infinite;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage wide">
+      <div class="ticker">
+        <div class="ticktrack">
+          <span>Motion &middot; Loops &middot; Loaders &middot;</span>
+          <span>Motion &middot; Loops &middot; Loaders &middot;</span>
+        </div>
+      </div>
+    </div>
+    <div class="txt">
+      <b>Ticker</b>
+      <p class="when">The text is printed twice and the track slides by exactly one copy,
+         so the join is invisible and the loop never appears to end.</p>
+      <code>animation: marquee 9s linear infinite;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="eq"><span></span><span></span><span></span><span></span><span></span></div></div>
+    <div class="txt">
+      <b>Equaliser</b>
+      <p class="when">Five bars, one keyframe, and deliberately <em>different</em> durations
+         and delays — so the pattern never lines up again and it reads as sound instead of
+         as a machine.</p>
+      <code>animation: eq 0.8s ease-in-out infinite alternate;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="sync"></div></div>
+    <div class="txt">
+      <b>Sync — turn, then rest</b>
+      <p class="when">It finishes its turn at 55% of the cycle and then holds still. A loop
+         that never rests reads as a fan, not as a refresh.</p>
+      <code>animation: turn-rest 1.8s ease-in-out infinite;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="typing">Loading your data<span class="caret"></span></div></div>
+    <div class="txt">
+      <b>Typing caret</b>
+      <p class="when">Equal stops make a hard cut rather than a fade, which is exactly what
+         a text cursor does. Reuse the same idea for any on/off loop.</p>
+      <code>animation: blink 1s infinite;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage wide"><div class="alert"><span class="pip"></span>Payment failed</div></div>
+    <div class="txt">
+      <b>Alert nudge</b>
+      <p class="when">Four quick stops inside less than a third of the cycle; the rest of
+         the time it is perfectly still. That rest is what stops an alert becoming noise.</p>
+      <code>animation: nudge 2.4s ease-in-out infinite;</code>
+    </div>
+  </div>
+
+  <h2>3 &middot; What separates a loop from a good loop</h2>
+
+  <div class="pair">
+    <div class="half">
+      <div class="demo"><div class="bob linear"></div></div>
+      <b>linear</b>
+      <p class="when">Constant speed, end to end. Correct for a rotation.</p>
+    </div>
+    <div class="half">
+      <div class="demo"><div class="bob eased"></div></div>
+      <b>ease-in-out</b>
+      <p class="when">Slows at both ends. Correct for anything that reverses.</p>
+    </div>
+  </div>
+  <p class="note">The same travel, twice. Neither is better in itself — but put
+     <code>ease</code> on a spinner and it stutters once per turn, and put
+     <code>linear</code> on this pair and they look like machine parts.</p>
+
+  <ol class="rules">
+    <li><b>Stagger with <code>animation-delay</code>.</b> One keyframe shared by several
+        elements, a different delay on each: that is the entire difference between a row of
+        dots and a wave. A negative value starts the loop already in motion.</li>
+    <li><b>Let the loop rest.</b> A keyframe may hold one value across two stops, which buys
+        a pause inside the cycle. The sync icon and the alert above both spend most of their
+        time standing still — that rest is what makes the movement read as a beat.</li>
+    <li><b>Two elements beat one.</b> The live dot is a dot plus a fading copy; the progress
+        bar is a slider plus a stretcher. Nesting two simple animations is usually easier
+        than writing one clever keyframe.</li>
+    <li><b>Keep whole-second cycles in step.</b> Parts that must stay aligned should share a
+        duration that divides evenly — 0.9s against 0.9s stays married, 1s against 1.1s
+        drifts apart in front of the reader.</li>
+    <li><b>Animate <code>transform</code> and <code>opacity</code>.</b> Those two the browser
+        can move and fade without re-running the page layout. Change <code>width</code>,
+        <code>top</code> or a colour instead and the page is laid out again on every frame of
+        the loop. The skeleton card above is the honest exception — it repaints, and it is
+        affordable only because it is small.</li>
+  </ol>
+
+  <p class="note">Nothing on this page asks whether the reader wants motion at all. The
+     deck&rsquo;s accessibility page adds the media query that switches all twelve of these
+     loops off in a single rule.</p>
 
 </body>
 </html>
