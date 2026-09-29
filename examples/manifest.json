@@ -150,6 +150,7 @@
         "css-layout/z-index",
         "css-layout/flexbox",
         "css-layout/flexbox-in-the-wild",
+        "css-layout/grid",
         "css-layout/responsive",
         "css-layout/variables",
         "css-layout/custom-properties",
