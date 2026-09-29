@@ -7,53 +7,29 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>position: <code>relative</code></h1>
+  <h1>position: <code>relative</code> — ten boxes</h1>
   <p class="lede">
-    <code>relative</code> obeys the offsets — but it measures them from where the box
-    already was, and it leaves the slot behind. Nothing else on the page has to move.
+    Ten boxes, laid out by the browser exactly as on the static page. Two of them also
+    carry <code>position: relative</code> and an offset — find them.
   </p>
 
-  <h2>1 · The box moves, the slot stays</h2>
-  <div class="stage tall">
-    <div class="box">1</div>
-    <div class="slot">
-      <div class="box subject">2</div>
-    </div>
-    <div class="box">3</div>
-  </div>
-  <p class="note">
-    Box 2 has <code>top: 24px; left: 24px;</code>. It slid down and right, and the
-    pale dashed outline is the slot it still occupies — which is why box 3 has not
-    moved a millimetre.
-  </p>
-
-  <h2>2 · A nudge that pushes nothing</h2>
   <div class="stage">
-    <div class="box">1</div>
-    <div class="box pushed">2</div>
-    <div class="box">3</div>
+    <div class="box w300">1 · width: 300px</div>
+    <div class="box w220">2 · width: 220px</div>
+    <div class="box w260 moved-both">3 · width: 260px</div>
+    <div class="box w180">4 · width: 180px</div>
+    <div class="box w340">5 · width: 340px</div>
+    <div class="box w240">6 · width: 240px</div>
+    <div class="box w200">7 · width: 200px</div>
+    <div class="box w420 moved-down">8 · width: 420px</div>
+    <div class="box w320">9 · width: 320px</div>
+    <div class="box w280">10 · width: 280px</div>
   </div>
-  <p class="note">
-    Here box 2 uses <code>margin-left: 40px;</code> — an ordinary layout change, so
-    box 3 is shoved along with it.
-  </p>
-  <div class="stage">
-    <div class="box">1</div>
-    <div class="box subject">2</div>
-    <div class="box">3</div>
-  </div>
-  <p class="note">
-    The same 40px, this time as <code>left: 40px</code> on a <code>relative</code>
-    box: box 2 moves, box 3 does not.
-  </p>
 
-  <h2>3 · A relative parent is an anchor</h2>
-  <div class="panel">
-    <p class="panel-text">
-      The panel is <code>position: relative</code>, so its absolutely positioned child
-      is pinned to the corner of the panel — not of the page.
-    </p>
-    <div class="badge">absolute<br /><span>top: 0; right: 0;</span></div>
-  </div>
+  <p class="note">
+    Box 3 has moved down and right; box 8 has moved straight down. The other eight have
+    not moved at all, and the two slots they came from are still reserved — that is all
+    <code>position: relative</code> does.
+  </p>
 </body>
 </html>

@@ -1,8 +1,10 @@
-/* position: relative — the box moves, the space it came from does not */
+/* position: relative — a box slides, its slot stays where it was */
 
+/* No margin and no padding on the body, and no width on anything below it: the
+   boxes get the whole window, so resizing it re-decides how many fit on a line. */
 body {
   margin: 0;
-  padding: 32px;
+  padding: 0;
   font-family: system-ui, -apple-system, sans-serif;
   font-size: 15px;
   line-height: 1.5;
@@ -10,9 +12,7 @@ body {
   color: #1a2230;
 }
 
-h1 { font-size: 24px; color: #0e3f8c; margin: 0 0 8px; }
-h2 { font-size: 15px; color: #0e3f8c; margin: 28px 0 10px; }
-h2:nth-of-type(1) { margin-top: 22px; }
+h1 { font-size: 24px; color: #0e3f8c; margin: 28px 32px 10px; }
 
 code {
   font-family: Menlo, Consolas, monospace;
@@ -23,103 +23,67 @@ code {
   border-radius: 4px;
 }
 
-.lede, .note { max-width: 68ch; color: #4a5568; margin: 0; }
+.lede, .note { color: #4a5568; margin: 0 32px 12px; }
 .lede { font-size: 14.5px; }
-.note { font-size: 13.5px; margin-top: 12px; }
+.note { font-size: 13.5px; }
+.note:last-child { margin-bottom: 24px; }
 
-/* ---------- the demo stage ---------- */
+/* ---------- the page the ten boxes are laid out in ---------- */
 .stage {
+  box-sizing: border-box;
+  padding: 16px 16px 56px;   /* the extra room at the bottom is for the box that
+                               slides down out of the last row */
+  border-top: 1px dashed #c9d8ef;
+  border-bottom: 1px dashed #c9d8ef;
   background: #fff;
-  border: 1px dashed #c9d8ef;
-  border-radius: 10px;
-  padding: 18px;
-  font-size: 0;
+  font-size: 0;          /* inline-blocks: no whitespace between them */
 }
-.stage.tall { padding-bottom: 48px; }   /* room for the box that moved down */
-.stage > * { margin-left: 40px; }
-.stage > *:first-child { margin-left: 0; }
 
+/* ---------- a box ---------- */
 .box {
+  box-sizing: border-box;
   display: inline-block;
   vertical-align: top;
-  box-sizing: border-box;
-  width: 110px;
-  height: 64px;
-  line-height: 62px;
-  text-align: center;
-  font-size: 14px;
-  font-weight: 700;
+  position: static;          /* the default — only the two below leave it */
   color: #1e4fa8;
-  background: #e8eff8;
-  border: 1px solid #b9cdee;
-  border-radius: 8px;
+  background: #f7fbff;
+  border: 2px solid #1e4fa8;
+  border-radius: 6px;
+  padding: 10px 14px;
+  margin: 0 32px 44px 0;     /* 32px to the right and 44px below: both offsets
+                                slide into this gap, at any window width */
+  font-size: 13.5px;
+  font-weight: 600;
 }
 
-.subject { color: #fff; background: #1e4fa8; border-color: #1e4fa8; }
-.pushed  { background: #cfe0f8; }        /* the margin version, for contrast */
+.w300 { width: 300px; }
+.w220 { width: 220px; }
+.w260 { width: 260px; }
+.w180 { width: 180px; }
+.w340 { width: 340px; }
+.w240 { width: 240px; }
+.w200 { width: 200px; }
+.w420 { width: 420px; }
+.w320 { width: 320px; }
+.w280 { width: 280px; }
 
-/* ---------- relative ---------- */
+/* ---------- the two boxes that leave static ---------- */
 
-/* the one line that changes the behaviour */
-.box { position: relative; }
-
-/* box 2 slides 24px down and right — and keeps its slot */
-.subject {
+/* box 3 — shifted from its own slot, and the slot stays reserved */
+.moved-both {
   position: relative;
   top: 24px;
   left: 24px;
-}
-
-/* the contrast in section 2: this one really does move its neighbour */
-.pushed { margin-left: 80px; }
-
-/* ---------- the slot marker — decoration, not the lesson ---------- */
-.slot {
-  display: inline-block;
-  vertical-align: top;
-  position: relative;
-}
-
-.slot::before {
-  content: "space kept";
-  position: absolute;
-  top: 0;
-  left: 0;
-  box-sizing: border-box;
-  width: 110px;
-  height: 64px;
-  line-height: 60px;
-  text-align: center;
-  font-size: 11px;
-  color: #9dc0ee;
-  border: 1px dashed #9dc0ee;
-  border-radius: 8px;
-}
-
-/* ---------- section 3: the anchor ---------- */
-.panel {
-  position: relative;               /* this is what makes the corner below work */
-  max-width: 560px;
-  background: #fff;
-  border: 1px dashed #c9d8ef;
-  border-radius: 10px;
-  padding: 18px;
-}
-
-.panel-text { margin: 0; font-size: 13.5px; color: #4a5568; max-width: 42ch; }
-
-.badge {
-  position: absolute;
-  top: 0;
-  right: 0;
-  margin: -1px -1px 0 0;
-  padding: 8px 12px;
-  font-size: 12px;
-  font-weight: 700;
-  line-height: 1.35;
-  text-align: center;
   color: #fff;
-  background: #d9534f;
-  border-radius: 0 10px 0 10px;
+  background: #1e4fa8;
+  border-color: #1e4fa8;
 }
-.badge span { font-weight: 400; opacity: 0.85; }
+
+/* box 8 — the same idea, one axis only */
+.moved-down {
+  position: relative;
+  top: 32px;
+  color: #fff;
+  background: #1e4fa8;
+  border-color: #1e4fa8;
+}
