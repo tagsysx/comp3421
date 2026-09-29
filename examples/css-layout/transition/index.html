@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transitions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>transition: background .3s ease, transform .3s ease</h2>
+  <button class="btn">Hover me</button>
+
+  <h2>The four properties, spelled out</h2>
+  <div class="box slow">hover me</div>
+  <p class="note">The same change written longhand: <code>transition-property: transform;
+     transition-duration: .6s; transition-timing-function: ease-in; transition-delay: .2s</code>.
+     Change one value and watch which part of the movement changes.</p>
+
+  <h2>Put it on the base state, not on :hover</h2>
+  <div class="pair">
+    <button class="btn bad">on :hover</button>
+    <button class="btn good">on the base state</button>
+  </div>
+  <p class="note">The first button eases only on the way in &mdash; move the pointer away and it
+     snaps back, because the <code>:hover</code> rule (and its transition) no longer applies.</p>
+
+</body>
+</html>

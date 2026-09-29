@@ -1,0 +1,52 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 28px 32px 40px;
+  color: #1a2230;
+  background: #f7f9fc;
+}
+h2 {
+  margin: 30px 0 10px;
+  font-size: 15px;
+  color: #0e3f8c;
+}
+h2:first-child { margin-top: 0; }
+.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #185fa5;
+}
+
+.tracks { display: flex; flex-direction: column; gap: 10px; }
+.track {
+  position: relative;
+  width: 360px;
+  height: 34px;
+  border-radius: 17px;
+  background: #e8eff8;
+  overflow: hidden;
+}
+.track b {
+  position: absolute;
+  right: 10px;
+  top: 9px;
+  font-size: 11px;
+  font-weight: normal;
+  color: #4a5568;
+}
+.dot {
+  position: absolute;
+  top: 5px;
+  left: 5px;
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: #185fa5;
+  transition: transform 1.2s;         /* the curve is set per track below */
+}
+.track:hover .dot { transform: translateX(130px); }
+
+.t-ease   .dot { transition-timing-function: ease; }
+.t-linear .dot { transition-timing-function: linear; }
+.t-bez    .dot { transition-timing-function: cubic-bezier(.34, 1.56, .64, 1); }
+.t-steps  .dot { transition-timing-function: steps(5, jump-end); }

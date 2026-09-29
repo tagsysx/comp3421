@@ -1,0 +1,54 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 28px 32px 40px;
+  color: #1a2230;
+  background: #f7f9fc;
+}
+h2 {
+  margin: 30px 0 10px;
+  font-size: 15px;
+  color: #0e3f8c;
+}
+h2:first-child { margin-top: 0; }
+.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #185fa5;
+}
+
+.btn {
+  padding: 12px 22px;
+  border: none;
+  border-radius: 8px;
+  background: #185fa5;
+  color: #fff;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background .3s ease, transform .3s ease;
+}
+.btn:hover { background: #3d7bd9; transform: translateY(-4px); }
+
+/* the same four values, spelled out one property at a time */
+.box {
+  width: 120px;
+  padding: 14px 0;
+  text-align: center;
+  border-radius: 8px;
+  background: #e8eff8;
+  border: 1px solid #b9cdee;
+  color: #0e3f8c;
+  font-size: 13px;
+}
+.slow {
+  transition-property: transform, background-color;
+  transition-duration: .6s;
+  transition-timing-function: ease-in;
+  transition-delay: .2s;
+}
+.slow:hover { transform: translateX(120px); background-color: #dbe9fb; }
+
+/* the wrong way: the transition is declared inside :hover */
+.bad:hover { transition: background .6s ease, transform .6s ease; }
+.bad { transition: none; }
+.pair { display: flex; gap: 14px; }

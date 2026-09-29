@@ -1,0 +1,59 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 28px 32px 40px;
+  color: #1a2230;
+  background: #f7f9fc;
+}
+h2 {
+  margin: 30px 0 10px;
+  font-size: 15px;
+  color: #0e3f8c;
+}
+h2:first-child { margin-top: 0; }
+.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #185fa5;
+}
+
+.row { display: flex; gap: 14px; margin-top: 12px; }
+
+.pill {
+  padding: 10px 18px;
+  border-radius: 999px;
+  font-size: 13px;
+  background: #fff;
+  border: 1px solid #c9d8ef;
+  color: #0e3f8c;
+  animation: grow 2s ease-in-out infinite;
+}
+.p-normal    { animation-direction: normal; }
+.p-alternate { animation-direction: alternate; }
+.p-reverse   { animation-direction: reverse; }
+
+@keyframes grow {
+  from { transform: scale(1);    box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+  to   { transform: scale(1.12); box-shadow: 0 8px 18px rgba(0, 0, 0, .22); }
+}
+
+.bar {
+  width: 150px;
+  padding: 12px 0;
+  text-align: center;
+  border-radius: 8px;
+  background: #185fa5;
+  color: #fff;
+  font-size: 12px;
+  animation-name: slide;
+  animation-duration: 1.5s;
+  animation-iteration-count: 1;
+  animation-timing-function: ease-in-out;
+}
+.f-none     { animation-fill-mode: none; }
+.f-forwards { animation-fill-mode: forwards; }
+
+@keyframes slide {
+  from { transform: translateX(0);    background: #185fa5; }
+  to   { transform: translateX(150px); background: #3d9970; }
+}

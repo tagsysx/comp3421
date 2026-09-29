@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Timing functions</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Same distance, same time &mdash; four curves</h2>
+  <div class="tracks">
+    <div class="track t-ease"><span class="dot"></span><b>ease (default)</b></div>
+    <div class="track t-linear"><span class="dot"></span><b>linear</b></div>
+    <div class="track t-bez"><span class="dot"></span><b>cubic-bezier(.34, 1.56, .64, 1)</b></div>
+    <div class="track t-steps"><span class="dot"></span><b>steps(5, jump-end)</b></div>
+  </div>
+  <p class="note">Hover a track. Every dot covers the same distance in the same 1.2s &mdash;
+     only the curve changes. The third overshoots and settles back; the fourth arrives in
+     five jumps instead of sliding.</p>
+
+  <h2>Where the curve comes from</h2>
+  <p class="note">The curve can be a keyword (<code>ease</code>, <code>ease-in</code>,
+     <code>ease-out</code>, <code>ease-in-out</code>, <code>linear</code>), a
+     <code>cubic-bezier(x1, y1, x2, y2)</code> you write yourself, or
+     <code>steps(n)</code> for a stop-motion feel. A y value above 1 &mdash; like 1.56 above &mdash;
+     is what makes the overshoot.</p>
+
+</body>
+</html>

@@ -1,0 +1,51 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 28px 32px 40px;
+  color: #1a2230;
+  background: #f7f9fc;
+}
+h2 {
+  margin: 30px 0 10px;
+  font-size: 15px;
+  color: #0e3f8c;
+}
+h2:first-child { margin-top: 0; }
+.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #185fa5;
+}
+
+.row { display: flex; gap: 16px; margin-top: 14px; }
+.card {
+  flex: 1;
+  padding: 14px;
+  border-radius: 10px;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  font-size: 12px;
+  color: #4a5568;
+}
+.card b { display: block; margin: 8px 0 4px; color: #0e3f8c; font-size: 13px; }
+.card p { margin: 0; line-height: 1.45; }
+
+.dot {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: #185fa5;
+  animation: slide 1.6s ease-in-out infinite alternate;
+}
+@keyframes slide { to { transform: translateX(80px); background: #3d9970; } }
+
+.switch { display: inline-flex; gap: 8px; align-items: center; margin-top: 16px;
+          font-size: 13px; color: #0e3f8c; }
+
+/* the real rule — the first dot obeys it, the second one opts out */
+@media (prefers-reduced-motion: reduce) {
+  .dot { animation: none; transition: none; }
+}
+/* the checkbox applies the same rule on demand, for practising */
+html.simulate .dot { animation: none; transition: none; }
+html.simulate .ignore { animation: slide 1.6s ease-in-out infinite alternate; }

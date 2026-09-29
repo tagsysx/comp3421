@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Keyframes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>@keyframes &mdash; two stops</h2>
+  <div class="ball"></div>
+  <p class="note"><code>from</code> is <code>0%</code> and <code>to</code> is <code>100%</code>.
+     The animation name must match the <code>@keyframes</code> rule.</p>
+
+  <h2>More than two stops &mdash; and two stops in one block</h2>
+  <div class="traffic"></div>
+  <p class="note">The light runs <code>0%</code> red, <code>40%</code> amber, then
+     <code>70%, 100%</code> green &mdash; one block can hold several stops, and the last
+     one lines up with the first so the loop does not jump.</p>
+
+  <h2>The same keyframes, different speeds</h2>
+  <div class="row">
+    <div class="ball fast"></div>
+    <div class="ball slow"></div>
+  </div>
+  <p class="note">Both use <code>animation: bounce ...</code>; only the duration differs
+     (0.5s against 2s).</p>
+
+</body>
+</html>

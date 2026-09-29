@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>animation-direction and fill-mode</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>animation-direction</h2>
+  <div class="row">
+    <div class="pill p-normal">normal</div>
+    <div class="pill p-alternate">alternate</div>
+    <div class="pill p-reverse">reverse</div>
+  </div>
+  <p class="note">All three run the same <code>@keyframes grow</code>. <code>normal</code> plays
+     it forwards and restarts; <code>alternate</code> plays it backwards on every other pass, so
+     there is no jump; <code>reverse</code> plays it backwards from the start.</p>
+
+  <h2>animation-fill-mode &mdash; what happens before and after</h2>
+  <div class="row">
+    <div class="bar f-none">fill-mode: none</div>
+    <div class="bar f-forwards">fill-mode: forwards</div>
+  </div>
+  <p class="note">Both slide once and stop after 1.5s. <code>none</code> snaps back to the
+     starting style; <code>forwards</code> keeps the last keyframe &mdash; what you want for a
+     "grow in once" entrance.</p>
+
+</body>
+</html>

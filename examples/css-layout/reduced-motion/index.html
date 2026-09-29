@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>prefers-reduced-motion</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Ask the reader, do not assume</h2>
+  <div class="row">
+    <div class="card">
+      <div class="dot"></div>
+      <b>respects the setting</b>
+      <p>The rule below stops this dot when the reader asks for less motion.</p>
+    </div>
+    <div class="card">
+      <div class="dot ignore"></div>
+      <b>ignores the setting</b>
+      <p>Identical, but with <code>animation: none</code> left out of the media query.</p>
+    </div>
+  </div>
+  <p class="note">Your system setting decides which one stops. Tick the box to see it happen
+     without changing your computer.</p>
+
+  <label class="switch">
+    <input type="checkbox" id="sim" />
+    Simulate &ldquo;reduce motion&rdquo;
+  </label>
+
+  <h2>The rule</h2>
+  <p class="note"><code>@media (prefers-reduced-motion: reduce) { * { animation: none;
+     transition: none; } }</code> &mdash; put it at the end of the stylesheet, after the
+     animations it switches off.</p>
+
+</body>
+</html>

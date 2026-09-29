@@ -1,0 +1,42 @@
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  padding: 28px 32px 40px;
+  color: #1a2230;
+  background: #f7f9fc;
+}
+h2 {
+  margin: 30px 0 10px;
+  font-size: 15px;
+  color: #0e3f8c;
+}
+h2:first-child { margin-top: 0; }
+.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #185fa5;
+}
+
+.row { display: flex; gap: 18px; margin-top: 14px; }
+.demo {
+  width: 96px;
+  height: 96px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 12px;
+  background: #e8eff8;
+  border: 1px solid #b9cdee;
+}
+.demo span { font-size: 12px; color: #0e3f8c; }
+
+.spin  { animation: spin 3s linear infinite; }
+.pulse { animation: pulse 1.6s ease-in-out infinite; }
+.float { animation: float 2s linear infinite alternate; }
+.shake { animation: shake .6s ease-in-out infinite; }
+.smooth { animation-timing-function: ease-in-out; }
+
+@keyframes spin  { to { transform: rotate(360deg); } }
+@keyframes pulse { 50% { transform: scale(1.15); background: #dbe9fb; } }
+@keyframes float { to { transform: translateY(-18px); } }
+@keyframes shake { 25% { transform: translateX(-6px); } 75% { transform: translateX(6px); } }

@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Looping motion recipes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>Four loops you can copy</h2>
+  <div class="row">
+    <div class="demo spin"><span>spin</span></div>
+    <div class="demo pulse"><span>pulse</span></div>
+    <div class="demo float"><span>float</span></div>
+    <div class="demo shake"><span>shake</span></div>
+  </div>
+  <p class="note">Every one is <code>animation: &lt;name&gt; &lt;duration&gt; infinite</code> plus a
+     four-line <code>@keyframes</code>. Keep the whole loop a whole number of seconds if several
+     elements should stay in step.</p>
+
+  <h2>Add a little ease</h2>
+  <div class="row">
+    <div class="demo float smooth"><span>ease-in-out</span></div>
+    <div class="demo float"><span>linear (harsh)</span></div>
+  </div>
+  <p class="note">The same float, with and without
+     <code>animation-timing-function: ease-in-out</code>. A loop that reverses should ease,
+     or it looks mechanical.</p>
+
+</body>
+</html>

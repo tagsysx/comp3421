@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>The animation shorthand</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>One line, or eight</h2>
+  <div class="row">
+    <div class="ball a">animation: bounce 1s ease-in-out infinite alternate</div>
+    <div class="ball b">the same thing, written longhand</div>
+  </div>
+  <p class="note">Both balls move identically. The first uses the shorthand; the second sets
+     <code>animation-name</code>, <code>animation-duration</code>,
+     <code>animation-timing-function</code>, <code>animation-iteration-count</code> and
+     <code>animation-direction</code> separately.</p>
+
+  <h2>&#9888; The shorthand resets what you leave out</h2>
+  <div class="row">
+    <div class="ball c">animation: bounce 1s</div>
+    <div class="ball d">animation-name: bounce; animation-duration: 1s;</div>
+  </div>
+  <p class="note">Identical here &mdash; but the shorthand also resets
+     <code>animation-delay</code>, <code>iteration-count</code>, <code>direction</code> and
+     <code>fill-mode</code> to their initial values. That is why a shorthand written
+     <em>after</em> a longhand throws the longhand away.</p>
+
+</body>
+</html>

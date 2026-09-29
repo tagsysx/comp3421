@@ -146,12 +146,17 @@
         "css-layout/z-index",
         "css-layout/flexbox",
         "css-layout/flexbox-in-the-wild",
-        "css-layout/grid",
         "css-layout/responsive",
         "css-layout/variables",
         "css-layout/transform",
         "css-layout/transform-3d",
-        "css-layout/animation",
+        "css-layout/transition",
+        "css-layout/timing-function",
+        "css-layout/keyframes",
+        "css-layout/animation-shorthand",
+        "css-layout/animation-direction",
+        "css-layout/looping-motion",
+        "css-layout/reduced-motion",
         "css-layout/gradients",
         "css-layout/layered-backgrounds",
         "css-layout/shadow",
@@ -862,9 +867,63 @@
           ]
         },
         {
-          "id": "animation",
-          "name": "Transitions & animations",
-          "desc": "transitions, @keyframes and the animation shorthand",
+          "id": "transition",
+          "name": "Transitions",
+          "desc": "one property eased — and the four sub-properties spelled out",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "timing-function",
+          "name": "Timing functions",
+          "desc": "ease, linear, cubic-bezier and steps, one track each",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "keyframes",
+          "name": "Keyframes",
+          "desc": "@keyframes with two stops, with several, and at two speeds",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "animation-shorthand",
+          "name": "The animation shorthand",
+          "desc": "one line against the longhand, and what a shorthand resets",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "animation-direction",
+          "name": "animation-direction & fill-mode",
+          "desc": "normal, alternate, reverse — and what stays after the end",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "looping-motion",
+          "name": "Looping motion",
+          "desc": "spin, pulse, float and shake, ready to copy",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "reduced-motion",
+          "name": "prefers-reduced-motion",
+          "desc": "ask the reader: one dot obeys the setting, one ignores it",
           "files": [
             "index.html",
             "style.css"
