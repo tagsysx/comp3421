@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>Every element is a box</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <header>
+    <h1>Every element is a box</h1>
+    <p>This is an ordinary, multi-level document. Nothing on it was written for the demo. One rule, at the bottom of <code>style.css</code>, draws a line around every element in it.</p>
+  </header>
+
+  <nav>
+    <a href="#rule">the rule</a>
+    <a href="#levels">the levels</a>
+    <a href="#list">a list</a>
+    <a href="#aside">an aside</a>
+  </nav>
+
+  <main>
+
+    <section id="rule">
+      <h2>One rule</h2>
+      <div class="code">* {
+  border: 1px solid black;
+  margin: 5px;
+}</div>
+      <p>The star is the <b>universal selector</b> &mdash; it matches every element in the document, so nothing has to be named one by one. The border is the line you can see; the margin is the 5&nbsp;px of clear space that keeps two boxes from touching.</p>
+    </section>
+
+    <section id="levels">
+      <h2>Which box is which</h2>
+      <p>Read outwards from the text and you are reading the document tree. This paragraph sits in a <code>&lt;section&gt;</code>, inside <code>&lt;main&gt;</code>, inside <code>&lt;body&gt;</code>, inside <code>&lt;html&gt;</code>. Every one of them is a box, and every box is nested inside the one before it.</p>
+    </section>
+
+    <section id="list">
+      <h2>Boxes inside boxes</h2>
+      <p>A list is the clearest place to see it: the <code>&lt;ul&gt;</code> is a box, and each <code>&lt;li&gt;</code> inside it is a box of its own.</p>
+      <ul>
+        <li>html &mdash; the outermost box</li>
+        <li>body &mdash; the document itself</li>
+        <li>ul &mdash; the list</li>
+        <li>li &mdash; one row of it</li>
+      </ul>
+    </section>
+
+    <aside id="aside">
+      <h3>An aside</h3>
+      <p>An element you would not have thought of as a box is a box too. The edge does not care what the element is called or where it sits.</p>
+    </aside>
+
+  </main>
+
+  <footer>
+    <p>footer &mdash; the last box, made of the same four parts as the first.</p>
+  </footer>
+
+</body>
+</html>

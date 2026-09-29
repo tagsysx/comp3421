@@ -720,6 +720,15 @@
       "desc": "Box model, positioning & responsive design",
       "examples": [
         {
+          "id": "every-element-is-a-box",
+          "name": "Every element is a box",
+          "desc": "A plain multi-level document with one rule on it: * { border: 1px solid black; margin: 5px; }",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
           "id": "box-model",
           "name": "Box model",
           "desc": "Content, padding, border, margin, corners and box-sizing",
