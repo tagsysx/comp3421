@@ -671,13 +671,11 @@
         {
           "id": "pseudo-element",
           "name": "Pseudo-elements",
-          "desc": "::first-letter ::first-line ::before ::after ::selection — plus pictures via content: url()",
+          "desc": "Five parts of an element, five one-line rules — drop cap, small caps, a smiley out of content, and the selection colour",
           "files": [
             "index.html",
             "style.css",
-            "star.svg",
-            "check.png",
-            "underline.svg"
+            "smiley.gif"
           ]
         }
       ]
