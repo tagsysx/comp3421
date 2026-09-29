@@ -158,7 +158,6 @@
         "css-layout/var-fallback",
         "css-layout/var-scope",
         "css-layout/transform",
-        "css-layout/transform-3d",
         "css-layout/transition",
         "css-layout/timing-function",
         "css-layout/keyframes",
