@@ -1,0 +1,102 @@
+/* position: sticky — relative until it reaches the offset, then fixed in place */
+
+body {
+  margin: 0;
+  padding: 32px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #f0f5fc;
+  color: #1a2230;
+}
+
+h1 { font-size: 24px; color: #0e3f8c; margin: 0 0 8px; }
+h2 { font-size: 15px; color: #0e3f8c; margin: 28px 0 10px; }
+h2:nth-of-type(1) { margin-top: 22px; }
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: #e8eff8;
+  color: #1e4fa8;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.lede, .note { max-width: 68ch; color: #4a5568; margin: 0; }
+.lede { font-size: 14.5px; }
+.note { font-size: 13.5px; margin-top: 12px; }
+.filler { color: #4a5568; font-size: 13.5px; margin: 0 0 12px; }
+
+/* ---------- sticky inside a scrolling panel ---------- */
+
+/* each heading lives in its own group, so it can only travel that far:
+   that is what makes the next heading push it out instead of covering it */
+.group { position: relative; }
+
+.group-head {
+  position: sticky;
+  top: 0;
+  margin: 0;
+  padding: 10px 0;
+  font-size: 13px;
+  color: #0e3f8c;
+  background: #fff;              /* the text scrolls underneath, so cover it */
+  border-bottom: 1px solid #e8eff8;
+}
+
+/* the right-hand panel: the same rule, and no offset at all */
+.plain .group-head { position: sticky; top: auto; }
+
+.panels {
+  display: flex;
+  gap: 16px;
+  align-items: stretch;
+  max-width: 780px;
+}
+
+.scroller {
+  flex: 1;
+  height: 280px;
+  overflow: auto;                 /* this is the scroll container it sticks to */
+  background: #fff;
+  border: 1px dashed #c9d8ef;
+  border-radius: 10px;
+  padding: 0 16px 16px;
+}
+
+/* ---------- sticky on the page itself ---------- */
+
+.section { max-width: 68ch; }
+
+.page-head {
+  position: sticky;
+  top: 0;
+  margin: 0 0 12px;
+  padding: 10px 0;
+  font-size: 14px;
+  color: #0e3f8c;
+  background: #f0f5fc;           /* matches the page, so it hides what passes under */
+  border-bottom: 2px solid #0e3f8c;
+}
+
+/* ---------- the fine print ---------- */
+
+table {
+  border-collapse: collapse;
+  font-size: 13.5px;
+  background: #fff;
+  border: 1px solid #c9d8ef;
+  border-radius: 10px;
+  overflow: hidden;
+}
+th, td { text-align: left; padding: 9px 16px; border-bottom: 1px solid #e8eff8; }
+th {
+  background: #e8eff8;
+  color: #0e3f8c;
+  font-size: 12px;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+}
+tr:last-child td { border-bottom: 0; }
+td:first-child { width: 240px; }

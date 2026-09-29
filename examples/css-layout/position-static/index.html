@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>position: static</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>position: <code>static</code></h1>
+  <p class="lede">
+    Every element is <code>static</code> until you say otherwise. It takes part in
+    normal flow — top to bottom, left to right — and the four offsets
+    (<code>top</code>, <code>right</code>, <code>bottom</code>, <code>left</code>)
+    do nothing at all.
+  </p>
+
+  <h2>1 · Box 2 declares an offset, and does not move</h2>
+  <div class="stage">
+    <div class="box">1</div>
+    <div class="box subject">2</div>
+    <div class="box">3</div>
+  </div>
+  <p class="note">
+    Box 2 carries <code>top: 24px; left: 24px;</code>. Compare the two gaps:
+    1&nbsp;→&nbsp;2 and 2&nbsp;→&nbsp;3 are still the same width, so the declarations
+    were parsed and then dropped.
+  </p>
+
+  <h2>2 · The offset drawn as a target</h2>
+  <div class="stage tall">
+    <div class="box">1</div>
+    <div class="slot">
+      <div class="box subject">2</div>
+      <div class="ghost">top / left target</div>
+    </div>
+    <div class="box">3</div>
+  </div>
+  <p class="note">
+    The red dashed outline is where box 2 would have landed if <code>position</code>
+    were <code>relative</code>. A <code>static</code> box never uses the offsets: the
+    declarations are there in the rule, and the box stays in its slot.
+  </p>
+
+  <h2>3 · The five values at a glance</h2>
+  <table>
+    <tr><th>value</th><th>what the offsets do</th></tr>
+    <tr><td><code>static</code></td><td>nothing — all four are ignored</td></tr>
+    <tr><td><code>relative</code></td><td>nudge the box away from its own spot</td></tr>
+    <tr><td><code>absolute</code></td><td>pin it to the nearest positioned ancestor</td></tr>
+    <tr><td><code>fixed</code></td><td>pin it to the viewport</td></tr>
+    <tr><td><code>sticky</code></td><td>behave as relative until it reaches the offset</td></tr>
+  </table>
+  <p class="note">The other four values each have their own page in this folder.</p>
+</body>
+</html>

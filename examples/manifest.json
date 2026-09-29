@@ -136,6 +136,11 @@
       "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, gradients, shadows, display",
       "examples": [
         "css-layout/positioning",
+        "css-layout/position-static",
+        "css-layout/position-relative",
+        "css-layout/position-absolute",
+        "css-layout/position-fixed",
+        "css-layout/position-sticky",
         "css-layout/flexbox",
         "css-layout/grid",
         "css-layout/responsive",
@@ -717,6 +722,51 @@
           "id": "positioning",
           "name": "Positioning",
           "desc": "static, relative, absolute, fixed and sticky",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "position-static",
+          "name": "position: static",
+          "desc": "The default &mdash; the offsets are ignored",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "position-relative",
+          "name": "position: relative",
+          "desc": "Shifted from its own spot; the slot is kept",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "position-absolute",
+          "name": "position: absolute",
+          "desc": "Out of flow, pinned to a positioned ancestor",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "position-fixed",
+          "name": "position: fixed",
+          "desc": "Pinned to the viewport",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "position-sticky",
+          "name": "position: sticky",
+          "desc": "Relative until it reaches the offset",
           "files": [
             "index.html",
             "style.css"

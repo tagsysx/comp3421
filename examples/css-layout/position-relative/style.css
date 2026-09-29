@@ -1,0 +1,125 @@
+/* position: relative — the box moves, the space it came from does not */
+
+body {
+  margin: 0;
+  padding: 32px;
+  font-family: system-ui, -apple-system, sans-serif;
+  font-size: 15px;
+  line-height: 1.5;
+  background: #f0f5fc;
+  color: #1a2230;
+}
+
+h1 { font-size: 24px; color: #0e3f8c; margin: 0 0 8px; }
+h2 { font-size: 15px; color: #0e3f8c; margin: 28px 0 10px; }
+h2:nth-of-type(1) { margin-top: 22px; }
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.9em;
+  background: #e8eff8;
+  color: #1e4fa8;
+  padding: 1px 5px;
+  border-radius: 4px;
+}
+
+.lede, .note { max-width: 68ch; color: #4a5568; margin: 0; }
+.lede { font-size: 14.5px; }
+.note { font-size: 13.5px; margin-top: 12px; }
+
+/* ---------- the demo stage ---------- */
+.stage {
+  background: #fff;
+  border: 1px dashed #c9d8ef;
+  border-radius: 10px;
+  padding: 18px;
+  font-size: 0;
+}
+.stage.tall { padding-bottom: 48px; }   /* room for the box that moved down */
+.stage > * { margin-left: 40px; }
+.stage > *:first-child { margin-left: 0; }
+
+.box {
+  display: inline-block;
+  vertical-align: top;
+  box-sizing: border-box;
+  width: 110px;
+  height: 64px;
+  line-height: 62px;
+  text-align: center;
+  font-size: 14px;
+  font-weight: 700;
+  color: #1e4fa8;
+  background: #e8eff8;
+  border: 1px solid #b9cdee;
+  border-radius: 8px;
+}
+
+.subject { color: #fff; background: #1e4fa8; border-color: #1e4fa8; }
+.pushed  { background: #cfe0f8; }        /* the margin version, for contrast */
+
+/* ---------- relative ---------- */
+
+/* the one line that changes the behaviour */
+.box { position: relative; }
+
+/* box 2 slides 24px down and right — and keeps its slot */
+.subject {
+  position: relative;
+  top: 24px;
+  left: 24px;
+}
+
+/* the contrast in section 2: this one really does move its neighbour */
+.pushed { margin-left: 80px; }
+
+/* ---------- the slot marker — decoration, not the lesson ---------- */
+.slot {
+  display: inline-block;
+  vertical-align: top;
+  position: relative;
+}
+
+.slot::before {
+  content: "space kept";
+  position: absolute;
+  top: 0;
+  left: 0;
+  box-sizing: border-box;
+  width: 110px;
+  height: 64px;
+  line-height: 60px;
+  text-align: center;
+  font-size: 11px;
+  color: #9dc0ee;
+  border: 1px dashed #9dc0ee;
+  border-radius: 8px;
+}
+
+/* ---------- section 3: the anchor ---------- */
+.panel {
+  position: relative;               /* this is what makes the corner below work */
+  max-width: 560px;
+  background: #fff;
+  border: 1px dashed #c9d8ef;
+  border-radius: 10px;
+  padding: 18px;
+}
+
+.panel-text { margin: 0; font-size: 13.5px; color: #4a5568; max-width: 42ch; }
+
+.badge {
+  position: absolute;
+  top: 0;
+  right: 0;
+  margin: -1px -1px 0 0;
+  padding: 8px 12px;
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 1.35;
+  text-align: center;
+  color: #fff;
+  background: #d9534f;
+  border-radius: 0 10px 0 10px;
+}
+.badge span { font-weight: 400; opacity: 0.85; }

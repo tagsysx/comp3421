@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>position: relative</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>position: <code>relative</code></h1>
+  <p class="lede">
+    <code>relative</code> obeys the offsets — but it measures them from where the box
+    already was, and it leaves the slot behind. Nothing else on the page has to move.
+  </p>
+
+  <h2>1 · The box moves, the slot stays</h2>
+  <div class="stage tall">
+    <div class="box">1</div>
+    <div class="slot">
+      <div class="box subject">2</div>
+    </div>
+    <div class="box">3</div>
+  </div>
+  <p class="note">
+    Box 2 has <code>top: 24px; left: 24px;</code>. It slid down and right, and the
+    pale dashed outline is the slot it still occupies — which is why box 3 has not
+    moved a millimetre.
+  </p>
+
+  <h2>2 · A nudge that pushes nothing</h2>
+  <div class="stage">
+    <div class="box">1</div>
+    <div class="box pushed">2</div>
+    <div class="box">3</div>
+  </div>
+  <p class="note">
+    Here box 2 uses <code>margin-left: 40px;</code> — an ordinary layout change, so
+    box 3 is shoved along with it.
+  </p>
+  <div class="stage">
+    <div class="box">1</div>
+    <div class="box subject">2</div>
+    <div class="box">3</div>
+  </div>
+  <p class="note">
+    The same 40px, this time as <code>left: 40px</code> on a <code>relative</code>
+    box: box 2 moves, box 3 does not.
+  </p>
+
+  <h2>3 · A relative parent is an anchor</h2>
+  <div class="panel">
+    <p class="panel-text">
+      The panel is <code>position: relative</code>, so its absolutely positioned child
+      is pinned to the corner of the panel — not of the page.
+    </p>
+    <div class="badge">absolute<br /><span>top: 0; right: 0;</span></div>
+  </div>
+</body>
+</html>
