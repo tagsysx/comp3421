@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <title>background-repeat — the values</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h1>background-repeat — the values</h1>
+  <div class="note">One image file, six values. The image is the same
+    <code>gradient_bg.png</code> the lecture uses on the
+    <code>background-repeat</code> page; only the one declaration changes.</div>
+
+  <h2 class="section">repeat <span class="tag">the default</span></h2>
+  <div class="code">div {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat;
+}</div>
+  <div class="live"><div class="rb v-repeat"></div></div>
+  <div class="note">Tiled in both directions. The image is 500 × 30, so the
+    strip repeats down the box and the last row is clipped at the bottom edge.</div>
+
+  <h2 class="section">repeat-x</h2>
+  <div class="code">div {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat-x;
+}</div>
+  <div class="live"><div class="rb v-repeat-x"></div></div>
+  <div class="note">Horizontally only: the file is exactly the shape of a
+    header band, so one line of pixels covers a box this tall.</div>
+
+  <h2 class="section">repeat-y</h2>
+  <div class="code">div {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat-y;
+}</div>
+  <div class="live"><div class="rb v-repeat-y"></div></div>
+  <div class="note">Vertically only — a column of the same tile, leaving the
+    rest of the box empty.</div>
+
+  <h2 class="section">no-repeat</h2>
+  <div class="code">div {
+  background-image: url("gradient_bg.png");
+  background-repeat: no-repeat;
+}</div>
+  <div class="live"><div class="rb v-no-repeat"></div></div>
+  <div class="note">One copy, at the top-left corner unless
+    <code>background-position</code> says otherwise.</div>
+
+  <h2 class="section">space</h2>
+  <div class="code">div {
+  background-image: url("gradient_bg.png");
+  background-repeat: space;
+}</div>
+  <div class="live"><div class="rb v-space"></div></div>
+  <div class="note">The same tile, repeated as often as it fits without being
+    cut off: the first and last copies sit against the edges and the gap between
+    them is spread evenly.</div>
+
+  <h2 class="section">round</h2>
+  <div class="code">div {
+  background-image: url("gradient_bg.png");
+  background-repeat: round;
+}</div>
+  <div class="live"><div class="rb v-round"></div></div>
+  <div class="note">Repeated and <strong>stretched</strong> so a whole number of
+    copies fills the box with no gaps and no clipping — compare the first tile
+    with the one on the <code>space</code> box above.</div>
+
+  <h2 class="section">initial and inherit</h2>
+  <div class="code">div {
+  background-repeat: initial;   /* repeat */
+}
+
+div {
+  background-repeat: inherit;   /* whatever the parent was set to */
+}</div>
+  <div class="note"><code>initial</code> puts the property back to its default
+    (<code>repeat</code>); <code>inherit</code> takes the parent's value instead
+    of the property's own default. Neither of them is a pattern of its own.</div>
+
+</body>
+</html>

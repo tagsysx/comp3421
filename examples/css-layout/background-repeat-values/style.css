@@ -1,0 +1,107 @@
+/* --- page furniture (not part of the example) ----------------------------
+   The rule the page teaches is at the bottom of this file, once per value.
+   The lecture writes it on a bare `div`; with the bare selector every `div`
+   on this page - the page furniture included - would be painted, so each one
+   is scoped to the box it belongs to.  The blue boxes above the demos show
+   the rule the way the lecture gives it. */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 24px;
+  color: #1a2230;
+}
+
+h1 { margin-top: 0; }
+
+h2.section {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 28px 0 10px;
+  padding-bottom: 4px;
+  border-bottom: 2px solid #c9d8ef;
+}
+
+h2.section .tag {
+  font-weight: 400;
+  font-size: 12px;
+  color: #4a5568;
+}
+
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* the rules, printed above their own result */
+.code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre;
+  color: #1e4fa8;
+  background: #eef3fb;
+  border-left: 4px solid #c9d8ef;
+  padding: 8px 12px;
+  margin: 0 0 12px;
+  max-width: 46em;
+  overflow-x: auto;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 46em;
+  margin: 10px 0;
+}
+
+/* the box each value is demonstrated in */
+.live {
+  padding: 10px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+  max-width: 46em;
+}
+
+/* --- the demo box itself (size and guide only, not part of the rule) ---
+   500 × 30 tile: tall enough for the vertical values to show more than one
+   copy, wide enough for `space` and `round` to differ visibly. */
+.rb {
+  height: 132px;
+  border: 1px dashed #c9d8ef;
+}
+
+/* ==========================================================================
+   the rules - one value each, scoped to its own demo box
+   ========================================================================== */
+.v-repeat {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat;
+}
+
+.v-repeat-x {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat-x;
+}
+
+.v-repeat-y {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat-y;
+}
+
+.v-no-repeat {
+  background-image: url("gradient_bg.png");
+  background-repeat: no-repeat;
+}
+
+.v-space {
+  background-image: url("gradient_bg.png");
+  background-repeat: space;
+}
+
+.v-round {
+  background-image: url("gradient_bg.png");
+  background-repeat: round;
+}

@@ -126,6 +126,7 @@
         "css-layout/background-color",
         "css-layout/background-image",
         "css-layout/background-repeat",
+        "css-layout/background-repeat-values",
         "css-layout/background-position",
         "css-layout/background-attachment",
         "css-layout/background-shorthand",
@@ -1093,6 +1094,16 @@
           "desc": "repeat-x turns a one-line image into a header band",
           "files": [
             "index.html",
+            "gradient_bg.png"
+          ]
+        },
+        {
+          "id": "background-repeat-values",
+          "name": "background-repeat — the values",
+          "desc": "one image, six values; space and round differ only when you compare them side by side",
+          "files": [
+            "index.html",
+            "style.css",
             "gradient_bg.png"
           ]
         },
