@@ -143,6 +143,7 @@
         "css-layout/position-absolute",
         "css-layout/position-fixed",
         "css-layout/position-sticky",
+        "css-layout/z-index",
         "css-layout/flexbox",
         "css-layout/grid",
         "css-layout/responsive",
@@ -790,6 +791,16 @@
           "files": [
             "index.html",
             "style.css"
+          ]
+        },
+        {
+          "id": "z-index",
+          "name": "z-index",
+          "desc": "An absolutely positioned image at z-index: -1, sitting behind the text",
+          "files": [
+            "index.html",
+            "style.css",
+            "img_tree.png"
           ]
         },
         {
