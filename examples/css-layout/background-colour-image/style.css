@@ -1,11 +1,9 @@
-/* background-color & background-image — the paint layer of the box model
-   ----------------------------------------------------------------------------
-   The image is a real file next to this page, not an inline SVG:
-
-     img_tree.png   200 x 358, a PNG that is transparent around the tree
-
-   That transparency is the point of the second card: you can see the colour
-   everywhere the file has no pixels. */
+/* --- page furniture (not part of the example) -----------------------------
+   The rules the lecture teaches are at the bottom of this file.  Each one is
+   scoped to the demo box it belongs to: the lecture writes them on bare
+   `div` / `p` / `h1` / `body`, and with the bare selector every matching
+   element on this page would get the rule - the page's own title included.
+   The blue box on the page shows the rule the way the lecture gives it. */
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
@@ -18,68 +16,74 @@ h1 { margin-top: 0; }
 h2.section {
   font-size: 15px;
   color: #0e3f8c;
-  margin: 28px 0 10px;
+  margin: 32px 0 10px;
   padding-bottom: 4px;
   border-bottom: 2px solid #c9d8ef;
 }
 
-.row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin: 14px 0;
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* the rule, printed above its own result */
+.code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre;
+  color: #1e4fa8;
+  background: #eef3fb;
+  border-left: 4px solid #c9d8ef;
+  padding: 8px 12px;
+  margin: 0 0 14px;
+  max-width: 46em;
+  overflow-x: auto;
 }
 
 .note {
-  font-size: 12.5px;
-  color: #4a5568;
-  margin: 6px 0 0;
-}
-
-.card {
-  max-width: 420px;
-  margin: 0;
-  padding: 16px;
-  border-radius: 10px;
   font-size: 13px;
+  line-height: 1.6;
+  color: #4a5568;
+  max-width: 46em;
+  margin: 10px 0;
 }
 
-.card h3 { margin: 0 0 6px; font-size: 15px; }
-.card p  { margin: 0; line-height: 1.5; }
-
-/* one flat colour */
-.colour {
-  background-color: #185fa5;
-  color: #fff;
+/* the live box each demo runs in.  Unlike a plain .stage there is no
+   first/last-child margin reset: on the margin pages that reset would eat the
+   very margin the example is about. */
+.live {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+  max-width: 46em;
 }
 
-/* colour underneath, image in front.  The PNG is transparent, so the colour
-   behind it is still doing half the work — and the text is set well clear of
-   the tree, on plain blue. */
-.over {
-  background-color: #185fa5;
-  background-image: url("img_tree.png");
-  background-position: right 18px center;
-  background-size: 76px 136px;         /* the tree's own 0.56 aspect ratio */
-  background-repeat: no-repeat;
-  color: #fff;
-  min-height: 168px;
-  padding-right: 108px;
-}
+.live p { font-size: 13px; line-height: 1.7; }
+.live .lbl { font-size: 11.5px; color: #4a5568; }
 
-/* A dashed edge, so you can see that the background really is painted all the
-   way out to the border box — the dashes have gaps, and the image shows through
-   them.  background-clip: border-box is the default, which is why.
+/* side-by-side demos */
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+.row > * { margin: 0; }
 
-   There is no text inside this box on purpose: it is the figure, the caption is
-   the paragraph underneath. */
-.edge-box {
-  height: 132px;
-  margin: 14px 0 0;
-  background-color: #eef3fb;
-  background-image: url("img_tree.png");
-  background-size: 54px 97px;          /* tiled, so every gap in the dashes is covered */
-  background-repeat: repeat;
-  border: 14px dashed #3d7bd9;
-}
+/* a faint guide so you can see where the demo element actually is */
+.guide { background: #eef3fb; border: 1px solid #c9d8ef; padding: 8px 10px; font-size: 13px; }
+
+/* --- the demo boxes' own layout (not part of the example) ---
+   Sizes, spacing and the guides, so that the effect of the rule below is
+   visible.  None of this is part of what the lecture teaches. */
+.bgc h1, .bgc div, .bgc p { padding: 8px 10px; margin: 6px 0; }
+.bgc h1 { font-size: 16px; }
+.bgc div, .bgc p { font-size: 13px; }
+.bgi { padding: 18px 12px; }
+
+/* ==========================================================================
+   the rules - the lecture's rules, scoped to the demo box they belong to
+   ========================================================================== */
+.bgc h1 { background-color: green; }
+.bgc div { background-color: lightblue; }
+.bgc p   { background-color: yellow; }
+
+.bgi { background-image: url("paper.gif"); }

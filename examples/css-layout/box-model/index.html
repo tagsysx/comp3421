@@ -6,62 +6,23 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>The box model</h1>
-  <p>Every element is a box. Read each one from the inside out: content,
-     padding, border, margin — and then the corner and the background.</p>
+  <h1>Box model</h1>
+  <div class="note">Every element is a box. This is the box that wraps it — read it from the inside out: <b>content</b>, <b>padding</b>, <b>border</b>, <b>margin</b>. One rule, four values.</div>
 
-  <!-- the running example: one rule, five layers -->
-  <div class="notice">
-    <h2>Week 4 lab</h2>
-    <p>Lay out a responsive page. Bring your own colour scheme.</p>
+  <h2 class="section">The example</h2>
+  <div class="code">div {
+  width: 300px;
+  border: 25px solid green;
+  padding: 25px;
+  margin: 25px;
+}</div>
+  <div class="live ">
+    <div>This text is the content of the box. The width of 300px is the content alone &mdash; the padding, the border and the margin are added on top of it.</div>
   </div>
+  <div class="note">300px is the <b>content</b>. Add the padding (2 &times; 25) and the border (2 &times; 25) and the box is <b>400px</b> wide; the margin is 25px more of clear space on every side, and it is never painted. The lecture writes this on a bare <code>div</code>; style.css scopes it to the demo box below so the page's own boxes is not affected too.</div>
 
-  <!-- the same four layers, nested so you can see the order -->
-  <div class="layers">
-    <div class="layer layer-margin">margin</div>
-    <div class="layer layer-border">border</div>
-    <div class="layer layer-padding">padding</div>
-    <div class="layer layer-content">content</div>
-  </div>
+  <h2 class="section">What each value does</h2>
+  <div class="note"><b>content</b> — where the text and the images appear. &nbsp;<b>padding</b> — clears an area around the content, inside the edge; the background paints it. &nbsp;<b>border</b> — goes around the padding and the content; it can be rounded. &nbsp;<b>margin</b> — clears an area outside the edge; always transparent.</div>
 
-  <!-- border-style: without a style, nothing is drawn -->
-  <h2 class="section">border-style</h2>
-  <div class="row">
-    <p class="bs solid">solid</p>
-    <p class="bs dashed">dashed</p>
-    <p class="bs dotted">dotted</p>
-    <p class="bs double">double</p>
-    <p class="bs none">none</p>
-  </div>
-
-  <!-- padding takes one to four numbers, clockwise from the top -->
-  <h2 class="section">padding — one to four numbers</h2>
-  <div class="row">
-    <p class="pad p1">padding: 24px</p>
-    <p class="pad p2">padding: 8px 32px</p>
-    <p class="pad p3">padding: 8px 32px 20px</p>
-    <p class="pad p4">padding: 4px 32px 20px 8px</p>
-  </div>
-
-  <!-- border-radius rounds the corners -->
-  <h2 class="section">border-radius</h2>
-  <div class="row">
-    <p class="rad r0">0</p>
-    <p class="rad r1">12px</p>
-    <p class="rad r2">24px</p>
-    <p class="rad r3">999px</p>
-  </div>
-
-  <!-- box-sizing decides what a declared width actually measures -->
-  <h2 class="section">box-sizing</h2>
-  <div class="box content-box">
-    <span class="tag">content-box</span>
-    <code>width: 200px</code> = the content only. Padding and border are added on top.
-  </div>
-
-  <div class="box border-box">
-    <span class="tag">border-box</span>
-    <code>width: 200px</code> = content + padding + border. Easier to reason about.
-  </div>
 </body>
 </html>

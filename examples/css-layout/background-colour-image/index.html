@@ -2,40 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Background colour & image</title>
+  <title>Background — colour &amp; image</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>background-color &amp; background-image</h1>
-  <p><code>img_tree.png</code> — a real PNG file sitting next to this page — is used
-     for both halves of the layer below.</p>
+  <h1>Background — colour &amp; image</h1>
+  <div class="note">The background is a box-model layer: painted under the content and the padding, and stopped at the border. The margin is never painted.</div>
 
-  <h2 class="section">a flat colour</h2>
-  <div class="row">
-    <div class="card colour">
-      <h3>background-color: #185fa5</h3>
-      <p>One colour behind everything in the box.</p>
+  <h2 class="section">background-color</h2>
+  <div class="code">h1 {
+  background-color: green;
+}
+
+div {
+  background-color: lightblue;
+}
+
+p {
+  background-color: yellow;
+}</div>
+  <div class="live ">
+    <div class="bgc">
+      <h1>green h1</h1>
+      <div>lightblue div</div>
+      <p>yellow p</p>
     </div>
   </div>
+  <div class="note">Any element can carry one, and each of these three gets its colour with nothing in the markup to say so. The lecture writes this on a bare <code>h1 / div / p</code>; style.css scopes it to the demo box below so the page's own own headings and panels is not affected too.</div>
 
-  <h2 class="section">an image painted on top of the colour</h2>
-  <div class="row">
-    <div class="card over">
-      <h3>colour + image</h3>
-      <p>The colour goes down first, the image over it. That PNG is transparent around
-         the tree, so the blue keeps showing through — wherever the file is opaque, the
-         colour is hidden.</p>
-    </div>
+  <h2 class="section">background-image</h2>
+  <div class="code">body {
+  background-image: url("paper.gif");
+}</div>
+  <div class="live ">
+    <div class="bgi">background-image: url("paper.gif") &mdash; one small tile, repeated until the box is covered</div>
   </div>
+  <div class="note">By default the image repeats in both directions, so the file itself can be tiny. W3Schools puts this one on <code>body</code>; here it is on the demo box, so that you can see the edges of the thing being painted.</div>
 
-  <h2 class="section">the paint stops at the border</h2>
-  <div class="edge-box"></div>
-  <p class="note">A 14px dashed border over a tiled image. The background is painted all
-     the way out to the outside of the border — look at the gaps between the dashes. It
-     never crosses into the margin, which is always transparent.</p>
-
-  <p class="note">That last one is the whole box model in one box: the background covers
-     the content, the padding and the border area, the border is drawn on top of it, and
-     the margin outside stays clear.</p>
 </body>
 </html>

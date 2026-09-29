@@ -1065,7 +1065,7 @@
           "files": [
             "index.html",
             "style.css",
-            "img_tree.png"
+            "paper.gif"
           ]
         },
         {
@@ -1076,8 +1076,7 @@
             "index.html",
             "style.css",
             "img_tree.png",
-            "img_flowers.jpg",
-            "img_mountains.jpg"
+            "gradient_bg.png"
           ]
         },
         {
@@ -1125,7 +1124,7 @@
           "files": [
             "index.html",
             "style.css",
-            "img_mountains.jpg"
+            "img_tree.png"
           ]
         },
         {

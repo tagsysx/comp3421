@@ -7,36 +7,26 @@
 </head>
 <body>
   <h1>Margin collapsing</h1>
-  <p>Two vertical margins that touch do not add up — the larger one wins.</p>
+  <div class="note">Top and bottom margins of elements stacked on each other <b>collapse</b>: the gap between them becomes the larger of the two, not the sum. Left and right margins never do this.</div>
 
-  <h2 class="section">20px below + 30px above = a 30px gap</h2>
-  <div class="stack">
-    <p class="box top">margin-bottom: 20px</p>
-    <p class="box bottom">margin-top: 30px</p>
-  </div>
-  <p class="note">Measure the gap in dev tools: 30px, not 50px.</p>
+  <h2 class="section">50px meets 20px</h2>
+  <div class="code">h1 {
+  margin: 0 0 50px 0;
+}
 
-  <h2 class="section">a parent and its first child collapse too</h2>
-  <div class="frames">
-    <div class="frame">
-      <div class="child">a <code>margin-top: 24px</code> child inside a frame with no
-        padding — the margin escapes the frame and pushes the whole frame down</div>
-    </div>
-    <div class="frame walled">
-      <div class="child">the same child, but the frame has
-        <code>padding-top: 1px</code> — now the margin has something to push against and
-        stays inside</div>
+h2 {
+  margin: 20px 0 0 0;
+}</div>
+  <div class="live mc">
+    <div class="collapse">
+      <h1>Heading 1</h1>
+      <h2>Heading 2</h2>
     </div>
   </div>
-  <p class="note">Look at the top edge of each frame: in the first one the child's margin
-     has left the frame and become the frame's own, so the grey starts right at the child;
-     in the second it stays put. Not a flex row on purpose — a flex container never
-     collapses, which would hide the whole effect.</p>
+  <div class="note">The two margins make 70px on paper, but the gap you see is <b>50px</b> — the larger one wins. Side by side the same 50 and 20 would add up to 70. The lecture writes this on a bare <code>h1 / h2</code>; style.css scopes it to the demo box below so the page's own own h1 title is not affected too.</div>
 
-  <h2 class="section">side by side they always add up</h2>
-  <div class="sidebyside"><p class="box side left">margin-right: 20px</p><p class="box side right">margin-left: 30px</p></div>
-  <p class="note">Horizontal margins never collapse: the space between these two is 50px.
-     The two tags sit on one source line on purpose — a newline between inline-blocks is a
-     whitespace character, and it would add 5px to the gap.</p>
+  <h2 class="section">Where it bites</h2>
+  <div class="note">Headings and paragraphs carry default top and bottom margins, so the space between two of them is one collapsed margin rather than two. A parent with no padding and no border lets its child's top margin escape through it as well — give the parent <code>padding-top</code> or <code>overflow: hidden</code> when you want it to stay inside.</div>
+
 </body>
 </html>

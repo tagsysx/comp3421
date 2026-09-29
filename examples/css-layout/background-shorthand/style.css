@@ -1,13 +1,9 @@
-/* the background shorthand
-   ----------------------------------------------------------------------------
-   The background image is a real file next to this page, not an inline SVG:
-
-     img_mountains.jpg   600 x 400, opaque
-
-   The panel is 520 x 150 — 3.5 : 1 against the photo's 1.5 : 1 — so `cover` has
-   to enlarge the picture and crop it.  The declaration is printed under the
-   panel instead of on top of it: white type over a photograph is only readable
-   where the photograph happens to be dark, and this one is mostly sky. */
+/* --- page furniture (not part of the example) -----------------------------
+   The rules the lecture teaches are at the bottom of this file.  Each one is
+   scoped to the demo box it belongs to: the lecture writes them on bare
+   `div` / `p` / `h1` / `body`, and with the bare selector every matching
+   element on this page would get the rule - the page's own title included.
+   The blue box on the page shows the rule the way the lecture gives it. */
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
@@ -20,45 +16,67 @@ h1 { margin-top: 0; }
 h2.section {
   font-size: 15px;
   color: #0e3f8c;
-  margin: 28px 0 10px;
+  margin: 32px 0 10px;
   padding-bottom: 4px;
   border-bottom: 2px solid #c9d8ef;
 }
 
-.note {
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* the rule, printed above its own result */
+.code {
+  font-family: Menlo, Consolas, monospace;
   font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre;
+  color: #1e4fa8;
+  background: #eef3fb;
+  border-left: 4px solid #c9d8ef;
+  padding: 8px 12px;
+  margin: 0 0 14px;
+  max-width: 46em;
+  overflow-x: auto;
+}
+
+.note {
+  font-size: 13px;
+  line-height: 1.6;
   color: #4a5568;
-  margin: 0 0 4px;
-  max-width: 560px;
+  max-width: 46em;
+  margin: 10px 0;
 }
 
-/* the figure — a picture box with nothing typed on it */
-.art {
-  max-width: 520px;
-  height: 150px;
-  margin-bottom: 10px;
-  border-radius: 10px;
-  box-sizing: border-box;
+/* the live box each demo runs in.  Unlike a plain .stage there is no
+   first/last-child margin reset: on the margin pages that reset would eat the
+   very margin the example is about. */
+.live {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+  max-width: 46em;
 }
 
-/* five properties, one at a time */
-.longhand {
-  background-color: #0e3f8c;
-  background-image: url("img_mountains.jpg");
-  background-position: center;
-  background-size: cover;
-  background-repeat: no-repeat;
-}
+.live p { font-size: 13px; line-height: 1.7; }
+.live .lbl { font-size: 11.5px; color: #4a5568; }
 
-/* the same five values in one declaration, in the same order */
-.shorthand {
-  background: #0e3f8c url("img_mountains.jpg") center / cover no-repeat;
-}
+/* side-by-side demos */
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+.row > * { margin: 0; }
 
-/* The size needs its slash. Without it this whole line is invalid, and the
-   element falls back to no background at all — not to "the rest of the values".
-   The dashed outline is the only thing you can see, because there is no paint. */
-.broken {
-  background: #0e3f8c url("img_mountains.jpg") center cover no-repeat;
-  border: 1px dashed #c9d8ef;
-}
+/* a faint guide so you can see where the demo element actually is */
+.guide { background: #eef3fb; border: 1px solid #c9d8ef; padding: 8px 10px; font-size: 13px; }
+
+/* --- the demo boxes' own layout (not part of the example) ---
+   Sizes, spacing and the guides, so that the effect of the rule below is
+   visible.  None of this is part of what the lecture teaches. */
+.sh { padding: 18px 12px; min-height: 90px; background-color: #f7f9fc; border: 1px solid #dde3ee; }
+
+/* ==========================================================================
+   the rules - the lecture's rules, scoped to the demo box they belong to
+   ========================================================================== */
+.sh { background: #ffffff url("img_tree.png") no-repeat right top; }

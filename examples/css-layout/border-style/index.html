@@ -2,35 +2,37 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Border style</title>
+  <title>border-style</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>border-style</h1>
-  <p>Set a width and a colour but leave the <em>style</em> out and nothing is drawn at
-     all — the style is what makes an edge appear. Here all ten values, 6px thick:</p>
+  <div class="note">The one part you cannot leave out. Set a thickness and a colour with no style and <b>no border is drawn at all</b> — which is the quietest way to make a layout look wrong.</div>
 
-  <h2 class="section">the flat ones</h2>
-  <div class="row">
-    <p class="bs s-none">none</p>
-    <p class="bs s-hidden">hidden</p>
-    <p class="bs s-dotted">dotted</p>
-    <p class="bs s-dashed">dashed</p>
-    <p class="bs s-solid">solid</p>
-    <p class="bs s-double">double</p>
+  <h2 class="section">Ten values, one property</h2>
+  <div class="code">p.dotted { border-style: dotted; }
+p.dashed { border-style: dashed; }
+p.solid  { border-style: solid; }
+p.double { border-style: double; }
+p.groove { border-style: groove; }
+p.ridge  { border-style: ridge; }
+p.inset  { border-style: inset; }
+p.outset { border-style: outset; }
+p.none   { border-style: none; }
+p.hidden { border-style: hidden; }
+
+p.mix { border-style: dotted dashed solid double; }</div>
+  <div class="live ">
+    <div class="row">
+      <p class="dotted">dotted</p><p class="dashed">dashed</p><p class="solid">solid</p>
+      <p class="double">double</p><p class="groove">groove</p><p class="ridge">ridge</p>
+      <p class="inset">inset</p><p class="outset">outset</p><p class="none">none</p>
+      <p class="hidden">hidden</p>
+    </div>
+    <p class="lbl" style="margin-top:12px">four values, clockwise from the top:</p>
+    <p class="mix">dotted dashed solid double</p>
   </div>
+  <div class="note"><code>dotted</code>, <code>dashed</code> and <code>solid</code> are drawn by the browser in the border's own colour. <code>double</code> needs about 3px or more before the two lines separate. <code>groove</code>, <code>ridge</code>, <code>inset</code> and <code>outset</code> are 3D effects the browser draws for you. <code>none</code> and <code>hidden</code> both draw nothing — they differ only in how table borders collapse.</div>
 
-  <h2 class="section">the ones that carve the edge</h2>
-  <div class="row">
-    <p class="bs s-groove">groove</p>
-    <p class="bs s-ridge">ridge</p>
-    <p class="bs s-inset">inset</p>
-    <p class="bs s-outset">outset</p>
-  </div>
-
-  <p class="note"><code>none</code> and <code>hidden</code> both draw nothing.
-     <code>hidden</code> only differs when two borders meet in a table — it loses the
-     argument to its neighbour, <code>none</code> does not. The pale background on the
-     first two is only there so you can see where the box is.</p>
 </body>
 </html>

@@ -2,31 +2,42 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Width & height</title>
+  <title>width &amp; height</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>width &amp; height</h1>
+  <div class="note"><code>width</code> and <code>height</code> set the size of the <b>content</b> area unless <code>box-sizing</code> says otherwise. <code>auto</code> — the default — means the browser works it out from the content.</div>
 
-  <h2 class="section">a percentage is a share of the parent</h2>
-  <div class="parent">
-    <p class="wh w40">width: 40%</p>
-    <p class="wh w70">width: 70%</p>
-    <p class="wh w100">width: 100%</p>
+  <h2 class="section">A length, or a share of the parent</h2>
+  <div class="code">div {
+  height: 200px;
+  width: 50%;
+  background-color: powderblue;
+}</div>
+  <div class="live ">
+    <div class="pct">height: 200px &middot; width: 50% &mdash; measured against the box that contains it, so it scales with its parent</div>
   </div>
+  <div class="note">A percentage is a share of the containing block, not of the window. The lecture writes this on a bare <code>div</code>; style.css scopes it to the demo box below so the page's own panels is not affected too.</div>
 
-  <h2 class="section">max-width is a ceiling</h2>
-  <div class="parent">
-    <p class="wh w100 capped">width: 100%; max-width: 320px</p>
-  </div>
-  <p class="note">Shrink the window and the second box stops growing at 320px —
-     <code>max-width</code> wins whenever the two disagree.</p>
+  <h2 class="section"><code>max-width</code> caps a box</h2>
+  <div class="code">div.ex1 {
+  width: 500px;
+  margin: auto;
+  border: 3px solid #73AD21;
+}
 
-  <h2 class="section">height: auto follows the content</h2>
-  <div class="row">
-    <p class="wh h-auto">height: auto — this box is as tall as its text. Add a line and it
-       grows, and nothing has to be recalculated by hand.</p>
-    <p class="wh h-fixed">height: 96px — fixed, so longer text would spill out.</p>
+div.ex2 {
+  max-width: 500px;
+  margin: auto;
+  border: 3px solid #73AD21;
+}</div>
+  <div class="live ">
+    <div class="ex1">width: 500px</div>
+    <div class="ex2">max-width: 500px</div>
+    <p class="lbl">Drag the window narrower than 500px and watch which of the two shrinks.</p>
   </div>
+  <div class="note">The first box holds its 500px whatever the window does — once the window is narrower, the page grows a horizontal scrollbar. The second simply gets narrower, which is what you want almost every time. <code>min-height</code>, <code>min-width</code> and <code>max-height</code> work the same way in the other direction.</div>
+
 </body>
 </html>

@@ -2,34 +2,48 @@
 <html lang="en">
 <head>
   <meta charset="utf-8" />
-  <title>Margin</title>
+  <title>margin</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
   <h1>margin</h1>
-  <p>Margin is the clear space <strong>outside</strong> the edge. Nothing is ever painted
-     there — if you can see a colour, you are looking at padding.</p>
+  <div class="note">Margin is the clear space <b>outside</b> the edge. It is never painted — if you can see a colour, you are looking at padding.</div>
 
-  <h2 class="section">one to four numbers, same order as padding</h2>
-  <div class="row">
-    <p class="mg m1">margin: 8px</p>
-    <p class="mg m2">margin: 8px 32px</p>
-    <p class="mg m3">margin: 8px 32px 24px</p>
-    <p class="mg m4">margin: 8px 32px 24px 4px</p>
+  <h2 class="section">Four numbers, clockwise from the top</h2>
+  <div class="code">p {
+  margin: 100px 150px 100px 80px;
+}</div>
+  <div class="live m1">
+    <p class="guide">margin: 100px 150px 100px 80px</p>
   </div>
+  <div class="note">100px above and below, 150px on the right, 80px on the left. The pale blue is the element itself; everything around it is margin. The lecture writes this on a bare <code>p</code>; style.css scopes it to the demo box below so the page's own paragraphs is not affected too.</div>
 
-  <h2 class="section">0 auto — the centring trick</h2>
-  <div class="parent">
-    <p class="mg centred">margin: 0 auto — equal space on both sides</p>
+  <h2 class="section"><code>margin: auto</code> centres a block</h2>
+  <div class="code">div {
+  width: 300px;
+  margin: auto;
+  border: 1px solid red;
+}</div>
+  <div class="live m2">
+    <div class="auto">This div is centred: the leftover space is split equally left and right.</div>
   </div>
+  <div class="note">The element keeps the width you gave it and the remaining space in the parent is divided between the two margins. It only works on an element that has a width to begin with.</div>
 
-  <h2 class="section">a negative margin pulls instead of pushes</h2>
-  <div class="pull">
-    <p class="mg pv">margin-bottom: 0</p>
-    <p class="mg pv pulled">margin-top: -12px — this box climbs up over the gap</p>
+  <h2 class="section"><code>margin-left: inherit</code></h2>
+  <div class="code">div.container {
+  border: 1px solid red;
+  margin-left: 100px;
+}
+
+p.one {
+  margin-left: inherit;
+}</div>
+  <div class="live m3">
+    <div class="container">
+      <p class="one">This paragraph took its left margin from the div around it.</p>
+    </div>
   </div>
+  <div class="note"><code>inherit</code> forces a property to take the parent's computed value. Most of the box-model properties are <b>not</b> inherited by default — this is how you opt one in.</div>
 
-  <p class="note">A block only centres with <code>margin: 0 auto</code> if it has a
-     <code>width</code> narrower than its parent — otherwise there is no space to share.</p>
 </body>
 </html>

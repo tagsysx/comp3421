@@ -1,3 +1,10 @@
+/* --- page furniture (not part of the example) -----------------------------
+   The rules the lecture teaches are at the bottom of this file.  Each one is
+   scoped to the demo box it belongs to: the lecture writes them on bare
+   `div` / `p` / `h1` / `body`, and with the bare selector every matching
+   element on this page would get the rule - the page's own title included.
+   The blue box on the page shows the rule the way the lecture gives it. */
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 24px;
@@ -9,74 +16,70 @@ h1 { margin-top: 0; }
 h2.section {
   font-size: 15px;
   color: #0e3f8c;
-  margin: 28px 0 10px;
+  margin: 32px 0 10px;
   padding-bottom: 4px;
   border-bottom: 2px solid #c9d8ef;
 }
 
-.row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin: 14px 0;
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* the rule, printed above its own result */
+.code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre;
+  color: #1e4fa8;
+  background: #eef3fb;
+  border-left: 4px solid #c9d8ef;
+  padding: 8px 12px;
+  margin: 0 0 14px;
+  max-width: 46em;
+  overflow-x: auto;
 }
 
 .note {
-  font-size: 12.5px;
+  font-size: 13px;
+  line-height: 1.6;
   color: #4a5568;
-  margin: 6px 0 0;
+  max-width: 46em;
+  margin: 10px 0;
 }
 
-/* Margin collapsing — vertical margins merge, horizontal ones do not */
-
-.box {
-  margin: 0;
-  padding: 10px 14px;
-  font-size: 12.5px;
-  background: #eef3fb;
-  border: 2px solid #185fa5;
+/* the live box each demo runs in.  Unlike a plain .stage there is no
+   first/last-child margin reset: on the margin pages that reset would eat the
+   very margin the example is about. */
+.live {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+  max-width: 46em;
 }
 
-/* --- two stacked siblings: the margins between them touch --- */
-.stack { background: #f4f6fa; }
-.top    { margin-bottom: 20px; }
-.bottom { margin-top: 30px; }
+.live p { font-size: 13px; line-height: 1.7; }
+.live .lbl { font-size: 11.5px; color: #4a5568; }
 
-/* --- a parent and its first child, with and without padding ---
-   NOTE: an outline, not a border. A border on the parent would stop the
-   collapsing this demo is about — an outline paints without being part of the
-   box, so it is the only way to draw the frame and still show the escape. */
-.frames { margin: 4px 0 0; }
+/* side-by-side demos */
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+.row > * { margin: 0; }
 
-.frame {
-  width: 300px;
-  background: #f4f6fa;
-  outline: 1px dashed #c9d8ef;
-  font-size: 12.5px;
-}
+/* a faint guide so you can see where the demo element actually is */
+.guide { background: #eef3fb; border: 1px solid #c9d8ef; padding: 8px 10px; font-size: 13px; }
 
-.frame + .frame { margin-top: 20px; }
+/* --- the demo boxes' own layout (not part of the example) ---
+   Sizes, spacing and the guides, so that the effect of the rule below is
+   visible.  None of this is part of what the lecture teaches. */
+.collapse { background: #f7f9fc; border: 1px dashed #c9d8ef; padding: 0 12px; }
+.collapse h1 { font-size: 17px; border-bottom: 1px solid #dde3ee; }
+.collapse h2 { font-size: 15px; }
 
-/* the tricky one: 1px of padding is enough to give the child's margin
-   something to push against instead of leaking out of the parent */
-.walled { padding-top: 1px; }
-
-.child {
-  margin: 24px 0 12px;
-  padding: 10px 12px;
-  background: #eef3fb;
-  border: 2px solid #185fa5;
-}
-
-/* --- side by side, the margins are horizontal and simply add up ---
-   Deliberately not a flex row: a flex container adds its own gap and flex items
-   never collapse, which would hide the number this panel is about. */
-.sidebyside {
-  background: #f4f6fa;
-  padding: 8px;
-}
-
-.side { display: inline-block; margin: 0; }
-.left  { margin-right: 20px; }
-.right { margin-left: 30px; }
+/* ==========================================================================
+   the rules - the lecture's rules, scoped to the demo box they belong to
+   ========================================================================== */
+h1 { margin: 0 0 50px 0; }
+h2 { margin: 20px 0 0 0; }

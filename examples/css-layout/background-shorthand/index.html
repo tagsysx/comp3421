@@ -6,29 +6,27 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>the background shorthand</h1>
-  <p>All three panels below ask for the same thing — <code>img_mountains.jpg</code>,
-     a real photograph sitting next to this page, full-bleed over a dark blue.
-     The declarations are printed underneath rather than on top, so the picture
-     stays a picture.</p>
+  <h1>The background shorthand</h1>
+  <div class="note">One declaration can set the colour, the image, the position, the size and the repeat together. It is the five properties you have just used, written as a single line.</div>
 
-  <h2 class="section">longhand — five properties</h2>
-  <div class="art longhand"></div>
-  <p class="note">background-color, background-image, background-position,
-     background-size and background-repeat, one declaration each.</p>
+  <h2 class="section">Longhand</h2>
+  <div class="code">body {
+  background-color: #ffffff;
+  background-image: url("img_tree.png");
+  background-repeat: no-repeat;
+  background-position: right top;
+}</div>
+  <div class="note">Four lines, four properties — and each one can be changed and debugged on its own.</div>
 
-  <h2 class="section">shorthand — the same thing, one line</h2>
-  <div class="art shorthand"></div>
-  <p class="note"><code>background: #0e3f8c url("img_mountains.jpg") center / cover no-repeat;</code>
-     — nothing about the picture changes. Only the stylesheet got shorter.</p>
+  <h2 class="section">The same thing in one line</h2>
+  <div class="code">body {
+  background: #ffffff url("img_tree.png")
+              no-repeat right top;
+}</div>
+  <div class="live ">
+    <div class="sh">background: #ffffff url("img_tree.png") no-repeat right top;</div>
+  </div>
+  <div class="note">Colour first, then the image, then repeat, then position. It does not matter if one of the parts is missing, as long as the ones that are there keep this order. Two warnings: the shorthand <b>resets</b> every background property you leave out, and the <code>/</code> between position and size is not optional — <code>background: url(t.png) center / cover no-repeat;</code>. W3Schools writes this on <code>body</code>; here it is on the demo box.</div>
 
-  <h2 class="section">and the one way that fails</h2>
-  <div class="art broken"></div>
-  <p class="note">The same shorthand without the <code>/</code> before the size. The
-     declaration is invalid, so the browser drops it whole — no colour, no image. The
-     dashed outline is the only thing left, because there is no paint at all.</p>
-
-  <p class="note">The slash separates <em>where</em> the image sits from <em>how big</em> it
-     is. Without it the declaration is thrown away whole — not just the size part.</p>
 </body>
 </html>

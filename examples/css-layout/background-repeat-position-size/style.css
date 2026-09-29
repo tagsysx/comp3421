@@ -1,13 +1,9 @@
-/* background-repeat, background-position, background-size
-   ----------------------------------------------------------------------------
-   Three real image files sit next to this page — no inline SVG, no data URI:
-
-     img_flowers.jpg     460 x 345   a photograph, fully opaque
-     img_tree.png        200 x 358   a PNG, transparent around the tree
-     img_mountains.jpg   600 x 400   a photograph, fully opaque
-
-   Every size below is a whole multiple of the file's own proportions, so nothing
-   is ever squashed: 460/345 and 600/400 are both 4:3, and 200/358 is 0.56. */
+/* --- page furniture (not part of the example) -----------------------------
+   The rules the lecture teaches are at the bottom of this file.  Each one is
+   scoped to the demo box it belongs to: the lecture writes them on bare
+   `div` / `p` / `h1` / `body`, and with the bare selector every matching
+   element on this page would get the rule - the page's own title included.
+   The blue box on the page shows the rule the way the lecture gives it. */
 
 body {
   font-family: system-ui, -apple-system, sans-serif;
@@ -20,89 +16,77 @@ h1 { margin-top: 0; }
 h2.section {
   font-size: 15px;
   color: #0e3f8c;
-  margin: 28px 0 10px;
+  margin: 32px 0 10px;
   padding-bottom: 4px;
   border-bottom: 2px solid #c9d8ef;
 }
 
-.row {
-  display: flex;
-  gap: 14px;
-  flex-wrap: wrap;
-  align-items: flex-start;
-  margin: 14px 0;
+code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 0.92em;
+  color: #1e4fa8;
+}
+
+/* the rule, printed above its own result */
+.code {
+  font-family: Menlo, Consolas, monospace;
+  font-size: 12.5px;
+  line-height: 1.5;
+  white-space: pre;
+  color: #1e4fa8;
+  background: #eef3fb;
+  border-left: 4px solid #c9d8ef;
+  padding: 8px 12px;
+  margin: 0 0 14px;
+  max-width: 46em;
+  overflow-x: auto;
 }
 
 .note {
-  font-size: 12.5px;
+  font-size: 13px;
+  line-height: 1.6;
   color: #4a5568;
-  margin: 6px 0 0;
+  max-width: 46em;
+  margin: 10px 0;
 }
 
-/* the boxes the properties are demonstrated on.  They are deliberately three
-   different shapes: position and size only mean something relative to the box
-   that holds the image. */
-.box {
-  position: relative;
-  box-sizing: border-box;
-  padding: 8px;
-  background-color: #eef3fb;
-  border: 2px solid #185fa5;
+/* the live box each demo runs in.  Unlike a plain .stage there is no
+   first/last-child margin reset: on the margin pages that reset would eat the
+   very margin the example is about. */
+.live {
+  padding: 12px 14px;
+  background: #ffffff;
+  border: 1px solid #dde3ee;
+  border-left: 4px solid #c9d8ef;
+  max-width: 46em;
 }
 
-/* The label sits on a translucent chip.  A photo can have a bright corner in
-   one tile and a dark one in the next, and navy text on the dark one would be
-   unreadable — the chip fixes that without hiding the image. */
-.cap {
-  display: inline-block;
-  padding: 1px 6px;
-  border-radius: 4px;
-  background: rgba(255, 255, 255, 0.86);
-  color: #0e3f8c;
-  font-size: 11.5px;
-  font-weight: 600;
+.live p { font-size: 13px; line-height: 1.7; }
+.live .lbl { font-size: 11.5px; color: #4a5568; }
+
+/* side-by-side demos */
+.row { display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-start; }
+.row > * { margin: 0; }
+
+/* a faint guide so you can see where the demo element actually is */
+.guide { background: #eef3fb; border: 1px solid #c9d8ef; padding: 8px 10px; font-size: 13px; }
+
+/* --- the demo boxes' own layout (not part of the example) ---
+   Sizes, spacing and the guides, so that the effect of the rule below is
+   visible.  None of this is part of what the lecture teaches. */
+.rep { padding: 20px 12px; background-color: #f7f9fc; border: 1px solid #dde3ee; }
+.pos { padding: 18px 12px; min-height: 90px; background-color: #f7f9fc; border: 1px solid #dde3ee; }
+
+/* ==========================================================================
+   the rules - the lecture's rules, scoped to the demo box they belong to
+   ========================================================================== */
+.rep {
+  background-image: url("gradient_bg.png");
+  background-repeat: repeat-x;
 }
 
-/* --- repeat: a small copy of the photo, tiled ---------------------------- */
-.repeat-box {
-  width: 168px;
-  height: 96px;
-  background-image: url("img_flowers.jpg");
-  background-size: 48px 36px;      /* the 460 x 345 photo, scaled down to 48px wide */
-}
-
-/* repeat — the default tiles in both directions */
-.t-repeat { background-repeat: repeat; }
-.t-x      { background-repeat: repeat-x; }
-.t-y      { background-repeat: repeat-y; }
-.t-none   { background-repeat: no-repeat; }
-.t-space  { background-repeat: space; }
-.t-round  { background-repeat: round; }
-
-/* --- position: one copy, anchored four ways ------------------------------ */
-.pos-box {
-  width: 200px;
-  height: 140px;
+.pos {
   background-image: url("img_tree.png");
-  background-size: 56px 100px;     /* the tree keeps its own 0.56 aspect ratio */
   background-repeat: no-repeat;
+  background-position: right top;
 }
-
-.p-tl     { background-position: top left; }
-.p-center { background-position: center; }
-.p-br     { background-position: bottom right; }
-.p-off    { background-position: 40px 20px; }
-
-/* --- size: how big one copy is drawn ------------------------------------- */
-.size-box {
-  width: 140px;
-  height: 180px;                   /* taller than wide — the opposite of the photo */
-  background-image: url("img_mountains.jpg");
-  background-repeat: no-repeat;
-  background-position: center;
-}
-
-.s-auto    { background-size: auto; }        /* 600 x 400 in a 120 x 160 box */
-.s-contain { background-size: contain; }     /* whole photo, gaps top and bottom */
-.s-cover   { background-size: cover; }       /* fills it, crops the sides */
-.s-px      { background-size: 80px auto; }   /* 80 x 53, small and whole */
