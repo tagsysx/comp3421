@@ -1,0 +1,106 @@
+/* Flexbox in the wild — four layouts you have already met, on one page.
+   Each band is the same three ingredients: a flex container, a direction,
+   and how much of the free space each item gets. */
+
+body {
+  font-family: system-ui, -apple-system, sans-serif;
+  margin: 0;
+  color: #1a2230;
+  background: #f7f9fc;
+}
+
+/* the label above each band: the recipe, not a paragraph */
+.recipe {
+  margin: 0 0 8px;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 12px;
+  color: #4a5568;
+}
+
+.band {
+  padding: 18px 20px;
+  border-bottom: 1px solid #e3e6ea;
+}
+
+/* ① NAV BAR — two flex items, so space-between leaves one at each end.
+   The three links are ONE child, which is why they stay bunched together. */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 12px 16px;
+  background: #185fa5;
+  color: #fff;
+  border-radius: 8px;
+  font-size: 14px;
+}
+.nav .logo { font-weight: 700; }
+.nav .links a {
+  margin-left: 16px;
+  color: #dbe9fb;
+  text-decoration: none;
+}
+
+/* ② CENTRING — one child, centred along the row and across it.
+   The 160px height is what gives align-items something to centre within. */
+.hero {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 160px;
+  background: #eef3fb;
+  border: 1px dashed #b9cdee;
+  border-radius: 8px;
+}
+.hero span {
+  padding: 10px 18px;
+  background: #185fa5;
+  color: #fff;
+  border-radius: 999px;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+/* ③ CARD ROW — flex: 1 gives every card an equal share of the free space,
+   so the cards come out the same width however much text each one holds.
+   gap replaces the old margin-right hack (and the last card needs no fix-up). */
+.cards {
+  display: flex;
+  gap: 16px;
+}
+.cards .card {
+  flex: 1;
+  padding: 14px;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  border-radius: 8px;
+}
+.card h3 { margin: 0 0 6px; font-size: 15px; }
+.card p { margin: 0; font-size: 13px; line-height: 1.4; color: #4a5568; }
+
+/* ④ WRAPPING COLUMNS — the items ask for 320px each. Six of them cannot fit
+   on one line, so wrap sends the rest below instead of squeezing them flat. */
+.cols {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 16px;
+}
+.cols .col {
+  flex: 1 1 320px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #e3e6ea;
+  border-radius: 8px;
+}
+.col h4 { margin: 0 0 4px; font-size: 13px; }
+.col p { margin: 0; font-size: 13px; color: #4a5568; }
+
+.hint {
+  padding: 4px 20px 28px;
+  font-size: 13px;
+  color: #4a5568;
+}
+.hint code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  color: #185fa5;
+}

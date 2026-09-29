@@ -145,6 +145,7 @@
         "css-layout/position-sticky",
         "css-layout/z-index",
         "css-layout/flexbox",
+        "css-layout/flexbox-in-the-wild",
         "css-layout/grid",
         "css-layout/responsive",
         "css-layout/variables",
@@ -827,6 +828,15 @@
           "id": "flexbox",
           "name": "Flexbox layout",
           "desc": "HTML + CSS: rows and columns with flex",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "flexbox-in-the-wild",
+          "name": "Flexbox in the wild",
+          "desc": "Four everyday layouts on one page — nav bar, centring, equal cards, wrapping columns",
           "files": [
             "index.html",
             "style.css"

@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Flexbox in the wild</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- one band per real-world layout; the label is that band's whole recipe -->
+
+  <!-- ① NAV BAR — logo and links are two items; space-between pushes them apart -->
+  <section class="band">
+    <p class="recipe">display: flex; justify-content: space-between</p>
+    <nav class="nav">
+      <span class="logo">COMP3421</span>
+      <span class="links">
+        <a href="#">Home</a>
+        <a href="#">Labs</a>
+        <a href="#">Marks</a>
+      </span>
+    </nav>
+  </section>
+
+  <!-- ② CENTRING — a fixed-height box with one centred child, both directions -->
+  <section class="band">
+    <p class="recipe">justify-content: center; align-items: center</p>
+    <div class="hero">
+      <span>Enrolment is open</span>
+    </div>
+  </section>
+
+  <!-- ③ CARD ROW — three cards, flex: 1, so the free space splits three ways -->
+  <section class="band">
+    <p class="recipe">display: flex; gap: 16px; flex: 1</p>
+    <div class="cards">
+      <article class="card">
+        <h3>HTML</h3>
+        <p>Structure — the elements and what they mean.</p>
+      </article>
+      <article class="card">
+        <h3>CSS</h3>
+        <p>Presentation — colour, type and layout.</p>
+      </article>
+      <article class="card">
+        <h3>JavaScript</h3>
+        <p>Behaviour — what happens when you click.</p>
+      </article>
+    </div>
+  </section>
+
+  <!-- ④ WRAPPING COLUMNS — flex-basis 320px: when the six no longer fit,
+       the rest wrap onto the next line instead of shrinking to nothing -->
+  <section class="band">
+    <p class="recipe">display: flex; flex-wrap: wrap; gap: 16px</p>
+    <div class="cols">
+      <div class="col"><h4>Lecture</h4><p>Wed 12:30</p></div>
+      <div class="col"><h4>Tutorial</h4><p>Tue 14:30</p></div>
+      <div class="col"><h4>Lab</h4><p>PQ604</p></div>
+      <div class="col"><h4>Moodle</h4><p>Notes and quizzes</p></div>
+      <div class="col"><h4>Office hours</h4><p>Email for a slot</p></div>
+      <div class="col"><h4>Support</h4><p>Ask on the forum</p></div>
+    </div>
+  </section>
+
+  <p class="hint">Six columns do not fit on one line, so <code>flex-wrap:
+  wrap</code> sends the last three onto a line of their own. Narrow the window
+  and watch them reshuffle.</p>
+
+</body>
+</html>
