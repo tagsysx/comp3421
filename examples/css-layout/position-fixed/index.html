@@ -7,89 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <div class="navbar">this bar is <code>position: fixed</code> — scroll and it stays</div>
+  <h2>Using position: fixed;</h2>
 
-  <h1>position: <code>fixed</code></h1>
-  <p class="lede">
-    <code>fixed</code> pins a box to the <em>viewport</em> instead of the page. The
-    document scrolls underneath it; the box does not move. A parent with
-    <code>position: relative</code> makes no difference at all.
-  </p>
+  <p>An element with position: fixed; is positioned relative to the viewport, which means it always stays in the same place even if the page is scrolled:</p>
 
-  <h2>1 · The bar at the top</h2>
-  <p class="note">
-    <code>top: 0; left: 0; width: 100%</code> keeps the bar across the window.
-    Because it is out of the flow, the page needs <code>padding-top: 60px</code> —
-    that is the bar's height — or the first line of content hides underneath it.
-  </p>
-
-  <h2>2 · The badge in the corner</h2>
-  <p class="note">
-    The round link in the bottom-right corner is fixed too. Scroll to the end of
-    this page: it has not moved by a single pixel.
-  </p>
-  <a class="fab" href="#">↑ top</a>
-
-  <h2>3 · Scroll and check</h2>
-  <p class="filler">
-    The anchor is the viewport, never the page: the bar looks the same whether the
-    document is 500 pixels tall or 50 000. That is what a header, a cookie bar or a
-    back-to-top button needs — and it is also why a fixed element can hide content,
-    because it takes no room in the layout at all.
-  </p>
-  <p class="filler">
-    Compare it with <code>absolute</code>: an absolute box is measured from a
-    positioned ancestor and scrolls away with that ancestor. A fixed box is measured
-    from the window, which has no scroll position of its own.
-  </p>
-  <p class="filler">
-    There is a legacy trap worth knowing. An ancestor with <code>transform</code>,
-    <code>filter</code> or <code>will-change</code> becomes the containing block for
-    its fixed children, and they start behaving like absolute boxes. If a fixed bar
-    suddenly scrolls away, look for one of those on the way up the tree.
-  </p>
-
-  <h2>4 · Where you meet a fixed box</h2>
-  <table>
-    <tr><th>element</th><th>when it is the right choice</th></tr>
-    <tr><td>site header</td><td>navigation that must stay reachable on every screen</td></tr>
-    <tr><td>cookie or consent bar</td><td>one decision, above everything else on the page</td></tr>
-    <tr><td>back-to-top button</td><td>a long page, out of the way until it is wanted</td></tr>
-    <tr><td>live chat widget</td><td>present for the whole session, in a corner</td></tr>
-    <tr><td>print header</td><td>a running title on every printed sheet (<code>@media print</code>)</td></tr>
-    <tr><td>scroll progress bar</td><td>a thin fixed strip whose width shows how far down you are</td></tr>
-    <tr><td>floating action button</td><td>one main action, always within thumb reach on a phone</td></tr>
-    <tr><td>video call controls</td><td>mute and hang-up, over whatever is on screen at the time</td></tr>
-  </table>
-
-  <h2>5 · The trade-off</h2>
-  <p class="filler">
-    Use it sparingly. Every fixed box covers part of the page at every scroll
-    position, so on a small screen a header plus a footer bar can leave very little
-    room for the content itself, and on a phone the on-screen keyboard can cover a
-    fixed bar entirely.
-  </p>
-  <p class="filler">
-    <code>sticky</code> is often the better answer: it is in the flow, it stops being
-    special once its container has gone, and it never takes space away from the
-    content it belongs to.
-  </p>
-  <p class="filler">
-    Keep scrolling — the bar at the top and the link at the bottom stay put while
-    this paragraph travels past them, and neither of them pushes anything aside.
-  </p>
-  <p class="filler">
-    Still scrolling. The text below the bar is exactly where normal flow put it: the
-    only thing <code>padding-top</code> did was give it somewhere to start.
-  </p>
-  <p class="filler">
-    Two fixed boxes are enough for one page. Beyond that the layout is mostly
-    chrome — and the smaller the screen, the more of it the chrome takes.
-  </p>
-  <p class="filler">
-    On a printed page a fixed box repeats on every sheet, which is occasionally
-    exactly what you want and usually a surprise. <code>@media print</code> is where
-    you turn it off.
-  </p>
+  <div class="fixed">
+  This div element has position: fixed;
+  </div>
 </body>
 </html>

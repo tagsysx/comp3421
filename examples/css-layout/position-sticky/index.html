@@ -7,110 +7,19 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>position: <code>sticky</code></h1>
-  <p class="lede">
-    <code>sticky</code> is <code>relative</code> until the box reaches the offset you
-    gave it, and <code>fixed</code> from then on — but only for as long as its own
-    container is on screen. No offset, no sticking.
-  </p>
+  <h2>Using position: sticky;</h2>
 
-  <h2>1 · On the page it sticks to the window</h2>
-  <div class="section">
-    <h3 class="page-head">sticky section heading</h3>
-    <p class="filler">Scroll the page. This heading holds its place at the top of the window while the rest of its section is read — the pattern behind section titles, table headers and alphabetical lists.</p>
-    <p class="filler">It is still relative to its container: the moment the bottom of this section goes past, the heading leaves with it. It cannot escape upwards the way a fixed box would.</p>
-    <p class="filler">Watch the heading stay put for a while, and then walk off the top together with the last line of this section.</p>
-    <p class="filler">Nothing here is a special case. The scrolling container is the page, so the offset is measured from the top of the window, and the thing that releases the heading is this <code>section</code> element.</p>
-    <p class="filler">If two sticky boxes overlap, the one later in the document wins — they do not queue up in a column the way you might hope.</p>
-    <p class="filler">Keep scrolling and watch the heading hold its place, then walk off the top with the last line of the section.</p>
+  <p>Try to scroll this page to understand how sticky works.</p>
+
+  <p>Here, when the sticky element reach the top of the page (top: 0), it sticks to this position!</p>
+
+  <div class="sticky">I have position sticky!</div>
+
+  <div style="padding-bottom:2000px">
+  <p>Scroll back up to remove the stickyness!</p>
+  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
+  <p>Some text to enable scrolling.. Lorem ipsum dolor sit amet, illum definitiones no quo, maluisset concludaturque et eum, altera fabulas ut quo. Atqui causae gloriatur ius te, id agam omnis evertitur eum. Affert laboramus repudiandae nec et. Inciderint efficiantur his ad. Eum no molestiae voluptatibus.</p>
   </div>
-
-  <h2>2 · The same rule inside a scrolling panel</h2>
-  <div class="panels">
-    <div class="scroller">
-      <div class="group">
-        <h3 class="group-head">Group A — top: 0</h3>
-        <p class="filler">Scroll inside this panel. The heading travels with the text until it touches the top edge, then pins there.</p>
-        <p class="filler">A sticky heading behaves like a relative box until the offset is reached, and like a fixed one after that.</p>
-        <p class="filler">Keep scrolling: group A can only travel inside its own group, so group B will push it out of the way.</p>
-        <p class="filler">That is why sticky works so well for a list of groups, or for the header row of a long table.</p>
-      </div>
-      <div class="group">
-        <h3 class="group-head">Group B — top: 0</h3>
-        <p class="filler">Headings usually carry a background, otherwise the text scrolls underneath and both become unreadable.</p>
-        <p class="filler">Group A was pushed out, not covered: each heading is trapped in the group it belongs to.</p>
-        <p class="filler">Scroll to the very bottom and this heading leaves with its group — it is still only relative to its container.</p>
-        <p class="filler">That is the release, and it is the whole difference between sticky and fixed.</p>
-        <p class="filler">Scroll a little further and the second heading comes down to meet you, right under the top edge.</p>
-        <p class="filler">And once the group has nothing left to show, the heading goes with it.</p>
-        <p class="filler">One more line, so the heading has somewhere to travel.</p>
-      </div>
-    </div>
-    <div class="scroller plain">
-      <div class="group">
-        <h3 class="group-head">Group A — no offset</h3>
-        <p class="filler">Same markup, same declarations — except that the offset is missing.</p>
-        <p class="filler">Scroll this panel: nothing sticks, because sticky has nothing to compare the scroll position with.</p>
-        <p class="filler">A declaration that looks right and does nothing at all.</p>
-        <p class="filler">Compare the two panels once you have scrolled both to the bottom.</p>
-      </div>
-      <div class="group">
-        <h3 class="group-head">Group B — no offset</h3>
-        <p class="filler">Without top, right, bottom or left, the element just scrolls like everything else.</p>
-        <p class="filler">This is the single most common sticky mistake in student work.</p>
-        <p class="filler">Notice that the panel on the left still shows a pinned heading at this scroll position.</p>
-        <p class="filler">Nothing else about the two panels is different.</p>
-        <p class="filler">Scroll to the bottom of this panel and compare the two sides one last time.</p>
-        <p class="filler">Two panels, and one missing offset.</p>
-        <p class="filler">That is the whole experiment.</p>
-      </div>
-    </div>
-  </div>
-  <p class="note">
-    Left: <code>position: sticky; top: 0;</code> — the headings pin, and each one
-    pushes the previous one out. Right: the very same rule without the offset —
-    nothing happens.
-  </p>
-
-  <h2>3 · The fine print</h2>
-  <table>
-    <tr><th>rule</th><th>why</th></tr>
-    <tr><td>an offset is required</td><td>no <code>top</code> → the element never sticks</td></tr>
-    <tr><td>it needs a scrolling container</td><td>the nearest scrollable ancestor is what it sticks to</td></tr>
-    <tr><td>it stays inside that container</td><td>it is released when the container scrolls past</td></tr>
-    <tr><td>give it a background</td><td>the content scrolls underneath, not behind nothing</td></tr>
-  </table>
-
-  <h2>4 · When to reach for it</h2>
-  <p class="filler">
-    Sticky is the right tool when an element should be visible <em>some</em> of the
-    time: a heading while its own section is on screen, a table header while the
-    table is, a filter bar while the list is. Once the container has gone there is
-    nothing left to stick to, and the element politely leaves.
-  </p>
-  <p class="filler">
-    That is the difference from <code>fixed</code> in one sentence: fixed is always
-    there and never comes back; sticky is there exactly as long as its container is.
-  </p>
-  <p class="filler">
-    Sticky also needs an ancestor with some height to travel through. If the parent
-    is only as tall as the sticky element itself there is no distance to travel, and
-    it will look as though nothing happened — a very common surprise with a one-line
-    parent.
-  </p>
-  <p class="filler">
-    And it does nothing if any ancestor hides the overflow along the sticky axis:
-    <code>overflow: hidden</code> on the way up turns the sticky box into an
-    ordinary one, silently, with no warning and nothing in DevTools to explain it.
-  </p>
-  <p class="filler">
-    The offset can be negative, and it can be on more than one axis: a heading with
-    <code>top: -1px</code> is a common trick to stop a one-pixel seam showing above
-    the pinned element while it scrolls.
-  </p>
-  <p class="filler">
-    Sticky is also not animated and not scripted — the browser decides when to pin,
-    from the scroll position and the box's own geometry. You never move it yourself.
-  </p>
 </body>
 </html>

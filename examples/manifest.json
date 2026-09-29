@@ -768,7 +768,7 @@
         {
           "id": "position-absolute",
           "name": "position: absolute",
-          "desc": "Out of flow, pinned to a positioned ancestor",
+          "desc": "A red box pinned inside a green 400x200 parent - the parent is the anchor",
           "files": [
             "index.html",
             "style.css"
@@ -777,7 +777,7 @@
         {
           "id": "position-fixed",
           "name": "position: fixed",
-          "desc": "Pinned to the viewport",
+          "desc": "A 300x200 box pinned to the bottom-right corner of the viewport",
           "files": [
             "index.html",
             "style.css"
@@ -786,7 +786,7 @@
         {
           "id": "position-sticky",
           "name": "position: sticky",
-          "desc": "Relative until it reaches the offset",
+          "desc": "A green bar that sticks to the top of the page while you scroll",
           "files": [
             "index.html",
             "style.css"

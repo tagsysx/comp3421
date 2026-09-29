@@ -7,53 +7,12 @@
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h1>position: <code>absolute</code></h1>
-  <p class="lede">
-    <code>absolute</code> lifts the box out of the flow and pins it to the nearest
-    <em>positioned</em> ancestor. The others carry on as if it had never been there.
-  </p>
+  <h2>Using position: absolute;</h2>
 
-  <h2>1 · The parent becomes the anchor</h2>
-  <div class="panel">
-    <p class="panel-text">
-      This panel is <code>position: relative</code>. Its child is pinned to
-      <code>top: 0; right: 0</code> — the corner of the <em>panel</em>.
-    </p>
-    <div class="badge">badge<br /><span>top: 0; right: 0;</span></div>
-  </div>
+  <p>An element with position: absolute; is positioned relative to the nearest positioned ancestor:</p>
 
-  <h2>2 · It leaves the line, and the others close up</h2>
-  <div class="panel">
-    <p class="panel-text">Five boxes, nothing positioned — box 3 sits in the line.</p>
-    <div class="line">
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">3</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-    </div>
+  <div class="relative">This div element has position: relative;
+    <div class="absolute">This div element has position: absolute;</div>
   </div>
-  <div class="panel high">
-    <div class="escape">3<br /><span>absolute</span></div>
-    <p class="panel-text">The same five boxes — now box 3 is <code>absolute</code>.</p>
-    <div class="line">
-      <div class="box">1</div>
-      <div class="box">2</div>
-      <div class="box">4</div>
-      <div class="box">5</div>
-    </div>
-  </div>
-  <p class="note">
-    The line now holds four boxes, not five: box 3 was taken out of the flow, so
-    nothing closes the gap it left. There is no gap — box 4 simply follows box 2.
-  </p>
-
-  <h2>3 · With no positioned ancestor, it anchors to the page</h2>
-  <p class="note">
-    The chip in the top-right corner of this page has no positioned ancestor at all,
-    so it falls back to the page itself. That is the default nobody wants: the box
-    ends up somewhere you did not plan.
-  </p>
-  <div class="escape page">no positioned ancestor</div>
 </body>
 </html>
