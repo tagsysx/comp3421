@@ -1,0 +1,255 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Transition recipes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <h2>A transition needs a state change</h2>
+  <p class="lead">Nothing eases on its own. Three things have to be true before a transition is
+     the right tool: the element has a <b>state</b> it can move to, the property it moves has a
+     <b>halfway value</b>, and the movement is the <b>message</b>. Miss any one of the three and you
+     want a different tool. The recipes below are all the same shape &mdash; only the property and
+     the trigger change.</p>
+
+  <h2>1 &middot; Four things that change an element's state</h2>
+  <div class="row">
+    <div class="trig">
+      <div class="tbox hov">:hover</div>
+      <span class="when">the pointer is over it</span>
+    </div>
+    <div class="trig">
+      <button class="tbox foc" type="button">:focus-visible</button>
+      <span class="when">keyboard focus &mdash; press Tab</span>
+    </div>
+    <div class="trig">
+      <div class="tbox act">:active</div>
+      <span class="when">the mouse button is down</span>
+    </div>
+    <div class="trig">
+      <input type="checkbox" id="t-flip" class="sr" />
+      <label for="t-flip" class="tbox chk">:checked</label>
+      <span class="when">a state you own &mdash; click it</span>
+    </div>
+  </div>
+  <p class="note">Every recipe on this page is one of those four plus a property. If you cannot
+     name the state, you cannot name the transition &mdash; that is the whole test.</p>
+
+  <h2 id="recipes">2 &middot; Twelve recipes, and the moment each one is right</h2>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="lift">Card</div>
+    </div>
+    <div class="txt">
+      <b>1 &middot; Hover lift</b>
+      <p class="when">A tile the user can click. The lift is the invitation &mdash; remove it and the
+         tile stops looking clickable.</p>
+      <code>transition: transform 0.2s ease, box-shadow 0.2s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <button class="fill" type="button">Save</button>
+    </div>
+    <div class="txt">
+      <b>2 &middot; Button fill</b>
+      <p class="when">The one action you want people to take. A fill that sweeps in says
+         &ldquo;this one&rdquo; louder than a colour swap.</p>
+      <code>transition: background-size 0.28s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <a class="slide-link" href="#recipes">Documentation</a>
+    </div>
+    <div class="txt">
+      <b>3 &middot; Underline slide</b>
+      <p class="when">Links in prose. The underline grows from the left, so the link reads as
+         quiet text until you point at it.</p>
+      <code>transition: transform 0.22s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="thumb"><div class="photo">photo</div></div>
+    </div>
+    <div class="txt">
+      <b>4 &middot; Image zoom</b>
+      <p class="when">A gallery thumbnail. The frame must not move &mdash; neighbours would
+         reflow &mdash; so the picture inside it grows instead.</p>
+      <code>transition: transform 0.35s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <button class="press" type="button">Delete</button>
+    </div>
+    <div class="txt">
+      <b>5 &middot; Press down</b>
+      <p class="when">The press itself needs an answer. Keep it short &mdash; a click that takes a
+         quarter of a second to acknowledge feels broken.</p>
+      <code>transition: transform 0.1s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <button class="ring" type="button">Sign in</button>
+    </div>
+    <div class="txt">
+      <b>6 &middot; Focus ring</b>
+      <p class="when">Accessibility, not decoration. Only keyboard users need it, so it hangs off
+         <code>:focus-visible</code> &mdash; and it has to be unmistakable.</p>
+      <code>transition: box-shadow 0.18s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <span class="chip">Draft</span>
+    </div>
+    <div class="txt">
+      <b>7 &middot; Colour shift</b>
+      <p class="when">The change <em>is</em> a colour &mdash; a status, a tone, a selected tab.
+         Nothing has to move for the meaning to land.</p>
+      <code>transition: background-color 0.3s ease, color 0.3s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="shot"><span class="cap">Harbour, 6pm</span></div>
+    </div>
+    <div class="txt">
+      <b>8 &middot; Fade a caption in</b>
+      <p class="when">The element is already laid out and you only want to reveal it. Fading
+         avoids the layout jump that showing and hiding would cause.</p>
+      <code>transition: opacity 0.25s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="stagger"><span></span><span></span><span></span><span></span></div>
+    </div>
+    <div class="txt">
+      <b>9 &middot; Stagger a row</b>
+      <p class="when">Several things change at once and you want them read in order. One delay
+         per child, stepped with <code>nth-child</code>, buys the sequence for free.</p>
+      <code>span:nth-child(2) { transition-delay: 0.07s; }</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <a class="nudge" href="#recipes">Read more <span>&rarr;</span></a>
+    </div>
+    <div class="txt">
+      <b>10 &middot; Nudge an arrow</b>
+      <p class="when">A small directional cue: the arrow leans towards wherever the click takes
+         you. No movement of the link itself.</p>
+      <code>transition: transform 0.2s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="plans">
+        <input type="radio" name="plan" id="p-free" class="sr" />
+        <label for="p-free" class="plan">Free</label>
+        <input type="radio" name="plan" id="p-pro" class="sr" checked />
+        <label for="p-pro" class="plan">Pro</label>
+      </div>
+    </div>
+    <div class="txt">
+      <b>11 &middot; Pick a plan</b>
+      <p class="when">A choice the user makes and can undo. Easing the border and background makes
+         the selection feel like one state rather than a repaint.</p>
+      <code>transition: border-color 0.2s ease, background-color 0.2s ease;</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage">
+      <div class="revealbox">
+        <input type="checkbox" id="r-panel" class="sr" />
+        <label for="r-panel" class="toggle">Details &#9662;</label>
+        <div class="reveal"><p>Opened on request, closed again just as easily.</p></div>
+      </div>
+    </div>
+    <div class="txt">
+      <b>12 &middot; Reveal a panel</b>
+      <p class="when">A block the user asked to see. You cannot ease <code>height: auto</code>, so
+         you ease <code>max-height</code> from 0 up to a value that is tall enough.</p>
+      <code>transition: max-height 0.3s ease;</code>
+    </div>
+  </div>
+
+  <h2>3 &middot; When a transition is the wrong tool</h2>
+  <p class="lead">Same three conditions, checked again. Each pair below is the same interaction
+     done twice: hover the left box and then the right one.</p>
+
+  <div class="pair">
+    <div class="half">
+      <div class="demo">
+        <div class="tipbox jump">hover me<span class="tip">Saved</span></div>
+      </div>
+      <b>&#10007; display: none &rarr; block</b>
+      <p class="when">No halfway value, so it can only jump. The transition is ignored.</p>
+      <code>display: none;<br />display: block;</code>
+    </div>
+    <div class="half">
+      <div class="demo">
+        <div class="tipbox fade">hover me<span class="tip">Saved</span></div>
+      </div>
+      <b>&#10003; opacity + visibility</b>
+      <p class="when">Opacity has a halfway value, and visibility can be delayed to the end.
+         This is how a tooltip is supposed to arrive.</p>
+      <code>opacity: 0; visibility: hidden;</code>
+    </div>
+  </div>
+
+  <div class="pair">
+    <div class="half">
+      <div class="demo tall">
+        <div class="grow auto"><p>A panel that should grow when you ask it to.</p></div>
+      </div>
+      <b>&#10007; height: 0 &rarr; auto</b>
+      <p class="when"><code>auto</code> is not a number, so there is nothing to count up to.
+         It snaps open.</p>
+      <code>height: 0;<br />height: auto;</code>
+    </div>
+    <div class="half">
+      <div class="demo tall">
+        <div class="grow maxed"><p>A panel that should grow when you ask it to.</p></div>
+      </div>
+      <b>&#10003; max-height</b>
+      <p class="when">Give it a number to count up to &mdash; a little taller than the content
+         will ever be.</p>
+      <code>max-height: 0;<br />max-height: 90px;</code>
+    </div>
+  </div>
+
+  <h3>Three more times to reach for something else</h3>
+  <ul class="nope">
+    <li><b>It never stops.</b> A spinner that turns forever has no state to change into, so a
+       transition can never run it. That is a keyframe's job.</li>
+    <li><b>Nothing triggers it.</b> &ldquo;Play two seconds after the page loads&rdquo; is not a
+       state, so it is not a transition either.</li>
+    <li><b><code>transition: all</code>.</b> It eases properties you forgot you had &mdash; name
+       yours instead. And keep routine interactions in the 150&ndash;250&nbsp;ms range; a slow ease
+       on a common click reads as lag, not polish.</li>
+  </ul>
+  <p class="note">Finally, the courtesy: if the reader has asked for less motion, give them less
+     motion. One guard at the end of the sheet turns every ease above into an instant change.</p>
+
+</body>
+</html>

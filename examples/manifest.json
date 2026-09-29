@@ -159,6 +159,7 @@
         "css-layout/var-scope",
         "css-layout/transform",
         "css-layout/transition",
+        "css-layout/transition-recipes",
         "css-layout/timing-function",
         "css-layout/keyframes",
         "css-layout/animation-shorthand",
@@ -885,6 +886,15 @@
           "id": "transition",
           "name": "Transitions",
           "desc": "one property eased — and the four sub-properties spelled out",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transition-recipes",
+          "name": "Transition recipes",
+          "desc": "Four triggers, twelve recipes and the cases where a transition is the wrong tool",
           "files": [
             "index.html",
             "style.css"
