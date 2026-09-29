@@ -111,6 +111,7 @@
         "css-selectors/pseudo-element",
         "css-cascade/cascade",
         "css-cascade/placement",
+        "css-layout/every-element-is-a-box",
         "css-layout/box-model",
         "css-layout/border-style",
         "css-layout/border-width-colour",
