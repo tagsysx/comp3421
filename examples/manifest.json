@@ -930,7 +930,7 @@
         {
           "id": "animation-direction",
           "name": "animation-direction & fill-mode",
-          "desc": "normal, alternate, reverse — and what stays after the end",
+          "desc": "all four direction and fill-mode values, and what stays after the end",
           "files": [
             "index.html",
             "style.css"

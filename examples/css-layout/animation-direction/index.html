@@ -12,20 +12,26 @@
   <div class="row">
     <div class="pill p-normal">normal</div>
     <div class="pill p-alternate">alternate</div>
+    <div class="pill p-alternate-reverse">alternate-reverse</div>
     <div class="pill p-reverse">reverse</div>
   </div>
-  <p class="note">All three run the same <code>@keyframes grow</code>. <code>normal</code> plays
-     it forwards and restarts; <code>alternate</code> plays it backwards on every other pass, so
-     there is no jump; <code>reverse</code> plays it backwards from the start.</p>
+  <p class="note">All four run the same <code>@keyframes grow</code>. <code>normal</code> plays it
+     forwards and restarts; <code>alternate</code> plays it backwards on every other pass, so there
+     is no jump; <code>alternate-reverse</code> starts on that backwards pass; <code>reverse</code>
+     plays it backwards from the first frame.</p>
 
   <h2>animation-fill-mode &mdash; what happens before and after</h2>
-  <div class="row">
+  <div class="col">
     <div class="bar f-none">fill-mode: none</div>
+    <div class="bar f-backwards">fill-mode: backwards</div>
     <div class="bar f-forwards">fill-mode: forwards</div>
+    <div class="bar f-both">fill-mode: both</div>
   </div>
-  <p class="note">Both slide once and stop after 1.5s. <code>none</code> snaps back to the
-     starting style; <code>forwards</code> keeps the last keyframe &mdash; what you want for a
-     "grow in once" entrance.</p>
+  <p class="note">Each bar waits 1s, slides once, then stops. While it waits,
+     <code>none</code> and <code>forwards</code> sit at the bar's own style while
+     <code>backwards</code> and <code>both</code> already show the first keyframe; once it has
+     finished, <code>none</code> and <code>backwards</code> snap back and <code>forwards</code> and
+     <code>both</code> keep the last keyframe.</p>
 
 </body>
 </html>
