@@ -1,26 +1,194 @@
+/* Shadow recipes — the five numbers, five situations, and the difference
+   between one hard shadow and three soft ones.  Every shadow here is one
+   declaration; nothing on this page needs JavaScript. */
+
 body {
   font-family: system-ui, -apple-system, sans-serif;
   margin: 0;
-  padding: 28px 32px 40px;
+  padding: 28px 32px 44px;
   color: #1a2230;
   background: #f7f9fc;
 }
-h2 { margin: 30px 0 10px; font-size: 15px; color: #0e3f8c; }
+h2 {
+  margin: 34px 0 10px;
+  font-size: 15px;
+  color: #0e3f8c;
+}
 h2:first-child { margin-top: 0; }
-.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #185fa5; }
-.row { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
+.lead {
+  margin: 0;
+  max-width: 68ch;
+  font-size: 12.5px;
+  line-height: 1.6;
+  color: #4a5568;
+}
+.note {
+  margin: 12px 0 0;
+  max-width: 68ch;
+  font-size: 12.5px;
+  line-height: 1.55;
+  color: #4a5568;
+}
+.note b { color: #1a2230; }
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11.5px;
+  color: #185fa5;
+}
 
-.card {
-  width: 158px;
-  padding: 14px;
+/* ---------- the five numbers ---------- */
+
+.anat { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+.tok {
+  padding: 9px 13px;
+  border: 1px solid #dce6f4;
+  border-radius: 9px;
+  background: #fff;
+  text-align: center;
+}
+.tok b {
+  display: block;
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 13px;
+  color: #185fa5;
+}
+.tok i {
+  display: block;
+  margin-top: 3px;
+  font-size: 10.5px;
+  font-style: normal;
+  color: #5a6675;
+}
+.tok.wide b { font-size: 11.5px; }
+
+/* ---------- the recipe rows ---------- */
+
+.rec {
+  display: flex;
+  gap: 16px;
+  align-items: center;
+  margin-top: 10px;
+  padding: 12px;
+  border: 1px solid #e3ebf5;
+  border-radius: 12px;
+  background: #fff;
+}
+.stage {
+  flex: 0 0 210px;
+  box-sizing: border-box;
+  min-height: 132px;
+  padding: 16px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border-radius: 9px;
+  background: #f2f6fc;
+}
+.stage.col { flex-direction: column; gap: 12px; }
+.txt { flex: 1 1 auto; }
+.txt b { font-size: 12.5px; color: #1a2230; }
+.hint {
+  font-size: 10.5px;
+  letter-spacing: .04em;
+  color: #5a6675;
+}
+.txt .when, .half .when {
+  display: block;
+  margin: 5px 0 7px;
+  max-width: 60ch;
+  font-size: 12px;
+  line-height: 1.5;
+  color: #5a6675;
+}
+.txt > code, .half > code { display: block; font-size: 11px; }
+
+.tile {
+  box-sizing: border-box;
+  width: 116px;
+  height: 68px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: 1px solid #eaf0f9;
   border-radius: 10px;
   background: #fff;
   font-size: 12px;
-  line-height: 1.5;
   color: #4a5568;
 }
-.subtle { box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
-.raised { box-shadow: 0 12px 24px rgba(0, 0, 0, .18); }
-.focus  { box-shadow: 0 0 0 3px rgba(24, 95, 165, .35); }
-.inset  { box-shadow: inset 0 2px 6px rgba(0, 0, 0, .22); background: #eef3fb; }
+
+/* 1 & 2 · a card at rest, and the same card pointed at */
+.tile.lift { transition: box-shadow 0.2s ease, transform 0.2s ease; }
+.tile.lift:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 10px 20px -6px rgba(0, 0, 0, .25);
+}
+.rec .tile { box-shadow: 0 1px 3px rgba(0, 0, 0, .12); }
+
+/* 3 · a ring is spread with no blur and no offset */
+.fbtn {
+  padding: 11px 22px;
+  border: 1px solid #b9cde7;
+  border-radius: 8px;
+  background: #fff;
+  font: inherit;
+  font-size: 12.5px;
+  color: #0e3f8c;
+  cursor: pointer;
+}
+.fbtn:focus-visible {
+  outline: none;
+  box-shadow: 0 0 0 3px rgba(24, 95, 165, .35);
+}
+
+/* 4 · inset puts the shadow inside the box */
+.well {
+  box-sizing: border-box;
+  width: 156px;
+  padding: 10px 12px;
+  border-radius: 8px;
+  background: #eef3fb;
+  box-shadow: inset 0 2px 6px rgba(0, 0, 0, .22);
+  font-size: 12px;
+  color: #5a6675;
+}
+
+/* 5 · white type on a photo needs something to separate it */
+.photo {
+  box-sizing: border-box;
+  width: 176px;
+  height: 100px;
+  display: flex;
+  align-items: flex-end;
+  border-radius: 9px;
+  background: #2a3a52 url("img_flowers.jpg") center / cover;
+}
+.cap {
+  padding: 0 10px 9px;
+  font-size: 12.5px;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 1px 6px rgba(0, 0, 0, .6);
+}
+.photo:hover .cap { text-shadow: none; }
+
+/* ---------- one hard shadow, or three soft ones ---------- */
+
+.pair { display: flex; flex-wrap: wrap; gap: 16px; margin-top: 12px; }
+.half {
+  flex: 1 1 300px;
+  padding: 12px;
+  border: 1px solid #e3ebf5;
+  border-radius: 12px;
+  background: #fff;
+}
+.half b { font-size: 12px; }
+.half .stage { margin-bottom: 10px; }
+
+/* the same grey all round: the light could be coming from anywhere */
+.tile.hard { box-shadow: 0 0 18px rgba(0, 0, 0, .45); }
+/* three shadows, all offset the same way, softest and widest last */
+.tile.layered {
+  box-shadow: 0 1px 2px rgba(0, 0, 0, .08),
+              0 8px 16px -6px rgba(0, 0, 0, .18),
+              0 20px 40px -12px rgba(0, 0, 0, .22);
+}

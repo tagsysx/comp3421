@@ -1234,10 +1234,11 @@
         {
           "id": "shadow-recipes",
           "name": "Shadow recipes",
-          "desc": "five box-shadow recipes you can copy",
+          "desc": "six shadow recipes — a resting card, a raised card, a ring, an inset well, text on a photo, and why you stack three instead of one",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "img_flowers.jpg"
           ]
         },
         {

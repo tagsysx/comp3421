@@ -8,16 +8,110 @@
 </head>
 <body>
 
-  <h2>Five shadows you can copy</h2>
-  <div class="row">
-    <div class="card subtle">Subtle elevation<br><code>0 1px 3px rgba(0,0,0,.12)</code></div>
-    <div class="card raised">Raised<br><code>0 12px 24px rgba(0,0,0,.18)</code></div>
-    <div class="card focus">Focus ring<br><code>0 0 0 3px rgba(24,95,165,.35)</code></div>
-    <div class="card inset">Pressed in<br><code>inset 0 2px 6px rgba(0,0,0,.22)</code></div>
+  <h2>The five numbers, in one declaration</h2>
+  <p class="lead">Every shadow on this page is built from the same five numbers. Read left to
+     right: where the shadow sits, how soft its edge is, how big it is, and what colour it
+     is.</p>
+  <div class="anat">
+    <span class="tok"><b>0</b><i>offset-x</i></span>
+    <span class="tok"><b>10px</b><i>offset-y</i></span>
+    <span class="tok"><b>20px</b><i>blur</i></span>
+    <span class="tok"><b>&minus;6px</b><i>spread</i></span>
+    <span class="tok wide"><b>rgba(0,0,0,.25)</b><i>colour</i></span>
   </div>
-  <p class="note">Two numbers set the offset, then the blur, then the colour — and
-     <code>0 0 0 3px</code> with no offset and no blur is a ring around the box, which is how a
-     focus state is usually drawn.</p>
+  <p class="note">The two offsets decide where the shadow goes; blur only softens its edge. A
+     <b>negative spread</b> shrinks the shadow before it is blurred &mdash; that is what keeps a
+     20px blur from leaking out sideways and turning the box into fog. And the colour is
+     <code>rgba(0, 0, 0, &alpha;)</code> rather than a grey, so whatever is underneath still shows
+     through it.</p>
+
+  <h2 id="recipes">Five recipes, and the moment each one is right</h2>
+
+  <div class="rec">
+    <div class="stage"><div class="tile">Invoice</div></div>
+    <div class="txt">
+      <b>1 &middot; Subtle elevation</b>
+      <p class="when">A card at rest. The shadow is there to say &ldquo;this is a surface&rdquo;,
+         not to be looked at &mdash; you should notice it only when it is missing.</p>
+      <code>box-shadow: 0 1px 3px rgba(0, 0, 0, .12);</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="tile lift">Invoice</div></div>
+    <div class="txt">
+      <b>2 &middot; Raised on hover</b>
+      <p class="when">The same card, pointed at. Deepen the blur <i>and</i> push the offset down
+         &mdash; a blur that grows while the offset stays put reads as a glow, not as height.
+         Hover it.</p>
+      <code>box-shadow: 0 10px 20px -6px rgba(0, 0, 0, .25);</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage col">
+      <button class="fbtn" type="button">Sign in</button>
+      <span class="hint">press Tab</span>
+    </div>
+    <div class="txt">
+      <b>3 &middot; Focus ring</b>
+      <p class="when">Spread with no blur and no offset draws a hard ring around the box &mdash;
+         the one shadow here that is not about depth, and the only one that hangs off
+         <code>:focus-visible</code>. If you take the browser's own ring away, put an equally
+         visible one back.</p>
+      <code>box-shadow: 0 0 0 3px rgba(24, 95, 165, .35);</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="well">Search&hellip;</div></div>
+    <div class="txt">
+      <b>4 &middot; Pressed in</b>
+      <p class="when"><code>inset</code> flips the shadow to the inside of the box, so the surface
+         reads as sunken instead of lifted. A search field or a well is its usual home.</p>
+      <code>box-shadow: inset 0 2px 6px rgba(0, 0, 0, .22);</code>
+    </div>
+  </div>
+
+  <div class="rec">
+    <div class="stage"><div class="photo"><span class="cap">Bougainvillea</span></div></div>
+    <div class="txt">
+      <b>5 &middot; Text on a photo</b>
+      <p class="when">White type over a photograph is only readable if the two are separated, and
+         a photograph has bright patches wherever it likes. Hover the picture to take the shadow
+         away and watch the caption melt into the flowers.</p>
+      <code>text-shadow: 0 1px 6px rgba(0, 0, 0, .6);</code>
+    </div>
+  </div>
+
+  <h2>One dark shadow only</h2>
+  <p class="lead">One hard shadow is the default thing to reach for, and the reason a lot of
+     interfaces look flat and slightly dirty at the same time. The same card twice &mdash; look
+     above the top edge of each one before you look below it.</p>
+
+  <div class="pair">
+    <div class="half">
+      <div class="stage"><div class="tile hard">Invoice</div></div>
+      <b>&#10007; One dark shadow</b>
+      <p class="when">One blurred shadow with no offset puts the same grey halo on all four sides.
+         Nothing tells the eye where the light is, so the card looks pasted on rather than
+         lifted.</p>
+      <code>box-shadow: 0 0 18px rgba(0, 0, 0, .45);</code>
+    </div>
+    <div class="half">
+      <div class="stage"><div class="tile layered">Invoice</div></div>
+      <b>&#10003; Two or three soft ones</b>
+      <p class="when">A tight contact shadow, a mid blur, and one wide and faint. Offsets all point
+         the same way, so the three together read as a single object under a light from above.</p>
+      <code>box-shadow: 0 1px 2px rgba(0, 0, 0, .08),<br />&nbsp;&nbsp;0 8px 16px -6px rgba(0, 0, 0, .18),<br />&nbsp;&nbsp;0 20px 40px -12px rgba(0, 0, 0, .22);</code>
+    </div>
+  </div>
+
+  <p class="note">Stacking is the whole trick: when a shadow looks wrong the fix is not
+     &ldquo;less shadow&rdquo;, it is more of them &mdash; each softer and wider than the one
+     before, all offset the same way. Keep the widest one modest, too: a blurred shadow is
+     <b>painted</b>, not composited, so a very large blur on a long scrolling page costs real
+     frame time.</p>
 
 </body>
 </html>
