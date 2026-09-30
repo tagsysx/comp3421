@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Media query recipes</title>
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<div class="wrap">
+
+  <header class="nav">
+    <span class="brand">Recipes</span>
+    <span class="nav-links">
+      <a href="#">Docs</a>
+      <span class="tip-host">Styles<span class="tooltip">shown on hover</span></span>
+      <a href="#">About</a>
+    </span>
+  </header>
+
+  <h2>1 &middot; What each query asks &mdash; and the answer right now</h2>
+  <p class="lead">Every row below is a real <code>@media</code> block in
+     <code>style.css</code>. Most of these recipes change something you can only see at
+     one particular width, height, device or system setting, so instead of asking you
+     to imagine it, this page puts the same question to the browser that the stylesheet
+     asks and prints the answer. Drag the window, rotate the device, or switch the
+     system to dark and watch the last column change.
+     <br /><br />
+     The last column comes from <code>window.matchMedia()</code> in
+     <code>readout.js</code> &mdash; the same text as the query, the same answer as the
+     stylesheet. That is the whole point of a media query: it is a question with a
+     yes-or-no answer, and CSS asks it again every time the environment changes.</p>
+
+  <table class="readout">
+    <thead>
+      <tr>
+        <th>What you want</th>
+        <th>The query</th>
+        <th>Inside the block</th>
+        <th>Matches now?</th>
+      </tr>
+    </thead>
+    <tbody id="readout"></tbody>
+  </table>
+
+  <h2>2 &middot; Watching it happen</h2>
+  <p class="lead">Everything below reacts on its own &mdash; no script touches it. The eight
+     blocks at the foot of <code>style.css</code> do the work, one per row of the table.
+     Drag the window narrower and shorter, and read the three cards below.</p>
+
+  <section class="hero">
+    <h3>A hero that gives up its padding on a short screen</h3>
+    <p>Below 500&nbsp;px of window height the padding and the second line go:
+       <code>@media (max-height: 500px)</code>. Drag the window's bottom edge upwards and
+       watch this box tighten.</p>
+    <p class="hero-extra">This line is here only while there is room for it.</p>
+  </section>
+
+  <div class="row">
+    <article class="card">
+      <h3>Width</h3>
+      <p>Under 600&nbsp;px the three cards stack &mdash; <code>flex-direction: column</code>.
+         Past 1200&nbsp;px the text stops stretching and settles into a 1140&nbsp;px
+         column. Same HTML, same stylesheet, different answer.</p>
+    </article>
+    <article class="card">
+      <h3>Density</h3>
+      <p><span class="logo" aria-hidden="true"></span>The mark beside this text is a
+         24&nbsp;px file. On a screen of two dots per CSS pixel the query hands over the
+         96&nbsp;px file instead, and the star stays sharp when it is magnified.</p>
+    </article>
+    <article class="card">
+      <h3>Settings</h3>
+      <p>Dark mode and more contrast are not about the screen at all &mdash; they are what
+         the reader asked the operating system for. Switch the system to dark and this page
+         follows: one query, holding nothing but ordinary declarations with the other
+         palette. Count how many there are &mdash; that repetition is exactly the job
+         custom properties take over later in the lecture.</p>
+    </article>
+  </div>
+
+  <p class="ads">A banner element. <code>@media print</code> hides this and the nav bar,
+     because neither of them belongs on paper.</p>
+
+  <h2>3 &middot; The two you cannot see from here</h2>
+  <ul class="why">
+    <li><b>Print the page.</b>
+      <span>Press <kbd>&#8984;P</kbd> (Ctrl+P elsewhere). The preview is the only place
+      <code>@media print</code> is true: the nav bar and the banner above have gone, and
+      the page is back on white.</span></li>
+    <li><b>Touch screens.</b>
+      <span>The tooltip on the word <i>Styles</i> is for a mouse that can hover.
+      <code>@media (hover: none)</code> takes it away on a touch device, where a tap can
+      leave a hover style stuck open with no way to close it.</span></li>
+  </ul>
+
+  <p class="note">A media query never changes the markup. The same HTML arrives at every
+     device and the query decides which blocks apply, so nothing here is a second
+     mobile site &mdash; it is one page that answers the question differently.
+     <br /><br />
+     <code>readout.js</code> is the exception that proves the rule: when the answer is
+     needed in JavaScript rather than in CSS, <code>window.matchMedia()</code> asks the
+     identical question and the <code>change</code> event fires when it flips.
+     <br /><br />
+     The one recipe deliberately missing here is the one for a reader who asks the
+     system for less motion: turning motion off means writing about animation, and the
+     Animation section has an example of its own for that.</p>
+
+</div>
+<script src="readout.js"></script>
+</body>
+</html>

@@ -138,7 +138,7 @@
     {
       "id": "lecture-05-css-advanced",
       "name": "Lecture 5 · CSS III — Layout, Animation & Miscellaneous",
-      "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, shadows, icons, display",
+      "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive and its media queries, transforms, transitions, keyframes, shadows, icons, display",
       "examples": [
         "css-layout/normal-flow",
         "css-layout/normal-flow-50",
@@ -153,6 +153,7 @@
         "css-layout/flexbox-in-the-wild",
         "css-layout/grid",
         "css-layout/responsive",
+        "css-layout/media-recipes",
         "css-layout/variables",
         "css-layout/custom-properties",
         "css-layout/var-fallback",
@@ -266,7 +267,8 @@
           "name": "Lab 3 — Animate it, then colour it",
           "desc": "Your practice file: 6 exercises — @keyframes and four colour schemes (43 s video walkthrough linked inside)",
           "files": [
-            "index.html"
+            "index.html",
+            "preview.mp4"
           ]
         },
         {
@@ -952,7 +954,8 @@
           "desc": "ask the reader: one dot obeys the setting, one ignores it",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "script.js"
           ]
         },
         {
@@ -1258,7 +1261,8 @@
           "desc": "stretch, repeat, round and space, side by side",
           "files": [
             "index.html",
-            "style.css"
+            "style.css",
+            "frame.png"
           ]
         },
         {
@@ -1307,6 +1311,18 @@
           "files": [
             "index.html",
             "style.css"
+          ]
+        },
+        {
+          "id": "media-recipes",
+          "name": "Media query recipes",
+          "desc": "eight media queries, each with the answer the browser is giving right now",
+          "files": [
+            "index.html",
+            "style.css",
+            "readout.js",
+            "logo.png",
+            "logo@2x.png"
           ]
         }
       ]

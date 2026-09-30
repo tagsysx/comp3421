@@ -1,0 +1,277 @@
+/* Media query recipes — one block per row of the table on the page.
+
+   Read this file beside the slide "Media Query Recipes": these are the queries
+   that come up again and again, and every one of them is three lines of CSS.
+   Nothing here needs JavaScript, a framework or a device lab — resize the
+   window and most of them will show themselves.
+
+   The one rule to hold on to: a media query wraps ordinary declarations. It
+   never changes the markup, it adds no new property, and the braces hold the
+   same CSS you would have written anyway. That is also why the dark-mode block
+   at the foot of this file is so long — with no custom properties yet, it has
+   to repeat every colour it changes. (Custom properties arrive later in this
+   lecture, and they shrink that block to two lines.)
+
+   The eight blocks are in section 2 at the foot of this file, in the order the
+   page lists them. */
+
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  color: #1a2230;
+  margin: 0;
+  padding: 28px 24px 40px;
+}
+
+.wrap { margin: 0 auto; }
+
+h2 { font-size: 15px; color: #0e3f8c; margin: 30px 0 0; }
+h2:first-child { margin-top: 0; }
+h3 { font-size: 14px; margin: 0 0 6px; color: #0e3f8c; }
+p { margin: 8px 0 0; }
+a { color: #0e3f8c; text-decoration: none; }
+
+code {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 0.92em;
+  background: #e7eefb;
+  border-radius: 4px;
+  padding: 1px 4px;
+}
+
+kbd {
+  font-family: Consolas, ui-monospace, monospace;
+  font-size: 0.92em;
+  background: #fff;
+  border: 1px solid #dbe4f0;
+  border-bottom-width: 2px;
+  border-radius: 4px;
+  padding: 1px 5px;
+}
+
+.lead,
+.note { font-size: 12.5px; color: #4a5568; max-width: 880px; }
+
+/* ---------- the nav bar — the thing @media print takes away ---------------- */
+.nav {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 16px;
+  background: #0e3f8c;
+  color: #fff;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 13px;
+}
+
+.nav .brand { font-weight: 700; letter-spacing: 0.02em; }
+.nav a { color: #fff; }
+.nav-links { display: flex; align-items: center; gap: 16px; }
+
+/* a tooltip is a hover idea: built on mouseover, impossible on a touch screen */
+.tip-host { position: relative; }
+.tooltip {
+  display: none;
+  position: absolute;
+  left: 0;
+  top: 140%;
+  background: #1a2230;
+  color: #f0f5fc;
+  border-radius: 4px;
+  padding: 3px 8px;
+  white-space: nowrap;
+  font-size: 11.5px;
+}
+.tip-host:hover .tooltip { display: block; }
+
+/* ---------- the hero — the thing @media (max-height) tightens -------------- */
+.hero {
+  background: #fff;
+  border: 1px solid #dbe4f0;
+  border-radius: 10px;
+  padding: 20px 22px;
+  margin-top: 14px;
+}
+.hero p { font-size: 12.5px; color: #4a5568; }
+
+/* ---------- the card row — the thing @media (max-width) stacks ------------- */
+.row { display: flex; gap: 14px; margin-top: 14px; }
+
+.card {
+  flex: 1 1 0;
+  background: #fff;
+  border: 1px solid #dbe4f0;
+  border-radius: 10px;
+  padding: 14px 16px;
+  font-size: 12.5px;
+  color: #4a5568;
+}
+.card p { margin: 0; }
+
+/* ---------- the mark — one file per pixel density ------------------------- */
+.logo {
+  display: inline-block;
+  width: 24px;
+  height: 24px;
+  vertical-align: -6px;
+  margin-right: 8px;
+  background: url(logo.png) center / 24px 24px no-repeat;
+}
+
+/* ---------- the banner — hidden on paper ---------------------------------- */
+.ads {
+  margin-top: 18px;
+  background: #fff3d6;
+  border: 1px dashed #d7b96a;
+  border-radius: 8px;
+  padding: 10px 14px;
+  font-size: 12.5px;
+  color: #7a5c12;
+}
+
+/* ---------- the readout table -------------------------------------------- */
+.readout {
+  border-collapse: collapse;
+  width: 100%;
+  max-width: 940px;
+  margin-top: 14px;
+  font-size: 12.5px;
+}
+.readout th {
+  background: #0e3f8c;
+  color: #fff;
+  text-align: left;
+  font-weight: 600;
+  padding: 7px 10px;
+}
+.readout td {
+  border-bottom: 1px solid #dbe4f0;
+  padding: 6px 10px;
+  vertical-align: middle;
+}
+.readout code { background: transparent; padding: 0; }
+.readout .q code { color: #0e3f8c; }
+.readout th:last-child,
+.readout td:last-child { text-align: center; width: 110px; }
+.yes { color: #1a7f37; font-weight: 700; }
+.no  { color: #98a2b3; font-weight: 700; }
+
+.why { list-style: none; padding: 0; margin: 14px 0 0; max-width: 900px; }
+.why li {
+  font-size: 12.5px;
+  padding: 8px 0 8px 14px;
+  border-left: 2px solid #dbe4f0;
+  margin-bottom: 8px;
+}
+.why b { display: block; color: #1a2230; }
+.why span { color: #4a5568; }
+
+
+/* ==========================================================================
+   2 · THE RECIPES
+   Eight blocks, one per row of the table at the top of the page.
+   ========================================================================== */
+
+/* ---- 1 · dark mode --------------------------------------------------------
+   The screen is not asking; the reader is. prefers-color-scheme carries the
+   setting the operating system was told to use.
+
+   There is nothing special inside the braces: the block below repeats ordinary
+   declarations with the other palette. Count them — this is exactly the job
+   custom properties do for you, and it is why that section exists.
+
+     @media (prefers-color-scheme: dark) { body { background: #10151c; } }   */
+@media (prefers-color-scheme: dark) {
+  body { background: #10151c; color: #e6edf3; }
+  h2, h3, a { color: #7fb2f0; }
+  code, kbd { background: #22304a; }
+  kbd { border-color: #2b3648; }
+  .lead, .note { color: #a7b6c8; }
+  .nav { background: #24507f; }
+  .hero, .card { background: #182130; border-color: #2b3648; }
+  .hero p, .card { color: #a7b6c8; }
+  .ads { background: #2a2410; border-color: #6b5a22; color: #e2c778; }
+  .tooltip { background: #e6edf3; color: #10151c; }
+  .readout th { background: #24507f; }
+  .readout td { border-bottom-color: #2b3648; }
+  .readout .q code { color: #7fb2f0; }
+  .yes { color: #5dd07f; }
+  .no  { color: #6b7a8d; }
+  .why li { border-left-color: #2b3648; }
+  .why b { color: #e6edf3; }
+  .why span { color: #a7b6c8; }
+}
+
+/* ---- 2 · print the page ---------------------------------------------------
+   The only media TYPE here. There is no feature to test inside the
+   parentheses — the whole condition is "we are going to paper" — so the query
+   is just the word.
+
+     @media print { .nav, .ads { display: none; } }                          */
+@media print {
+  .nav, .ads { display: none; }
+  body { background: #fff; padding: 0; }
+  .hero, .card, .readout { border-color: #999; }
+}
+
+/* ---- 3 · touch screens ----------------------------------------------------
+   A tooltip is a hover idea. A device that reports hover:none has no pointer to
+   hover with, and a tap can leave a hover style stuck open with no way to close
+   it — so do not build the tooltip at all.
+
+     @media (hover: none) { .tooltip { display: none; } }                    */
+@media (hover: none) {
+  .tooltip { display: none; }
+}
+
+/* ---- 4 · a sharp screen ---------------------------------------------------
+   dppx is device pixels per CSS pixel. Phones and high-density laptops report
+   2 or 3, and that is the moment to hand over the bigger file. (Older Safari
+   spells the same query -webkit-min-device-pixel-ratio: 2.)
+
+   Note `background-image`, not the `background` shorthand: the shorthand would
+   reset the background-size above and the 96px file would draw at its own size.
+
+     @media (min-resolution: 2dppx) { .logo { background-image: url(logo@2x.png); } } */
+@media (min-resolution: 2dppx) {
+  .logo { background-image: url(logo@2x.png); }
+}
+
+/* ---- 5 · a short screen ---------------------------------------------------
+   Not everything is about width. A phone held sideways is wide and short, and a
+   hero built for a tall window eats the whole screen.
+
+     @media (max-height: 500px) { .hero { padding: 8px; } }                  */
+@media (max-height: 500px) {
+  .hero { padding: 8px; }
+  .hero-extra { display: none; }
+}
+
+/* ---- 6 · more contrast ----------------------------------------------------
+   Another request rather than another device: `more` is what the reader picked
+   in the system's accessibility settings.
+
+     @media (prefers-contrast: more) { a { border-bottom: 2px solid; } }     */
+@media (prefers-contrast: more) {
+  a { border-bottom: 2px solid; }
+}
+
+/* ---- 7 · a narrow screen --------------------------------------------------
+   The everyday one. Three cards in a row need roughly 3 x 220px; below that
+   they are better off in a single column.
+
+     @media (max-width: 600px) { .row { flex-direction: column; } }          */
+@media (max-width: 600px) {
+  .row { flex-direction: column; }
+}
+
+/* ---- 8 · a wide screen ----------------------------------------------------
+   min-width adds, it never takes away: the base layout is the one you would
+   write for a phone, and each query layers a little more on top. Past 1200px
+   the text stops stretching and settles into a column.
+
+     @media (min-width: 1200px) { .wrap { max-width: 1140px; } }            */
+@media (min-width: 1200px) {
+  .wrap { max-width: 1140px; }
+}
