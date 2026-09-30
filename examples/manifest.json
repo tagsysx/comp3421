@@ -138,7 +138,7 @@
     {
       "id": "lecture-05-css-advanced",
       "name": "Lecture 5 · CSS III — Layout, Animation & Miscellaneous",
-      "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, gradients, shadows, display",
+      "desc": "Layout, animation and the rest — positioning, Flexbox, Grid, responsive, transforms, transitions, keyframes, shadows, icons, display",
       "examples": [
         "css-layout/normal-flow",
         "css-layout/normal-flow-50",
@@ -172,6 +172,7 @@
         "css-layout/display-outer-box",
         "css-layout/hiding",
         "css-layout/icons",
+        "css-layout/icon-font",
         "css-layout/card"
       ]
     },
@@ -1297,6 +1298,15 @@
             "icon-star.png",
             "icon-star-24.png",
             "icon-star-red.png"
+          ]
+        },
+        {
+          "id": "icon-font",
+          "name": "Icon fonts",
+          "desc": "an icon library is a font whose glyphs are pictures — one stylesheet, then a class name per icon",
+          "files": [
+            "index.html",
+            "style.css"
           ]
         }
       ]

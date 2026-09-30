@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>Icon Fonts</title>
+  <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+  <h2>1 &middot; One stylesheet, then a class name</h2>
+  <p class="lead">An icon font is an ordinary font file whose glyphs are shapes instead of
+     letters. Load the library once, and every icon in it is a class name on an inline
+     element &mdash; <code>&lt;i&gt;</code> or <code>&lt;span&gt;</code>, it makes no
+     difference. There is no image anywhere on this page.</p>
+  <p class="row">
+    <i class="fa-solid fa-cloud"></i>
+    <span class="fa-solid fa-heart"></span>
+    <i class="fa-solid fa-car"></i>
+    <span class="fa-solid fa-file"></span>
+    <i class="fa-solid fa-bars"></i>
+    <span class="tag">five icons, five class names, zero picture files</span>
+  </p>
+
+  <h2>2 &middot; It is text, so the text properties apply</h2>
+  <div class="demo">
+    <span class="lab"><code>font-size</code></span>
+    <span class="stage">
+      <i class="fa-solid fa-star fs14"></i>
+      <i class="fa-solid fa-star fs24"></i>
+      <i class="fa-solid fa-star fs40"></i>
+    </span>
+    <p class="cap">One glyph, three sizes. Nothing is redrawn or re-exported &mdash;
+       the browser scales the outline.</p>
+  </div>
+
+  <div class="demo">
+    <span class="lab"><code>color</code></span>
+    <span class="stage">
+      <i class="fa-solid fa-cloud c-ink"></i>
+      <i class="fa-solid fa-cloud c-brand"></i>
+      <i class="fa-solid fa-cloud icon"></i>
+    </span>
+    <p class="cap">The glyph takes the text colour, because it <em>is</em> text. Compare
+       this with a picture icon, which needs one exported file per colour.</p>
+  </div>
+
+  <div class="demo">
+    <span class="lab"><code>vertical-align</code></span>
+    <span class="stage">
+      <p class="sentence">Download <i class="fa-solid fa-cloud"></i> a file, or open
+         <i class="fa-solid fa-file"></i> it straight away.</p>
+    </span>
+    <p class="cap">It sits in the line like a letter, so it lines up with the words beside
+       it without a single offset.</p>
+  </div>
+
+  <h2>3 &middot; What the font route costs</h2>
+  <ul class="why">
+    <li><b>The whole font is one download.</b>
+      <span>A full icon library is hundreds of kilobytes of glyphs, and the visitor fetches
+      the lot for the three icons your page actually uses. Ship a subset of the font, or keep
+      the library small on purpose.</span></li>
+    <li><b>A decorative icon is still a letter.</b>
+      <span>A screen reader finds nothing useful in
+      <code>&lt;i class="fa-solid fa-star"&gt;</code>. Mark decoration with
+      <code>aria-hidden="true"</code>, and put a real text label next to any icon that
+      carries meaning.</span></li>
+    <li><b>The class name belongs to the library.</b>
+      <span>Font Awesome 4 wrote <code>fa fa-cloud</code>; version 6 writes
+      <code>fa-solid fa-cloud</code>. Upgrading the library can mean editing every page
+      that uses it.</span></li>
+  </ul>
+  <p class="note">Two ways to shrink the download, both worth knowing: a <b>subset</b> keeps
+     only the glyphs you use, and an <b>inline SVG sprite</b> needs no font at all. The page
+     that compares the three routes side by side is <code>css-layout/icons</code>.</p>
+</body>
+</html>

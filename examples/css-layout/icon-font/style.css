@@ -1,0 +1,115 @@
+/* An icon font is loaded exactly like any other font — one stylesheet here,
+   and the glyphs arrive with it.  Everything below is ordinary text CSS. */
+body {
+  font-family: system-ui, sans-serif;
+  background: #f0f5fc;
+  color: #1a2230;
+  padding: 32px;
+  margin: 0;
+}
+
+h2 {
+  font-size: 15px;
+  color: #0e3f8c;
+  margin: 30px 0 0;
+}
+
+h2:first-child { margin-top: 0; }
+
+p { margin: 8px 0 0; }
+
+.lead,
+.note {
+  font-size: 12.5px;
+  color: #4a5568;
+  max-width: 800px;
+}
+
+code {
+  font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
+  font-size: 11px;
+  color: #1b3f74;
+}
+
+/* ---------- 1 · a class name is the whole icon ---------- */
+.row {
+  display: flex;
+  align-items: center;
+  gap: 18px;
+  margin-top: 14px;
+  font-size: 26px;
+}
+
+.row .tag {
+  font-size: 11.5px;
+  color: #4a5568;
+}
+
+/* ---------- 2 · it is text, so text CSS applies ---------- */
+.demo {
+  display: flex;
+  align-items: baseline;
+  gap: 18px;
+  margin-top: 16px;
+  padding: 12px 14px;
+  background: #fff;
+  border: 1px solid #dbe4f0;
+  border-radius: 10px;
+}
+
+.demo .lab {
+  flex: 0 0 128px;
+  font-size: 11.5px;
+  color: #4a5568;
+}
+
+.demo .stage {
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  /* the glyph reads font-size exactly like a letter does */
+  font-size: 26px;
+}
+
+/* font-size: the browser scales the outline, so any size is free */
+.fs14 { font-size: 14px; }
+.fs24 { font-size: 24px; }
+.fs40 { font-size: 40px; }
+
+/* color: the glyph is painted with the text colour, like a letter.
+   .icon is a class of our own -- it reaches the glyph the same way */
+.c-ink   { color: #1a2230; }
+.c-brand { color: #0e3f8c; }
+.icon    { color: #b93a33; }
+
+/* vertical-align: an inline glyph lines up with the words by itself */
+.sentence { font-size: 15px; margin: 0; }
+.sentence i {
+  color: #0e3f8c;
+  font-size: 15px;
+}
+
+.demo .cap {
+  flex: 1 1 auto;
+  font-size: 11.5px;
+  color: #4a5568;
+  margin: 0 0 0 auto;
+  max-width: 330px;
+}
+
+/* ---------- 3 · what it costs ---------- */
+.why {
+  list-style: none;
+  padding: 0;
+  margin: 14px 0 0;
+}
+
+.why li { font-size: 12.5px; margin-top: 10px; }
+.why li:first-child { margin-top: 0; }
+.why b { display: block; font-size: 13px; color: #0e3f8c; }
+.why span { display: block; color: #4a5568; margin-top: 2px; }
+
+.why code,
+.lead code {
+  font-size: 11px;
+}
