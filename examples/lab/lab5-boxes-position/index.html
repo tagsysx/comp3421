@@ -468,35 +468,51 @@
        reload the page.
                                                                           */
 
-  /* ── Exercise 9 · The panel and the tag ─────────────────────────────────
+  /* ── Exercise 9 · The leaf and the tag ──────────────────────────────────
        TODO 9 — the open one. Your words, your boxes.
                                                          [homework · 24 min]
 
-       Aim: the last block of the wall becomes a panel with your name in it,
-       and every number it needs is given. The panel: 44px of padding above,
-       72px right, 58px below, 76px left; a 2px edge; a warm white
-       background; and four corners cut to four different ellipses — across,
-       76px 20px 72px 30px; down, 24px 12px 20px 52px. Inside it the link
-       leaves the flow and pins itself to the panel's top right corner, 26px
-       in from the right edge and 24px down from the top edge, with corners
-       of its own — across, 16px 6px 12px 8px; down, 10px 9px 7px 8px.
+       Aim: the last block of the wall becomes a leaf with your name written
+       on it, and every number it needs is given. The leaf is a shape behind
+       the text: a layer that reaches 54px beyond the panel on all four
+       sides, with two opposite corners — the top right and the bottom left
+       — rounded by the whole width and the whole height, and the other two
+       left square. It paints itself: the colour is #7fae52 and over it a
+       single gradient at 146 degrees running #e7f3c6, then #a9cb78 at the
+       halfway mark, then #7fae52. It must end up behind the words, not over
+       them. The panel itself is just air: 56px of padding above and below,
+       100px left and right, and no edge or background of its own. The
+       heading is turned 3 degrees anticlockwise. Every word on the leaf is
+       #1d2b0d, and the body column is no wider than 34 characters. The tag
+       is pinned with its right edge 30px from the panel's right edge and
+       its top 28px from the panel's top, turned 14 degrees anticlockwise,
+       and keeps the eight corner numbers it had: across, 16px 6px 12px 8px;
+       down, 10px 9px 7px 8px.
+
+       Four of those instructions are the exercise rather than decoration.
+       The corner form is the same slash you used in exercise 7, with the
+       full width and the full height as the two numbers — written as shares
+       of the box rather than in pixels, which is what lets the shape
+       stretch with the panel. The four negative numbers are what lets a box
+       be bigger than the box that holds it. The words have to sit on top of
+       that layer, which is a decision about the panel and about the number
+       on the layer, not about the words. And a transformed heading is still
+       laid out where it always was; only where it is painted has changed.
 
        Replace every line of the "About the artist" section with something
        real: your name and student number, the kind of page you want to
-       build, and one site you think is well built. The heading stays where
-       it is. The link stops being a line of text and becomes the tag
-       described above. The small print at the very bottom of the wall is
-       yours too: 44px of space above it, 18px of space inside its top edge,
-       a hairline across that edge, and the smallest grey type on the page.
+       build, and one site you think is well built. The small print at the
+       very bottom of the wall is yours too: 76px of space above it, 18px of
+       space inside its top edge, a hairline across that edge, and the
+       smallest grey type on the page.
        The shape is not a choice. Every number above is part of the mark:
-          • the panel's four padding values, in the order they are always
-            written;
-          • the panel's eight corner numbers — and no two of the four ratios
-            may come out equal;
-          • the link pinned to the panel instead of sitting in the flow,
-            which means working out what it is pinned to, and therefore what
-            the panel has to be;
-          • the tag's own eight corner numbers, kept apart the same way;
+          • the leaf's four offsets, its two-corner form, its colour and its
+            three-stop gradient;
+          • the leaf behind the words rather than over them;
+          • the panel's four padding values and the absence of a box of its
+            own;
+          • the heading turned 3 degrees, and the tag turned 14;
+          • the tag's eight corner numbers, the same four ratios as before;
           • and the whole thing read back in DevTools rather than judged by
             eye.
        The words in the section are yours, so no two submissions will be
