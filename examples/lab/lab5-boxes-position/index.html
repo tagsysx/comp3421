@@ -51,9 +51,10 @@
                    the numbers and the value order stick.
 
      The three homework exercises work the other way round: they give you
-     the AIM and nothing else — no written steps, code or numbers. Working
-     out the properties is the homework. In the lab you are shown; at home
-     you are asked.
+     the AIM and nothing else — no written steps and no finished code. The
+     aim does state one corner radius as a number, because you are being
+     asked for a particular shape. Turning that number into a rule is the
+     homework: in the lab you are shown; at home you are asked.
 
      Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE before
      moving on. A rule that matches nothing looks exactly like a rule that
@@ -119,18 +120,17 @@
 
      Nine exercises appear in order. The six lab exercises give the CSS
      they want: the aim, a numbered Steps list, then the finished code to
-     type. The three homework exercises give only the aim.
+     type. The three homework exercises give the aim, one corner radius as
+     a number, and nothing else.
 
      ⚠ Every rule you write belongs in THIS block. A rule in block 1
      still works, so it is easy to lose track of your work. Keep it here.
      ══════════════════════════════════════════════════════════════════ */
 
   /* ── Exercise 1 · Every element is a box ────────────────────────────────
-TODO 1 — the width arithmetic, then the wall itself.TODO 1 — the width
-       arithmetic, then the wall itself.
-Nothing on this page has been styled yet, so this is the first rule of the whole lab.N
-       othing on this page has been styled yet, so this is the first rule of
-       the whole lab.
+       TODO 1 — the width arithmetic, then the wall itself.
+       Nothing on this page has been styled yet, so this is the first rule
+       of the whole lab.
                                                                     [10 min]
 
        Aim: every element measures a declared width the way a designer
@@ -194,8 +194,7 @@ Nothing on this page has been styled yet, so this is the first rule of the whole
                                                                           */
 
   /* ── Exercise 2 · Border and padding ────────────────────────────────────
-TODO 2 — the moulding, the mount, and the picture area.TODO 2 — the
-       moulding, the mount, and the picture area.
+       TODO 2 — the moulding, the mount, and the picture area.
                                                                     [12 min]
 
        Aim: each work sits on a warm white mount inside a dark moulding, and
@@ -235,8 +234,7 @@ TODO 2 — the moulding, the mount, and the picture area.TODO 2 — the
                                                                           */
 
   /* ── Exercise 3 · Margin, and the space between ─────────────────────────
-TODO 3 — the space outside the edge, and the two margins that merge.TODO 3 —
-       the space outside the edge, and the two margins that merge.
+       TODO 3 — the space outside the edge, and the two margins that merge.
                                                                     [10 min]
 
        Aim: the works stand apart from each other and from their labels, the
@@ -277,8 +275,7 @@ TODO 3 — the space outside the edge, and the two margins that merge.TODO 3 —
                                                                           */
 
   /* ── Exercise 4 · What the box paints ───────────────────────────────────
-TODO 4 — what the box paints, and where.TODO 4 — what the box paints, and
-       where.
+       TODO 4 — what the box paints, and where.
                                                                      [8 min]
 
        Aim: each picture area is a dark mount with a small bright rectangle
@@ -323,8 +320,7 @@ TODO 4 — what the box paints, and where.TODO 4 — what the box paints, and
                                                                           */
 
   /* ── Exercise 5 · Nudge it, and anchor it ───────────────────────────────
-TODO 5 — move a box, and make every frame an anchor.TODO 5 — move a box, and
-       make every frame an anchor.
+       TODO 5 — move a box, and make every frame an anchor.
                                                                      [8 min]
 
        Aim: the third work hangs lower than the other two without moving
@@ -356,8 +352,8 @@ TODO 5 — move a box, and make every frame an anchor.TODO 5 — move a box, and
                                                                           */
 
   /* ── Exercise 6 · Pin it to the frame ───────────────────────────────────
-TODO 6 — out of the flow, into the corners, and a plaque that appears.TODO 6
-       — out of the flow, into the corners, and a plaque that appears.
+       TODO 6 — out of the flow, into the corners, and a plaque that
+       appears.
                                                                     [12 min]
 
        Aim: a red number badge sits on the bottom right of every frame,
@@ -420,16 +416,21 @@ TODO 6 — out of the flow, into the corners, and a plaque that appears.TODO 6
                                                                           */
 
   /* ── Exercise 7 · Hold it in the corner ─────────────────────────────────
-TODO 7 — a button that stops being part of the page.TODO 7 — a button that
-       stops being part of the page.
+       TODO 7 — a button that stops being part of the page.
                                                          [homework · 18 min]
 
        Aim: the button at the end of the wall becomes one that is always in
        the bottom right corner of the window, whichever part of the wall you
        happen to be looking at. It must not cover the last thing on the
-       page.
+       page, and all four of its corners are cut as a quarter ellipse — 18px
+       across and 12px down.
 
-       Two things to work out for yourself: which edge the offsets are
+       The corner is given as two numbers and no rule. Two radii of the same
+       length would cut a circle, and a circle is not the shape being asked
+       for: Lecture 04, section 04 has the form for a corner whose two axes
+       differ.
+
+       Two more things to work out for yourself: which edge the offsets are
        measured from once a box is anchored to the window rather than to the
        page, and why a box that takes no space in the layout can still hide
        something. Fix the second one with spacing, not by moving the button
@@ -437,41 +438,48 @@ TODO 7 — a button that stops being part of the page.TODO 7 — a button that
                                                                           */
 
   /* ── Exercise 8 · Keep it in view ───────────────────────────────────────
-TODO 8 — the bar that travels, then stops.TODO 8 — the bar that travels,
-       then stops.
+       TODO 8 — the bar that travels, then stops.
                                                          [homework · 18 min]
 
        Aim: the bar that says "Hung on this wall" scrolls with the works
        until it reaches the top of the window, and then stays there while
        the works pass underneath it. Nothing may show through it, and no
-       frame or badge may be painted over it.
+       frame or badge may be painted over it. Its two bottom corners are cut
+       as a quarter ellipse — 26px across and 10px down — and its two top
+       corners stay square.
+
+       Two corners are square and two are elliptical, and this is one bar,
+       so all four corners are described by the same property. Work out how
+       to say “square on the top, elliptical on the bottom” in one
+       declaration, and check the result in DevTools rather than by eye.
 
        A sticky box needs to be told where to stop, or it never sticks at
        all. It also stops being sticky when its own container scrolls past —
        try it and watch where the bar lets go.
 
-       The second half is the one that catches people out: the works below
-       the bar are positioned boxes too, and something later in the document
-       is painted on top of something earlier. Decide who wins before you
+       The last part is the one that catches people out: the works below the
+       bar are positioned boxes too, and something later in the document is
+       painted on top of something earlier. Decide who wins before you
        reload the page.
                                                                           */
 
   /* ── Exercise 9 · Your own wall ─────────────────────────────────────────
-TODO 9 — the open one. Your words, your boxes.TODO 9 — the open one. Your
-       words, your boxes.
+       TODO 9 — the open one. Your words, your boxes.
                                                          [homework · 24 min]
 
        Aim: the last two blocks of the wall become yours: real content where
        the placeholder is now, and at least six boxes of your own around it,
-       made and placed by you. Every other exercise must be left exactly as
-       it is.
+       made and placed by you. One of those boxes carries the work: its
+       corners are cut as a quarter ellipse — 40px across and 16px down.
+       Every other exercise must be left exactly as it is.
 
        Replace every line of the "About the artist" section with something
        real: your name and student number, the kind of page you want to
        build, and one site you think is well built. Style the small print at
        the very bottom of the wall too — it has no style of its own yet.
        Your boxes must show all of this:
-          • a box with its own padding, border and background, sized by you;
+          • a box with its own padding, border and background, sized by you,
+            and the elliptical corner above;
           • a positioned box, and a second box positioned inside it measured
             from its edge;
           • one box that stays where it is while the page scrolls, whether
