@@ -90,6 +90,14 @@
       ]
     },
     {
+      "id": "lab-05-boxes-position",
+      "name": "Lab 5 · Box it, then place it",
+      "desc": "practise the box model and position — 60 min in the lab, three exercises at home",
+      "examples": [
+        "lab/lab5-boxes-position"
+      ]
+    },
+    {
       "id": "lecture-04-css-layout",
       "name": "Lecture 4 · CSS II — Selectors, Cascade & the Box Model",
       "desc": "How rules target elements, which declaration wins, the parts of a box",
@@ -291,6 +299,14 @@
           "id": "lab4-selectors",
           "name": "Lab 4 — Find it, then style it",
           "desc": "Your practice file: 9 exercises — @font-face, then every selector form (6 in the lab, 3 at home)",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lab5-boxes-position",
+          "name": "Lab 5 — Box it, then place it",
+          "desc": "Your practice file: 9 exercises — the box model, then the five position values (6 in the lab, 3 at home)",
           "files": [
             "index.html"
           ]

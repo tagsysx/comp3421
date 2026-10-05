@@ -1,0 +1,558 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ================================================================
+     LAB 5 — BOX IT, THEN PLACE IT
+
+     Nine exercises on one page, split into two halves.
+
+       PART 1 · IN THE LAB — 60 minutes
+         1 · Every element is a box   border-box, the wall's own box  10 min
+         2 · Border and padding       the mount inside the moulding  12 min
+         3 · Margin, and the space    outside the edge, collapsing    10 min
+         4 · What the box paints      background colour and image      8 min
+         5 · Nudge it, and anchor it  position: relative                8 min
+         6 · Pin it to the frame      position: absolute, z-index      12 min
+
+       PART 2 · HOMEWORK — done at home
+         7 · Hold it in the corner    position: fixed             18 min
+         8 · Keep it in view          position: sticky            18 min
+         9 · Your own wall            your own boxes, your rules  24 min
+
+     HOW THIS PAGE WORKS — read before you begin
+
+     You are styling the wall below in the <body>: the room label and the
+     big title, three framed works each with a label under it, the bar that
+     names the section, the button at the end, and the section about the
+     artist. None of these elements has a style of its own yet. That is the
+     point of the exercise.
+
+     This page has TWO style blocks, labelled:
+
+       block 1 of 2 — the shell of THIS practice page: the cool grey
+                      background, the small kicker, the heading and the note
+                      at the bottom. It is all finished. NOT yours
+       block 2 of 2 — YOUR WORK. this is the only block you write in.
+
+     The lecture already covered every property used here: the box model in
+     Lecture 04, section 04, and the five position values, the four offsets
+     and z-index in Lecture 05, section 01. There is no new syntax.
+
+     The six lab exercises give you three things:
+
+       the AIM     one line: what the wall has to end up looking like.
+       the STEPS   a short numbered list — the order of the work, and the
+                   property each step is about, so you always know why the
+                   next rule is there.
+       the CODE    the finished CSS, printed under the steps. TYPE IT IN.
+                   Type rather than paste: the typing is where the colons,
+                   the numbers and the value order stick.
+
+     The three homework exercises work the other way round: they give you
+     the AIM and nothing else — no written steps, code or numbers. Working
+     out the properties is the homework. In the lab you are shown; at home
+     you are asked.
+
+     Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE before
+     moving on. A rule that matches nothing looks exactly like a rule that
+     is wrong: nothing happens. In DevTools the box model is drawn for you,
+     and the Styles panel names the rule each value came from.
+
+     Use the live editor (source on the left, result on the right), or any
+     editor + browser. Open target-preview.png in this folder to see one
+     finished wall. A still picture cannot show the plaques in exercise 6:
+     they appear when the pointer is on a frame, so hover-states.png freezes
+     one at rest and one on the pointer.
+
+     When you are done, press the download button in the editor and submit
+     that file.
+
+     Each TODO gives its minutes. In the lab: 10 + 12 + 10 + 8 + 8 + 12 = 60.
+     ================================================================ -->
+<title>Box it, then place it — COMP3421 Lab 5</title>
+
+<!-- ── STYLE BLOCK 1 of 2 · the shell of this practice page · NOT yours ── -->
+  <style>
+  /* ══════════════════════════════════════════════════════════════════
+     STYLE BLOCK 1 of 2 — THE SHELL OF THIS PRACTICE PAGE   [ NOT YOURS ]
+
+     Everything here is finished, and none of it belongs to an exercise.
+     It styles the page AROUND the wall: the cool grey background, the
+     small kicker, the page title and the note at the bottom. The wall
+     itself is further down in the body.
+
+     ★ Do not write anything here. Your CSS goes in block 2.
+     ══════════════════════════════════════════════════════════════════ */
+  body {
+    margin: 0;
+    background-color: #e7ebf0;
+    color: #2b3440;
+    font-family: -apple-system;
+    font-size: 16px;
+    line-height: 1.6;
+  }
+  .shell        { width: 92%; max-width: 1000px; margin: 0 auto; padding: 46px 0 80px; }
+  .shell-kicker { margin: 0 0 8px; font-size: .7rem; font-weight: 700; letter-spacing: .26em;
+                  text-transform: uppercase; color: #5c6880; }
+  .shell-title  { margin: 0 0 12px; font-size: 1.9rem; font-weight: 700; color: #1b2733;
+                  line-height: 1.15; }
+  .shell-lead   { margin: 0 0 34px; max-width: 76ch; color: #56637a; }
+  .shell-note   { margin: 44px 0 0; font-size: .82rem; color: #5c6880; max-width: 82ch; }
+  </style>
+
+<!-- ── STYLE BLOCK 2 of 2 · the wall · YOUR WORK STARTS HERE ── -->
+<style>
+  /* ══════════════════════════════════════════════════════════════════
+     STYLE BLOCK 2 of 2 — THE WALL                            [ YOURS ]
+
+     This is the ONLY block you write in.
+
+     Block 1 is above: the shell of this practice page — the cool grey
+     around the wall, the small kicker, the page title and the note at the
+     bottom. It is finished. Leave it alone.
+
+     The wall is below, in the <body>. None of its elements has a style of
+     its own yet. That is deliberate: write everything the wall needs
+     HERE, in this block.
+
+     Nine exercises appear in order. The six lab exercises give the CSS
+     they want: the aim, a numbered Steps list, then the finished code to
+     type. The three homework exercises give only the aim.
+
+     ⚠ Every rule you write belongs in THIS block. A rule in block 1
+     still works, so it is easy to lose track of your work. Keep it here.
+     ══════════════════════════════════════════════════════════════════ */
+
+  /* ── Exercise 1 · Every element is a box ────────────────────────────────
+TODO 1 — the width arithmetic, then the wall itself.TODO 1 — the width
+       arithmetic, then the wall itself.
+Nothing on this page has been styled yet, so this is the first rule of the whole lab.N
+       othing on this page has been styled yet, so this is the first rule of
+       the whole lab.
+                                                                    [10 min]
+
+       Aim: every element measures a declared width the way a designer
+       expects, the wall becomes a centred sheet with air inside its edge,
+       and the three lines of type at the top take their space from margins
+       instead of from blank lines.
+
+       Steps:
+          1. `*` is the universal selector: it matches every element on the
+             page. One rule, and every box below obeys the same arithmetic.
+             Without it, a declared width means the content only, and
+             padding and border make the box bigger than the number you
+             wrote.
+          2. `.wall` is the sheet the works hang on. Give it a width, a
+             limit so it stops growing on a wide screen, and two auto
+             margins to put it in the middle. Then the air inside its edge:
+             one value for top, right, bottom and left, in that order.
+          3. The same rule carries the page's type as well — the family, the
+             size, the line height and the ink. Everything inside the wall
+             inherits them, so this is the only place they are written.
+          4. `.room`, `h1` and `.intro` are the three boxes of type above
+             the first work. Their job in this exercise is only the space
+             around them. Read each margin clockwise from the top.
+
+       Now type it:
+
+               * { box-sizing: border-box; }
+
+               .wall {
+                 width: 92%;
+                 max-width: 600px;
+                 margin: 0 auto;
+                 padding: 48px 54px 84px;
+                 background-color: #f7f4ee;
+                 font-family: Arial;
+                 font-size: 16px;
+                 line-height: 1.6;
+                 color: #1c1f26;
+               }
+               .room {
+                 margin: 0 0 10px;
+                 font-size: .72rem;
+                 font-weight: 700;
+                 letter-spacing: .26em;
+                 text-transform: uppercase;
+                 color: #7a6a52;
+               }
+               h1 {
+                 margin: 0 0 14px;
+                 font-family: Georgia;
+                 font-size: 3.2rem;
+                 font-weight: 700;
+                 line-height: 1;
+                 color: #1c1f26;
+               }
+               .intro {
+                 margin: 0 0 38px;
+                 max-width: 48ch;
+                 color: #4a5260;
+               }
+                                                                          */
+
+  /* ── Exercise 2 · Border and padding ────────────────────────────────────
+TODO 2 — the moulding, the mount, and the picture area.TODO 2 — the
+       moulding, the mount, and the picture area.
+                                                                    [12 min]
+
+       Aim: each work sits on a warm white mount inside a dark moulding, and
+       all three frames come out 460px wide on the outside however much the
+       border and the padding cost.
+
+       Steps:
+          1. `.frame` is three boxes in one. The moulding is the border:
+             12px, solid, a near black. The mount is the padding: 20px of
+             it. The whole frame is warm white, with the corners barely
+             turned. And the declared width is 460px.
+          2. That is the point of exercise 1. With border-box on, the 460px
+             is the OUTSIDE width, so the padding and the border are taken
+             out of it rather than added to it — and all three frames stay
+             the same size as each other.
+          3. `.pic` is the picture area inside the mount. A fixed height and
+             the faintest rounding. Exercise 4 gives it something to show.
+
+       Now type it:
+
+               .frame {
+                 width: 460px;
+                 padding: 20px;
+                 border: 12px solid #24211d;
+                 border-radius: 3px;
+                 background-color: #fffdf8;
+               }
+               .pic {
+                 height: 220px;
+                 border-radius: 2px;
+               }
+
+       Try this before you move on: comment out the `*` rule from exercise 1
+       and look at the wall. Each frame grows past 460px and the right-hand
+       edge runs off the sheet. Put it back. That is one line of CSS earning
+       its keep.
+                                                                          */
+
+  /* ── Exercise 3 · Margin, and the space between ─────────────────────────
+TODO 3 — the space outside the edge, and the two margins that merge.TODO 3 —
+       the space outside the edge, and the two margins that merge.
+                                                                    [10 min]
+
+       Aim: the works stand apart from each other and from their labels, the
+       frames stay centred, and the two label lines under the first work are
+       22px apart, not the 38px you might expect from adding the two margins
+       together.
+
+       Steps:
+          1. `.frame` takes its spacing from one shorthand. `0 auto 34px`
+             has three values: top, then left and right together, then
+             bottom. So no top margin, auto on both sides, 34px below.
+          2. `.label` is the small grey line under a work. Give it a bottom
+             margin and nothing on top.
+          3. The second label under the first work needs its own top margin,
+             and the selector for it is the sibling relationship it has with
+             the first one: a class, a plus, the same class. Give that rule
+             a smaller number than the first label's bottom margin.
+          4. Then measure it. Select the two label lines in DevTools and
+             read the gap: the two vertical margins between block boxes
+             merge, and the larger of the two wins. They are never added.
+
+       Now type it:
+
+               .frame {
+                 margin: 0 auto 34px;
+               }
+               .label {
+                 margin: 0 0 22px;
+                 font-size: .84rem;
+                 color: #5f5a50;
+               }
+               .label + .label {
+                 margin-top: 16px;
+               }
+
+       Same rule, other direction: the frame's 34px bottom margin meets the
+       label's 0 top margin, so the gap under a frame is exactly 34px.
+                                                                          */
+
+  /* ── Exercise 4 · What the box paints ───────────────────────────────────
+TODO 4 — what the box paints, and where.TODO 4 — what the box paints, and
+       where.
+                                                                     [8 min]
+
+       Aim: each picture area is a dark mount with a small bright rectangle
+       of colour floating in the middle of it.
+
+       Steps:
+          1. `.pic` decides how the background image is drawn: never
+             repeated, centred, and 240px by 150px. The picture area is much
+             wider than that, so most of it will be left showing whatever is
+             underneath.
+          2. Each picture area takes two backgrounds at once. The colour is
+             the mount and is painted first; the gradient is the image and
+             is painted on top of it. Where the image does not reach, the
+             colour shows through.
+          3. `.pic-one` and `.pic-three` are linear gradients running in
+             different directions. `.pic-two` is radial: one colour at the
+             middle, two more as it spreads out.
+
+       Now type it:
+
+               .pic {
+                 background-repeat: no-repeat;
+                 background-position: center;
+                 background-size: 240px 150px;
+               }
+               .pic-one {
+                 background-color: #2b2f3a;
+                 background-image: linear-gradient(160deg, #f0c987, #d97757 55%, #7d4a63);
+               }
+               .pic-two {
+                 background-color: #22303a;
+                 background-image: radial-gradient(circle, #cfe3d4, #4f8a72 55%, #24413a);
+               }
+               .pic-three {
+                 background-color: #3a3128;
+                 background-image: linear-gradient(200deg, #efe8d8, #b8a68a 50%, #6b5a45);
+               }
+
+       Read the two declarations together and you can predict the picture
+       before you write it: a dark rectangle with a small bright one centred
+       inside it.
+                                                                          */
+
+  /* ── Exercise 5 · Nudge it, and anchor it ───────────────────────────────
+TODO 5 — move a box, and make every frame an anchor.TODO 5 — move a box, and
+       make every frame an anchor.
+                                                                     [8 min]
+
+       Aim: the third work hangs lower than the other two without moving
+       anything else on the wall, and every frame becomes the reference
+       point that exercise 6 needs.
+
+       Steps:
+          1. `.frame` gets the position value that lets a box be moved away
+             from where it already is — and that also makes the frame the
+             nearest positioned ancestor for anything inside it. No offsets
+             in this rule, so nothing moves yet.
+          2. `.hang-low` is the extra class on the third frame. Move it down
+             26px and then look carefully at the label underneath it.
+          3. The label has not moved. Neither has the second frame. The
+             third frame's slot is exactly where it was; you have changed
+             only where it is drawn. The space above it grew by 26px, and
+             the gap between it and its own label shrank by 26px. DevTools
+             still shows its box in the old place, because that box is the
+             layout, and the offset is a drawing decision.
+
+       Now type it:
+
+               .frame {
+                 position: relative;
+               }
+               .hang-low {
+                 top: 26px;
+               }
+                                                                          */
+
+  /* ── Exercise 6 · Pin it to the frame ───────────────────────────────────
+TODO 6 — out of the flow, into the corners, and a plaque that appears.TODO 6
+       — out of the flow, into the corners, and a plaque that appears.
+                                                                    [12 min]
+
+       Aim: a red number badge sits on the bottom right of every frame,
+       every frame has a dark plaque across its bottom edge that appears
+       when the pointer is on the frame, and the badge stays on top of the
+       plaque.
+
+       Steps:
+          1. `.pin` is the number. Take it out of the flow and let it
+             measure its offsets from the nearest positioned ancestor — that
+             is the frame you anchored in exercise 5. The offsets are
+             measured from just inside the frame's border, which is why the
+             badge sits on the mount and not over the moulding.
+          2. `.caption` is the plaque. It spans the frame from the left edge
+             to the right edge, sits on the bottom edge, and is painted
+             before the badge.
+          3. To begin with the plaque must be invisible without being
+             removed. Three ways of hiding a box were covered in Lecture 05,
+             section 03, and only one of them leaves the layout untouched —
+             pick that one, and say in a comment why the other two are wrong
+             here.
+          4. `.frame:hover .caption` is the rule that brings it back: when
+             the pointer is on the frame, its caption becomes visible.
+          5. The badge and the plaque overlap at the bottom right corner.
+             Give the plaque a smaller number than the badge, so the number
+             you painted last is the number the visitor reads.
+
+       Now type it:
+
+               .pin {
+                 position: absolute;
+                 right: 8px;
+                 bottom: 8px;
+                 z-index: 2;
+                 padding: 3px 10px;
+                 background-color: #b03a2e;
+                 color: #fffaf2;
+                 font-size: .74rem;
+                 letter-spacing: .14em;
+               }
+               .caption {
+                 position: absolute;
+                 left: 0;
+                 right: 0;
+                 bottom: 0;
+                 z-index: 1;
+                 padding: 9px 14px;
+                 background-color: #1c1f26;
+                 color: #f2ece1;
+                 font-size: .82rem;
+                 opacity: 0;
+               }
+               .frame:hover .caption {
+                 opacity: 1;
+               }
+
+       Both boxes are positioned, which is what makes the two numbers do
+       anything at all. On a static box, a z-index is ignored without a word
+       of warning.
+                                                                          */
+
+  /* ── Exercise 7 · Hold it in the corner ─────────────────────────────────
+TODO 7 — a button that stops being part of the page.TODO 7 — a button that
+       stops being part of the page.
+                                                         [homework · 18 min]
+
+       Aim: the button at the end of the wall becomes one that is always in
+       the bottom right corner of the window, whichever part of the wall you
+       happen to be looking at. It must not cover the last thing on the
+       page.
+
+       Two things to work out for yourself: which edge the offsets are
+       measured from once a box is anchored to the window rather than to the
+       page, and why a box that takes no space in the layout can still hide
+       something. Fix the second one with spacing, not by moving the button
+       off the corner.
+                                                                          */
+
+  /* ── Exercise 8 · Keep it in view ───────────────────────────────────────
+TODO 8 — the bar that travels, then stops.TODO 8 — the bar that travels,
+       then stops.
+                                                         [homework · 18 min]
+
+       Aim: the bar that says "Hung on this wall" scrolls with the works
+       until it reaches the top of the window, and then stays there while
+       the works pass underneath it. Nothing may show through it, and no
+       frame or badge may be painted over it.
+
+       A sticky box needs to be told where to stop, or it never sticks at
+       all. It also stops being sticky when its own container scrolls past —
+       try it and watch where the bar lets go.
+
+       The second half is the one that catches people out: the works below
+       the bar are positioned boxes too, and something later in the document
+       is painted on top of something earlier. Decide who wins before you
+       reload the page.
+                                                                          */
+
+  /* ── Exercise 9 · Your own wall ─────────────────────────────────────────
+TODO 9 — the open one. Your words, your boxes.TODO 9 — the open one. Your
+       words, your boxes.
+                                                         [homework · 24 min]
+
+       Aim: the last two blocks of the wall become yours: real content where
+       the placeholder is now, and at least six boxes of your own around it,
+       made and placed by you. Every other exercise must be left exactly as
+       it is.
+
+       Replace every line of the "About the artist" section with something
+       real: your name and student number, the kind of page you want to
+       build, and one site you think is well built. Style the small print at
+       the very bottom of the wall too — it has no style of its own yet.
+       Your boxes must show all of this:
+          • a box with its own padding, border and background, sized by you;
+          • a positioned box, and a second box positioned inside it measured
+            from its edge;
+          • one box that stays where it is while the page scrolls, whether
+            it is the fixed kind or the sticky kind;
+          • a background image or gradient of your own choosing;
+          • at least one property you took from each of exercises 1 to 6.
+       Use your own numbers and your own colours — not the ones printed
+       above. No two submissions should look alike, and that is the point of
+       the exercise. Say in a comment why you put each box where you put it,
+       in one line each.
+                                                                          */
+</style>
+</head>
+<body>
+
+<main class="shell">
+
+  <p class="shell-kicker">COMP3421 &middot; Lab 5</p>
+  <p class="shell-title">Box it, then place it</p>
+  <p class="shell-lead">One wall, three works. Every box on it is built out of the same four
+     parts and then moved with one property. Nothing below carries a style of its own yet.</p>
+
+  <!-- ================= the wall ================= -->
+  <div class="wall">
+
+    <p class="room">Room 2 &middot; the north wall</p>
+    <h1>The Long Wall</h1>
+    <p class="intro">Three works hung in a line. Each one sits on its own mount, inside its own
+       moulding, and each one is labelled underneath.</p>
+
+    <h2 class="bar">Hung on this wall</h2>
+
+    <figure class="frame">
+      <span class="pin">&numero; 01</span>
+      <div class="pic pic-one"></div>
+      <figcaption class="caption">After the Rain &middot; pigment on paper, 2026</figcaption>
+    </figure>
+    <p class="label">After the Rain &mdash; pigment on paper, 2026.</p>
+    <p class="label">On loan from the artist.</p>
+
+    <figure class="frame">
+      <span class="pin">&numero; 02</span>
+      <div class="pic pic-two"></div>
+      <figcaption class="caption">Moss Study &middot; gouache, 2026</figcaption>
+    </figure>
+    <p class="label">Moss Study &mdash; gouache, 2026.</p>
+
+    <figure class="frame hang-low">
+      <span class="pin">&numero; 03</span>
+      <div class="pic pic-three"></div>
+      <figcaption class="caption">Old Paper &middot; ink and wash, 2026</figcaption>
+    </figure>
+    <p class="label">Old Paper &mdash; ink and wash, 2026. Hung lower than the others on purpose.</p>
+
+    <button class="to-top">Back to the rail</button>
+
+    <section class="about">
+      <h2>About the artist</h2>
+      <p>Your own words go here. Replace every line of this section with something about you,
+         then place boxes of your own around it.</p>
+      <ul>
+        <li>your name and student number</li>
+        <li>the kind of page you want to build</li>
+        <li>one site you think is well built</li>
+      </ul>
+      <p><a href="https://developer.mozilla.org/">a link of your own</a></p>
+    </section>
+
+    <footer class="colophon">
+      <p>COMP3421 &middot; Web Application Design and Development &middot; a made-up gallery,
+         not a real one.</p>
+    </footer>
+
+  </div>
+  <!-- ================= end of the wall ================= -->
+
+  <p class="shell-note">Practice page for COMP3421. The gallery above is invented for this
+     exercise; the link at the end of the wall points at a placeholder address.</p>
+
+</main>
+
+</body>
+</html>
+
