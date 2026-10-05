@@ -17,9 +17,9 @@
          6 · Pin it to the frame      position: absolute, z-index      12 min
 
        PART 2 · HOMEWORK — done at home
-         7 · Hold it in the corner    position: fixed             18 min
-         8 · Keep it in view          position: sticky            18 min
-         9 · Your own wall            your own boxes, your rules  24 min
+         7 · Hold it in the corner    fixed, 8 corner numbers     18 min
+         8 · Keep it in view          sticky, 8 corner numbers    18 min
+         9 · The panel and the tag    relative + absolute, given  24 min
 
      HOW THIS PAGE WORKS — read before you begin
 
@@ -52,9 +52,10 @@
 
      The three homework exercises work the other way round: they give you
      the AIM and nothing else — no written steps and no finished code. The
-     aim does state one corner radius as a number, because you are being
-     asked for a particular shape. Turning that number into a rule is the
-     homework: in the lab you are shown; at home you are asked.
+     aim does state eight corner numbers, because a shape has to be
+     specified somewhere, and a specification is not a solution. Turning
+     those numbers into one rule is the homework: in the lab you are
+     shown; at home you are asked.
 
      Read the TODO, write the CSS in block 2, then LOOK AT THE PAGE before
      moving on. A rule that matches nothing looks exactly like a rule that
@@ -81,8 +82,8 @@
 
      Everything here is finished, and none of it belongs to an exercise.
      It styles the page AROUND the wall: the cool grey background, the
-     small kicker, the page title and the note at the bottom. The wall
-     itself is further down in the body.
+     small kicker, the page title and the note at the bottom. The wall itself is
+     further down in the body.
 
      ★ Do not write anything here. Your CSS goes in block 2.
      ══════════════════════════════════════════════════════════════════ */
@@ -120,8 +121,8 @@
 
      Nine exercises appear in order. The six lab exercises give the CSS
      they want: the aim, a numbered Steps list, then the finished code to
-     type. The three homework exercises give the aim, one corner radius as
-     a number, and nothing else.
+     type. The three homework exercises give the aim, eight corner numbers,
+     and nothing else.
 
      ⚠ Every rule you write belongs in THIS block. A rule in block 1
      still works, so it is easy to lose track of your work. Keep it here.
@@ -422,13 +423,17 @@
        Aim: the button at the end of the wall becomes one that is always in
        the bottom right corner of the window, whichever part of the wall you
        happen to be looking at. It must not cover the last thing on the
-       page, and all four of its corners are cut as a quarter ellipse — 18px
-       across and 12px down.
+       page, and its four corners are cut to four different ellipses. Eight
+       numbers: across, 30px 9px 26px 14px; down, 12px 16px 8px 15px.
 
-       The corner is given as two numbers and no rule. Two radii of the same
-       length would cut a circle, and a circle is not the shape being asked
-       for: Lecture 04, section 04 has the form for a corner whose two axes
-       differ.
+       The eight numbers are a specification, not a rule. Four corners in
+       the order they are always written — top left, top right, bottom
+       right, bottom left — and two numbers each: the first measured across,
+       the second down. Two of them equal would cut a circular corner, and
+       all four the same would be the shape the lecture showed you; eight
+       numbers that differ is the shape being asked for here, so the two
+       axes have to be kept apart. Lecture 04, section 04 has the form for
+       that.
 
        Two more things to work out for yourself: which edge the offsets are
        measured from once a box is anchored to the window rather than to the
@@ -444,14 +449,14 @@
        Aim: the bar that says "Hung on this wall" scrolls with the works
        until it reaches the top of the window, and then stays there while
        the works pass underneath it. Nothing may show through it, and no
-       frame or badge may be painted over it. Its two bottom corners are cut
-       as a quarter ellipse — 26px across and 10px down — and its two top
-       corners stay square.
+       frame or badge may be painted over it. Its four corners are given the
+       same way: across, 30px 8px 24px 6px; down, 6px 16px 9px 14px.
 
-       Two corners are square and two are elliptical, and this is one bar,
-       so all four corners are described by the same property. Work out how
-       to say “square on the top, elliptical on the bottom” in one
-       declaration, and check the result in DevTools rather than by eye.
+       The top two corners sweep wide and stay shallow; the bottom two are
+       cut the other way round. One property, four corners, eight numbers,
+       and this is one bar — so the work is in saying all four in one
+       declaration and reading the result back in DevTools rather than
+       trusting the eye.
 
        A sticky box needs to be told where to stop, or it never sticks at
        all. It also stops being sticky when its own container scrolls past —
@@ -463,33 +468,41 @@
        reload the page.
                                                                           */
 
-  /* ── Exercise 9 · Your own wall ─────────────────────────────────────────
+  /* ── Exercise 9 · The panel and the tag ─────────────────────────────────
        TODO 9 — the open one. Your words, your boxes.
                                                          [homework · 24 min]
 
-       Aim: the last two blocks of the wall become yours: real content where
-       the placeholder is now, and at least six boxes of your own around it,
-       made and placed by you. One of those boxes carries the work: its
-       corners are cut as a quarter ellipse — 40px across and 16px down.
-       Every other exercise must be left exactly as it is.
+       Aim: the last block of the wall becomes a panel with your name in it,
+       and every number it needs is given. The panel: 44px of padding above,
+       72px right, 58px below, 76px left; a 2px edge; a warm white
+       background; and four corners cut to four different ellipses — across,
+       76px 20px 72px 30px; down, 24px 12px 20px 52px. Inside it the link
+       leaves the flow and pins itself to the panel's top right corner, 26px
+       in from the right edge and 24px down from the top edge, with corners
+       of its own — across, 16px 6px 12px 8px; down, 10px 9px 7px 8px.
 
        Replace every line of the "About the artist" section with something
        real: your name and student number, the kind of page you want to
-       build, and one site you think is well built. Style the small print at
-       the very bottom of the wall too — it has no style of its own yet.
-       Your boxes must show all of this:
-          • a box with its own padding, border and background, sized by you,
-            and the elliptical corner above;
-          • a positioned box, and a second box positioned inside it measured
-            from its edge;
-          • one box that stays where it is while the page scrolls, whether
-            it is the fixed kind or the sticky kind;
-          • a background image or gradient of your own choosing;
-          • at least one property you took from each of exercises 1 to 6.
-       Use your own numbers and your own colours — not the ones printed
-       above. No two submissions should look alike, and that is the point of
-       the exercise. Say in a comment why you put each box where you put it,
-       in one line each.
+       build, and one site you think is well built. The heading stays where
+       it is. The link stops being a line of text and becomes the tag
+       described above. The small print at the very bottom of the wall is
+       yours too: 44px of space above it, 18px of space inside its top edge,
+       a hairline across that edge, and the smallest grey type on the page.
+       The shape is not a choice. Every number above is part of the mark:
+          • the panel's four padding values, in the order they are always
+            written;
+          • the panel's eight corner numbers — and no two of the four ratios
+            may come out equal;
+          • the link pinned to the panel instead of sitting in the flow,
+            which means working out what it is pinned to, and therefore what
+            the panel has to be;
+          • the tag's own eight corner numbers, kept apart the same way;
+          • and the whole thing read back in DevTools rather than judged by
+            eye.
+       The words in the section are yours, so no two submissions will be
+       word for word the same — but the shape is specified, and a submission
+       with a different shape is a submission that has not done this
+       exercise.
                                                                           */
 </style>
 </head>
