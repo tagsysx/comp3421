@@ -1637,8 +1637,8 @@
         },
         {
           "id": "icons",
-          "name": "Icons",
-          "desc": "an icon font, an inline SVG and a picture — and why the picture is the exception",
+          "name": "Icons — a font or a picture",
+          "desc": "an icon font glyph next to the same star as picture files — one per size, one per colour",
           "files": [
             "index.html",
             "style.css",
