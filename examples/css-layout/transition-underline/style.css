@@ -1,6 +1,3 @@
-/* Underline slide: the underline is a 2px gradient painted as a background,
-   so it can grow from the left instead of appearing all at once. */
-
 body {
   margin: 60px;
   font: 17px/1.6 system-ui, -apple-system, sans-serif;

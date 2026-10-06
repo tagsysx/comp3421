@@ -1372,7 +1372,7 @@
         {
           "id": "background-color",
           "name": "background-color",
-          "desc": "h1 / div / p, three colours — the w3schools example, copied unchanged",
+          "desc": "h1 / div / p, three colours — the smallest stylesheet in the deck",
           "files": [
             "index.html"
           ]

@@ -1,6 +1,4 @@
-/* W3Schools' own example (w3schools.com/css/tryit.asp?filename=trycss_sprites_img).
-   Copied as it stands, together with the two sprite GIFs it points at; the only
-   addition is the body chrome at the end. */
+body { margin: 24px; }
 
 #home {
   width: 46px;
@@ -11,19 +9,14 @@
 
 #prev {
   width: 43px;
-  height: 44px;  
+  height: 44px;
   background-image: url('img_navsprites.gif');
-  background-position: -47px 0;  
+  background-position: -47px 0;
 }
 
 #next {
   width: 43px;
-  height: 44px;  
+  height: 44px;
   background-image: url('img_navsprites.gif');
-  background-position: -91px 0;  
-}
-
-body {
-  margin: 24px;
-  font-family: system-ui, -apple-system, sans-serif;
+  background-position: -91px 0;
 }

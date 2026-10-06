@@ -1,6 +1,3 @@
-/* Image zoom: the picture scales, the frame does not.  overflow: hidden keeps the
-   growing picture inside the frame, so nothing around it moves. */
-
 body {
   margin: 40px;
   font-family: system-ui, -apple-system, sans-serif;

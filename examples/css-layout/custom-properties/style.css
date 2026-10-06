@@ -1,36 +1,29 @@
-body {
-  font-family: system-ui, -apple-system, sans-serif;
-  margin: 0;
-  padding: 28px 32px 40px;
-  color: #1a2230;
-  background: #f7f9fc;
-}
-h2 { margin: 30px 0 10px; font-size: 15px; color: #0e3f8c; }
-h2:first-child { margin-top: 0; }
-.note { margin: 10px 0 0; font-size: 12.5px; line-height: 1.5; color: #4a5568; }
-code { font-family: ui-monospace, SFMono-Regular, Menlo, monospace; color: #185fa5; }
-.row { display: flex; gap: 14px; margin-top: 12px; flex-wrap: wrap; }
-
-/* declared once … */
 :root {
-  --primary-bg-color: #185fa5;
-  --primary-color: #ffffff;
-  --gap: 12px;
+  --brand: #185fa5;
+  --on-brand: #ffffff;
 }
-/* … read as many times as you like */
-.site { padding: 18px; border: 1px solid #c9d8ef; border-radius: 10px; }
-.site h1 { margin: 0 0 6px; font-size: 20px; color: var(--primary-bg-color); }
-.site p { margin: 0 0 12px; font-size: 14px; }
+
+body {
+  margin: 40px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card {
+  padding: 20px;
+  border: 1px solid #c9d8ef;
+  border-radius: 10px;
+}
+
+h1 {
+  margin: 0 0 14px;
+  font-size: 20px;
+  color: var(--brand);
+}
+
 .btn {
   padding: 10px 18px;
-  border: none;
+  border: 0;
   border-radius: 8px;
-  font-size: 14px;
-  background: var(--primary-bg-color);
-  color: var(--primary-color);
-  cursor: pointer;
+  background: var(--brand);
+  color: var(--on-brand);
 }
-.bars { display: flex; align-items: flex-end; gap: var(--gap); }
-.bar { background: #dbe9fb; border: 1px solid #b9cdee; border-radius: 6px; }
-.gap { width: 60px; height: calc(var(--gap) * 4); }
-.pad { width: 60px; height: calc(var(--gap) * 8); }

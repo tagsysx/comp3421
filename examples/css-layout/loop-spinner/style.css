@@ -1,25 +1,6 @@
-/* Spinner: a round border with one side coloured, turned on a linear clock. */
-
 body {
-  margin: 0;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+  margin: 40px;
   font-family: system-ui, -apple-system, sans-serif;
-}
-
-.stage {
-  display: grid;
-  place-items: center;
-  gap: 18px;
-  padding: 32px;
-}
-
-.cap {
-  margin: 0;
-  color: #4a5568;
-  font-size: 13px;
-  text-align: center;
 }
 
 .ring {

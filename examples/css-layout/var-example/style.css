@@ -1,32 +1,26 @@
-/* W3Schools' own example (w3schools.com/css/tryit.asp?filename=trycss3_var2).
-   Copied as it stands — the only addition is the body chrome at the end, so
-   the page looks like the other examples on this site. */
-
 :root {
-  --primary-bg-color: #8FBC8F;
-  --primary-color: #FFFAF0; 
+  --bg: #ffffff;
+  --ink: #1a2230;
+  --line: #185fa5;
+}
+
+.dark {
+  --bg: #1a2230;
+  --ink: #f0f5fc;
+  --line: #6aa8e8;
 }
 
 body {
-  background-color: var(--primary-bg-color);
-}
-
-.container {
-  color: var(--primary-bg-color);
-  background-color: var(--primary-color);
-  padding: 15px;
-}
-
-.container h2 {
-  border-bottom: 2px solid var(--primary-bg-color);
-}
-
-.container .note {
-  border: 1px solid var(--primary-bg-color);
-  padding: 10px;
-}
-
-body {
-  margin: 24px;
+  margin: 40px;
   font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card {
+  width: 260px;
+  margin-bottom: 14px;
+  padding: 18px 22px;
+  border: 1px solid var(--line);
+  border-radius: 10px;
+  background: var(--bg);
+  color: var(--ink);
 }

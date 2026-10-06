@@ -1,8 +1,3 @@
-/* W3Schools' own "position: sticky" example (w3schools.com/css/tryit.asp
-   ?filename=trycss_position_sticky) — the same one the 2025 slides link to.
-   The only rule added here is the body chrome, so the page looks like the other
-   examples on this site. */
-
 body {
   margin: 24px;
   font-family: system-ui, -apple-system, sans-serif;
@@ -11,7 +6,11 @@ body {
 div.sticky {
   position: sticky;
   top: 0;
-  padding: 5px;
+  padding: 12px;
   background-color: #cae8ca;
   border: 2px solid #4CAF50;
+}
+
+.spacer {
+  height: 2000px;
 }

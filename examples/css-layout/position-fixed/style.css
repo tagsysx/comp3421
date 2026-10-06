@@ -1,9 +1,5 @@
-/* W3Schools' own "position: fixed" example (w3schools.com/css/tryit.asp
-   ?filename=trycss_position_fixed) — the same one the 2025 slides link to.
-   The only rule added here is the body chrome, so the page looks like the other
-   examples on this site. */
-
 body {
+  height: 200vh;
   margin: 24px;
   font-family: system-ui, -apple-system, sans-serif;
 }

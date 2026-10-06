@@ -1,8 +1,3 @@
-/* W3Schools' own "position: absolute" example (w3schools.com/css/tryit.asp
-   ?filename=trycss_position_absolute) — the same one the 2025 slides link to.
-   The only rule added here is the body chrome, so the page looks like the other
-   examples on this site. */
-
 body {
   margin: 24px;
   font-family: system-ui, -apple-system, sans-serif;
@@ -12,7 +7,7 @@ div.relative {
   position: relative;
   width: 400px;
   height: 200px;
-  border: 3px solid green;
+  border: 3px solid #73AD21;
 }
 
 div.absolute {
@@ -21,5 +16,5 @@ div.absolute {
   right: 0;
   width: 200px;
   height: 100px;
-  border: 3px solid red;
+  border: 3px solid #73AD21;
 }

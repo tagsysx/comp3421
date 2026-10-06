@@ -1,7 +1,3 @@
-/* Two boxes, the same two functions, swapped — the smallest demo that shows that
-   the list is applied right to left.  The declarations are the ones the slide's
-   panel prints, so the page and the example say exactly the same thing. */
-
 body {
   margin: 40px;
   font-family: system-ui, -apple-system, sans-serif;

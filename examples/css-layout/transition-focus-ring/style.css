@@ -1,6 +1,3 @@
-/* Focus ring: box-shadow is the cheapest ring — it is drawn outside the box, so
-   it never shifts the layout.  :focus-visible keeps it off for mouse clicks. */
-
 body {
   margin: 60px;
   font: 600 15px system-ui, -apple-system, sans-serif;

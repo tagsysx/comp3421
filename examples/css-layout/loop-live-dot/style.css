@@ -1,30 +1,10 @@
-/* Live dot: two circles in the same place — one solid, one that pings outwards. */
-
 body {
-  margin: 0;
-  display: grid;
-  place-items: center;
-  min-height: 100vh;
+  margin: 40px;
   font-family: system-ui, -apple-system, sans-serif;
 }
 
-.stage {
-  display: grid;
-  place-items: center;
-  gap: 18px;
-  padding: 32px;
-}
-
-.cap {
-  margin: 0;
-  color: #4a5568;
-  font-size: 13px;
-  text-align: center;
-}
-
-.live { position: relative; width: 14px; height: 14px; }
-
 .dot {
+  position: relative;
   display: block;
   width: 14px;
   height: 14px;

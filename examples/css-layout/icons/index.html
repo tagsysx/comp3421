@@ -3,112 +3,15 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Icons</title>
-  <link rel="stylesheet"
-        href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.2/css/all.min.css" />
+  <title>icons</title>
+  <script src="https://kit.fontawesome.com/a076d05399.js" crossorigin="anonymous"></script>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-  <h2>1 &middot; One icon, three ways</h2>
-  <p class="lead">An icon can be a glyph from a font, a shape written into the page, or a
-     picture file. All three put the same star on the screen &mdash; what differs is what
-     happens when you resize it or change the colour of the words beside it.</p>
-  <div class="ways">
-    <div class="way">
-      <div class="art"><i class="fa-solid fa-star"></i></div>
-      <b>An icon font</b>
-      <code>&lt;i class="fa-solid fa-star"&gt;&lt;/i&gt;</code>
-      <p class="when">One stylesheet, then a class name. The icon is a glyph, so
-         <code>font-size</code> and <code>color</code> work on it.</p>
-    </div>
-    <div class="way">
-      <div class="art">
-        <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 1.2 L14.82 8.6 L22.73 8.99 L16.57 13.96 L18.63 21.61 L12 17.28 L5.37 21.61 L7.43 13.96 L1.27 8.99 L9.18 8.6 Z" />
-        </svg>
-      </div>
-      <b>An inline SVG</b>
-      <code>&lt;svg viewBox="0 0 24 24"&gt;&hellip;&lt;/svg&gt;</code>
-      <p class="when">The shape is part of the page, so CSS sizes it and
-         <code>fill: currentColor</code> colours it.</p>
-    </div>
-    <div class="way">
-      <div class="art"><img src="icon-star.png" width="24" height="24" alt="" /></div>
-      <b>A picture</b>
-      <code>&lt;img src="icon-star.png" width="24" alt=""&gt;</code>
-      <p class="when">A file. The pixels are fixed when the file is made, and
-         nothing in CSS changes them.</p>
-    </div>
-  </div>
+<i class="fa-solid fa-star"></i>
+<svg class="ic" viewBox="0 0 24 24"><path d="M12 1.2 L14.82 8.6 L22.73 8.99 L16.57 13.96 L18.63 21.61 L12 17.28 L5.37 21.61 L7.43 13.96 L1.27 8.99 L9.18 8.6 Z"/></svg>
+<img src="icon-star.png" width="24" height="24" alt="">
+<img src="icon-star-red.png" width="24" height="24" alt="">
 
-  <h2>2 &middot; Size &mdash; free for the first two, a second file for the third</h2>
-  <div class="row">
-    <div class="box">
-      <div class="art tall"><i class="fa-solid fa-star big"></i></div>
-      <p class="cap">an icon font at <code>font-size: 96px</code></p>
-    </div>
-    <div class="box">
-      <div class="art tall">
-        <svg class="ic big" viewBox="0 0 24 24" aria-hidden="true">
-          <path d="M12 1.2 L14.82 8.6 L22.73 8.99 L16.57 13.96 L18.63 21.61 L12 17.28 L5.37 21.61 L7.43 13.96 L1.27 8.99 L9.18 8.6 Z" />
-        </svg>
-      </div>
-      <p class="cap">an inline SVG at <code>width: 96px</code></p>
-    </div>
-    <div class="box">
-      <div class="art tall">
-        <img src="icon-star-24.png" width="96" height="96" alt="" />
-      </div>
-      <p class="cap">a <b>24 px file</b> drawn at <code>96px</code> &mdash; soft</p>
-    </div>
-    <div class="box">
-      <div class="art tall">
-        <img src="icon-star.png" width="96" height="96" alt="" />
-      </div>
-      <p class="cap">a <b>96 px file</b> drawn at <code>96px</code> &mdash; sharp</p>
-    </div>
-  </div>
-  <p class="note">A picture has to be at least as large as the largest place you draw it:
-     <code>icon-star-24.png</code> carries 24 rows of pixels and the browser stretches them to 96.
-     The two cards on the right are the same icon &mdash; only the file behind them differs.</p>
-
-  <h2>3 &middot; Colour &mdash; the picture does not follow the text</h2>
-  <p class="line red">
-    <i class="fa-solid fa-star"></i>
-    <svg class="ic" viewBox="0 0 24 24" aria-hidden="true">
-      <path d="M12 1.2 L14.82 8.6 L22.73 8.99 L16.57 13.96 L18.63 21.61 L12 17.28 L5.37 21.61 L7.43 13.96 L1.27 8.99 L9.18 8.6 Z" />
-    </svg>
-    <img src="icon-star.png" width="24" height="24" alt="" />
-    <img src="icon-star-red.png" width="24" height="24" alt="" />
-    <span class="tag">the last two are two different files</span>
-  </p>
-  <p class="note">Set <code>color: #b93a33</code> on the paragraph and the first two go red by
-     themselves: <code>currentColor</code> for the SVG, the text colour for the glyph. The third
-     stays ink &mdash; it is a picture of a star, and no CSS declaration can repaint its pixels.
-     The fourth is the file someone had to export a second time to make the row agree.</p>
-
-  <h2>4 &middot; Why so few</h2>
-  <ul class="why">
-    <li><b>Sized for the biggest place you draw it.</b>
-      <span>The file has to be as large as the largest use, or it goes soft &mdash; the pair
-      above is that rule. Draw the icon at 96 somewhere and the 24 px file is wrong.</span></li>
-    <li><b>One file per colour.</b>
-      <span>Ink on a light page, white on a dark header: two exports of the same shape. A glyph
-      needed neither.</span></li>
-    <li><b>One request per file.</b>
-      <span>A toolbar of twenty picture icons is twenty files &mdash; which is why a sprite sheet
-      (<code>icons.png</code>, Lecture 4) and icon fonts exist.</span></li>
-    <li><b>Nothing inside it to change.</b>
-      <span>You cannot fatten a stroke, fade one arm of the shape, or animate half the glyph:
-      a picture is one finished image.</span></li>
-  </ul>
-  <p class="note">Three files, one icon &mdash; and that is the small end of the scale.
-     A picture earns its place when the size is fixed and the number is small: a logo, a
-     favicon, one decorative glyph on a card. For a set of icons that has to be sized,
-     coloured and aligned with the words beside it, use the font or the SVG.
-     <br /><br />
-     The one caveat: a picture only stops scaling when the file is a bitmap. An
-     <code>.svg</code> file in an <code>&lt;img&gt;</code> scales to any size &mdash; but it
-     still cannot take the text colour, and it is still one more file to fetch.</p>
 </body>
 </html>

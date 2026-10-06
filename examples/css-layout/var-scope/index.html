@@ -3,33 +3,14 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>Scope and inheritance</title>
+  <title>var-scope</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-
-  <h2>One variable, three scopes</h2>
-  <div class="page">
-    <p class="use">outside any component — reads <code>:root</code></p>
-    <div class="card">
-      <p class="use">inside .card — .card re-declared it</p>
-      <div class="inner">
-        <p class="use">a grandchild — still inherits from .card</p>
-      </div>
-    </div>
-  </div>
-  <p class="note">Custom properties inherit like any other property. A child does not need to know
-     where the value came from — it only needs <code>var(--accent)</code>. Re-declaring
-     <code>--accent</code> on one component re-paints that component and everything inside it,
-     and nothing outside.</p>
-
-  <h2>Scope it in a rule, not in every child</h2>
-  <p class="note">The bare <strong>--accent</strong> bar below is the global value; the second one
-     sits inside <code>.warn</code>, which declares its own.</p>
-  <div class="row">
-    <div class="bar"></div>
-    <div class="warn"><div class="bar"></div></div>
-  </div>
+<div class="parent">
+  <p class="inherits">inherits it</p>
+  <p class="overrides">re-declares it</p>
+</div>
 
 </body>
 </html>

@@ -1,7 +1,3 @@
-/* W3Schools' own z-index example (w3schools.com/css/tryit.asp?filename=trycss_zindex)
-   — the same one the 2025 slides link to. The only rule added here is the body
-   chrome, so the page looks like the other examples on this site. */
-
 body {
   margin: 24px;
   font-family: system-ui, -apple-system, sans-serif;
@@ -9,7 +5,7 @@ body {
 
 img {
   position: absolute;
-  left: 0px;
-  top: 0px;
+  left: 0;
+  top: 0;
   z-index: -1;
 }

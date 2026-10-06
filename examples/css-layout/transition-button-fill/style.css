@@ -1,6 +1,3 @@
-/* Button fill: a background image swept in from the left by background-size.
-   The transition lives on the base state, the change happens on :hover. */
-
 body {
   margin: 60px;
   font: 600 15px system-ui, -apple-system, sans-serif;

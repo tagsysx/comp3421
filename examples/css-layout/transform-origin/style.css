@@ -1,12 +1,3 @@
-/* W3Schools' own "transform-origin" example (w3schools.com/cssref/tryit.php
-   ?filename=trycss3_transform-origin).  Two deliberate changes:
-
-     1. `transform-origin: 20% 40%` -> `left top` (2026-10-06, user request).  The
-        slide teaches the two values as "x then y", and `left top` says exactly
-        that; `top left` (the form the slide used before) is accepted by browsers
-        but names them the other way round.
-     2. The body chrome below, so the page looks like the other examples here. */
-
 body {
   margin: 24px;
   font-family: system-ui, -apple-system, sans-serif;
@@ -16,7 +7,7 @@ body {
   position: relative;
   height: 200px;
   width: 200px;
-  margin: 100px;
+  margin: 60px;
   padding: 10px;
   border: 1px solid black;
 }
