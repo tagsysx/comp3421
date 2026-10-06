@@ -1,0 +1,17 @@
+body {
+  margin: 48px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card {
+  width: 220px;
+  padding: 22px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+  transition: box-shadow .25s ease;
+}
+
+.card:hover {
+  box-shadow: 0 10px 20px -6px rgba(0, 0, 0, .25);
+}

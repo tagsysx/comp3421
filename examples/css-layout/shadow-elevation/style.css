@@ -1,0 +1,12 @@
+body {
+  margin: 48px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.card {
+  width: 220px;
+  padding: 22px;
+  background: #fff;
+  border-radius: 10px;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, .12);
+}

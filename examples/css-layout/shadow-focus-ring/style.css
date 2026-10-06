@@ -1,0 +1,18 @@
+body {
+  margin: 48px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.btn {
+  padding: 12px 24px;
+  color: #fff;
+  background: #185fa5;
+  border: 0;
+  border-radius: 8px;
+  cursor: pointer;
+}
+
+.btn:focus-visible {
+  outline: 0;
+  box-shadow: 0 0 0 3px rgba(24, 95, 165, .45);
+}

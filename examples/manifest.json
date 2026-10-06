@@ -188,6 +188,12 @@
         "css-layout/reduced-motion",
         "css-layout/box-shadow-blur",
         "css-layout/text-shadow-glow",
+        "css-layout/shadow-elevation",
+        "css-layout/shadow-hover-lift",
+        "css-layout/shadow-focus-ring",
+        "css-layout/shadow-inset",
+        "css-layout/shadow-text-on-photo",
+        "css-layout/shadow-layers",
         "css-layout/display",
         "css-layout/display-outer-box",
         "css-layout/hiding",
@@ -1145,6 +1151,61 @@
           "id": "text-shadow-glow",
           "name": "text-shadow glow",
           "desc": "a red-and-blue neon glow behind the heading",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "shadow-elevation",
+          "name": "Subtle elevation",
+          "desc": "0 1px 3px rgba(0,0,0,.12) — the shadow that says 'this is a surface'",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "shadow-hover-lift",
+          "name": "Raised on hover",
+          "desc": "the same card, pointed at: deeper blur and a bigger offset",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "shadow-focus-ring",
+          "name": "Focus ring",
+          "desc": "0 0 0 3px — spread with no blur and no offset draws a hard ring",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "shadow-inset",
+          "name": "Pressed in",
+          "desc": "inset 0 2px 6px — the shadow moves inside the box",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "shadow-text-on-photo",
+          "name": "Text on a photo",
+          "desc": "white type over a picture, separated by a soft dark text-shadow",
+          "files": [
+            "index.html",
+            "style.css",
+            "img_flowers.jpg"
+          ]
+        },
+        {
+          "id": "shadow-layers",
+          "name": "One dark shadow only",
+          "desc": "one hard shadow next to three soft ones — stacking reads better",
           "files": [
             "index.html",
             "style.css"
