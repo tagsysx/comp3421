@@ -3,16 +3,29 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>keyframes-multi-stop</title>
+  <title>Multi-stop keyframes</title>
   <link rel="stylesheet" href="style.css" />
 </head>
 <body>
-<div class="stage">
-  <div class="light"></div>
-  <p class="cap">0% red &middot; 40% amber &middot; 70% and 100% green</p>
-  <div class="blink"></div>
-  <p class="cap">0%, 49% on &middot; 50%, 100% off &mdash; equal stops cut, they do not fade</p>
-</div>
+  <div class="row">
+    <figure>
+      <div class="light snap"></div>
+      <figcaption><code>steps(1, end)</code> — each stop snaps</figcaption>
+    </figure>
+    <figure>
+      <div class="light fade"></div>
+      <figcaption><code>ease</code> — it fades between the same stops</figcaption>
+    </figure>
+  </div>
 
+  <p class="cap">Both lights run the same <code>@keyframes traffic</code> — 0% red,
+     40% amber, 70% and 100% green. Only the timing function differs.</p>
+
+  <div class="row">
+    <figure>
+      <div class="blink"></div>
+      <figcaption><code>0%, 49%</code> on &middot; <code>50%, 100%</code> off — equal stops cut</figcaption>
+    </figure>
+  </div>
 </body>
 </html>
