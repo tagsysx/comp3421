@@ -164,6 +164,7 @@
         "css-layout/media-recipes",
         "css-layout/var-example",
         "css-layout/transform",
+        "css-layout/transform-order",
         "css-layout/transform-origin",
         "css-layout/transition-timing",
         "css-layout/animation-example",
@@ -919,6 +920,15 @@
           "id": "transform-origin",
           "name": "transform-origin",
           "desc": "rotate around a pivot you choose — left top instead of the centre",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transform-order",
+          "name": "Transform order",
+          "desc": "two boxes, the same two functions swapped — the list applies right to left",
           "files": [
             "index.html",
             "style.css"
