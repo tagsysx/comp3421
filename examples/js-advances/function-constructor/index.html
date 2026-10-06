@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Functions</h1>
+<h2>The Function() Constructor</h2>
+
+<p>JavaScript has an built-in function constructor.</p>
+<p id="demo"></p>
+
+<script>
+const myFunction = new Function("a", "b", "return a * b");
+
+document.getElementById("demo").innerHTML = "The product is " + myFunction(4, 3);
+</script>
+
+</body>
+</html>

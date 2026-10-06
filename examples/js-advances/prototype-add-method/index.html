@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html>
+<body>
+<h1>JavaScript Objects</h1> 
+<h2>Object Constructors</h2>
+
+<p id="demo"></p>
+
+<script>
+// Constructor Function for Person Objects
+function Person(firstName,lastName,age,eyeColor) {
+  this.firstName = firstName;
+  this.lastName = lastName;
+  this.age = age;
+  this.eyeColor = eyeColor;
+}
+
+// Create a Person Object
+const myMother = new Person("Sally","Rally",48,"green");
+
+Person.prototype.changeName = function (name) {
+  this.lastName = name;
+}
+
+// Change Name
+myMother.changeName("Doe");
+
+// Display Name
+document.getElementById("demo").innerHTML =
+"My mother's last name is " + myMother.lastName;
+</script>
+
+</body>
+</html>

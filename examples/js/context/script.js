@@ -1,3 +1,12 @@
+// Print to the page AND to the console, so the result is visible in the live
+// editor's preview pane (the pages used to be console-only).
+const out = document.getElementById('out');
+function log(...parts) {
+  const line = parts.map(String).join(' ');
+  out.textContent += (out.textContent ? '\n' : '') + line;
+  console.log(...parts);
+}
+
 // this inside a method = the owning object
 const user = {
   name: 'Ada',
@@ -5,16 +14,16 @@ const user = {
     return `Hi, I'm ${this.name}`;
   }
 };
-console.log(user.greet());
+log(user.greet());
 
 // call / apply: borrow a method with a different this
 const other = { name: 'Grace' };
-console.log(user.greet.call(other));
-console.log(user.greet.apply(other));
+log(user.greet.call(other));
+log(user.greet.apply(other));
 
 // bind: lock this permanently
 const greetGrace = user.greet.bind(other);
-console.log(greetGrace());
+log(greetGrace());
 
 // Arrow functions do NOT have their own this
 const runner = {
@@ -22,7 +31,7 @@ const runner = {
   run() {
     // arrow captures this from run() (the runner object)
     setTimeout(() => {
-      console.log(`${this.name} finished`);
+      log(`${this.name} finished`);
     }, 100);
   }
 };

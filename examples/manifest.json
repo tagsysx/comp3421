@@ -214,13 +214,19 @@
     },
     {
       "id": "lecture-07-js-functions",
-      "name": "Lecture 7 · JavaScript II — Functions & Objects",
-      "desc": "Functions, this, closures, prototypes, classes",
+      "name": "Lecture 7 · JavaScript II — Classes, Prototypes & Closures",
+      "desc": "Constructor functions and ES6 classes, built-in constructors, prototypes and closures",
       "examples": [
-        "js/functions",
+        "js-advances/object-constructor",
+        "js-advances/prototype-add-method",
+        "js-advances/prototype-property",
+        "js-advances/prototype-method",
+        "js-advances/function-constructor",
+        "js-advances/function-arguments",
+        "js-advances/nested-closure",
+        "js/classes",
         "js/context",
-        "js/closures",
-        "js/classes"
+        "js/closures"
       ]
     },
     {
@@ -1458,6 +1464,69 @@
           "files": [
             "index.html",
             "script.js"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js-advances",
+      "name": "JavaScript II — Advances",
+      "desc": "Classes and constructors, prototypes, and closures — the examples the week-7 lecture links to",
+      "examples": [
+        {
+          "id": "object-constructor",
+          "name": "Object constructor",
+          "desc": "A constructor function, new, and two independent Person objects",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "prototype-add-method",
+          "name": "Add a method by prototype",
+          "desc": "Person.prototype.changeName adds a method to every instance",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "prototype-property",
+          "name": "Add a property by prototype",
+          "desc": "Person.prototype.nationality is shared by every instance",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "prototype-method",
+          "name": "Add a shared method",
+          "desc": "One method object behind every Person",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "function-constructor",
+          "name": "The Function() constructor",
+          "desc": "A function built from strings — and why you avoid it",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "function-arguments",
+          "name": "The arguments object",
+          "desc": "findMax reads however many arguments it is handed",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "nested-closure",
+          "name": "A nested function",
+          "desc": "An inner function keeps the outer counter alive",
+          "files": [
+            "index.html"
           ]
         }
       ]
