@@ -167,6 +167,7 @@
         "css-layout/var-fallback",
         "css-layout/var-scope",
         "css-layout/transform",
+        "css-layout/transform-origin",
         "css-layout/transition",
         "css-layout/transition-recipes",
         "css-layout/timing-function",
@@ -917,6 +918,15 @@
           "id": "transform",
           "name": "Transforms",
           "desc": "translate, rotate, scale and skew elements",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transform-origin",
+          "name": "transform-origin",
+          "desc": "rotate around a pivot you choose — left top instead of the centre",
           "files": [
             "index.html",
             "style.css"
