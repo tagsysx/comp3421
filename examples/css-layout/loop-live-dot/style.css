@@ -1,0 +1,47 @@
+/* Live dot: two circles in the same place — one solid, one that pings outwards. */
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  gap: 18px;
+  padding: 32px;
+}
+
+.cap {
+  margin: 0;
+  color: #4a5568;
+  font-size: 13px;
+  text-align: center;
+}
+
+.live { position: relative; width: 14px; height: 14px; }
+
+.dot {
+  display: block;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: #1f7a4d;
+}
+
+.dot::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  border-radius: 50%;
+  background: #2f9e63;
+  animation: ping 1.8s ease-out infinite;
+}
+
+@keyframes ping {
+  0%   { transform: scale(1);   opacity: .6; }
+  100% { transform: scale(2.8); opacity: 0; }
+}

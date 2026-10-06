@@ -1,0 +1,38 @@
+/* Sync icon: the hold is the point — 55% to 100% changes nothing, so the turn
+   finishes and the icon sits still before it goes round again. */
+
+body {
+  margin: 0;
+  display: grid;
+  place-items: center;
+  min-height: 100vh;
+  font-family: system-ui, -apple-system, sans-serif;
+}
+
+.stage {
+  display: grid;
+  place-items: center;
+  gap: 18px;
+  padding: 32px;
+}
+
+.cap {
+  margin: 0;
+  color: #4a5568;
+  font-size: 13px;
+  text-align: center;
+}
+
+.sync {
+  width: 40px;
+  height: 40px;
+  border: 4px solid #185fa5;
+  border-left-color: transparent;
+  border-radius: 50%;
+  animation: turn-rest 1.8s ease-in-out infinite;
+}
+
+@keyframes turn-rest {
+  0%        { transform: rotate(0deg); }
+  55%, 100% { transform: rotate(360deg); }
+}
