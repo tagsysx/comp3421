@@ -163,6 +163,9 @@
         "css-layout/responsive",
         "css-layout/media-recipes",
         "css-layout/var-example",
+        "css-layout/custom-properties",
+        "css-layout/var-fallback",
+        "css-layout/var-scope",
         "css-layout/transform",
         "css-layout/transform-order",
         "css-layout/transform-origin",
@@ -189,6 +192,7 @@
         "css-layout/display-outer-box",
         "css-layout/hiding",
         "css-layout/icons-fa",
+        "css-layout/icons",
         "css-layout/card"
       ]
     },
