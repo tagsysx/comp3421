@@ -1,0 +1,7 @@
+# Working files that should not be part of the site or its history.
+#
+# backups/ — the pile of pre-edit copies the slide/lab work keeps (manifest .bak
+# files, an old example folder).  It has been deliberately uncommitted for a while
+# but showed up as untracked noise on every `git status`, so say it here.
+.DS_Store
+backups/
