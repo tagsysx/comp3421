@@ -187,13 +187,29 @@
     },
     {
       "id": "lecture-06-js-core",
-      "name": "Lecture 6 · JavaScript I — ES6 & the DOM",
-      "desc": "Variables, ES6+, the DOM and events",
+      "name": "Lecture 6 · JavaScript Basics",
+      "desc": "Syntax, types, statements, functions, objects — plus the DOM, the BOM and events",
       "examples": [
-        "js/counter",
-        "js/es6",
-        "js/dom",
-        "js/events"
+        "js-basics/change-style",
+        "js-basics/change-attribute",
+        "js-basics/script-placement",
+        "js-basics/loop-for",
+        "js-basics/loop-for-in",
+        "js-basics/loop-for-of",
+        "js-basics/error-try-catch",
+        "js-basics/function-return",
+        "js-basics/function-name-vs-call",
+        "js-basics/function-expression",
+        "js-basics/function-iife",
+        "js-basics/scope-global-leak",
+        "js-basics/strict-variable",
+        "js-basics/strict-global",
+        "js-basics/strict-local",
+        "js-basics/object-brackets",
+        "js-basics/object-method",
+        "js-basics/object-add-property",
+        "js-basics/object-delete-property",
+        "js-basics/window-size"
       ]
     },
     {
@@ -718,8 +734,7 @@
             "index.html",
             "style.css"
           ]
-        }
-,
+        },
         {
           "id": "placement",
           "name": "Three ways to add CSS",
@@ -991,8 +1006,7 @@
             "index.html",
             "style.css"
           ]
-        }
-,
+        },
         {
           "id": "border-style",
           "name": "Border — style",
@@ -1211,8 +1225,7 @@
             "index.html",
             "style.css"
           ]
-        }
-,
+        },
         {
           "id": "outline",
           "name": "Outline",
@@ -1445,6 +1458,175 @@
           "files": [
             "index.html",
             "script.js"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js-basics",
+      "name": "JavaScript Basics",
+      "desc": "The language itself — one runnable example per idea from the lecture",
+      "examples": [
+        {
+          "id": "change-style",
+          "name": "Change the style",
+          "desc": "Click a button and JavaScript restyles an element",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "change-attribute",
+          "name": "Change an attribute",
+          "desc": "Turn a light bulb on and off by changing an img src",
+          "files": [
+            "index.html",
+            "pic_bulbon.gif",
+            "pic_bulboff.gif"
+          ]
+        },
+        {
+          "id": "script-placement",
+          "name": "Where the script goes",
+          "desc": "A script at the end of <body> writes into the page",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "loop-for",
+          "name": "The for loop",
+          "desc": "Walk a cars array with for (let i = 0; ...)",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "loop-for-in",
+          "name": "for...in",
+          "desc": "Loop through the properties of an object",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "loop-for-of",
+          "name": "for...of",
+          "desc": "Loop through the values of an iterable",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "error-try-catch",
+          "name": "try...catch",
+          "desc": "Type a number between 5 and 10 — throw, catch and report",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "function-return",
+          "name": "Parameters and return",
+          "desc": "A function that takes two parameters and returns the product",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "function-name-vs-call",
+          "name": "Name vs call",
+          "desc": "A function name without () is the function itself, not its result",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "function-expression",
+          "name": "Function expression",
+          "desc": "Store a function in a variable, then call it by that variable",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "function-iife",
+          "name": "Self-invoking function",
+          "desc": "An IIFE — a function expression that calls itself",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "scope-global-leak",
+          "name": "Automatically global",
+          "desc": "An assignment with no declaration becomes a global variable",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "strict-variable",
+          "name": "Strict mode — variable",
+          "desc": "\"use strict\" rejects a variable that was never declared",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "strict-global",
+          "name": "Strict mode — global",
+          "desc": "\"use strict\" at the top of the file covers the whole script",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "strict-local",
+          "name": "Strict mode — local",
+          "desc": "\"use strict\" inside one function covers only that function",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "object-brackets",
+          "name": "Object properties",
+          "desc": "Reading properties with person[\"firstname\"]",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "object-method",
+          "name": "Object method and this",
+          "desc": "An object method is a function stored as a property",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "object-add-property",
+          "name": "Add a property",
+          "desc": "Assign to a new name and the property appears",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "object-delete-property",
+          "name": "Delete a property",
+          "desc": "delete removes the value and the property itself",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "window-size",
+          "name": "Window size",
+          "desc": "window.innerWidth and window.innerHeight, live",
+          "files": [
+            "index.html"
           ]
         }
       ]
