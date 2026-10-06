@@ -1,0 +1,23 @@
+/* W3Schools' own example (w3schools.com/css/tryit.asp?filename=trycss3_box-shadow9).
+   Copied as it stands — the only addition is the body chrome at the end, so
+   the page looks like the other examples on this site. */
+
+ 
+#example1 {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 5px blue, 10px 10px red, 15px 15px green;
+  margin: 20px;
+}
+
+#example2 {
+  border: 1px solid;
+  padding: 10px;
+  box-shadow: 5px 5px 8px blue, 10px 10px 8px red, 15px 15px 8px green;
+  margin: 20px;
+}
+
+body {
+  margin: 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}

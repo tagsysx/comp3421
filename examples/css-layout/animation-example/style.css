@@ -1,0 +1,23 @@
+/* W3Schools' own example (w3schools.com/css/tryit.asp?filename=trycss3_animation2).
+   Copied as it stands — the only addition is the body chrome at the end, so
+   the page looks like the other examples on this site. */
+
+div {
+  width: 100px;
+  height: 100px;
+  background-color: red;
+  animation-name: myAnimation;
+  animation-duration: 4s;
+}
+
+@keyframes myAnimation {
+  0%   {background-color: red;}
+  25%  {background-color: yellow;}
+  50%  {background-color: blue;}
+  100% {background-color: green;}
+}
+
+body {
+  margin: 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}

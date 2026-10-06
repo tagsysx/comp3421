@@ -1,0 +1,17 @@
+/* W3Schools' own example (w3schools.com/css/tryit.asp?filename=trycss3_box-shadow3).
+   Copied as it stands — the only addition is the body chrome at the end, so
+   the page looks like the other examples on this site. */
+
+ 
+div {
+  width: 300px;
+  height: 100px;
+  padding: 15px;
+  background-color: coral;
+  box-shadow: 10px 10px 5px lightblue;
+}
+
+body {
+  margin: 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}

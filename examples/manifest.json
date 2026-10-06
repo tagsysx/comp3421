@@ -162,27 +162,19 @@
         "css-layout/grid",
         "css-layout/responsive",
         "css-layout/media-recipes",
-        "css-layout/variables",
-        "css-layout/custom-properties",
-        "css-layout/var-fallback",
-        "css-layout/var-scope",
+        "css-layout/var-example",
         "css-layout/transform",
         "css-layout/transform-origin",
-        "css-layout/transition",
-        "css-layout/transition-recipes",
-        "css-layout/timing-function",
-        "css-layout/keyframes",
-        "css-layout/animation-shorthand",
-        "css-layout/animation-direction",
-        "css-layout/looping-motion",
+        "css-layout/transition-timing",
+        "css-layout/animation-example",
+        "css-layout/sprites",
         "css-layout/reduced-motion",
-        "css-layout/shadow",
-        "css-layout/shadow-recipes",
+        "css-layout/box-shadow-blur",
+        "css-layout/text-shadow-glow",
         "css-layout/display",
         "css-layout/display-outer-box",
         "css-layout/hiding",
-        "css-layout/icons",
-        "css-layout/icon-font",
+        "css-layout/icons-fa",
         "css-layout/card"
       ]
     },
@@ -930,6 +922,106 @@
           "files": [
             "index.html",
             "style.css"
+          ]
+        },
+        {
+          "id": "transition-timing",
+          "name": "transition-timing-function",
+          "desc": "five boxes, five speed curves — hover each one",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "animation-example",
+          "name": "CSS animation",
+          "desc": "@keyframes colouring a box red → yellow → blue → green",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "var-example",
+          "name": "var()",
+          "desc": "two custom properties driving the whole page — background, text, borders",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "box-shadow-blur",
+          "name": "box-shadow",
+          "desc": "a 300x100 box with a blurred lightblue shadow",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "box-shadow-spread",
+          "name": "box-shadow spread",
+          "desc": "the same shadow, with a 12px spread radius",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "box-shadow-inset",
+          "name": "box-shadow inset",
+          "desc": "the shadow pushed inside the box",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "box-shadow-multiple",
+          "name": "Multiple shadows",
+          "desc": "three shadows stacked, sharp and blurred",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "text-shadow-offset",
+          "name": "text-shadow",
+          "desc": "a 2px red shadow under the heading",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "text-shadow-glow",
+          "name": "text-shadow glow",
+          "desc": "a red-and-blue neon glow behind the heading",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "icons-fa",
+          "name": "Font Awesome icons",
+          "desc": "five icons, sized and coloured like text",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "sprites",
+          "name": "Image sprites",
+          "desc": "three nav buttons cut out of one GIF by background-position",
+          "files": [
+            "index.html",
+            "style.css",
+            "img_navsprites.gif",
+            "img_trans.gif"
           ]
         },
         {

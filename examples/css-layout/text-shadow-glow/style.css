@@ -1,0 +1,11 @@
+/* W3Schools' own example (w3schools.com/css/tryit.asp?filename=trycss3_text-shadow6).
+   Copied as it stands — the only addition is the body chrome at the end. */
+
+h1 {
+  text-shadow: 0 0 3px #FF0000, 0 0 5px #0000FF;
+}
+
+body {
+  margin: 24px;
+  font-family: system-ui, -apple-system, sans-serif;
+}
