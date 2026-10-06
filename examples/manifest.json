@@ -167,6 +167,7 @@
         "css-layout/transform-order",
         "css-layout/transform-origin",
         "css-layout/transition-timing",
+        "css-layout/transition-transform",
         "css-layout/animation-example",
         "css-layout/sprites",
         "css-layout/reduced-motion",
@@ -938,6 +939,15 @@
           "id": "transition-timing",
           "name": "transition-timing-function",
           "desc": "five boxes, five speed curves — hover each one",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transition-transform",
+          "name": "transition + transform",
+          "desc": "a card that lifts and grows on hover — transition on the base state, transform on :hover",
           "files": [
             "index.html",
             "style.css"
