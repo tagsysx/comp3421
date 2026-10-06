@@ -1,0 +1,18 @@
+/* Press down: feedback has to be instantaneous, so this one has NO transition —
+   the scale lands on the very first frame of :active. */
+
+body {
+  margin: 60px;
+  font: 600 16px system-ui, -apple-system, sans-serif;
+}
+
+.press {
+  padding: 16px 30px;
+  color: #fff;
+  background: #185fa5;
+  border: 0;
+  border-radius: 10px;
+  cursor: pointer;
+}
+
+.press:active { transform: scale(.97); }

@@ -1,0 +1,26 @@
+/* Button fill: a background image swept in from the left by background-size.
+   The transition lives on the base state, the change happens on :hover. */
+
+body {
+  margin: 60px;
+  font: 600 15px system-ui, -apple-system, sans-serif;
+}
+
+.fill {
+  padding: 14px 28px;
+  color: #185fa5;
+  background-color: #fff;
+  background-image: linear-gradient(#185fa5, #185fa5);
+  background-repeat: no-repeat;
+  background-position: left center;
+  background-size: 0% 100%;
+  border: 2px solid #185fa5;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background-size .3s ease, color .3s ease;
+}
+
+.fill:hover {
+  color: #fff;
+  background-size: 100% 100%;
+}

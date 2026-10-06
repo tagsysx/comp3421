@@ -168,6 +168,11 @@
         "css-layout/transform-origin",
         "css-layout/transition-timing",
         "css-layout/transition-transform",
+        "css-layout/transition-button-fill",
+        "css-layout/transition-underline",
+        "css-layout/transition-image-zoom",
+        "css-layout/transition-press",
+        "css-layout/transition-focus-ring",
         "css-layout/animation-example",
         "css-layout/sprites",
         "css-layout/reduced-motion",
@@ -939,6 +944,52 @@
           "id": "transition-timing",
           "name": "transition-timing-function",
           "desc": "five boxes, five speed curves — hover each one",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transition-button-fill",
+          "name": "Button fill",
+          "desc": "a background swept in from the left by background-size, on :hover",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transition-underline",
+          "name": "Underline slide",
+          "desc": "a link's underline grows from the left — a 2px gradient background",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transition-image-zoom",
+          "name": "Image zoom",
+          "desc": "scale(1.05) inside overflow: hidden — the picture grows, the frame does not",
+          "files": [
+            "index.html",
+            "style.css",
+            "img_flowers.jpg"
+          ]
+        },
+        {
+          "id": "transition-press",
+          "name": "Press down",
+          "desc": "scale(.97) on :active, with no transition at all so it lands instantly",
+          "files": [
+            "index.html",
+            "style.css"
+          ]
+        },
+        {
+          "id": "transition-focus-ring",
+          "name": "Focus ring",
+          "desc": "box-shadow appears on :focus-visible and never shifts the layout",
           "files": [
             "index.html",
             "style.css"
