@@ -107,16 +107,20 @@
 // TODO 4 — the same loop, but every deadline is an object.
 // A deadline is not one value, it is several: a day, a course, a
 // task and whether it is done. An object holds them together, and
-// dot notation reads them out one by one.
+// dot notation reads them out one by one. Afterwards, say how many
+// there are: the count is the array's length, not a number typed in.
 //                                                          [10 min]
 // Aim: the due list shows three deadlines, each row built from the
-// fields of one object: day, course and task.
+// fields of one object (day, course and task), and the line above
+// the list reads "3 due this week".
 // Steps:
 //   1. An array of three objects. Every object has day, course,
 //      task and done.
 //   2. One variable holding the deadline list.
 //   3. for...of over the array: build a list item, give it the
 //      class task, fill it with the object's fields, attach it.
+//   4. After the loop, write the array's length and " due this week"
+//      into the line with id due-count.
 // Now type it, just below:
 //
 // const deadlines = [
@@ -131,6 +135,7 @@
 //   li.textContent = item.day + " · " + item.course + " · " + item.task;
 //   deadlineList.appendChild(li);
 // }
+// document.querySelector("#due-count").textContent = deadlines.length + " due this week";
 
 // ── Exercise 5 · Mark what is done ────────────────────────────
 
@@ -225,19 +230,29 @@
 //
 // Your code goes here.
 
-// ── Exercise 9 · Add your own deadline ─────────────
+// ── Exercise 9 · Add your own deadline ───────────────────────
 
-// TODO 9 — add a deadline of your own to the list.
+// TODO 9 — add a deadline of your own, and say that it worked.
 // The form at the bottom has a day, a course and a task. Filling it
 // in must append one more row to the end of the due list, built the
-// same way exercise 4 built its rows, so it looks like the others.
-// It must also answer a click without a second listener: that is
+// same way exercise 4 built its rows, so it looks like the others;
+// it must also answer a click without a second listener, which is
 // exercise 6 earning its keep.
+// A row appearing is not enough of an answer. The page has to say
+// what happened: give the new row the class is-new so the style
+// block flashes it, write a confirmation into the line id added,
+// keep the count honest, and clear the three fields so the next
+// entry starts empty.
 //                                                   [homework · 24 min]
 // Aim: submitting the form id deadline-form appends a row to the
 // list id deadlines, reading day, course and task from the fields
-// id day, id course and id task. No reload, and the new row can be
-// picked exactly like the others. Use a course and a task of your
-// own, not the ones printed above.
+// id day, id course and id task, and gives the row the class is-new.
+// It also:
+//   · writes "Added: day · course · task" into the line id added,
+//   · rewrites id due-count as "N due this week" for the rows now on
+//     the page (count them, do not add one to a number you kept),
+//   · empties the three fields.
+// No reload, the new row can be picked exactly like the others, and
+// the course and task are your own.
 //
 // Your code goes here.

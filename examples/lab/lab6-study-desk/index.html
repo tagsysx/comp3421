@@ -69,9 +69,10 @@
 
      Open target-preview.png in this folder to see one finished
      planner. A still picture cannot show what a click or a form
-     submission does, so states.png freezes three moments: a deadline
-     chosen, the study log filled in (twice, so the goal bar moves),
-     and a deadline added.
+     submission does, so states.png freezes four moments: a deadline
+     chosen, the study log filled in twice (the goal bar moves), a
+     deadline added (the row flashes and the count grows), and the
+     confirmation the form leaves behind.
 
      When you are done, press the download button in the editor. It
      gives you a zip with BOTH files; submit that zip.
@@ -336,6 +337,31 @@
     box-shadow: inset 4px 0 0 #b5332b;
   }
 
+  @keyframes flash {
+    from { background: #ffe27a; }
+    to { background: transparent; }
+  }
+
+  .task.is-new {
+    animation: flash 1.6s ease;
+  }
+
+  .due-count {
+    margin: 2px 0 0;
+    font-family: 'Caveat';
+    font-size: 25px;
+    color: #b5332b;
+    min-height: 30px;
+  }
+
+  .added {
+    margin: 10px 0 0;
+    font-family: 'Caveat';
+    font-size: 27px;
+    color: #1f3a93;
+    min-height: 34px;
+  }
+
   .log {
     display: flex;
     flex-wrap: wrap;
@@ -548,6 +574,7 @@
 
     <section>
       <h2>Due this week</h2>
+      <p class="due-count" id="due-count">&mdash;</p>
       <p class="picked" id="picked">Nothing picked yet.</p>
       <ul class="deadlines" id="deadlines"></ul>
     </section>
@@ -575,13 +602,14 @@
 
     <section>
       <h2>Add a deadline</h2>
-      <p class="lede">Your own course, your own task. It joins the list above.</p>
+      <p class="lede">Your own course, your own task. It joins the list above and the page says so.</p>
       <form class="deadline-form" id="deadline-form">
         <input type="text" id="day" name="day" placeholder="Fri" />
         <input type="text" id="course" name="course" placeholder="COMP3421" />
         <input type="text" id="task" name="task" placeholder="Your task" />
         <button type="submit">Add it</button>
       </form>
+      <p class="added" id="added">&mdash;</p>
     </section>
 
     <footer>
