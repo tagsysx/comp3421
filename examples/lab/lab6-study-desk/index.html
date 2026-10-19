@@ -1,0 +1,546 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ================================================================
+     LAB 6 — QUERY IT, THEN CHANGE IT
+
+     A study planner that comes alive. Nine exercises on one page,
+     split into two halves.
+
+       PART 1 · IN THE LAB — 60 minutes
+         1 · The week on the cover       constants, textContent    8 min
+         2 · One function, three lines   parameters and return    10 min
+         3 · The timetable from an array arrays, for...of, the DOM 12 min
+         4 · Deadlines are objects       objects and properties   10 min
+         5 · Mark what is done           querySelectorAll, class  10 min
+         6 · One listener for the list   events and event.target  10 min
+
+       PART 2 · HOMEWORK — done at home
+         7 · The study log               a field, and arithmetic  18 min
+         8 · The deadline countdown      setInterval              18 min
+         9 · Add your own deadline       a new row, in JavaScript 24 min
+
+     HOW THIS PAGE WORKS — read before you begin
+
+     This is your study desk for the week: how the hours add up, the
+     timetable, what is due, a study log and a countdown to the next
+     deadline. The page is finished and styled. The behaviour is not
+     written yet: nothing on it reacts, because the script is empty.
+
+     The lab has TWO files, and they do different jobs:
+
+       training.html  the page: the cover, the sections, the forms,
+                      and one style block that draws all of it. It is
+                      finished. NOT yours.
+       script.js      the behaviour. YOUR WORK. This is the only file
+                      you write in.
+
+     In the live editor the two files appear as two tabs above the
+     code: click script.js to work on the script, and leave
+     index.html alone. The result panel runs both files together.
+
+     Every exercise finds its elements with document.querySelector,
+     or with document.querySelectorAll when it wants all of them.
+     One API, any selector: an id is written "#week", a class is
+     written ".task". The lecture taught both in section 07; there
+     is no new syntax and nothing to look up.
+
+     The six lab exercises give you three things:
+
+       the AIM     one line: what the page has to do afterwards.
+       the STEPS   a short numbered list: the order of the work, and
+                   the idea each line is about.
+       the CODE    the finished JavaScript, printed under the steps.
+                   TYPE IT IN. Typing is where the braces, the
+                   quotes and the semicolons stick; pasting does not.
+
+     The three homework exercises work the other way round: they give
+     you the aim and the ids of the elements, and no code at all.
+     Working out the statements is the homework. In the lab you are
+     shown; at home you are asked.
+
+     Run the page after every exercise. A script that has an error
+     stops there: the statements above the error still ran, none
+     below it did. The Console (F12) names the line. A script that
+     runs but changes nothing is usually a selector that matches
+     nothing, and the Console will not warn you about that at all.
+
+     Open target-preview.png in this folder to see one finished
+     planner. A still picture cannot show what a click or a form
+     submission does, so states.png freezes three moments: a deadline
+     chosen, the study log filled in, and a deadline added.
+
+     When you are done, press the download button in the editor. It
+     gives you a zip with BOTH files; submit that zip.
+     ================================================================ -->
+<title>The week ahead — COMP3421 Lab 6</title>
+
+<!-- ── THE STYLE BLOCK · the whole look of this page · NOT yours ── -->
+<style>
+  /* ══════════════════════════════════════════════════════════════
+     STYLE BLOCK — THE STUDY DESK                           [ NOT YOURS ]
+
+     Everything here is finished: the desk, the paper, the ruled
+     lines, the sticky notes, the checkboxes, the forms. None of it
+     belongs to an exercise.
+
+     ★ Do not write anything in here. Your JavaScript goes in
+     script.js, the other file of this lab.
+     ══════════════════════════════════════════════════════════════ */
+
+  @font-face {
+    font-family: 'Caveat';
+    font-style: normal;
+    font-weight: 400 600;
+    font-display: swap;
+    src: url(https://fonts.gstatic.com/s/caveat/v23/Wnz6HAc5bAfYB2Q7ZjYYiAzcPA.woff2) format('woff2');
+  }
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 46px 20px 64px;
+    background: radial-gradient(circle at 50% -10%, #24303f 0%, #131a24 55%, #0c1118 100%);
+    color: #1d2a3a;
+    font-family: Georgia;
+    -webkit-font-smoothing: antialiased;
+  }
+
+  .sheet {
+    position: relative;
+    max-width: 880px;
+    margin: 0 auto;
+    padding: 52px 70px 44px 104px;
+    background-color: #fbf7ec;
+    background-image: repeating-linear-gradient(
+      to bottom,
+      transparent 0 33px,
+      rgba(31, 58, 147, .055) 33px 34px
+    );
+    border-radius: 2px;
+    box-shadow: 0 30px 70px rgba(0, 0, 0, .55);
+  }
+
+  .sheet::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 64px;
+    width: 1px;
+    background: rgba(181, 51, 43, .38);
+  }
+
+  .sheet::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    left: 0;
+    width: 40px;
+    pointer-events: none;
+    background-image:
+      radial-gradient(circle at 20px 96px, #131a24 8px, transparent 9px),
+      radial-gradient(circle at 20px 396px, #131a24 8px, transparent 9px),
+      radial-gradient(circle at 20px 696px, #131a24 8px, transparent 9px),
+      radial-gradient(circle at 20px 996px, #131a24 8px, transparent 9px),
+      radial-gradient(circle at 20px 1296px, #131a24 8px, transparent 9px),
+      radial-gradient(circle at 20px 1596px, #131a24 8px, transparent 9px);
+  }
+
+  .kicker {
+    margin: 0;
+    font-family: 'Courier New';
+    font-size: 11px;
+    letter-spacing: .32em;
+    text-transform: uppercase;
+    color: #1f3a93;
+  }
+
+  .title {
+    margin: 8px 0 0;
+    font-family: 'Caveat';
+    font-size: 88px;
+    font-weight: 600;
+    line-height: .96;
+    color: #1f3a93;
+    transform: rotate(-1.4deg);
+    transform-origin: left center;
+  }
+
+  .week {
+    margin: 12px 0 0;
+    font-family: 'Caveat';
+    font-size: 34px;
+    font-weight: 400;
+    color: #b5332b;
+    min-height: 42px;
+  }
+
+  .byline {
+    margin: 2px 0 0;
+    font-family: 'Courier New';
+    font-size: 11px;
+    letter-spacing: .18em;
+    text-transform: uppercase;
+    color: #5c6570;
+    min-height: 16px;
+  }
+
+  .rule {
+    height: 0;
+    margin: 24px 0 4px;
+    border-top: 1px dashed rgba(31, 58, 147, .35);
+  }
+
+  h2 {
+    display: inline-block;
+    margin: 32px 0 10px;
+    padding: 0 9px 2px;
+    font-family: 'Caveat';
+    font-size: 37px;
+    font-weight: 600;
+    color: #1f3a93;
+    background: linear-gradient(transparent 56%, #ffe27a 56%, #ffe27a 94%, transparent 94%);
+    transform: rotate(-.7deg);
+  }
+
+  .lede {
+    margin: 0 0 10px 2px;
+    font-family: Georgia;
+    font-style: italic;
+    font-size: 15px;
+    color: #5c6570;
+  }
+
+  .load {
+    max-width: 430px;
+    margin: 6px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .load li {
+    padding: 9px 2px;
+    border-bottom: 1px dashed rgba(31, 58, 147, .28);
+    font-family: 'Courier New';
+    font-size: 16px;
+    letter-spacing: .05em;
+    min-height: 40px;
+  }
+
+  .load li:last-child {
+    border-bottom: 0;
+  }
+
+  .timetable {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 13px;
+    margin: 8px 0 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .timetable li {
+    padding: 12px 15px;
+    border-radius: 2px;
+    background: #fff3b0;
+    box-shadow: 2px 3px 7px rgba(0, 0, 0, .13);
+    font-family: 'Caveat';
+    font-size: 24px;
+    color: #1d2a3a;
+    transform: rotate(-1.2deg);
+  }
+
+  .timetable li:nth-child(2n) {
+    background: #cfe6ff;
+    transform: rotate(1.1deg);
+  }
+
+  .timetable li:nth-child(3n) {
+    background: #ffd9d3;
+    transform: rotate(.5deg);
+  }
+
+  .picked {
+    margin: 4px 0 8px;
+    font-family: 'Caveat';
+    font-size: 25px;
+    color: #1f3a93;
+    min-height: 32px;
+  }
+
+  .deadlines {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  .task {
+    position: relative;
+    padding: 12px 16px 12px 42px;
+    border-bottom: 1px dashed rgba(31, 58, 147, .28);
+    font-family: Georgia;
+    font-size: 18px;
+    cursor: pointer;
+    transition: background .2s;
+  }
+
+  .task::before {
+    content: "";
+    position: absolute;
+    left: 14px;
+    top: 50%;
+    width: 16px;
+    height: 16px;
+    transform: translateY(-50%);
+    border: 1.5px solid #1f3a93;
+    border-radius: 3px;
+  }
+
+  .task:hover {
+    background: #f4edd9;
+  }
+
+  .task.is-done {
+    color: rgba(29, 42, 58, .62);
+    text-decoration: line-through;
+  }
+
+  .task.is-done::before {
+    border-color: #2e7d32;
+    background: #2e7d32;
+  }
+
+  .task.is-done::after {
+    content: "\2713";
+    position: absolute;
+    left: 16px;
+    top: 50%;
+    transform: translateY(-52%);
+    font-size: 13px;
+    font-weight: 700;
+    color: #fbf7ec;
+    text-decoration: none;
+  }
+
+  .task.is-selected {
+    background: linear-gradient(transparent 44%, #ffe27a 44%, #ffe27a 96%, transparent 96%);
+    box-shadow: inset 4px 0 0 #b5332b;
+  }
+
+  .log {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 0;
+  }
+
+  .log label {
+    font-family: 'Courier New';
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #1f3a93;
+  }
+
+  .log input {
+    width: 96px;
+    padding: 4px 6px;
+    border: 0;
+    border-bottom: 2px solid #1f3a93;
+    background: transparent;
+    font-family: 'Caveat';
+    font-size: 28px;
+    color: #1d2a3a;
+    text-align: center;
+  }
+
+  .log input:focus,
+  .deadline-form input:focus {
+    outline: none;
+    border-bottom-color: #b5332b;
+  }
+
+  button {
+    padding: 7px 22px;
+    border: 0;
+    background: #1f3a93;
+    color: #fbf7ec;
+    font-family: 'Caveat';
+    font-size: 24px;
+    cursor: pointer;
+    transform: rotate(-1deg);
+  }
+
+  button:hover {
+    background: #2c4cb5;
+  }
+
+  .logged {
+    width: 100%;
+    margin: 6px 0 0;
+    font-family: 'Caveat';
+    font-size: 31px;
+    color: #b5332b;
+    min-height: 40px;
+  }
+
+  .countdown-caption {
+    margin: 26px 0 0;
+    font-family: 'Courier New';
+    font-size: 11px;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #5c6570;
+  }
+
+  .countdown {
+    margin: 2px 0 0;
+    font-family: 'Caveat';
+    font-size: 29px;
+    color: #b5332b;
+    min-height: 38px;
+  }
+
+  .deadline-form {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 12px;
+    margin: 6px 0 0;
+  }
+
+  .deadline-form input {
+    padding: 5px 4px;
+    border: 0;
+    border-bottom: 1.5px solid rgba(31, 58, 147, .55);
+    background: transparent;
+    font-family: Georgia;
+    font-size: 16px;
+    color: #1d2a3a;
+  }
+
+  #day {
+    width: 76px;
+  }
+
+  #course {
+    width: 132px;
+  }
+
+  #task {
+    width: 210px;
+  }
+
+  footer {
+    margin-top: 40px;
+    padding-top: 16px;
+    border-top: 1px dashed rgba(31, 58, 147, .35);
+    text-align: center;
+    font-family: 'Courier New';
+    font-size: 10.5px;
+    line-height: 1.9;
+    letter-spacing: .06em;
+    color: #5c6570;
+  }
+
+  #week:empty::after,
+  #byline:empty::after {
+    content: "\2014";
+    color: rgba(29, 42, 58, .3);
+  }
+
+  .load li:empty::after {
+    content: "\2014";
+    color: rgba(29, 42, 58, .3);
+  }
+
+  #timetable:empty::after,
+  #deadlines:empty::after {
+    content: "\2014";
+    display: block;
+    padding: 12px 0;
+    font-family: 'Courier New';
+    color: rgba(29, 42, 58, .3);
+  }
+</style>
+</head>
+<body>
+
+  <main class="sheet">
+
+    <header class="cover">
+      <p class="kicker">COMP3421 · the study desk</p>
+      <h1 class="title">The week ahead</h1>
+      <p class="week" id="week"></p>
+      <p class="byline" id="byline"></p>
+    </header>
+
+    <div class="rule"></div>
+
+    <section>
+      <h2>How the week adds up</h2>
+      <p class="lede">Three kinds of hour. The total is a habit, not a wish.</p>
+      <ul class="load" id="load">
+        <li id="lectures"></li>
+        <li id="labs"></li>
+        <li id="own-study"></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>The timetable</h2>
+      <p class="lede">Everything that has a fixed time this week.</p>
+      <ul class="timetable" id="timetable"></ul>
+    </section>
+
+    <section>
+      <h2>Due this week</h2>
+      <p class="picked" id="picked">Nothing picked yet.</p>
+      <ul class="deadlines" id="deadlines"></ul>
+    </section>
+
+    <section>
+      <h2>Study log</h2>
+      <p class="lede">Log the minutes you actually studied. The page does the adding up.</p>
+      <form class="log" id="log-form">
+        <label for="minutes">Minutes logged</label>
+        <input type="number" id="minutes" name="minutes" min="0" max="600" value="150" />
+        <button type="submit">Log it</button>
+        <p class="logged" id="logged">&mdash;</p>
+      </form>
+    </section>
+
+    <p class="countdown-caption">Next deadline</p>
+    <p class="countdown" id="countdown">&mdash;</p>
+
+    <section>
+      <h2>Add a deadline</h2>
+      <p class="lede">Your own course, your own task. It joins the list above.</p>
+      <form class="deadline-form" id="deadline-form">
+        <input type="text" id="day" name="day" placeholder="Fri" />
+        <input type="text" id="course" name="course" placeholder="COMP3421" />
+        <input type="text" id="task" name="task" placeholder="Your task" />
+        <button type="submit">Add it</button>
+      </form>
+    </section>
+
+    <footer>
+      A practice planner. Courses, deadlines and hours are invented.<br />
+      COMP3421 · Lab 6 · JavaScript I
+    </footer>
+
+  </main>
+
+<!-- ── THE SCRIPT TAG · the second file of this lab · script.js ── -->
+<script src="script.js"></script>
+</body>
+</html>

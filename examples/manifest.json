@@ -98,11 +98,11 @@
       ]
     },
     {
-      "id": "lab-06-the-rex",
-      "name": "Lab 6 · Tonight at the Rex",
-      "desc": "practise JavaScript on the page: values, functions, objects, the DOM and events — 60 min in the lab, three exercises at home",
+      "id": "lab-06-study-desk",
+      "name": "Lab 6 · Query it, then change it",
+      "desc": "practise JavaScript on the page: values, functions, objects, query-based DOM and events — 60 min in the lab, three exercises at home",
       "examples": [
-        "lab/lab6-the-rex"
+        "lab/lab6-study-desk"
       ]
     },
     {
@@ -354,11 +354,12 @@
           ]
         },
         {
-          "id": "lab6-the-rex",
-          "name": "Lab 6 — Tonight at the Rex",
-          "desc": "Your practice file: 9 exercises — values, functions, objects, the DOM and events (6 in the lab, 3 at home)",
+          "id": "lab6-study-desk",
+          "name": "Lab 6 — Query it, then change it",
+          "desc": "Your practice files: 9 exercises — values, functions, objects, query-based DOM and events (6 in the lab, 3 at home)",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         }
       ]
