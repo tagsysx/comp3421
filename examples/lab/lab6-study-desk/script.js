@@ -78,7 +78,7 @@
 // for...of, and for each slot build an element and attach it. A new
 // element is invisible until it is attached to something already on
 // the page.
-//                                                          [12 min]
+//                                                          [10 min]
 // Aim: the timetable carries the four slots, in the order they were
 // written in the array.
 // Steps:
@@ -139,25 +139,41 @@
 
 // ── Exercise 5 · Mark what is done ────────────────────────────
 
-// TODO 5 — find what exercise 4 built, and tick the done one.
+// TODO 5 — give every row a real tick box, and make the box work.
 // The done flag has been in the data all along; nothing has used it
-// yet. Collect every row on the page with querySelectorAll, then
-// walk the two lists together: the array and the rows are in the
-// same order.
-//                                                          [10 min]
-// Aim: the deadline already done is struck through and ticked.
+// yet. Collect every row with querySelectorAll, then walk the two
+// lists together: the array and the rows are in the same order.
+// For each row build an input, make it a checkbox, and set its
+// checked property from the data. A tick box is the one control that
+// answers the user by itself: listen for its change event and toggle
+// the is-done class on the row, so a click strikes the line through
+// and a second click takes it back.
+//                                                          [12 min]
+// Aim: every deadline has a tick box; the ones already done in the
+// data start ticked and struck through; clicking a box toggles the
+// strike-through on its own row.
 // Steps:
 //   1. querySelectorAll for the rows labelled task.
-//   2. A counted loop over the rows, with an index you can also use
-//      on the array.
-//   3. If that deadline's done flag is true, add the class is-done
-//      to that row. The style block already draws the tick.
+//   2. A counted loop over the rows, with an index shared with the
+//      array.
+//   3. Build an input, set its type to checkbox, set its checked
+//      property from that deadline's done flag, and attach it to the
+//      row.
+//   4. Listen for the box's change event: toggle is-done on the row.
+//   5. If the deadline is already done, add is-done to the row.
 // Now type it, just below:
 //
-// const tasks = document.querySelectorAll(".task");
-// for (let i = 0; i < tasks.length; i++) {
+// const rows = document.querySelectorAll(".task");
+// for (let i = 0; i < rows.length; i++) {
+//   const box = document.createElement("input");
+//   box.type = "checkbox";
+//   box.checked = deadlines[i].done;
+//   box.addEventListener("change", function () {
+//     rows[i].classList.toggle("is-done");
+//   });
+//   rows[i].appendChild(box);
 //   if (deadlines[i].done === true) {
-//     tasks[i].classList.add("is-done");
+//     rows[i].classList.add("is-done");
 //   }
 // }
 
@@ -235,8 +251,9 @@
 // TODO 9 — add a deadline of your own, and say that it worked.
 // The form at the bottom has a day, a course and a task. Filling it
 // in must append one more row to the end of the due list, built the
-// same way exercise 4 built its rows, so it looks like the others;
-// it must also answer a click without a second listener, which is
+// same way exercise 4 built its rows and given the tick box that
+// exercise 5 made work, so it looks and behaves like the others; it
+// must also answer a click without a second listener, which is
 // exercise 6 earning its keep.
 // A row appearing is not enough of an answer. The page has to say
 // what happened: give the new row the class is-new so the style
@@ -246,7 +263,8 @@
 //                                                   [homework · 24 min]
 // Aim: submitting the form id deadline-form appends a row to the
 // list id deadlines, reading day, course and task from the fields
-// id day, id course and id task, and gives the row the class is-new.
+// id day, id course and id task, gives the row the class is-new, and
+// gives it a tick box that toggles its strike-through like the rest.
 // It also:
 //   · writes "Added: day · course · task" into the line id added,
 //   · rewrites id due-count as "N due this week" for the rows now on

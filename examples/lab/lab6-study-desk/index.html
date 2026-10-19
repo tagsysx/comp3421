@@ -12,9 +12,9 @@
        PART 1 · IN THE LAB — 60 minutes
          1 · The week on the cover       constants, textContent    8 min
          2 · One function, three lines   parameters and return    10 min
-         3 · The timetable from an array arrays, for...of, the DOM 12 min
+         3 · The timetable from an array arrays, for...of, the DOM 10 min
          4 · Deadlines are objects       objects and properties   10 min
-         5 · Mark what is done           querySelectorAll, class  10 min
+         5 · Mark what is done           a real tick box, class   12 min
          6 · One listener for the list   events and event.target  10 min
 
        PART 2 · HOMEWORK — done at home
@@ -69,10 +69,11 @@
 
      Open target-preview.png in this folder to see one finished
      planner. A still picture cannot show what a click or a form
-     submission does, so states.png freezes four moments: a deadline
-     chosen, the study log filled in twice (the goal bar moves), a
-     deadline added (the row flashes and the count grows), and the
-     confirmation the form leaves behind.
+     submission does, so states.png freezes five moments: a deadline
+     chosen, a box ticked by hand (the row is struck through), the
+     study log filled in twice (the goal bar moves), a deadline added
+     (the row flashes and the count grows), and the confirmation the
+     form leaves behind.
 
      When you are done, press the download button in the editor. It
      gives you a zip with BOTH files; submit that zip.
@@ -285,8 +286,10 @@
   }
 
   .task {
-    position: relative;
-    padding: 12px 16px 12px 42px;
+    display: flex;
+    align-items: center;
+    gap: 13px;
+    padding: 11px 16px;
     border-bottom: 1px dashed rgba(31, 58, 147, .28);
     font-family: Georgia;
     font-size: 18px;
@@ -294,16 +297,13 @@
     transition: background .2s;
   }
 
-  .task::before {
-    content: "";
-    position: absolute;
-    left: 14px;
-    top: 50%;
-    width: 16px;
-    height: 16px;
-    transform: translateY(-50%);
-    border: 1.5px solid #1f3a93;
-    border-radius: 3px;
+  .task input {
+    order: -1;
+    flex: none;
+    width: 17px;
+    height: 17px;
+    accent-color: #1f3a93;
+    cursor: pointer;
   }
 
   .task:hover {
@@ -315,21 +315,8 @@
     text-decoration: line-through;
   }
 
-  .task.is-done::before {
-    border-color: #2e7d32;
-    background: #2e7d32;
-  }
-
-  .task.is-done::after {
-    content: "\2713";
-    position: absolute;
-    left: 16px;
-    top: 50%;
-    transform: translateY(-52%);
-    font-size: 13px;
-    font-weight: 700;
-    color: #fbf7ec;
-    text-decoration: none;
+  .task.is-done input {
+    accent-color: #2e7d32;
   }
 
   .task.is-selected {
