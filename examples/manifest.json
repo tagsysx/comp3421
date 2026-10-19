@@ -98,6 +98,14 @@
       ]
     },
     {
+      "id": "lab-06-the-rex",
+      "name": "Lab 6 · Tonight at the Rex",
+      "desc": "practise JavaScript on the page: values, functions, objects, the DOM and events — 60 min in the lab, three exercises at home",
+      "examples": [
+        "lab/lab6-the-rex"
+      ]
+    },
+    {
       "id": "lecture-04-css-layout",
       "name": "Lecture 4 · CSS II — Selectors, Cascade & the Box Model",
       "desc": "How rules target elements, which declaration wins, the parts of a box",
@@ -341,6 +349,14 @@
           "id": "lab5-boxes-position",
           "name": "Lab 5 — Box it, then place it",
           "desc": "Your practice file: 9 exercises — the box model, then the five position values (6 in the lab, 3 at home)",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lab6-the-rex",
+          "name": "Lab 6 — Tonight at the Rex",
+          "desc": "Your practice file: 9 exercises — values, functions, objects, the DOM and events (6 in the lab, 3 at home)",
           "files": [
             "index.html"
           ]
