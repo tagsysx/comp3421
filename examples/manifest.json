@@ -102,8 +102,7 @@
       "name": "Lab 6 · Query it, then change it",
       "desc": "practise JavaScript on the page: values, functions, objects, query-based DOM and events — 60 min in the lab, three exercises at home",
       "examples": [
-        "lab/lab6-study-desk",
-        "lab/lab6-study-desk-demo"
+        "lab/lab6-study-desk"
       ]
     },
     {
@@ -358,15 +357,6 @@
           "id": "lab6-study-desk",
           "name": "Lab 6 — Query it, then change it",
           "desc": "Your practice files: 9 exercises — values, functions, objects, query-based DOM and events (6 in the lab, 3 at home)",
-          "files": [
-            "index.html",
-            "script.js"
-          ]
-        },
-        {
-          "id": "lab6-study-desk-demo",
-          "name": "Lab 6 demo — the finished planner",
-          "desc": "The finished version: every exercise answered, so every block reacts (answers.html + answers.js)",
           "files": [
             "index.html",
             "script.js"
