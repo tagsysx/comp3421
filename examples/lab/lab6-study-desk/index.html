@@ -6,34 +6,45 @@
 <!-- ================================================================
      LAB 6 — QUERY IT, THEN CHANGE IT
 
-     A study planner that comes alive. Nine exercises on one page,
+     A study planner that becomes live. Nine exercises on one page,
      split into two halves.
 
        PART 1 · IN THE LAB — 60 minutes
          1 · The week on the cover       constants, textContent    8 min
-         2 · One function, three lines   parameters and return    10 min
-         3 · The timetable from an array arrays, for...of, the DOM 10 min
-         4 · Deadlines are objects       objects and properties   10 min
-         5 · Mark what is done           a real tick box, class   12 min
-         6 · One listener for the list   events and event.target  10 min
+         2 · The hours add up            a function, three rows   10 min
+         3 · The timetable's logged time  objects, for...of       12 min
+         4 · Count what is due           querySelectorAll, :checked 10 min
+         5 · Tick what is done           a real box, change event 10 min
+         6 · One listener for the list   events, and the countdown 10 min
 
        PART 2 · HOMEWORK — done at home
-         7 · The study log               a field, and arithmetic  18 min
-         8 · The deadline countdown      setInterval              18 min
-         9 · Add your own deadline       a new row, in JavaScript 24 min
+         7 · The study log               a select, a field, totals 18 min
+         8 · The countdown               setInterval               18 min
+         9 · Add a deadline              a date picker, a new row  24 min
 
-     HOW THIS PAGE WORKS — read before you begin
+     WHAT THIS PAGE IS
 
-     This is your study desk for the week: how the hours add up, the
-     timetable, what is due, a study log and a countdown to the next
-     deadline. The page is finished and styled. The behaviour is not
-     written yet: nothing on it reacts, because the script is empty.
+     One student's study desk for one week, with four blocks that feed
+     each other:
+
+       the teaching week  each course, its class times, and the time
+                          logged for it so far
+       due this week      what has to be handed in, and whether it is
+                          done
+       the study log      minutes added to a course; they land in the
+                          teaching week and move the goal bar
+       the countdown      points at the deadline picked in the list
+       add a deadline     the date picker writes a new row into the list
+
+     The week itself is already printed: the courses, the deadlines,
+     the forms and the paper are in the page. The script is what makes
+     the page respond — and the script is empty. That is the lab.
 
      The lab has TWO files, and they do different jobs:
 
-       training.html  the page: the cover, the sections, the forms,
-                      and one style block that draws all of it. It is
-                      finished. NOT yours.
+       training.html  the page: the cover, the printed week, the
+                      forms, and one style block that draws all of it.
+                      It is finished. NOT yours.
        script.js      the behaviour. YOUR WORK. This is the only file
                       you write in.
 
@@ -44,22 +55,13 @@
      Every exercise finds its elements with document.querySelector,
      or with document.querySelectorAll when it wants all of them.
      One API, any selector: an id is written "#week", a class is
-     written ".task". The lecture taught both in section 07; there
-     is no new syntax and nothing to look up.
+     written ".deadline". The lecture taught both in section 07;
+     there is no new syntax and nothing to look up.
 
-     The six lab exercises give you three things:
-
-       the AIM     one line: what the page has to do afterwards.
-       the STEPS   a short numbered list: the order of the work, and
-                   the idea each line is about.
-       the CODE    the finished JavaScript, printed under the steps.
-                   TYPE IT IN. Typing is where the braces, the
-                   quotes and the semicolons stick; pasting does not.
-
-     The three homework exercises work the other way round: they give
-     you the aim and the ids of the elements, and no code at all.
-     Working out the statements is the homework. In the lab you are
-     shown; at home you are asked.
+     The six lab exercises give three things: the AIM, a numbered
+     STEPS list, and the finished CODE to type in. The three homework
+     exercises give the aim and the ids of the elements, and no code:
+     working the statements out is the homework.
 
      Run the page after every exercise. A script that has an error
      stops there: the statements above the error still ran, none
@@ -69,11 +71,15 @@
 
      Open target-preview.png in this folder to see one finished
      planner. A still picture cannot show what a click or a form
-     submission does, so states.png freezes five moments: a deadline
-     chosen, a box ticked by hand (the row is struck through), the
-     study log filled in twice (the goal bar moves), a deadline added
-     (the row flashes and the count grows), and the confirmation the
-     form leaves behind.
+     submission does, so states.png freezes six moments: a deadline
+     chosen (and the countdown picks it up), a box ticked, the study
+     log landing in the goal bar, the teaching week following that
+     same entry, a deadline added with the date picker, and the
+     confirmation it leaves behind.
+
+     This file is the practice page: it starts as the printed week and
+     becomes live as you do the exercises. To see the finished
+     behaviour, open answers.html next to this file.
 
      When you are done, press the download button in the editor. It
      gives you a zip with BOTH files; submit that zip.
@@ -86,7 +92,7 @@
      STYLE BLOCK — THE STUDY DESK                           [ NOT YOURS ]
 
      Everything here is finished: the desk, the paper, the ruled
-     lines, the sticky notes, the checkboxes, the forms. None of it
+     lines, the printed week, the tick boxes, the forms. None of it
      belongs to an exercise.
 
      ★ Do not write anything in here. Your JavaScript goes in
@@ -176,8 +182,15 @@
     transform-origin: left center;
   }
 
+  .purpose {
+    margin: 10px 0 0;
+    font-style: italic;
+    font-size: 16px;
+    color: #3d4a42;
+  }
+
   .week {
-    margin: 12px 0 0;
+    margin: 10px 0 0;
     font-family: 'Caveat';
     font-size: 34px;
     font-weight: 400;
@@ -241,34 +254,58 @@
     border-bottom: 0;
   }
 
-  .timetable {
-    display: grid;
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-    gap: 13px;
+  .slots {
     margin: 8px 0 0;
     padding: 0;
     list-style: none;
   }
 
-  .timetable li {
-    padding: 12px 15px;
-    border-radius: 2px;
-    background: #fff3b0;
-    box-shadow: 2px 3px 7px rgba(0, 0, 0, .13);
+  .slot {
+    display: grid;
+    grid-template-columns: 178px minmax(0, 1fr) 150px;
+    align-items: baseline;
+    gap: 12px;
+    padding: 11px 6px;
+    border-bottom: 1px dashed rgba(31, 58, 147, .28);
+  }
+
+  .slot:last-child {
+    border-bottom: 0;
+  }
+
+  .slot .when {
+    font-family: 'Courier New';
+    font-size: 13px;
+    letter-spacing: .04em;
+    color: #5c6570;
+  }
+
+  .slot .course {
     font-family: 'Caveat';
     font-size: 24px;
-    color: #1d2a3a;
-    transform: rotate(-1.2deg);
+    color: #1f3a93;
   }
 
-  .timetable li:nth-child(2n) {
-    background: #cfe6ff;
-    transform: rotate(1.1deg);
+  .slot .logged {
+    font-family: 'Courier New';
+    font-size: 13px;
+    text-align: right;
+    color: #b5332b;
   }
 
-  .timetable li:nth-child(3n) {
-    background: #ffd9d3;
-    transform: rotate(.5deg);
+  .hint {
+    margin: 8px 0 0;
+    font-size: 13.5px;
+    font-style: italic;
+    color: #6b756e;
+  }
+
+  .due-count {
+    margin: 2px 0 0;
+    font-family: 'Caveat';
+    font-size: 25px;
+    color: #b5332b;
+    min-height: 30px;
   }
 
   .picked {
@@ -285,19 +322,19 @@
     list-style: none;
   }
 
-  .task {
+  .deadline {
     display: flex;
     align-items: center;
     gap: 13px;
     padding: 11px 16px;
     border-bottom: 1px dashed rgba(31, 58, 147, .28);
     font-family: Georgia;
-    font-size: 18px;
+    font-size: 17px;
     cursor: pointer;
     transition: background .2s;
   }
 
-  .task input {
+  .deadline input {
     order: -1;
     flex: none;
     width: 17px;
@@ -306,20 +343,20 @@
     cursor: pointer;
   }
 
-  .task:hover {
+  .deadline:hover {
     background: #f4edd9;
   }
 
-  .task.is-done {
+  .deadline.is-done {
     color: rgba(29, 42, 58, .62);
     text-decoration: line-through;
   }
 
-  .task.is-done input {
+  .deadline.is-done input {
     accent-color: #2e7d32;
   }
 
-  .task.is-selected {
+  .deadline.is-selected {
     background: linear-gradient(transparent 44%, #ffe27a 44%, #ffe27a 96%, transparent 96%);
     box-shadow: inset 4px 0 0 #b5332b;
   }
@@ -329,27 +366,12 @@
     to { background: transparent; }
   }
 
-  .task.is-new {
+  .deadline.is-new {
     animation: flash 1.6s ease;
   }
 
-  .due-count {
-    margin: 2px 0 0;
-    font-family: 'Caveat';
-    font-size: 25px;
-    color: #b5332b;
-    min-height: 30px;
-  }
-
-  .added {
-    margin: 10px 0 0;
-    font-family: 'Caveat';
-    font-size: 27px;
-    color: #1f3a93;
-    min-height: 34px;
-  }
-
-  .log {
+  .log,
+  .deadline-form {
     display: flex;
     flex-wrap: wrap;
     align-items: center;
@@ -360,25 +382,54 @@
   .log label {
     font-family: 'Courier New';
     font-size: 11px;
-    letter-spacing: .22em;
+    letter-spacing: .2em;
     text-transform: uppercase;
     color: #1f3a93;
   }
 
-  .log input {
-    width: 96px;
+  .log input,
+  .deadline-form input {
     padding: 4px 6px;
     border: 0;
     border-bottom: 2px solid #1f3a93;
     background: transparent;
     font-family: 'Caveat';
-    font-size: 28px;
+    font-size: 26px;
     color: #1d2a3a;
     text-align: center;
   }
 
+  #minutes {
+    width: 92px;
+  }
+
+  #date {
+    width: 168px;
+    font-family: 'Courier New';
+    font-size: 15px;
+    text-align: left;
+  }
+
+  #task {
+    width: 230px;
+    font-family: Georgia;
+    font-size: 16px;
+    text-align: left;
+  }
+
+  select {
+    padding: 4px 6px;
+    border: 0;
+    border-bottom: 2px solid #1f3a93;
+    background: transparent;
+    font-family: 'Courier New';
+    font-size: 15px;
+    color: #1d2a3a;
+  }
+
   .log input:focus,
-  .deadline-form input:focus {
+  .deadline-form input:focus,
+  select:focus {
     outline: none;
     border-bottom-color: #b5332b;
   }
@@ -398,18 +449,26 @@
     background: #2c4cb5;
   }
 
-  .logged {
+  .logged,
+  .added {
     width: 100%;
     margin: 6px 0 0;
     font-family: 'Caveat';
-    font-size: 31px;
+    font-size: 29px;
+    min-height: 38px;
+  }
+
+  .logged {
     color: #b5332b;
-    min-height: 40px;
+  }
+
+  .added {
+    color: #1f3a93;
   }
 
   .goal {
     max-width: 540px;
-    margin: 14px 0 0;
+    margin: 10px 0 0;
   }
 
   .goal-head {
@@ -467,36 +526,6 @@
     min-height: 38px;
   }
 
-  .deadline-form {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 12px;
-    margin: 6px 0 0;
-  }
-
-  .deadline-form input {
-    padding: 5px 4px;
-    border: 0;
-    border-bottom: 1.5px solid rgba(31, 58, 147, .55);
-    background: transparent;
-    font-family: Georgia;
-    font-size: 16px;
-    color: #1d2a3a;
-  }
-
-  #day {
-    width: 76px;
-  }
-
-  #course {
-    width: 132px;
-  }
-
-  #task {
-    width: 210px;
-  }
-
   footer {
     margin-top: 40px;
     padding-top: 16px;
@@ -519,15 +548,6 @@
     content: "\2014";
     color: rgba(29, 42, 58, .3);
   }
-
-  #timetable:empty::after,
-  #deadlines:empty::after {
-    content: "\2014";
-    display: block;
-    padding: 12px 0;
-    font-family: 'Courier New';
-    color: rgba(29, 42, 58, .3);
-  }
 </style>
 </head>
 <body>
@@ -537,6 +557,7 @@
     <header class="cover">
       <p class="kicker">COMP3421 · the study desk</p>
       <h1 class="title">The week ahead</h1>
+      <p class="purpose">One page for the week: what is due, what you have studied, and how long is left.</p>
       <p class="week" id="week"></p>
       <p class="byline" id="byline"></p>
     </header>
@@ -545,7 +566,7 @@
 
     <section>
       <h2>How the week adds up</h2>
-      <p class="lede">Three kinds of hour. The total is a habit, not a wish.</p>
+      <p class="lede">The hours you plan to spend, in three kinds.</p>
       <ul class="load" id="load">
         <li id="lectures"></li>
         <li id="labs"></li>
@@ -554,24 +575,53 @@
     </section>
 
     <section>
-      <h2>The timetable</h2>
-      <p class="lede">Everything that has a fixed time this week.</p>
-      <ul class="timetable" id="timetable"></ul>
+      <h2>The teaching week</h2>
+      <p class="lede">Every course you are taking this week.</p>
+      <ul class="slots" id="timetable">
+        <li class="slot">
+          <span class="when">Mon 09:30 · Thu 11:30</span>
+          <span class="course">COMP3421</span>
+          <span class="logged">not logged yet</span>
+        </li>
+        <li class="slot">
+          <span class="when">Tue 14:30</span>
+          <span class="course">COMP2021</span>
+          <span class="logged">not logged yet</span>
+        </li>
+        <li class="slot">
+          <span class="when">Fri 09:30</span>
+          <span class="course">COMP3171</span>
+          <span class="logged">not logged yet</span>
+        </li>
+      </ul>
+      <p class="hint">The number on the right is the time logged for that course since Monday.</p>
     </section>
 
     <section>
       <h2>Due this week</h2>
       <p class="due-count" id="due-count">&mdash;</p>
       <p class="picked" id="picked">Nothing picked yet.</p>
-      <ul class="deadlines" id="deadlines"></ul>
+      <ul class="deadlines" id="deadlines">
+        <li class="deadline is-done"><input type="checkbox" checked />2026-10-20 · COMP3421 · Lab 5 reflection</li>
+        <li class="deadline"><input type="checkbox" />2026-10-22 · COMP2021 · Problem sheet 4</li>
+        <li class="deadline"><input type="checkbox" />2026-10-23 · COMP3421 · Project outline</li>
+      </ul>
+      <p class="countdown-caption" id="countdown-task">Next deadline</p>
+      <p class="countdown" id="countdown">&mdash;</p>
     </section>
 
     <section>
       <h2>Study log</h2>
-      <p class="lede">Log the minutes you actually studied: they add to the week's total, and the bar fills.</p>
+      <p class="lede">Minutes you actually studied, added to a course.</p>
       <form class="log" id="log-form">
-        <label for="minutes">Minutes logged</label>
-        <input type="number" id="minutes" name="minutes" min="0" max="600" value="150" />
+        <label for="log-course">Course</label>
+        <select id="log-course">
+          <option>COMP3421</option>
+          <option>COMP2021</option>
+          <option>COMP3171</option>
+        </select>
+        <label for="minutes">Minutes</label>
+        <input type="number" id="minutes" name="minutes" min="0" max="600" value="50" />
         <button type="submit">Log it</button>
         <p class="logged" id="logged">&mdash;</p>
       </form>
@@ -584,15 +634,16 @@
       </div>
     </section>
 
-    <p class="countdown-caption">Next deadline</p>
-    <p class="countdown" id="countdown">&mdash;</p>
-
     <section>
       <h2>Add a deadline</h2>
-      <p class="lede">Your own course, your own task. It joins the list above and the page says so.</p>
+      <p class="lede">Pick a date, a course and a task. It joins the list above.</p>
       <form class="deadline-form" id="deadline-form">
-        <input type="text" id="day" name="day" placeholder="Fri" />
-        <input type="text" id="course" name="course" placeholder="COMP3421" />
+        <input type="date" id="date" name="date" value="2026-10-24" />
+        <select id="course" name="course">
+          <option>COMP3421</option>
+          <option>COMP2021</option>
+          <option>COMP3171</option>
+        </select>
         <input type="text" id="task" name="task" placeholder="Your task" />
         <button type="submit">Add it</button>
       </form>
