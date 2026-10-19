@@ -70,7 +70,8 @@
      Open target-preview.png in this folder to see one finished
      planner. A still picture cannot show what a click or a form
      submission does, so states.png freezes three moments: a deadline
-     chosen, the study log filled in, and a deadline added.
+     chosen, the study log filled in (twice, so the goal bar moves),
+     and a deadline added.
 
      When you are done, press the download button in the editor. It
      gives you a zip with BOTH files; submit that zip.
@@ -393,6 +394,49 @@
     min-height: 40px;
   }
 
+  .goal {
+    max-width: 540px;
+    margin: 14px 0 0;
+  }
+
+  .goal-head {
+    display: flex;
+    justify-content: space-between;
+    align-items: baseline;
+    gap: 12px;
+  }
+
+  .goal-label {
+    font-family: 'Courier New';
+    font-size: 11px;
+    letter-spacing: .2em;
+    text-transform: uppercase;
+    color: #1f3a93;
+  }
+
+  .goal-count {
+    font-family: 'Caveat';
+    font-size: 25px;
+    color: #1d2a3a;
+  }
+
+  .goal-track {
+    height: 14px;
+    margin-top: 6px;
+    border-radius: 2px;
+    background: rgba(31, 58, 147, .14);
+    overflow: hidden;
+  }
+
+  .goal-fill {
+    width: 0%;
+    max-width: 100%;
+    height: 100%;
+    border-radius: 2px;
+    background: linear-gradient(90deg, #1f3a93, #2c4cb5);
+    transition: width .45s ease;
+  }
+
   .countdown-caption {
     margin: 26px 0 0;
     font-family: 'Courier New';
@@ -510,13 +554,20 @@
 
     <section>
       <h2>Study log</h2>
-      <p class="lede">Log the minutes you actually studied. The page does the adding up.</p>
+      <p class="lede">Log the minutes you actually studied: they add to the week's total, and the bar fills.</p>
       <form class="log" id="log-form">
         <label for="minutes">Minutes logged</label>
         <input type="number" id="minutes" name="minutes" min="0" max="600" value="150" />
         <button type="submit">Log it</button>
         <p class="logged" id="logged">&mdash;</p>
       </form>
+      <div class="goal">
+        <div class="goal-head">
+          <span class="goal-label">This week's goal</span>
+          <span class="goal-count" id="goal-count">0 h 0 min of 10 h</span>
+        </div>
+        <div class="goal-track"><div class="goal-fill" id="goal-fill"></div></div>
+      </div>
     </section>
 
     <p class="countdown-caption">Next deadline</p>

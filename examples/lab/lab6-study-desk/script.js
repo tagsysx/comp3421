@@ -187,19 +187,27 @@
 //   picked.textContent = "You are looking at: " + e.target.textContent;
 // });
 
-// ── Exercise 7 · The study log ─────────────────────
+// ── Exercise 7 · The study log ───────────────────────────────
 
-// TODO 7 — the study log turns minutes into hours and minutes.
-// There is a form, a number of minutes and a line for the result.
+// TODO 7 — logging minutes adds to the week, and the bar moves.
+// There is a form, a number of minutes, a line for the message, a
+// counter for the week's total and a bar under it. Every submission
+// has to add to what came before, so the running total must live
+// outside the form's handler: a total declared inside it starts from
+// nothing on every click.
 // The page must not reload. A field hands you its text, not its
-// number, so the arithmetic has to force it to be a number. The
-// mark is on the conversion being right, not only on something
-// appearing.
+// number, so turn it into a number before adding it: with a plain
+// "+" on the text, 150 and 90 would glue into "15090". The bar's
+// width is a percentage of a 600-minute goal.
 //                                                   [homework · 18 min]
-// Aim: submitting the log form writes the minutes as "H h M min"
-// into the line id logged, for the number of minutes in the field
-// id minutes. 150 must read 2 h 30 min; 45 must read 0 h 45 min.
-// The page stays where it is.
+// Aim: submitting the form id log-form adds the minutes in the field
+// id minutes to this week's total and then:
+//   · writes "Logged N min · H h M min so far" into the line id logged,
+//   · writes "H h M min of 10 h" into the counter id goal-count,
+//   · sets the width of the bar id goal-fill to the logged share of a
+//     600-minute goal, as a percentage.
+// 150 then 90 must end at "Logged 90 min · 4 h 0 min so far",
+// "4 h 0 min of 10 h" and a bar at 40%. No reload.
 //
 // Your code goes here.
 
