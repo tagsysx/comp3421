@@ -98,11 +98,11 @@
       ]
     },
     {
-      "id": "lab-06-study-desk",
-      "name": "Lab 6 · Query it, then change it",
-      "desc": "practise JavaScript on the page: values, functions, objects, query-based DOM and events — 60 min in the lab, three exercises at home",
+      "id": "lab-06-theme-gallery",
+      "name": "Lab 6 · Theme it, then browse it",
+      "desc": "practise JavaScript on the page: querySelector, classList, events and textContent on a theme switcher and a photo gallery — 60 min in the lab, three exercises at home",
       "examples": [
-        "lab/lab6-study-desk"
+        "lab/lab6-theme-gallery"
       ]
     },
     {
@@ -354,12 +354,18 @@
           ]
         },
         {
-          "id": "lab6-study-desk",
-          "name": "Lab 6 — Query it, then change it",
-          "desc": "Your practice files: 9 exercises — values, functions, objects, query-based DOM and events (6 in the lab, 3 at home)",
+          "id": "lab6-theme-gallery",
+          "name": "Lab 6 — Theme it, then browse it",
+          "desc": "Your practice files: 9 exercises — a five-theme switcher and a six-photo gallery (6 in the lab, 3 at home)",
           "files": [
             "index.html",
-            "script.js"
+            "script.js",
+            "images/photo-1.jpg",
+            "images/photo-2.jpg",
+            "images/photo-3.jpg",
+            "images/photo-4.jpg",
+            "images/photo-5.jpg",
+            "images/photo-6.jpg"
           ]
         }
       ]

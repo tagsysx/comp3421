@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ================================================================
+     LAB 6 — THEME IT, THEN BROWSE IT
+
+     Two things to build on one page, nine exercises in two halves.
+
+       PART 1 · IN THE LAB — 60 minutes
+         1 · Strip the old theme      querySelector, a loop       10 min
+         2 · Count the changes        textContent, Number()        8 min
+         3 · Apply the new theme      if, classList, an object    12 min
+         4 · Wire the theme buttons   querySelectorAll, events    12 min
+         5 · Count the views          textContent, Number()        8 min
+         6 · Show a photo             src, alt, textContent       10 min
+
+       PART 2 · HOMEWORK — done at home
+         7 · Handle a thumbnail click  a loop, a match, a class  18 min
+         8 · Wire the gallery          querySelectorAll, events   18 min
+         9 · Keyboard arrows           keydown, an index, wrapping 24 min
+
+     WHAT THIS PAGE IS
+
+     A small photo gallery with five colour themes. One page, two
+     blocks that work on the same document:
+
+       the theme bar   five buttons; clicking one re-skins the WHOLE
+                       page (the gallery included) by swapping a class
+                       on the body
+       the gallery     six thumbnails; clicking one shows it large,
+                       names it, marks the thumbnail and counts the view
+
+     The page and all its styling are already written. The script is
+     what makes the page respond — and the script is empty. That is
+     the lab.
+
+     The lab has TWO files, and they do different jobs:
+
+       training.html  the page: the panels, the buttons, the photos,
+                      and one style block that draws all of it,
+                      including the five themes. Finished. NOT yours.
+       script.js      the behaviour. YOUR WORK. This is the only file
+                      you write in.
+
+     In the live editor the two files appear as two tabs above the
+     code: click script.js to work on the script, and leave
+     index.html alone. The result panel runs both files together.
+
+     Every exercise finds its elements with document.querySelector,
+     or with document.querySelectorAll when it wants all of them.
+     One API, any selector: an id is written "#main-image", a class
+     is written ".theme-btn". The lecture taught both in section 07.
+
+     The six lab exercises give three things: the AIM, a numbered
+     STEPS list, and the finished CODE to type in. The three homework
+     exercises give the aim and the ids, and no code: working the
+     statements out is the homework.
+
+     Run the page after every exercise. A script that has an error
+     stops there: the statements above the error still ran, none
+     below it did. The Console (F12) names the line. A script that
+     runs but changes nothing is usually a selector that matches
+     nothing, and the Console will not warn you about that at all.
+
+     Open target-preview.png in this folder to see one finished page.
+     A still picture cannot show what a click does, so states.png
+     freezes five moments: the ocean theme on, a photo picked, the
+     counters after a few clicks, the forest theme, and the keyboard
+     arrow moving the gallery.
+
+     This file is the practice page: the page is complete, the
+     behaviour is not. It becomes live as you work through the
+     exercises.
+
+     When you are done, press the download button in the editor. It
+     gives you a zip with both files and the photos; submit that zip.
+     ================================================================ -->
+<title>Theme it, then browse it — COMP3421 Lab 6</title>
+
+<!-- ── THE STYLE BLOCK · the whole look of this page · NOT yours ── -->
+<style>
+  /* ══════════════════════════════════════════════════════════════
+     STYLE BLOCK — THE PAGE AND ITS FIVE THEMES               [ NOT YOURS ]
+
+     Everything here is finished: the layout, the panels, the
+     gallery, the buttons, and the five theme classes that re-skin
+     the page. None of it belongs to an exercise.
+
+     ★ Do not write anything in here. Your JavaScript goes in
+     script.js, the other file of this lab.
+     ══════════════════════════════════════════════════════════════ */
+
+  * {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 40px 18px 56px;
+    background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+    color: #334155;
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+    line-height: 1.55;
+    transition: background .5s ease, color .5s ease;
+  }
+
+  .shell {
+    max-width: 980px;
+    margin: 0 auto;
+  }
+
+  header.site-head {
+    margin-bottom: 22px;
+  }
+
+  header.site-head h1 {
+    margin: 0 0 6px;
+    font-size: 2rem;
+    letter-spacing: -.01em;
+  }
+
+  .tagline {
+    margin: 0;
+    font-size: 1.02rem;
+    opacity: .85;
+  }
+
+  .panel {
+    margin: 18px 0;
+    padding: 22px 24px;
+    border-radius: 14px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    box-shadow: 0 10px 26px rgba(15, 23, 42, .07);
+    transition: background .5s ease, border-color .5s ease;
+  }
+
+  .panel h2 {
+    margin: 0 0 4px;
+    font-size: 1.28rem;
+  }
+
+  .lede {
+    margin: 0 0 16px;
+    font-size: .95rem;
+    opacity: .8;
+  }
+
+  /* ---------- theme bar ---------- */
+
+  .theme-bar {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin-bottom: 14px;
+  }
+
+  .theme-btn {
+    padding: 9px 18px;
+    border-radius: 999px;
+    border: 1px solid #cbd5e1;
+    background: #f8fafc;
+    color: #334155;
+    font-size: .95rem;
+    cursor: pointer;
+    transition: transform .12s ease, background .2s ease;
+  }
+
+  .theme-btn:hover {
+    transform: translateY(-1px);
+    background: #eef2f7;
+  }
+
+  .theme-btn:active {
+    transform: translateY(1px);
+  }
+
+  .theme-status {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 22px;
+    font-size: .95rem;
+  }
+
+  .theme-status strong {
+    font-weight: 600;
+  }
+
+  .stat-value {
+    font-weight: 700;
+  }
+
+  /* ---------- gallery ---------- */
+
+  .stage {
+    margin-bottom: 16px;
+  }
+
+  .stage img {
+    display: block;
+    width: 100%;
+    max-height: 430px;
+    object-fit: cover;
+    border-radius: 10px;
+    border: 1px solid #cbd5e1;
+    background: #cbd5e1;
+  }
+
+  .stage h3 {
+    margin: 10px 0 0;
+    font-size: 1.1rem;
+  }
+
+  .thumbs {
+    display: grid;
+    grid-template-columns: repeat(6, minmax(0, 1fr));
+    gap: 10px;
+  }
+
+  .thumbnail {
+    width: 100%;
+    height: 78px;
+    object-fit: cover;
+    border-radius: 8px;
+    border: 3px solid transparent;
+    cursor: pointer;
+    opacity: .8;
+    transition: opacity .2s ease, border-color .2s ease, transform .12s ease;
+  }
+
+  .thumbnail:hover {
+    opacity: 1;
+    transform: translateY(-2px);
+  }
+
+  .thumbnail.active {
+    opacity: 1;
+    border-color: #334155;
+  }
+
+  .gallery-stats {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 24px;
+    margin-top: 16px;
+    padding-top: 14px;
+    border-top: 1px dashed rgba(100, 116, 139, .35);
+    font-size: .95rem;
+  }
+
+  footer {
+    margin-top: 26px;
+    text-align: center;
+    font-size: .82rem;
+    opacity: .7;
+  }
+
+  /* ══════════════════════════════════════════════════════════════
+     THE FIVE THEMES
+
+     A theme is one class on the body. These rules only restyle; the
+     exercise that adds and removes the class is in script.js.
+     ══════════════════════════════════════════════════════════════ */
+
+  body.theme-ocean {
+    background: linear-gradient(135deg, #0ea5e9 0%, #3b82f6 50%, #1d4ed8 100%);
+    color: #ffffff;
+  }
+
+  body.theme-ocean .panel {
+    background: rgba(255, 255, 255, .16);
+    border-color: rgba(255, 255, 255, .34);
+    box-shadow: 0 12px 30px rgba(2, 32, 71, .28);
+  }
+
+  body.theme-ocean .theme-btn {
+    background: rgba(255, 255, 255, .92);
+    color: #1e40af;
+    border-color: rgba(255, 255, 255, .6);
+  }
+
+  body.theme-ocean .thumbnail.active {
+    border-color: #ffffff;
+  }
+
+  body.theme-sunset {
+    background: linear-gradient(135deg, #f97316 0%, #ea580c 30%, #dc2626 70%, #991b1b 100%);
+    color: #ffffff;
+  }
+
+  body.theme-sunset .panel {
+    background: rgba(255, 255, 255, .15);
+    border-color: rgba(255, 255, 255, .32);
+    box-shadow: 0 12px 30px rgba(69, 10, 10, .28);
+  }
+
+  body.theme-sunset .theme-btn {
+    background: rgba(255, 255, 255, .92);
+    color: #9a3412;
+    border-color: rgba(255, 255, 255, .6);
+  }
+
+  body.theme-sunset .thumbnail.active {
+    border-color: #ffffff;
+  }
+
+  body.theme-forest {
+    background: linear-gradient(135deg, #16a34a 0%, #15803d 30%, #166534 70%, #14532d 100%);
+    color: #ecfdf5;
+  }
+
+  body.theme-forest .panel {
+    background: rgba(255, 255, 255, .14);
+    border-color: rgba(255, 255, 255, .3);
+    box-shadow: 0 12px 30px rgba(6, 46, 24, .3);
+  }
+
+  body.theme-forest .theme-btn {
+    background: rgba(255, 255, 255, .92);
+    color: #166534;
+    border-color: rgba(255, 255, 255, .6);
+  }
+
+  body.theme-forest .thumbnail.active {
+    border-color: #ffffff;
+  }
+
+  body.theme-midnight {
+    background: linear-gradient(135deg, #0f172a 0%, #1e293b 55%, #334155 100%);
+    color: #e2e8f0;
+  }
+
+  body.theme-midnight .panel {
+    background: rgba(255, 255, 255, .08);
+    border-color: rgba(255, 255, 255, .18);
+    box-shadow: 0 12px 30px rgba(0, 0, 0, .45);
+  }
+
+  body.theme-midnight .theme-btn {
+    background: rgba(255, 255, 255, .9);
+    color: #1e293b;
+    border-color: rgba(255, 255, 255, .5);
+  }
+
+  body.theme-midnight .thumbnail.active {
+    border-color: #fbbf24;
+  }
+</style>
+</head>
+<body>
+
+  <div class="shell">
+
+    <header class="site-head">
+      <h1>Theme it, then browse it</h1>
+      <p class="tagline">One page, five colour themes and a six-photo gallery. Pick a theme; pick a photo.</p>
+    </header>
+
+    <section class="panel" aria-labelledby="themes-title">
+      <h2 id="themes-title">1 · Pick a theme</h2>
+      <p class="lede">Every button re-skins the whole page — this panel and the gallery below.</p>
+
+      <div class="theme-bar">
+        <button class="theme-btn" value="theme-default">Default</button>
+        <button class="theme-btn" value="theme-ocean">Ocean Blue</button>
+        <button class="theme-btn" value="theme-sunset">Sunset</button>
+        <button class="theme-btn" value="theme-forest">Forest</button>
+        <button class="theme-btn" value="theme-midnight">Midnight</button>
+      </div>
+
+      <p class="theme-status">
+        <span>Current theme: <strong id="current-theme">Default</strong></span>
+        <span>Theme changes: <strong id="change-counter">0</strong></span>
+      </p>
+    </section>
+
+    <section class="panel" aria-labelledby="gallery-title">
+      <h2 id="gallery-title">2 · Look at the photos</h2>
+      <p class="lede">Click a thumbnail to show it large. The arrow keys work too, once you write the last exercise.</p>
+
+      <div class="stage">
+        <img id="main-image" src="images/photo-1.jpg" alt="Dawn Ridge" />
+        <h3 id="image-title">Dawn Ridge</h3>
+      </div>
+
+      <div class="thumbs">
+        <img class="thumbnail active" src="images/photo-1.jpg" alt="Dawn Ridge" />
+        <img class="thumbnail" src="images/photo-2.jpg" alt="City Lights" />
+        <img class="thumbnail" src="images/photo-3.jpg" alt="Ocean Waves" />
+        <img class="thumbnail" src="images/photo-4.jpg" alt="Forest Path" />
+        <img class="thumbnail" src="images/photo-5.jpg" alt="Desert Dunes" />
+        <img class="thumbnail" src="images/photo-6.jpg" alt="Night Sky" />
+      </div>
+
+      <p class="gallery-stats">
+        <span>Photos: <strong class="stat-value">6</strong></span>
+        <span>Views: <strong id="view-counter" class="stat-value">0</strong></span>
+        <span>Current: <strong id="current-image-name" class="stat-value">Dawn Ridge</strong></span>
+      </p>
+    </section>
+
+    <footer>A practice page. The photos are abstract drawings, not photographs.<br />COMP3421 · Lab 6 · JavaScript I</footer>
+
+  </div>
+
+<!-- ── THE SCRIPT TAG · the second file of this lab · script.js ── -->
+<script src="script.js"></script>
+</body>
+</html>
