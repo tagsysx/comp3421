@@ -1,0 +1,488 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<!-- ================================================================
+     LAB 6 — ICON IT, THEN ANIMATE IT
+
+     Two hover animations on one page, nine exercises in two halves.
+
+       PART 1 · IN THE LAB — 60 minutes
+         1 · The dark stage          flex, padding, a rounded panel  10 min
+         2 · The round button        size, radius, line-height       12 min
+         3 · The glyph               stacking with position/z-index 10 min
+         4 · Turn the glyph          :hover, colour, rotateY          8 min
+         5 · The sliding sheet       ::before, top: 100%, transition 12 min
+         6 · Slide, then brand it    :hover::before, nth-child        8 min
+
+       PART 2 · HOMEWORK — done at home
+         7 · The menu row            flex, gap, pill items          18 min
+         8 · The gradient overlay    variables, gradient, blur      18 min
+         9 · Expand and swap         width, scale, transition-delay  24 min
+
+     WHAT THIS PAGE IS
+
+     Two small hover demos, styled entirely by CSS:
+
+       the icon buttons  four white circles with a glyph;
+                         hovering one slides its brand colour up
+                         from below and spins the glyph once
+       the gradient menu five white pills with custom properties;
+                         hovering one widens it, fades in a gradient,
+                         adds a blurred glow and swaps icon for title
+
+     The HTML, the page layout and the demo headings are finished.
+     The CSS that makes the two demos work is yours: it goes in
+     style block 2 at the bottom of this file.
+
+     This page has TWO style blocks, labelled:
+
+       block 1 of 2 — the shell of this practice page: the background,
+                       the headings, the panels, the footer. Finished.
+                       NOT yours.
+       block 2 of 2 — YOUR WORK. The only block you write in.
+
+     Every exercise prints an aim, a short Steps list and the finished
+     CSS. Type it in; the typing is where the colons and the numbers
+     stick. The three homework exercises print the aim and the values,
+     and no code: working the rules out is the homework.
+
+     Hover the demos as you go. A rule that matches nothing looks
+     exactly like a rule that is wrong: nothing happens. In DevTools
+     the Styles panel names the rule each value came from, and the
+     :hov checkbox freezes a hover while you inspect it.
+
+     Open target-preview.png to see one finished page. Hover states
+     cannot be photographed, so hover-states.png freezes each demo at
+     rest and on the pointer.
+
+     When you are done, press the download button in the editor and
+     submit that file.
+     ================================================================ -->
+<title>Icon it, then animate it — COMP3421 Lab 6</title>
+
+<!-- ── STYLE BLOCK 1 of 2 · the shell of this practice page · NOT yours ── -->
+  <style>
+  /* ══════════════════════════════════════════════════════════════
+     STYLE BLOCK 1 of 2 — THE SHELL OF THIS PRACTICE PAGE   [ NOT YOURS ]
+
+     Everything here is finished: the page background, the header,
+     the two panels that hold the demos, and the footer. None of it
+     belongs to an exercise.
+
+     ★ Do not write anything here. Your CSS goes in block 2.
+     ══════════════════════════════════════════════════════════════ */
+
+  :root {
+    --space: 8px;
+  }
+
+  *,
+  *::before,
+  *::after {
+    box-sizing: border-box;
+  }
+
+  body {
+    margin: 0;
+    padding: 32px 0 48px;
+    background: #eef2f7;
+    color: #0f172a;
+    font-family: -apple-system, "Segoe UI", "Helvetica Neue", sans-serif;
+    line-height: 1.55;
+  }
+
+  .page {
+    width: min(1000px, 92vw);
+    margin: 0 auto;
+  }
+
+  header.site-head {
+    padding: 16px 0 10px;
+  }
+
+  header.site-head h1 {
+    margin: 0 0 8px;
+    font-size: 2rem;
+    letter-spacing: -.01em;
+  }
+
+  .tagline {
+    margin: 0;
+    color: #475569;
+    font-size: 1.02rem;
+  }
+
+  section.panel {
+    margin: 22px 0;
+    padding: 22px 26px 26px;
+    background: #ffffff;
+    border: 1px solid #e2e8f0;
+    border-radius: 16px;
+    box-shadow: 0 8px 22px rgba(15, 23, 42, .06);
+  }
+
+  section.panel h2 {
+    margin: 0 0 4px;
+    font-size: 1.25rem;
+  }
+
+  .lede {
+    margin: 0 0 14px;
+    color: #64748b;
+    font-size: .95rem;
+  }
+
+  .demo {
+    margin-top: 6px;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+
+  i {
+    font-style: normal;
+  }
+
+  footer {
+    margin-top: 26px;
+    text-align: center;
+    font-size: .82rem;
+    color: #64748b;
+  }
+  </style>
+
+<!-- ── STYLE BLOCK 2 of 2 · the wall · YOUR WORK STARTS HERE ── -->
+<style>
+  /* ══════════════════════════════════════════════════════════════
+     STYLE BLOCK 2 of 2 — YOUR WORK
+
+     This is the ONLY block you write in. Block 1 above is the
+     finished shell of this practice page. The HTML the rules style
+     is below, in the <body>.
+
+     There are nine exercises. Exercises 1–6 print their CSS;
+     7–9 give the aim and the values only.
+     ══════════════════════════════════════════════════════════════ */
+
+  /* ── Exercise 1 · The dark stage ────────────────────────────────────────
+       TODO 1 — the dark stage that holds the four buttons.
+       The wrapper is a flex container: it puts the circles in a row and
+       centres them. The same element is the dark square behind them, so it
+       also takes a background, a rounded corner and a margin that keeps it
+       away from the edges.
+       Everything the circles need to sit on is this one rule.
+                                                                    [10 min]
+
+       Aim: the four circles sit in a row, centred, on a dark rounded panel
+       with room above and below.
+
+       Steps:
+          1. `.social-wrapper` is the element that holds the list. `display:
+             flex` turns its children into a row; `justify-content: center`
+             centres that row.
+          2. `padding: 60px 0` gives the row air above and below; the left
+             and right padding stay 0 because the row is centred.
+          3. The same element paints the panel: `background: #262626`,
+             `border-radius: 14px`, and a `margin: 24px 0` to separate it
+             from the text around it.
+
+       Now type it:
+
+               .social-wrapper {
+                 display: flex;
+                 justify-content: center;
+                 padding: 60px 0;
+                 background: #262626;
+                 border-radius: 14px;
+                 margin: 24px 0;
+               }
+                                                                          */
+
+  /* ── Exercise 2 · The round button ──────────────────────────────────────
+       TODO 2 — the list, and the 80px circle.
+       The list has to lose the browser's bullets and default spacing before
+       it can be a row. Each link then becomes the circle: one size, one
+       radius, one line-height that centres the glyph, and `position:
+       relative` so the sliding sheet in exercise 5 can be positioned
+       against it.
+       `overflow: hidden` is the quiet hero: without it the sliding colour
+       would spill outside the circle.
+                                                                    [12 min]
+
+       Aim: the four links are 80px white circles, evenly spaced, in a row.
+
+       Steps:
+          1. On `.social-list`, remove the defaults: `display: flex`,
+             `list-style: none`, `margin: 0`, `padding: 0`.
+          2. On `.social-list li a`, set the box: `width: 80px`, `height:
+             80px`, `display: block`.
+          3. Round it: `background: #ffffff`, `border: 3px solid #ffffff`,
+             `border-radius: 50%`.
+          4. Centre the glyph: `text-align: center`, `line-height: 80px`,
+             `font-size: 35px`.
+          5. Place it: `margin: 0 10px`, `position: relative`, `overflow:
+             hidden`, `z-index: 1`.
+
+       Now type it:
+
+               .social-list {
+                 display: flex;
+                 list-style: none;
+                 margin: 0;
+                 padding: 0;
+               }
+
+               .social-list li a {
+                 width: 80px;
+                 height: 80px;
+                 display: block;
+                 background: #ffffff;
+                 border: 3px solid #ffffff;
+                 border-radius: 50%;
+                 text-align: center;
+                 line-height: 80px;
+                 font-size: 35px;
+                 margin: 0 10px;
+                 position: relative;
+                 overflow: hidden;
+                 z-index: 1;
+               }
+                                                                          */
+
+  /* ── Exercise 3 · The glyph ─────────────────────────────────────────────
+       TODO 3 — put the glyph above the sheet and give it a transition.
+       The icon sits inside the circle. It needs its own stacking level
+       above the sliding sheet, a starting colour, and a transition so the
+       colour and the rotation in exercise 4 are smooth rather than instant.
+                                                                    [10 min]
+
+       Aim: the glyph is dark, stacked above the sheet, and changes
+       smoothly.
+
+       Steps:
+          1. `position: relative` and `display: inline-block` let the glyph
+             be nudged and stacked.
+          2. `color: #262626` is the resting colour; `z-index: 3` lifts it
+             above the sheet (`z-index: 2`, exercise 5).
+          3. `transition: 0.5s` makes every change to the glyph wait half a
+             second.
+
+       Now type it:
+
+               .social-list li a i {
+                 position: relative;
+                 display: inline-block;
+                 color: #262626;
+                 z-index: 3;
+                 transition: 0.5s;
+               }
+                                                                          */
+
+  /* ── Exercise 4 · Turn the glyph ────────────────────────────────────────
+       TODO 4 — what the pointer does to the glyph.
+       On hover the glyph turns white and spins once around its vertical
+       axis. `rotateY(360deg)` is a full turn, so it reads as a flip; the
+       transition from exercise 3 makes it take half a second.
+                                                                     [8 min]
+
+       Aim: hovering a circle turns its glyph white and spins it once.
+
+       Steps:
+          1. Select the hovered state: `.social-list li a:hover i`.
+          2. Set `color: #ffffff`.
+          3. Set `transform: rotateY(360deg)` — a full turn on the Y axis.
+
+       Now type it:
+
+               .social-list li a:hover i {
+                 color: #ffffff;
+                 transform: rotateY(360deg);
+               }
+                                                                          */
+
+  /* ── Exercise 5 · The sliding sheet ─────────────────────────────────────
+       TODO 5 — the colour sheet, parked below the circle.
+       A `::before` pseudo-element is an extra box inside the link that the
+       HTML never had. Park it exactly one full height below the circle
+       (`top: 100%`), give it the circle's width and height, and it is
+       invisible because `overflow: hidden` clips it. The transition makes
+       its `top` move smoothly.
+                                                                    [12 min]
+
+       Aim: each circle carries a hidden sheet parked one height below it.
+
+       Steps:
+          1. `content: ""` is required before any pseudo-element exists.
+          2. `position: absolute` takes it out of the flow; `width: 100%`,
+             `height: 100%`, `left: 0`, `top: 100%` park it below.
+          3. `transition: 0.5s` and `z-index: 2` finish the job: it moves
+             smoothly and sits above the circle's background but below the
+             glyph.
+
+       Now type it:
+
+               .social-list li a::before {
+                 content: "";
+                 position: absolute;
+                 width: 100%;
+                 height: 100%;
+                 left: 0;
+                 top: 100%;
+                 transition: 0.5s;
+                 z-index: 2;
+               }
+                                                                          */
+
+  /* ── Exercise 6 · Slide, then brand it ──────────────────────────────────
+       TODO 6 — move the sheet in, and give each button its brand colour.
+       On hover the sheet travels from `top: 100%` to `top: 0`, which is the
+       slide. Each circle gets its own colour by position: `:nth-child()`
+       matches the first, second, third and fourth list item, so four short
+       rules paint four sheets.
+                                                                     [8 min]
+
+       Aim: hovering a button slides its brand colour up to fill the circle.
+
+       Steps:
+          1. `.social-list li a:hover::before { top: 0; }` — the slide.
+          2. Four `:nth-child()` rules paint the sheets: Facebook `#3b5999`,
+             Twitter `#55acee`, LinkedIn `#0077b5`, Google+ `#dd4b39`.
+
+       Now type it:
+
+               .social-list li a:hover::before {
+                 top: 0;
+               }
+
+               .social-list li:nth-child(1) a::before {
+                 background: #3b5999;
+               }
+
+               .social-list li:nth-child(2) a::before {
+                 background: #55acee;
+               }
+
+               .social-list li:nth-child(3) a::before {
+                 background: #0077b5;
+               }
+
+               .social-list li:nth-child(4) a::before {
+                 background: #dd4b39;
+               }
+                                                                          */
+
+  /* ── Exercise 7 · The menu row ──────────────────────────────────────────
+       TODO 7 — the dark stage, the five-pill row, and each pill's base box.
+       The menu wrapper is the dark panel, like the social one. The list is
+       a flex row with a `gap` instead of margins, centred, with 60px of air
+       above and below. Each item is a 60x60 white circle with a soft
+       shadow, a half-second transition and its content centred by flex.
+       The two colours each pill carries (`--i` and `--j`) are already
+       written on the `<li>` in the HTML; exercise 8 uses them.
+                                                         [homework · 18 min]
+
+       Aim: the five pills sit in a centred row, 25px apart, on a dark
+       rounded panel; each is a 60px white circle with a soft shadow.
+                                                                          */
+
+  /* ── Exercise 8 · The gradient overlay ──────────────────────────────────
+       TODO 8 — the gradient sheet, the blurred glow, and the hover that
+       shows them.
+       Two pseudo-elements carry the colour: `::before` is a transparent
+       gradient sheet laid over the pill, and `::after` is the same gradient
+       behind the pill, blurred by fifteen pixels into a glow. Both start
+       invisible, at an opacity of zero, with a half-second transition;
+       hover takes the sheet to full opacity and the glow to half of it.
+       The gradient is a forty-five degree line from the item's two
+       variables, `--i` then `--j`.
+                                                         [homework · 18 min]
+
+       Aim: hovering a pill fades in its gradient and a blurred glow behind
+       it.
+                                                                          */
+
+  /* ── Exercise 9 · Expand and swap ───────────────────────────────────────
+       TODO 9 — widen the pill, shrink the icon, grow the title, and stagger
+       the two swaps.
+       On hover the pill widens to 180px and its shadow disappears. The icon
+       shrinks to nothing and turns white, the title grows in, and the two
+       swaps are staggered: the icon leaves after a quarter of a second,
+       then the title arrives, so they never overlap.
+       The pill's own half-second transition from exercise 7 is what makes
+       the width animate.
+                                                         [homework · 24 min]
+
+       Aim: hovering a pill widens it, fades the shadow, shrinks the icon to
+       nothing and grows the title in, with the icon and title changing over
+       in sequence.
+                                                                          */
+</style>
+</head>
+<body>
+
+  <div class="page">
+
+    <header class="site-head">
+      <h1>Icon it, then animate it</h1>
+      <p class="tagline">Two hover demos, one stylesheet. Hover the buttons; hover the pills.</p>
+    </header>
+
+    <section class="panel">
+      <h2>1 · The icon buttons</h2>
+      <p class="lede">Four circles. On the pointer, a brand colour slides up from below and the glyph turns once.</p>
+
+      <div class="demo">
+        <div class="social-wrapper">
+          <ul class="social-list">
+            <li><a href="#"><i>f</i></a></li>
+            <li><a href="#"><i>t</i></a></li>
+            <li><a href="#"><i>in</i></a></li>
+            <li><a href="#"><i>g+</i></a></li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <section class="panel">
+      <h2>2 · The gradient menu</h2>
+      <p class="lede">Five pills, each carrying its own two gradient colours. On the pointer, one widens, glows and swaps its icon for its name.</p>
+
+      <div class="demo">
+        <div class="menu-wrapper">
+          <ul class="menu-list">
+            <li style="--i: #a955ff; --j: #ea51ff;">
+              <span class="menu-icon">⌂</span>
+              <span class="title">Home</span>
+            </li>
+            <li style="--i: #56ccf2; --j: #2f80ed;">
+              <span class="menu-icon">▶</span>
+              <span class="title">Video</span>
+            </li>
+            <li style="--i: #ff9966; --j: #ff5e62;">
+              <span class="menu-icon">◉</span>
+              <span class="title">Photo</span>
+            </li>
+            <li style="--i: #80ff72; --j: #7ee8fa;">
+              <span class="menu-icon">↗</span>
+              <span class="title">Share</span>
+            </li>
+            <li style="--i: #ffa9c6; --j: #f434e2;">
+              <span class="menu-icon">♥</span>
+              <span class="title">Like</span>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </section>
+
+    <footer>COMP3421 · Lab 6 · a practice page — the icons are type, the colours are invented.</footer>
+
+  </div>
+
+</body>
+</html>
+
