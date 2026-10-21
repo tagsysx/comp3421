@@ -2028,8 +2028,8 @@
         },
         {
           "id": "lambda-expressions",
-          "name": "Lambda expressions",
-          "desc": "A function value: the arrow form and the anonymous function are the same thing",
+          "name": "Arrow functions",
+          "desc": "The JS name for a lambda: the arrow shorthand and the anonymous function are the same thing",
           "files": [
             "index.html"
           ]
