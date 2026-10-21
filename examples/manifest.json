@@ -2005,7 +2005,7 @@
         {
           "id": "parameters-arguments",
           "name": "Parameters and arguments",
-          "desc": "Defaults, missing and extra arguments, and rest parameters",
+          "desc": "Too few arguments become undefined; a default fills that gap",
           "files": [
             "index.html"
           ]
