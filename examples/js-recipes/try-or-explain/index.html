@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Errors</h1>
+<h2>Try it, or say why not</h2>
+
+<p>JSON.parse throws on bad input; catch receives the Error and its message.</p>
+
+<p id="demo"></p>
+
+<script>
+const text = '{ not json';
+
+try {
+  JSON.parse(text);
+  document.getElementById("demo").textContent = "parsed";
+} catch (e) {
+  document.getElementById("demo").textContent = "Could not parse: " + e.message;
+  console.warn(e.message);
+}
+</script>
+
+</body>
+</html>

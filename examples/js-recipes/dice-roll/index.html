@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Math</h1>
+<h2>A dice roll</h2>
+
+<p>Math.random() is 0 ≤ x < 1; multiply by 6, floor it, add 1.</p>
+
+<p id="demo"></p>
+<button onclick="location.reload()">Roll again</button>
+
+<script>
+const roll = Math.floor(Math.random() * 6) + 1;
+document.getElementById("demo").textContent = "You rolled " + roll;
+</script>
+
+</body>
+</html>

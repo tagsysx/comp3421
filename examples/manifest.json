@@ -237,13 +237,7 @@
         "js-basics/object-method",
         "js-basics/object-add-property",
         "js-basics/object-delete-property",
-        "js-basics/window-size",
-        "js-basics/template-literal",
-        "js-basics/split-string",
-        "js-basics/join-array",
-        "js-basics/copy-array",
-        "js-basics/filter-truthy",
-        "js-basics/map-filter"
+        "js-basics/window-size"
       ]
     },
     {
@@ -310,6 +304,61 @@
       "name": "Lecture 13 · Performance",
       "desc": "Caching, CDN, HTTP/2 & HTTP/3",
       "examples": []
+    },
+    {
+      "id": "lecture-06-recipes",
+      "name": "Lecture 6 · Recipes — quick demos",
+      "desc": "Every recipe card from Lecture 6 as a runnable page — one per card, in slide order",
+      "examples": [
+        "js-recipes/log-anything",
+        "js-recipes/write-into-page",
+        "js-recipes/react-to-a-click",
+        "js-recipes/clock-in-title",
+        "js-recipes/count-clicks",
+        "js-recipes/random-colour",
+        "js-recipes/swap-two-variables",
+        "js-recipes/round-two-decimals",
+        "js-recipes/safe-default",
+        "js-recipes/one-line-two-outcomes",
+        "js-recipes/dice-roll",
+        "js-recipes/loose-vs-strict",
+        "js-recipes/template-literal",
+        "js-recipes/split-string",
+        "js-recipes/join-array",
+        "js-recipes/copy-array",
+        "js-recipes/filter-truthy",
+        "js-recipes/map-filter",
+        "js-recipes/loop-with-index",
+        "js-recipes/sum-array",
+        "js-recipes/pick-random",
+        "js-recipes/guard-clause",
+        "js-recipes/fizzbuzz",
+        "js-recipes/try-or-explain",
+        "js-recipes/default-parameter",
+        "js-recipes/rest-sum",
+        "js-recipes/returning-function",
+        "js-recipes/run-once",
+        "js-recipes/pipe-functions",
+        "js-recipes/arrow-vs-method",
+        "js-recipes/shorthand-properties",
+        "js-recipes/destructure-defaults",
+        "js-recipes/clone-override",
+        "js-recipes/optional-chaining",
+        "js-recipes/computed-key",
+        "js-recipes/walk-object",
+        "js-recipes/build-list-item",
+        "js-recipes/toggle-class",
+        "js-recipes/read-input",
+        "js-recipes/smooth-scroll-top",
+        "js-recipes/remember-setting",
+        "js-recipes/read-url-query",
+        "js-recipes/delegate-list",
+        "js-recipes/stop-form-reload",
+        "js-recipes/keyboard-shortcut",
+        "js-recipes/live-search",
+        "js-recipes/click-outside-close",
+        "js-recipes/fire-on-enter"
+      ]
     }
   ],
   "categories": [
@@ -2045,54 +2094,6 @@
           "files": [
             "index.html"
           ]
-        },
-        {
-          "id": "template-literal",
-          "name": "Recipe — template a sentence",
-          "desc": "Backticks and ${ } put a name and a count into one string",
-          "files": [
-            "index.html"
-          ]
-        },
-        {
-          "id": "split-string",
-          "name": "Recipe — string to array",
-          "desc": "split() cuts a comma-separated string into three items",
-          "files": [
-            "index.html"
-          ]
-        },
-        {
-          "id": "join-array",
-          "name": "Recipe — array to string",
-          "desc": "join() glues the items into one string with a separator",
-          "files": [
-            "index.html"
-          ]
-        },
-        {
-          "id": "copy-array",
-          "name": "Recipe — copy an array",
-          "desc": "The spread copies first; push() then changes only the copy",
-          "files": [
-            "index.html"
-          ]
-        },
-        {
-          "id": "filter-truthy",
-          "name": "Recipe — count the truthy ones",
-          "desc": "filter(Boolean).length keeps the values that count as true",
-          "files": [
-            "index.html"
-          ]
-        },
-        {
-          "id": "map-filter",
-          "name": "Recipe — double, then keep the big ones",
-          "desc": "map() changes every item, filter() keeps the ones you want",
-          "files": [
-            "index.html"
-          ]
         }
       ]
     },
@@ -2157,6 +2158,397 @@
             "server.js",
             "db.json",
             "README.md"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js-recipes",
+      "name": "JavaScript Recipes",
+      "desc": "One runnable page per recipe card — the quick demos that close each section",
+      "examples": [
+        {
+          "id": "log-anything",
+          "name": "Log anything",
+          "desc": "console.log takes any values; console.table prints objects as a table",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "write-into-page",
+          "name": "Write into the page",
+          "desc": "Find an element by id, then assign new HTML to its innerHTML",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "react-to-a-click",
+          "name": "React to a click",
+          "desc": "A button's onclick handler runs when the user clicks",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "clock-in-title",
+          "name": "A live clock in the title bar",
+          "desc": "setInterval rewrites the tab title once a second",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "count-clicks",
+          "name": "Count the clicks",
+          "desc": "One variable, one handler: each click increments the count",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "random-colour",
+          "name": "A random colour on every load",
+          "desc": "Math.random picks a hue; the page repaints on every load",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "swap-two-variables",
+          "name": "Swap two variables",
+          "desc": "Destructuring swaps two values in one line",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "round-two-decimals",
+          "name": "Round to two decimals",
+          "desc": "toFixed(2) rounds and returns a string; Number() turns it back",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "safe-default",
+          "name": "A safe default",
+          "desc": "|| falls back on any falsy value; ?? only for null or undefined",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "one-line-two-outcomes",
+          "name": "One line, two outcomes",
+          "desc": "The ternary picks one of two values from a condition",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "dice-roll",
+          "name": "A dice roll",
+          "desc": "Math.random scaled and floored gives 1–6",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "loose-vs-strict",
+          "name": "Loose versus strict equality",
+          "desc": "== converts before comparing; === does not",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "template-literal",
+          "name": "Template a sentence",
+          "desc": "Backticks and ${ } put a name and a count into one string",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "split-string",
+          "name": "String to array",
+          "desc": "split() cuts a comma-separated string into three items",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "join-array",
+          "name": "Array to string",
+          "desc": "join() glues the items into one string with a separator",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "copy-array",
+          "name": "Copy an array",
+          "desc": "The spread copies first; push() then changes only the copy",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "filter-truthy",
+          "name": "Count the truthy ones",
+          "desc": "filter(Boolean).length keeps the values that count as true",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "map-filter",
+          "name": "Double, then keep the big ones",
+          "desc": "map() changes every item, filter() keeps the ones you want",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "loop-with-index",
+          "name": "Loop with the index",
+          "desc": "entries() gives the index and the value together",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "sum-array",
+          "name": "Sum an array",
+          "desc": "reduce() folds an array into one value",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "pick-random",
+          "name": "Pick one at random",
+          "desc": "A random index picks a random array item",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "guard-clause",
+          "name": "Guard clause",
+          "desc": "Return early so the rest of the function only sees valid input",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fizzbuzz",
+          "name": "FizzBuzz, the classic",
+          "desc": "Modulo tests, string building and || in one loop",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "try-or-explain",
+          "name": "Try it, or say why not",
+          "desc": "try runs the risky line; catch reports the reason",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "default-parameter",
+          "name": "A default that fills the gap",
+          "desc": "A default value is used only when the argument is missing",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "rest-sum",
+          "name": "Sum anything you pass",
+          "desc": "The rest parameter gathers any number of arguments into an array",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "returning-function",
+          "name": "A function that returns a function",
+          "desc": "Arrow functions nest: add(2) returns a function waiting for b",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "run-once",
+          "name": "Run it once, whatever happens",
+          "desc": "A closure remembers whether it has already run",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "pipe-functions",
+          "name": "Pipe two functions",
+          "desc": "Compose two functions into one left-to-right pipeline",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "arrow-vs-method",
+          "name": "Arrow versus method, and this",
+          "desc": "A method's this is its object; a copied function loses it",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "shorthand-properties",
+          "name": "Shorthand properties",
+          "desc": "When the variable name and the property name match, write it once",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "destructure-defaults",
+          "name": "Destructure with defaults",
+          "desc": "Destructuring with = inside the braces supplies missing values",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "clone-override",
+          "name": "Clone and override",
+          "desc": "Spread copies every property; the later value wins",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "optional-chaining",
+          "name": "Reach in safely",
+          "desc": "? stops at null/undefined; ?? supplies the fallback",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "computed-key",
+          "name": "A key you compute",
+          "desc": "Square brackets in an object literal evaluate the key",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "walk-object",
+          "name": "Walk an object",
+          "desc": "Object.entries() gives every key/value pair as an array",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "build-list-item",
+          "name": "Build a list item",
+          "desc": "Create the element in memory, fill it, then append it",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "toggle-class",
+          "name": "Toggle a class",
+          "desc": "classList.toggle adds the class, and removes it on the next call",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "read-input",
+          "name": "Read what the user typed",
+          "desc": "An input's current text lives in its value property",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "smooth-scroll-top",
+          "name": "Smooth scroll to the top",
+          "desc": "scrollTo takes an options object, including a smooth behaviour",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "remember-setting",
+          "name": "Remember a setting",
+          "desc": "localStorage keeps a string in the browser between visits",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "read-url-query",
+          "name": "Read the URL query",
+          "desc": "URLSearchParams parses the ?key=value part of the address",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "delegate-list",
+          "name": "One listener for a whole list",
+          "desc": "One listener on the parent handles every child, present or future",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "stop-form-reload",
+          "name": "Stop a form from reloading",
+          "desc": "preventDefault stops the browser's default submit-and-reload",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "keyboard-shortcut",
+          "name": "A keyboard shortcut",
+          "desc": "A document-level keydown listener can implement shortcuts",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "live-search",
+          "name": "Live search without the jitter",
+          "desc": "Clear the old timer, set a new one: only a pause in typing searches",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "click-outside-close",
+          "name": "Click outside to close",
+          "desc": "contains() tells whether the click landed inside the menu",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fire-on-enter",
+          "name": "Fire on Enter",
+          "desc": "Check e.key on keydown to act on one specific key",
+          "files": [
+            "index.html"
           ]
         }
       ]

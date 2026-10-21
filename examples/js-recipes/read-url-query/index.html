@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Browser Object Model</h1>
+<h2>Read the URL query</h2>
+
+<p>Add ?q=hello to the address and reload — the page reads it back.</p>
+
+<p id="demo"></p>
+<p><a href="?q=hello">Open this page with ?q=hello</a></p>
+
+<script>
+const q = new URLSearchParams(location.search);
+
+document.getElementById("demo").innerHTML =
+  'q.get("q")  →  ' + JSON.stringify(q.get("q")) +
+  "<br>location.search  →  " + JSON.stringify(location.search);
+</script>
+
+</body>
+</html>

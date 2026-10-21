@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrays</h1>
+<h2>Pick one at random</h2>
+
+<p>A random index between 0 and length - 1 picks the item.</p>
+
+<p id="demo"></p>
+<button onclick="location.reload()">Pick again</button>
+
+<script>
+const arr = ["rock", "paper", "scissors"];
+const pick = arr[Math.floor(Math.random() * arr.length)];
+
+document.getElementById("demo").textContent = "The computer picks " + pick;
+</script>
+
+</body>
+</html>

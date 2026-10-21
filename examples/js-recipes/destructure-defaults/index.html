@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Objects</h1>
+<h2>Destructure with defaults</h2>
+
+<p>Each destructured name can carry a default; it applies when the property is undefined.</p>
+
+<p id="demo"></p>
+
+<script>
+const user = { name: "Ada" };   // no age property
+
+const { name = "guest", age = 0 } = user;
+
+document.getElementById("demo").innerHTML =
+  "name = " + name + "<br>age = " + age + " (default used)";
+</script>
+
+</body>
+</html>

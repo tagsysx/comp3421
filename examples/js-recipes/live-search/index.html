@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Events</h1>
+<h2>Live search without the jitter</h2>
+
+<p>Each keystroke clears the pending timer and starts a new 300 ms one — only a pause triggers the search.</p>
+
+<p><input id="input" placeholder="type here…"></p>
+<p id="demo"></p>
+
+<script>
+let t;
+const input = document.getElementById("input");
+
+input.addEventListener("input", e => {
+  clearTimeout(t);
+  document.getElementById("demo").textContent = "typing… waiting for a pause";
+  t = setTimeout(() => find(e.target.value), 300);
+});
+
+function find(value) {
+  document.getElementById("demo").textContent =
+    'searched for "' + value + '" after a 300 ms pause';
+}
+</script>
+
+</body>
+</html>

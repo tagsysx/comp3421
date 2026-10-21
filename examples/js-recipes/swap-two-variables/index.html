@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Variables</h1>
+<h2>Swap two variables</h2>
+
+<p>Array destructuring on the left of = swaps the two values — no temporary variable.</p>
+
+<p id="demo"></p>
+
+<script>
+let a = 1, b = 2;
+const before = "before: a = " + a + ", b = " + b;
+
+[a, b] = [b, a];
+
+document.getElementById("demo").innerHTML =
+  before + "<br>after:  a = " + a + ", b = " + b;
+</script>
+
+</body>
+</html>

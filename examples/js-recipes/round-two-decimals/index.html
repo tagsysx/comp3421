@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Numbers</h1>
+<h2>Round to two decimals</h2>
+
+<p>toFixed(2) rounds to two decimals but returns a string; Number() converts it back.</p>
+
+<p id="demo"></p>
+
+<script>
+const price = (3.14159).toFixed(2);
+
+document.getElementById("demo").innerHTML =
+  "toFixed(2) = " + price + "  (" + typeof price + ")" +
+  "<br>Number(price) = " + Number(price) + "  (" + typeof Number(price) + ")";
+</script>
+
+</body>
+</html>

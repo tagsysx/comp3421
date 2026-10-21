@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>A function that returns a function</h2>
+
+<p>add(2) returns a function; the second call supplies b.</p>
+
+<p id="demo"></p>
+
+<script>
+const add = a => b => a + b;
+
+const add2 = add(2);
+
+document.getElementById("demo").innerHTML =
+  "add(2)(3)  →  " + add(2)(3) +
+  "<br>add2 = add(2); add2(10)  →  " + add2(10);
+</script>
+
+</body>
+</html>

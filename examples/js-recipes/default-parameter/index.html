@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>A default that fills the gap</h2>
+
+<p>The default applies only when the argument is undefined — call it with or without a name.</p>
+
+<p id="demo"></p>
+
+<script>
+function greet(name = "guest") {
+  return `Hi, ${name}`;
+}
+
+document.getElementById("demo").innerHTML =
+  "greet()  →  " + greet() +
+  '<br>greet("Ada")  →  ' + greet("Ada");
+</script>
+
+</body>
+</html>

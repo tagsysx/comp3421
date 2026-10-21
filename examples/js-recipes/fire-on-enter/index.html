@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Events</h1>
+<h2>Fire on Enter</h2>
+
+<p>Type something and press Enter — the keydown handler checks e.key.</p>
+
+<p><input id="input" placeholder="type and press Enter"></p>
+<p id="demo"></p>
+
+<script>
+const input = document.getElementById("input");
+
+input.addEventListener("keydown", e => {
+  if (e.key === "Enter") submit();
+});
+
+function submit() {
+  document.getElementById("demo").textContent =
+    'submitted "' + input.value + '" (no form needed)';
+}
+</script>
+
+</body>
+</html>

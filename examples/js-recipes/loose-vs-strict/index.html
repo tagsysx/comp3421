@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Comparison</h1>
+<h2>Loose versus strict equality</h2>
+
+<p>The same two values give true with == and false with === — the console prints true false.</p>
+
+<p id="demo"></p>
+
+<script>
+console.log(5 == "5", 5 === "5");
+
+document.getElementById("demo").innerHTML =
+  '5 == "5"   →  ' + (5 == "5") +
+  '<br>5 === "5"  →  ' + (5 === "5");
+</script>
+
+</body>
+</html>

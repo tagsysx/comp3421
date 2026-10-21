@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Operators</h1>
+<h2>A safe default</h2>
+
+<p>|| falls back for every falsy value, ?? only for null / undefined — so 0 and "" survive ??.</p>
+
+<p id="demo"></p>
+
+<script>
+const input = "";     // empty string: falsy
+const saved = 0;     // 0 is falsy, but NOT null or undefined
+
+const name = input || "guest";
+const who = saved ?? "guest";
+
+document.getElementById("demo").innerHTML =
+  'input || "guest"  →  "' + name + '"' +
+  '<br>saved ?? "guest"  →  ' + who;
+</script>
+
+</body>
+</html>

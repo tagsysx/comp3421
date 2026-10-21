@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>Run it once, whatever happens</h2>
+
+<p>The done flag lives in the closure; the second call returns undefined.</p>
+
+<p id="demo"></p>
+
+<script>
+let done = false;
+const once = f => (...a) =>
+  done ? undefined : (done = true, f(...a));
+
+const pay = () => "charged once";
+
+document.getElementById("demo").innerHTML =
+  "first call:   " + once(pay)() +
+  "<br>second call: " + once(pay)();
+</script>
+
+</body>
+</html>

@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>Arrow versus method, and this</h2>
+
+<p>A method called on its object sees this.n; the same function, copied out, sees a different this.</p>
+
+<p id="demo"></p>
+
+<script>
+const o = { n: 1, f() { return this.n; } };
+
+const asMethod = o.f();
+
+const g = o.f;
+const asFunction = g();
+
+document.getElementById("demo").innerHTML =
+  "o.f()  →  " + asMethod +
+  "<br>const g = o.f; g()  →  " + asFunction;
+</script>
+
+</body>
+</html>

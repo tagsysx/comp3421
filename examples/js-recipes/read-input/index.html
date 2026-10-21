@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The DOM</h1>
+<h2>Read what the user typed</h2>
+
+<p>Read .value at the moment you need it — it is always the current text.</p>
+
+<p><input id="q" value="hello"> <button id="go">Read it</button></p>
+<p id="demo"></p>
+
+<script>
+document.getElementById("go").onclick = () => {
+  const q = document.querySelector("#q").value;
+  document.getElementById("demo").textContent = 'value = "' + q + '"';
+};
+
+document.getElementById("demo").textContent = "Click the button, or edit the box first.";
+</script>
+
+</body>
+</html>

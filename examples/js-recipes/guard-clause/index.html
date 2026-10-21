@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>Guard clause</h2>
+
+<p>The guard returns early; everything after it runs only for a real user.</p>
+
+<p id="demo"></p>
+
+<script>
+function greet(user) {
+  if (!user) return "no user — stopped at the guard";
+  return "Hello, " + user.name;
+}
+
+document.getElementById("demo").innerHTML =
+  "greet(null)  →  " + greet(null) +
+  '<br>greet({ name: "Ada" })  →  ' + greet({ name: "Ada" });
+</script>
+
+</body>
+</html>

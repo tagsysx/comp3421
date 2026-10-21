@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Objects</h1>
+<h2>Shorthand properties</h2>
+
+<p>A variable whose name matches the property can be dropped into the object literal once.</p>
+
+<p id="demo"></p>
+
+<script>
+const name = "Ada", age = 36;
+const user = { name, age };
+
+document.getElementById("demo").innerHTML =
+  "user = " + JSON.stringify(user) +
+  "<br>(same as { name: name, age: age })";
+</script>
+
+</body>
+</html>

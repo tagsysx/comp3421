@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>Changing Styles from JavaScript</h1>
+<h2>Toggle a class</h2>
+
+<p>classList.toggle() adds .dark the first time and removes it the next — the CSS stays in its stylesheet.</p>
+
+<style>.box{padding:18px;background:#eef;width:220px}.box.dark{background:#23272e;color:#fff}</style>
+<div class="box" id="box">A box</div>
+<p><button id="btn">Toggle .dark</button></p>
+<p id="demo"></p>
+
+<script>
+const box = document.getElementById("box");
+
+document.getElementById("btn").onclick = () => {
+  box.classList.toggle("dark");
+  document.getElementById("demo").textContent = "class = " + box.className;
+};
+</script>
+
+</body>
+</html>

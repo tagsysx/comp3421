@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Loops</h1>
+<h2>FizzBuzz, the classic</h2>
+
+<p>Multiples of 3 say Fizz, of 5 say Buzz, of both FizzBuzz — the rest keep their number.</p>
+
+<pre id="demo"></pre>
+
+<script>
+const demo = document.getElementById("demo");
+const out = [];
+
+for (let i = 1; i <= 20; i++) {
+  let s = (i%3?"":"Fizz") + (i%5?"":"Buzz");
+  out.push(s || i);
+}
+
+demo.textContent = out.join("  ");
+console.log(out.join("  "));
+</script>
+
+</body>
+</html>

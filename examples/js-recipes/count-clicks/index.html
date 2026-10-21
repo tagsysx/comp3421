@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Events</h1>
+<h2>Count the clicks</h2>
+
+<p>A counter lives in a variable; each click runs ++n and shows the new value.</p>
+
+<p id="demo">0 clicks</p>
+<button id="go">Click me</button>
+
+<script>
+let n = 0;
+const demo = document.getElementById("demo");
+const btn = document.querySelector("#go");
+btn.onclick = () => demo.textContent = ++n;
+</script>
+
+</body>
+</html>

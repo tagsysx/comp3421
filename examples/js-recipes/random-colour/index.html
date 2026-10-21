@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Math</h1>
+<h2>A random colour on every load</h2>
+
+<p>Every reload picks a new random hue and paints it on the body.</p>
+
+<p id="demo"></p>
+<button onclick="location.reload()">Reload — new colour</button>
+
+<script>
+const hue = Math.floor(Math.random() * 360);
+document.body.style.background = `hsl(${hue} 80% 60%)`;
+document.getElementById("demo").textContent = "hsl(" + hue + " 80% 60%)";
+</script>
+
+</body>
+</html>

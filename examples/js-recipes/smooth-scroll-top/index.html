@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The window Object</h1>
+<h2>Smooth scroll to the top</h2>
+
+<p>Scroll down the long block below, then press the button.</p>
+
+<div style="height:900px;background:linear-gradient(#fff,#cde);padding:10px">scroll down…</div>
+<p><button id="top">Back to top (smooth)</button></p>
+<p id="demo"></p>
+
+<script>
+document.getElementById("top").onclick = () => {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+  document.getElementById("demo").textContent = "scrolling back to top…";
+};
+</script>
+
+</body>
+</html>

@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Objects</h1>
+<h2>Walk an object</h2>
+
+<p>Object.entries() turns the object into key/value pairs you can loop over.</p>
+
+<pre id="demo"></pre>
+
+<script>
+const user = { name: "Ada", age: 36, role: "engineer" };
+const demo = document.getElementById("demo");
+
+for (const [k, v] of Object.entries(user)) {
+  demo.textContent += k + ": " + v + "\n";
+  console.log(k, v);
+}
+</script>
+
+</body>
+</html>

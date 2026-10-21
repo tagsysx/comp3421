@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Objects</h1>
+<h2>Clone and override</h2>
+
+<p>The spread copies the whole object; a property written after it overrides the copy.</p>
+
+<p id="demo"></p>
+
+<script>
+const user = { name: "Ada", age: 36, role: "engineer" };
+const next = { ...user, age: 37 };
+
+document.getElementById("demo").innerHTML =
+  "user = " + JSON.stringify(user) +
+  "<br>next = " + JSON.stringify(next) +
+  "<br>(user is unchanged)";
+</script>
+
+</body>
+</html>

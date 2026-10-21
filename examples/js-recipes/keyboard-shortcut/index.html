@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Events</h1>
+<h2>A keyboard shortcut</h2>
+
+<p>Press / anywhere on the page: the search box gets the focus.</p>
+
+<p>Press <b>/</b> anywhere.</p>
+<input id="search" placeholder="search…">
+<p id="demo"></p>
+
+<script>
+document.addEventListener("keydown", e => {
+  if (e.key === "/") {
+    e.preventDefault();
+    document.getElementById("search").focus();
+    document.getElementById("demo").textContent = "search box focused";
+  }
+});
+</script>
+
+</body>
+</html>

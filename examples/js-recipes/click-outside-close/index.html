@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Events</h1>
+<h2>Click outside to close</h2>
+
+<p>Open the menu, then click anywhere outside it.</p>
+
+<p><button id="open">Open menu</button></p>
+<div id="menu" hidden style="padding:12px;background:#eef;width:260px">Menu — click outside to close</div>
+<p id="demo"></p>
+
+<script>
+const menu = document.getElementById("menu");
+
+document.getElementById("open").onclick = () => { menu.hidden = false; };
+
+document.addEventListener("click", e => {
+  if (!menu.contains(e.target)) {
+    menu.hidden = true;
+    document.getElementById("demo").textContent = "closed by a click outside";
+  }
+});
+</script>
+
+</body>
+</html>

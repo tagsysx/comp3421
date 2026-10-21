@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Loops</h1>
+<h2>Loop with the index</h2>
+
+<p>Array.entries() yields [index, value] pairs, so the loop variable can destructure them.</p>
+
+<pre id="demo"></pre>
+
+<script>
+const list = ["HTML", "CSS", "JavaScript"];
+const demo = document.getElementById("demo");
+
+for (const [i, v] of list.entries()) {
+  demo.textContent += i + "  " + v + "\n";
+  console.log(i, v);
+}
+</script>
+
+</body>
+</html>

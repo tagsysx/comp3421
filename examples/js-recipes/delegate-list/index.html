@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Events</h1>
+<h2>One listener for a whole list</h2>
+
+<p>The click bubbles up to the list; e.target tells you which item was hit.</p>
+
+<ul id="list"><li>HTML</li><li>CSS</li><li>JavaScript</li></ul>
+<p id="demo">Click a list item.</p>
+
+<script>
+const list = document.getElementById("list");
+
+list.addEventListener("click", e => {
+  if (e.target.tagName === "LI") pick(e.target);
+});
+
+function pick(el) {
+  document.getElementById("demo").textContent = "picked: " + el.textContent;
+}
+</script>
+
+</body>
+</html>

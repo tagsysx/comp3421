@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The Document Object Model</h1>
+<h2>Build a list item</h2>
+
+<p>createElement builds a node in memory; appendChild puts it into the page.</p>
+
+<ul id="list"><li>first item</li></ul>
+<p id="demo"></p>
+
+<script>
+const ul = document.getElementById("list");
+
+const li = document.createElement("li");
+li.textContent = "new item";
+ul.appendChild(li);
+
+document.getElementById("demo").textContent =
+  "The list now has " + ul.children.length + " items.";
+</script>
+
+</body>
+</html>

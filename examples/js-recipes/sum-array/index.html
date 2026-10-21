@@ -1,0 +1,21 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrays</h1>
+<h2>Sum an array</h2>
+
+<p>reduce() walks the array carrying an accumulator; the second argument is its start value.</p>
+
+<p id="demo"></p>
+
+<script>
+const nums = [4, 8, 15, 16, 23, 42];
+const total = nums.reduce((a, b) => a + b, 0);
+
+document.getElementById("demo").textContent =
+  nums.join(" + ") + " = " + total;
+</script>
+
+</body>
+</html>

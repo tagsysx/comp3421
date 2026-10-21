@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Objects</h1>
+<h2>Reach in safely</h2>
+
+<p>Optional chaining returns undefined instead of throwing; ?? then supplies a default.</p>
+
+<p id="demo"></p>
+
+<script>
+const user = { name: "Ada" };   // no address property
+
+const city = user?.address?.city ?? "unknown";
+
+document.getElementById("demo").innerHTML =
+  'user?.address?.city ?? "unknown"  →  "' + city + '"' +
+  "<br>(without ?. this would throw a TypeError)";
+</script>
+
+</body>
+</html>

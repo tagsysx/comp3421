@@ -1,0 +1,20 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>The window Object</h1>
+<h2>A live clock in the title bar</h2>
+
+<p>Look at the browser tab: setInterval rewrites document.title every second.</p>
+
+<p id="demo"></p>
+
+<script>
+setInterval(() => {
+  document.title = new Date().toLocaleTimeString();
+  document.getElementById("demo").textContent = "title = " + document.title;
+}, 1000);
+</script>
+
+</body>
+</html>

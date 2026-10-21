@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Output</h1>
+<h2>Log anything</h2>
+
+<p>console.log() accepts any number of values. Open DevTools (F12) to see the same messages there.</p>
+
+<pre id="demo"></pre>
+
+<script>
+const demo = document.getElementById("demo");
+const show = (...args) => args
+  .map(a => (typeof a === "object" ? JSON.stringify(a) : String(a)))
+  .join(" ");
+demo.textContent += show("hi", 42, [1, 2]) + "\n";
+demo.textContent += "table: " + JSON.stringify([{ a: 1 }, { a: 2 }]);
+
+console.log("hi", 42, [1, 2]);
+console.table([{ a: 1 }, { a: 2 }]);
+</script>
+
+</body>
+</html>

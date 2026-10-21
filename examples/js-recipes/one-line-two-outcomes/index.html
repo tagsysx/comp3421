@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Conditions</h1>
+<h2>One line, two outcomes</h2>
+
+<p>The ternary ? : picks one of two values; it is an expression, not a statement.</p>
+
+<p id="demo"></p>
+
+<script>
+function labelFor(n) {
+  return n === 1 ? "item" : "items";
+}
+
+document.getElementById("demo").innerHTML =
+  "n = 1  →  " + labelFor(1) +
+  "<br>n = 3  →  " + labelFor(3);
+</script>
+
+</body>
+</html>
