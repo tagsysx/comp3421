@@ -226,6 +226,7 @@
         "js-basics/loop-for-of",
         "js-basics/error-try-catch",
         "js-basics/function-return",
+        "js-basics/parameters-arguments",
         "js-basics/function-name-vs-call",
         "js-basics/function-expression",
         "js-basics/lambda-expressions",
@@ -1997,6 +1998,14 @@
           "id": "function-return",
           "name": "Parameters and return",
           "desc": "A function that takes two parameters and returns the product",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "parameters-arguments",
+          "name": "Parameters and arguments",
+          "desc": "Defaults, missing and extra arguments, and rest parameters",
           "files": [
             "index.html"
           ]

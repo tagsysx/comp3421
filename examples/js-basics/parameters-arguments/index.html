@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>Parameters, arguments and defaults</h2>
+
+<pre id="demo"></pre>
+
+<script>
+const out = document.getElementById("demo");
+const log = s => out.textContent += s + "\n";
+
+function greet(who = "guest") {
+  return "Hi, " + who;
+}
+log('greet()  →  ' + greet());            // Hi, guest
+log('greet("Ada")  →  ' + greet("Ada"));  // Hi, Ada
+
+function sum(...nums) {
+  return nums.reduce((a, b) => a + b);
+}
+log("sum(1, 2, 3)  →  " + sum(1, 2, 3));  // 6
+
+function pair(a, b) { return [a, b]; }
+const missing = pair(1);
+log("pair(1):  a = " + missing[0] + ", b = " + missing[1]);   // b is undefined
+log("pair(1, 2, 3).length  →  " + pair(1, 2, 3).length);      // extra ignored
+
+function count() { return arguments.length; }
+log("count(1, \"x\", true)  →  " + count(1, "x", true));      // legacy arguments
+</script>
+
+</body>
+</html>
