@@ -231,6 +231,7 @@
         "js-basics/function-expression",
         "js-basics/lambda-expressions",
         "js-basics/function-iife",
+        "js-basics/functions-as-parameters",
         "js-basics/scope-global-leak",
         "js-basics/let-block-scope",
         "js-basics/strict-variable",
@@ -2030,6 +2031,14 @@
           "id": "lambda-expressions",
           "name": "Arrow functions",
           "desc": "The JS name for a lambda: the arrow shorthand and the anonymous function are the same thing",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "functions-as-parameters",
+          "name": "Functions as parameters",
+          "desc": "A named function passed as a callback: apply(shout, \"hi\"), map(double), addEventListener",
           "files": [
             "index.html"
           ]
