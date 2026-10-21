@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrays</h1>
+<h2>Double, then keep the big ones</h2>
+
+<p>map() changes every item; filter() keeps only the ones you want:</p>
+
+<p id="demo"></p>
+
+<script>
+const kept = [1, 2, 3, 4]
+  .map(n => n * 2)
+  .filter(n => n > 4);
+
+// [6, 8]
+document.getElementById("demo").textContent = JSON.stringify(kept);
+</script>
+
+</body>
+</html>

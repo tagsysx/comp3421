@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrays</h1>
+<h2>Copy an array</h2>
+
+<p>The spread [...] makes a copy, so push() touches only the copy:</p>
+
+<p id="demo"></p>
+
+<script>
+const items = ["a", "b"];
+const copy = [...items];
+copy.push("new");
+
+// items unchanged
+document.getElementById("demo").innerHTML =
+  "items: " + items.join(", ") + "<br>" +
+  "copy:  " + copy.join(", ");
+</script>
+
+</body>
+</html>

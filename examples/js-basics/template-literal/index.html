@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Template Literals</h1>
+<h2>Template a sentence</h2>
+
+<p>Backticks and <code>${ }</code> drop a value into a string:</p>
+
+<p id="demo"></p>
+
+<script>
+const name = "Ada";
+const n = 3;
+
+// Template literal: backticks, not quotes
+const msg = `Hi ${name}, ${n} new`;
+
+document.getElementById("demo").innerHTML = msg;
+</script>
+
+</body>
+</html>

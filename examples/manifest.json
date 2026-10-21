@@ -237,7 +237,13 @@
         "js-basics/object-method",
         "js-basics/object-add-property",
         "js-basics/object-delete-property",
-        "js-basics/window-size"
+        "js-basics/window-size",
+        "js-basics/template-literal",
+        "js-basics/split-string",
+        "js-basics/join-array",
+        "js-basics/copy-array",
+        "js-basics/filter-truthy",
+        "js-basics/map-filter"
       ]
     },
     {
@@ -2036,6 +2042,54 @@
           "id": "window-size",
           "name": "Window size",
           "desc": "window.innerWidth and window.innerHeight, live",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "template-literal",
+          "name": "Recipe — template a sentence",
+          "desc": "Backticks and ${ } put a name and a count into one string",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "split-string",
+          "name": "Recipe — string to array",
+          "desc": "split() cuts a comma-separated string into three items",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "join-array",
+          "name": "Recipe — array to string",
+          "desc": "join() glues the items into one string with a separator",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "copy-array",
+          "name": "Recipe — copy an array",
+          "desc": "The spread copies first; push() then changes only the copy",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "filter-truthy",
+          "name": "Recipe — count the truthy ones",
+          "desc": "filter(Boolean).length keeps the values that count as true",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "map-filter",
+          "name": "Recipe — double, then keep the big ones",
+          "desc": "map() changes every item, filter() keeps the ones you want",
           "files": [
             "index.html"
           ]

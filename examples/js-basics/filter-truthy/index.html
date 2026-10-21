@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Arrays</h1>
+<h2>Count the truthy ones</h2>
+
+<p>filter(Boolean) keeps the values that count as true, and length counts them:</p>
+
+<p id="demo"></p>
+
+<script>
+const values = [0, 1, "", "x"];
+const truthy = values.filter(Boolean);
+
+// 2
+document.getElementById("demo").innerHTML =
+  "kept:  " + JSON.stringify(truthy) + "<br>" +
+  "count: " + truthy.length;
+</script>
+
+</body>
+</html>
