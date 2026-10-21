@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+<body>
+
+<h1>JavaScript Functions</h1>
+<h2>Lambda expressions (arrow functions)</h2>
+
+<p>A lambda is just a function value; the arrow form is the short way to write one.</p>
+
+<pre id="demo"></pre>
+
+<script>
+const out = document.getElementById("demo");
+const log = (s) => out.textContent += s + "\n";
+
+// the lambda: a function value, no name of its own
+const double = x => x * 2;
+log("double(4) = " + double(4));                 // 8
+
+// exactly the same function, written out the long way
+const same = function (x) { return x * 2; };
+log("same(4) = " + same(4));                     // 8
+
+// lambdas are made to be passed to other functions
+log("[1, 2, 3].map(n => n * 2) = " + JSON.stringify([1, 2, 3].map(n => n * 2)));
+log("[3, 1, 2].sort((a, b) => a - b) = " + JSON.stringify([3, 1, 2].sort((a, b) => a - b)));
+</script>
+
+</body>
+</html>

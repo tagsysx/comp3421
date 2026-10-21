@@ -228,6 +228,7 @@
         "js-basics/function-return",
         "js-basics/function-name-vs-call",
         "js-basics/function-expression",
+        "js-basics/lambda-expressions",
         "js-basics/function-iife",
         "js-basics/scope-global-leak",
         "js-basics/let-block-scope",
@@ -2012,6 +2013,14 @@
           "id": "function-expression",
           "name": "Function expression",
           "desc": "Store a function in a variable, then call it by that variable",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "lambda-expressions",
+          "name": "Lambda expressions",
+          "desc": "A function value: the arrow form and the anonymous function are the same thing",
           "files": [
             "index.html"
           ]
