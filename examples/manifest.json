@@ -230,6 +230,7 @@
         "js-basics/function-expression",
         "js-basics/function-iife",
         "js-basics/scope-global-leak",
+        "js-basics/let-block-scope",
         "js-basics/strict-variable",
         "js-basics/strict-global",
         "js-basics/strict-local",
@@ -2027,6 +2028,14 @@
           "id": "scope-global-leak",
           "name": "Automatically global",
           "desc": "An assignment with no declaration becomes a global variable",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "let-block-scope",
+          "name": "let and block scope",
+          "desc": "let stays inside { } and var leaks out — try both outside the block",
           "files": [
             "index.html"
           ]
