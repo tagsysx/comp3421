@@ -194,6 +194,14 @@ table.form td.total { font-weight: 700; color: #0E3F8C; background: #F2F6FD !imp
 section[data-name="rules"] h2 { margin-top: 3.2mm; }
 section[data-name="rules"] ul.tight li { margin-bottom: .8mm; }
 
+/* ---------- Word download ---------- */
+.word-dl { margin: 4.2mm 0 0; padding: 2.3mm 3.2mm; background: #F2F6FD;
+  border-left: 1mm solid #3D7BD9; border-radius: 0 1.5mm 1.5mm 0;
+  font-size: 7.8pt; line-height: 1.36; color: #4A5568; }
+.word-dl b { color: #0E3F8C; }
+.word-dl a { color: #1E4FA8; font-weight: 700; text-decoration: none; }
+.word-dl a:hover { text-decoration: underline; }
+
 /* ---------- misc ---------- */
 .pill { display: inline-block; font-size: 6.6pt; font-weight: 700; letter-spacing: .5pt; text-transform: uppercase;
   background: #E8EFF8; color: #1E4FA8; border-radius: 1mm; padding: .75mm 1.7mm; }
@@ -265,7 +273,6 @@ section[data-name="rules"] ul.tight li { margin-bottom: .8mm; }
     <div class="s">Project details &amp; assessment guide · Version 1.0 · 10 pages</div>
   </div>
   <div class="actions">
-    <a class="btn ghost" href="COMP3421_Contribution_Declaration_2026-27.docx">Word template</a>
     <a class="btn ghost" href="COMP3421_Final_Project_Details_2026-27.pdf">PDF version</a>
     <button class="btn primary" type="button" onclick="window.print()">Print / Save as PDF</button>
   </div>
@@ -966,6 +973,8 @@ section[data-name="rules"] ul.tight li { margin-bottom: .8mm; }
     <p>☐ Contribution declaration checked &nbsp;&nbsp; ☐ Code walkthrough completed &nbsp;&nbsp; ☐ Deployment URL verified<br>
     ☐ No AI-generated code found (hand-coding bonus confirmed) &nbsp;&nbsp; ☐ Contribution percentages sum to 100% &nbsp;&nbsp; Notes: __________</p>
   </div>
+
+  <p class="word-dl"><b>Editable Word version:</b> <a href="COMP3421_Contribution_Declaration_2026-27.docx">download the Word template</a> — fill, sign, and save as <span class="mono">contribution-declaration.pdf</span>.</p>
 
   <div class="foot"><span>COMP3421 · Web Application Design and Development</span><span class="pg"></span></div>
 </section>
