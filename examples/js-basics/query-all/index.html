@@ -11,13 +11,13 @@
          border-left: 4px solid #1e4fa8; }
   .hot { background: #fff3d6; border-left-color: #b8860b; }
   #out { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px;
-         font-size: 13px; line-height: 1.5; }
+         font-size: 13px; line-height: 1.6; }
 </style>
 </head>
 <body>
 
 <h2>One element, or all of them</h2>
-<p class="note">The first box is styled on its own; then every box is looped over.</p>
+<p class="note">Read the numbers first: only box1 got the inline size. Then the loop reaches all three.</p>
 
 <div class="box" id="box1">box1</div>
 <div class="box" id="box2">box2</div>
@@ -26,22 +26,24 @@
 <pre id="out"></pre>
 
 <script>
-// querySelector returns ONE element - the first match in the document.
+// 1. querySelector returns ONE element - the first match in the document.
 const first = document.querySelector(".box");
-first.style.fontSize = "22px";
-first.classList.add("hot");
+first.style.fontSize = "24px";
 
-// querySelectorAll returns EVERY match, inside a NodeList.
+// 2. querySelectorAll returns EVERY match, inside a NodeList.
 const all = document.querySelectorAll(".box");
 
-// The list itself has no .style. This is the classic mistake:
-// it is not an element, it is a container of elements.
-document.getElementById("out").textContent =
-  "first.id          : " + first.id + "\n" +
-  "all.length        : " + all.length + "\n" +
-  "typeof all.style  : " + typeof all.style;
+// The list is not an element: it has no .style of its own.
+const report = [
+  "first.id         : " + first.id,
+  "all.length       : " + all.length,
+  "typeof all.style : " + typeof all.style,
+  "inline sizes     : " + [...all].map(
+      (el) => el.id + "=" + (el.style.fontSize || "default")).join("  ")
+];
+document.getElementById("out").textContent = report.join("\n");
 
-// To reach all of them, loop. forEach works on a NodeList.
+// 3. To reach all of them, loop over the list.
 all.forEach((el) => el.classList.add("hot"));
 </script>
 
