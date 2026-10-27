@@ -5,20 +5,25 @@
 <h1>The Document Object Model</h1>
 <h2>Build a list item</h2>
 
-<p>createElement builds a node in memory; appendChild puts it into the page.</p>
+<p>createElement builds a node in memory; appendChild puts it into the page.
+   Click the button — every click builds one more.</p>
 
+<button id="add">Add an item</button>
 <ul id="list"><li>first item</li></ul>
-<p id="demo"></p>
+<p id="demo">The list starts with 1 item.</p>
 
 <script>
 const ul = document.getElementById("list");
+let n = 0;
 
-const li = document.createElement("li");
-li.textContent = "new item";
-ul.appendChild(li);
+document.getElementById("add").onclick = () => {
+  const li = document.createElement("li");
+  li.textContent = "new item " + (++n);
+  ul.appendChild(li);
 
-document.getElementById("demo").textContent =
-  "The list now has " + ul.children.length + " items.";
+  document.getElementById("demo").textContent =
+    "The list now has " + ul.children.length + " items.";
+};
 </script>
 
 </body>
