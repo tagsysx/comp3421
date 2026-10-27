@@ -18,7 +18,10 @@
 <pre id="out"></pre>
 
 <script>
-const user = { name: "Ada", age: 36, joined: new Date(1815, 11, 10) };
+// Date.UTC keeps the time zone out of the picture, so the string below
+// is the same on every machine. A plain new Date(2024, 0, 15) would be
+// shifted by your local offset — that is a real trap, not this lesson.
+const user = { name: "Ada", age: 36, joined: new Date(Date.UTC(2024, 0, 15)) };
 
 // Out: a plain object becomes a string.
 const text = JSON.stringify(user);
