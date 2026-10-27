@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Sort objects by a field</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Sort objects by a field</h2>
+<p class="note">A comparator returning a number: negative means a first. sort() mutates the array it is called on.</p>
+
+<h3>On the slide</h3>
+<pre class="code">people.sort((a, b) =&gt; a.age - b.age);</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">最后一行是 [10, 100, 9]：默认比较把元素当字符串，数字排序必须给 comparator。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const people = [
+  { name: "Ada", age: 36 },
+  { name: "Bob", age: 19 },
+  { name: "Cy", age: 28 }
+];
+const show = xs => xs.map(p => p.name + ":" + p.age).join("  ");
+
+log("before", show(people));
+people.sort((a, b) => a.age - b.age);
+log("ascending", show(people));
+people.sort((a, b) => b.age - a.age);
+log("descending", show(people));
+log("sort mutated the same array", "true — copy first with [...people]");
+log("strings, not numbers", JSON.stringify([10, 9, 100].sort()));
+</script>
+
+</body>
+</html>

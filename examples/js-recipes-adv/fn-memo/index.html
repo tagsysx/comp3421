@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cache one value</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Cache one value</h2>
+<p class="note">??= assigns only when the left side is null or undefined — one computation, then the memory answers.</p>
+
+<h3>On the slide</h3>
+<pre class="code">let cache;
+const slow = n =&gt; cache ??= n * n;
+slow(9);   // 81, computed once</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">第二次调用参数变了，答案却没变 —— 这正是“只缓存一个值”的边界，多参数就要用 Map。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+let cache;
+let computed = 0;
+const slow = n => {
+  if (cache === undefined) { computed++; cache = n * n; }
+  return cache;
+};
+
+log("slow(9)", slow(9));
+log("slow(7)", slow(7));
+log("computations so far", computed);
+log("slow(100)", slow(100));
+log("computations so far", computed);
+log("cache now holds", cache);
+</script>
+
+</body>
+</html>

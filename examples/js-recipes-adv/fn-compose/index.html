@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Compose two functions</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Compose two functions</h2>
+<p class="note">compose(f, g) means g first, then f — read it right to left, the way mathematicians write it.</p>
+
+<h3>On the slide</h3>
+<pre class="code">const compose = (f, g) =&gt; x =&gt; f(g(x));
+compose(n =&gt; n + 1, n =&gt; n * 2)(5);</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">compose(inc, dbl)(5) 是 11：先 dbl 得 10，再 inc。参数顺序和阅读顺序相反，是最容易写错的地方。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const compose = (f, g) => x => f(g(x));
+const inc = n => n + 1;
+const dbl = n => n * 2;
+
+log("compose(dbl, inc)(5)", compose(dbl, inc)(5));
+log("inc(dbl(5))", inc(dbl(5)));
+log("compose(inc, dbl)(5)", compose(inc, dbl)(5));
+log("dbl(inc(5))", dbl(inc(5)));
+log("order matters", "same two functions, different answer");
+</script>
+
+</body>
+</html>

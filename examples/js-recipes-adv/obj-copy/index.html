@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Copy own properties only</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Copy own properties only</h2>
+<p class="note">Object.assign copies own enumerable properties. Inherited ones stay behind — and so do methods.</p>
+
+<h3>On the slide</h3>
+<pre class="code">const copy = Object.assign({}, cat);</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">copy 丢掉了 speak —— 它在原型上，不在 cat 自己身上。这是「浅拷贝」最容易踩的一脚。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const cat = Object.create({ speak() { return this.name + " speaks"; } });
+cat.name = "Tom";
+
+const copy = Object.assign({}, cat);
+log("Object.keys(cat)", JSON.stringify(Object.keys(cat)));
+log("Object.keys(copy)", JSON.stringify(Object.keys(copy)));
+log("typeof copy.speak", typeof copy.speak);
+try {
+  copy.speak();
+} catch (e) {
+  log("copy.speak()", e.name + ": " + e.message);
+}
+
+const mix = (o, m) => Object.assign(o, m);
+mix(cat, { purr() { return "purr"; } });
+log("after the mixin, cat.purr()", cat.purr());
+log("copy still has no purr", typeof copy.purr);
+</script>
+
+</body>
+</html>

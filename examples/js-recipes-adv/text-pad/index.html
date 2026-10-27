@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Pad a number</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Pad a number</h2>
+<p class="note">padStart only works on strings, so convert first. It is the usual answer for clocks and fixed columns.</p>
+
+<h3>On the slide</h3>
+<pre class="code">String(7).padStart(2, &quot;0&quot;);   // &quot;07&quot;</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+log('String(7).padStart(2, "0")', String(7).padStart(2, "0"));
+log("a clock", [9, 5, 12].map(n => String(n).padStart(2, "0")).join(":"));
+log("padEnd for a column", JSON.stringify("id".padEnd(8, ".") + "|"));
+log("already long enough", String(1234).padStart(2, "0"));
+try {
+  (7).padStart(2, "0");
+} catch (e) {
+  log("(7).padStart(...)", e.name + ": " + e.message);
+}
+</script>
+
+</body>
+</html>

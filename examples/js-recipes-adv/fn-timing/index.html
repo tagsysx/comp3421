@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Time a call</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Time a call</h2>
+<p class="note">performance.now() is a monotonic millisecond clock; Date.now() is not precise enough for this.</p>
+
+<h3>On the slide</h3>
+<pre class="code">const t0 = performance.now();
+work();
+console.log(performance.now() - t0);</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const t0 = performance.now();
+let sum = 0;
+for (let i = 0; i < 1000000; i++) sum += i;
+const t1 = performance.now();
+
+log("1e6 additions (ms)", (t1 - t0).toFixed(2));
+log("the result", sum);
+log("typeof performance.now()", typeof performance.now());
+log("Date.now resolution", 1 + " ms at best");
+log("run it twice", (() => {
+  const a = performance.now();
+  let s = 0;
+  for (let i = 0; i < 1000000; i++) s += i;
+  return (performance.now() - a).toFixed(2) + " ms";
+})());
+</script>
+
+</body>
+</html>

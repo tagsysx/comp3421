@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Hide a helper in place</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Hide a helper in place</h2>
+<p class="note">An IIFE runs once and disappears. Anything inside stays inside — unless you hand out a reference.</p>
+
+<h3>On the slide</h3>
+<pre class="code">(() =&gt; {
+  const secret = 42;
+  console.log(secret);
+})();</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const api = (() => {
+  const secret = 42;
+  let reads = 0;
+  return {
+    get() { reads++; return secret; },
+    howManyReads() { return reads; }
+  };
+})();
+
+log("api.get()", api.get());
+log("api.get()", api.get());
+log("api.howManyReads()", api.howManyReads());
+log("api.secret", String(api.secret));
+log("typeof secret outside", typeof globalThis.secret);
+log("Object.keys(api)", JSON.stringify(Object.keys(api)));
+</script>
+
+</body>
+</html>

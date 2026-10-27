@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>The loop bug, fixed — and not fixed</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>The loop bug, fixed — and not fixed</h2>
+<p class="note">Two identical loops: let makes one binding per turn, var makes one for the whole function.</p>
+
+<h3>On the slide</h3>
+<pre class="code">for (let i = 0; i &lt; 3; i++) {
+  setTimeout(() =&gt; console.log(i), 0);
+}   // 0 1 2</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">这就是两种写法唯一的差别：`let` per-iteration binding 是 ES6 为闭包专门加的规则。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const withLet = [];
+const withVar = [];
+
+for (let i = 0; i < 3; i++) {
+  setTimeout(() => withLet.push(i), 0);
+}
+for (var j = 0; j < 3; j++) {
+  setTimeout(() => withVar.push(j), 0);
+}
+
+log("scheduled", "six timers, all with delay 0");
+setTimeout(() => {
+  log("let, after the loop", withLet.join(" "));
+  log("var, after the loop", withVar.join(" "));
+  log("why", "var is one binding, let is one per turn");
+}, 20);
+</script>
+
+</body>
+</html>

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Borrow the constructor</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Borrow the constructor</h2>
+<p class="note">call() runs a function with a this you choose. A constructor function accepts that; a class does not.</p>
+
+<h3>On the slide</h3>
+<pre class="code">Point.call(a, 9, 12);
+a.x;   // 9</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">最后一行就是两种写法的硬性差别：class 的构造函数只认 new，call / apply 一律抛 TypeError。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+function Point(x, y) { this.x = x; this.y = y; }
+const a = new Point(3, 4);
+
+log("before", "x=" + a.x + ", y=" + a.y);
+Point.call(a, 9, 12);
+log("after Point.call(a, 9, 12)", "x=" + a.x + ", y=" + a.y);
+log("a is still a Point", a instanceof Point);
+
+class ClassPoint { constructor(x, y) { this.x = x; this.y = y; } }
+try {
+  ClassPoint.call(a, 1, 2);
+  log("class + call", "no error");
+} catch (e) {
+  log("class + call", e.name + ": " + e.message);
+}
+</script>
+
+</body>
+</html>

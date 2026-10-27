@@ -371,6 +371,48 @@
         "js-recipes/click-outside-close",
         "js-recipes/fire-on-enter"
       ]
+    },
+    {
+      "id": "lecture-07-recipes",
+      "name": "Lecture 7 · Recipes — quick demos",
+      "examples": [
+        "js-recipes-adv/point-with-method",
+        "js-recipes-adv/instanceof-check",
+        "js-recipes-adv/factory-object",
+        "js-recipes-adv/borrow-ctor",
+        "js-recipes-adv/forgot-new",
+        "js-recipes-adv/temp-class",
+        "js-recipes-adv/dog-extends",
+        "js-recipes-adv/empty-class",
+        "js-recipes-adv/point-tostring",
+        "js-recipes-adv/text-cap",
+        "js-recipes-adv/text-slug",
+        "js-recipes-adv/text-clip",
+        "js-recipes-adv/text-pad",
+        "js-recipes-adv/text-money",
+        "js-recipes-adv/text-words",
+        "js-recipes-adv/arr-uniq",
+        "js-recipes-adv/arr-sort-by",
+        "js-recipes-adv/arr-shuffle",
+        "js-recipes-adv/date-days",
+        "js-recipes-adv/math-range",
+        "js-recipes-adv/arr-group-by",
+        "js-recipes-adv/fn-memo",
+        "js-recipes-adv/fn-partial",
+        "js-recipes-adv/fn-borrow",
+        "js-recipes-adv/fn-bind",
+        "js-recipes-adv/fn-compose",
+        "js-recipes-adv/fn-timing",
+        "js-recipes-adv/proto-shout",
+        "js-recipes-adv/obj-create",
+        "js-recipes-adv/obj-copy",
+        "js-recipes-adv/proto-chain",
+        "js-recipes-adv/closure-counter",
+        "js-recipes-adv/closure-tag",
+        "js-recipes-adv/loop-scope",
+        "js-recipes-adv/fn-factory",
+        "js-recipes-adv/iife-hide"
+      ]
     }
   ],
   "categories": [
@@ -2655,6 +2697,300 @@
           "id": "fire-on-enter",
           "name": "Fire on Enter",
           "desc": "Check e.key on keydown to act on one specific key",
+          "files": [
+            "index.html"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "js-recipes-adv",
+      "name": "JavaScript Recipes II",
+      "examples": [
+        {
+          "id": "point-with-method",
+          "name": "A constructor with a method",
+          "desc": "One function, two objects — and each instance keeps its own copy of len",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "instanceof-check",
+          "name": "Check the type",
+          "desc": "instanceof walks the prototype chain, so every ancestor answers true",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "factory-object",
+          "name": "A factory instead of new",
+          "desc": "A plain object literal: no prototype of its own, no instanceof, no constructor",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "borrow-ctor",
+          "name": "Borrow the constructor",
+          "desc": "Point.call runs the constructor on an object you pick — a class refuses with a TypeError",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "forgot-new",
+          "name": "Forgetting new is silent",
+          "desc": "Without new the properties leak onto the global object; strict mode turns it into a TypeError",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "temp-class",
+          "name": "A getter and a static helper",
+          "desc": "get f computes on every read; fromF belongs to the class, not to an instance",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "dog-extends",
+          "name": "Inherit and extend",
+          "desc": "extends sets two links, and super() must run before this is touched",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "empty-class",
+          "name": "A class with no constructor",
+          "desc": "An empty constructor is supplied for you — new still works",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "point-tostring",
+          "name": "toString for nicer logs",
+          "desc": "The method every string conversion calls, and the one JSON.stringify ignores",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text-cap",
+          "name": "Capitalise a word",
+          "desc": "The one-liner throws on an empty string, so guard it",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text-slug",
+          "name": "A URL-friendly slug",
+          "desc": "Runs of non-alphanumerics become one dash — but the ends are not trimmed",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text-clip",
+          "name": "Cut a long line",
+          "desc": "The ellipsis counts toward the limit you asked for",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text-pad",
+          "name": "Pad a number",
+          "desc": "padStart lives on strings: the usual answer for clocks and fixed columns",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text-money",
+          "name": "Format money",
+          "desc": "toFixed returns a string and hides the float error instead of fixing it",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "text-words",
+          "name": "Count the words",
+          "desc": "split on whitespace, then drop the empty strings a leading space produces",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "arr-uniq",
+          "name": "Remove duplicates",
+          "desc": "Set keeps insertion order and compares objects by reference",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "arr-sort-by",
+          "name": "Sort objects by a field",
+          "desc": "A numeric comparator — and sort mutates the array it is called on",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "arr-shuffle",
+          "name": "A shuffled copy",
+          "desc": "Copy first, then sort; quick, but not a fair shuffle",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "date-days",
+          "name": "Days between two dates",
+          "desc": "Milliseconds divided, then rounded because daylight saving bends the day",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "math-range",
+          "name": "A number in a range",
+          "desc": "floor, not round, or both ends get half the chance of the middle",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "arr-group-by",
+          "name": "Group by a property",
+          "desc": "One reduce builds every bucket: create on first sight, then push",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-memo",
+          "name": "Cache one value",
+          "desc": "??= computes once — and then ignores every new argument",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-partial",
+          "name": "Partial application",
+          "desc": "A function returning a function: each call fixes one argument",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-borrow",
+          "name": "Borrow a method",
+          "desc": "Array's join applied to a string, which has no join of its own",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-bind",
+          "name": "Freeze the context",
+          "desc": "bind decides this for good; the usual cure for a callback that loses it",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-compose",
+          "name": "Compose two functions",
+          "desc": "Right to left — and the order changes the answer",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-timing",
+          "name": "Time a call",
+          "desc": "performance.now is monotonic and precise enough for this",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "proto-shout",
+          "name": "Add a method to every string",
+          "desc": "Extending a built-in works everywhere at once — and is enumerable by default",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "obj-create",
+          "name": "Inherit without classes",
+          "desc": "Object.create makes a prototype, not a copy",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "obj-copy",
+          "name": "Copy own properties only",
+          "desc": "Object.assign leaves the inherited methods behind",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "proto-chain",
+          "name": "The chain ends at null",
+          "desc": "One link per object, all the way up, and the last one is null",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "closure-counter",
+          "name": "A counter with private state",
+          "desc": "n lives in the closure, so there is no property to read or set",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "closure-tag",
+          "name": "A tag factory",
+          "desc": "The returned function remembers its tag on every call",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "loop-scope",
+          "name": "The loop bug, fixed — and not",
+          "desc": "let makes one binding per turn, var makes one for the whole function",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "fn-factory",
+          "name": "A function factory",
+          "desc": "times(3) returns a function that holds 3",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "iife-hide",
+          "name": "Hide a helper in place",
+          "desc": "Runs once and disappears; only what you hand out survives",
           "files": [
             "index.html"
           ]

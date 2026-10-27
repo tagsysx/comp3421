@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A counter with private state</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>A counter with private state</h2>
+<p class="note">n lives in the closure. Nothing outside can read it or set it — there is no property to touch.</p>
+
+<h3>On the slide</h3>
+<pre class="code">const counter = (() =&gt; {
+  let n = 0;
+  return () =&gt; ++n;
+})();</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">最后一行是 undefined：n 不是属性，拿不到。想暴露就只能再 return 一个 getter。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const counter = (() => {
+  let n = 0;
+  return () => ++n;
+})();
+const other = (() => {
+  let n = 0;
+  return () => ++n;
+})();
+
+log("counter()", counter());
+log("counter()", counter());
+log("counter()", counter());
+log("a second counter", other());
+log("they are independent", counter() + " vs " + other());
+log("counter.n", String(counter.n));
+</script>
+
+</body>
+</html>

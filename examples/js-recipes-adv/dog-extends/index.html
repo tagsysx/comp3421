@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Inherit and extend</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Inherit and extend</h2>
+<p class="note">extends sets two links, and super() must run before this is touched.</p>
+
+<h3>On the slide</h3>
+<pre class="code">class Animal {
+  constructor(name) { this.name = name; }
+  speak() { return this.name + &quot; makes a sound&quot;; }
+}
+class Dog extends Animal {
+  constructor(name, breed) { super(name); this.breed = breed; }
+  speak() { return super.speak() + &quot; — woof&quot;; }
+}</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">两个 true 是两条链：构造函数的 [[Prototype]] 指向 Animal，实例的原型指向 Animal.prototype。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+class Animal {
+  constructor(name) { this.name = name; }
+  speak() { return this.name + " makes a sound"; }
+}
+class Dog extends Animal {
+  constructor(name, breed) { super(name); this.breed = breed; }
+  speak() { return super.speak() + " — woof"; }
+}
+
+const rex = new Dog("Rex", "corgi");
+log("rex.speak()", rex.speak());
+log("rex instanceof Dog", rex instanceof Dog);
+log("rex instanceof Animal", rex instanceof Animal);
+log("up(Dog) === Animal", Object.getPrototypeOf(Dog) === Animal);
+log("up(Dog.prototype) === Animal.prototype",
+    Object.getPrototypeOf(Dog.prototype) === Animal.prototype);
+
+try {
+  new (class Bad extends Animal {
+    constructor() { this.x = 1; super("bad"); }
+  })();
+} catch (e) {
+  log("this before super()", e.name + ": " + e.message);
+}
+</script>
+
+</body>
+</html>

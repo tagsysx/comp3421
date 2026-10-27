@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>A function factory</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>A function factory</h2>
+<p class="note">times(3) returns a function holding 3. Holding is the point — it is not passed again.</p>
+
+<h3>On the slide</h3>
+<pre class="code">const times = n =&gt; x =&gt; x * n;
+times(3)(5);   // 15</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+const times = n => x => x * n;
+const triple = times(3);
+const ten = times(10);
+
+log("times(3)(5)", times(3)(5));
+log("triple(5)", triple(5));
+log("ten(5)", ten(5));
+log("[1, 2, 3].map(triple)", [1, 2, 3].map(triple).join(" "));
+log("[1, 2, 3].map(times(10))", [1, 2, 3].map(times(10)).join(" "));
+log("each call keeps its own n", times(2)(9) + " and " + times(4)(9));
+</script>
+
+</body>
+</html>

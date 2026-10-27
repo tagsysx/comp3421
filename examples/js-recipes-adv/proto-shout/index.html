@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Add a method to every string</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Add a method to every string</h2>
+<p class="note">You can extend a built-in prototype. It works everywhere at once — which is exactly why it is risky.</p>
+
+<h3>On the slide</h3>
+<pre class="code">String.prototype.shout = function () {
+  return this.toUpperCase() + &quot;!&quot;;
+};
+&quot;hi&quot;.shout();   // &quot;HI!&quot;</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">用 defineProperty 把它设成 non-enumerable，for...in 就看不到 —— 库代码都这么做。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+String.prototype.shout = function () {
+  return this.toUpperCase() + "!";
+};
+
+log('"hi".shout()', "hi".shout());
+log('"ok".shout()', "ok".shout());
+log("it is shared", "every string in the page has it");
+
+let seen = [];
+for (const k in "ab") seen.push(k);
+log("for...in on a string", seen.join(", "));
+log("enumerable?", "yes — this is the risk");
+
+Object.defineProperty(String.prototype, "loud", {
+  value: function () { return this.toUpperCase(); },
+  enumerable: false
+});
+let seen2 = [];
+for (const k in "ab") seen2.push(k);
+log("after defineProperty", seen2.join(", "));
+log("loud is hidden", !seen2.includes("loud"));
+</script>
+
+</body>
+</html>

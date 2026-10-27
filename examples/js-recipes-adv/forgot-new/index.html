@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Forgetting new is silent</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  h3   { margin: 18px 0 6px; font-size: 11px; letter-spacing: .08em;
+         text-transform: uppercase; color: #7a8699; }
+  pre  { margin: 0; padding: 12px 14px; border-radius: 6px; font-size: 13px;
+         line-height: 1.55; overflow-x: auto; }
+  pre.code { background: #1f2430; color: #e8eef7; }
+  #out { background: #f6f8fb; border: 1px solid #dde1e7; }
+  .trap { background: #fff3d6; border-left: 4px solid #b8860b; padding: 8px 12px;
+           margin: 14px 0 0; font-size: 13px; }
+</style>
+</head>
+<body>
+
+<h2>Forgetting new is silent</h2>
+<p class="note">Without new there is no object to build: in sloppy mode this becomes the global object and the properties leak there. Strict mode turns the same mistake into a TypeError.</p>
+
+<h3>On the slide</h3>
+<pre class="code">Point(1, 2);        // this is undefined
+new Point(1, 2);    // ok</pre>
+
+<h3>What it prints</h3>
+<pre id="out"></pre>
+
+<div class="trap">在浏览器里 globalThis 就是 window —— 这条 log 念作「x 跑到 window 上去了」。</div>
+<script>
+const out = [];
+function render() { document.getElementById("out").textContent = out.join("\n"); }
+function log(label, value) {
+  out.push(String(label).padEnd(30) + "  " + value);
+  render();
+}
+
+function Point(x, y) { this.x = x; this.y = y; }
+
+delete globalThis.x;
+const noNew = Point(1, 2);
+log("return value of Point(1, 2)", String(noNew));
+log("globalThis.x after that call", String(globalThis.x));
+log("so the instance was never built", "nothing was returned");
+
+const p = new Point(1, 2);
+log("new Point(1, 2)", "{ x: " + p.x + ", y: " + p.y + " }");
+
+const strictPoint = (() => {
+  "use strict";
+  return function Point(x, y) { this.x = x; this.y = y; };
+})();
+try {
+  strictPoint(1, 2);
+} catch (e) {
+  log("same call in strict mode", e.name + ": " + e.message);
+}
+</script>
+
+</body>
+</html>
