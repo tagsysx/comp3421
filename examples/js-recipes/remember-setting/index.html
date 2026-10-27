@@ -1,29 +1,61 @@
 <!DOCTYPE html>
 <html>
+<head>
+<meta charset="utf-8">
+<title>Remember a setting</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 0; padding: 28px;
+         background: #ffffff; color: #1a2230;
+         transition: background .25s ease, color .25s ease; }
+  body[data-theme="dark"] { background: #1f2430; color: #e8eef7; }
+  h1 { font-size: 20px; margin: 0 0 4px; }
+  h2 { font-size: 15px; font-weight: 500; margin: 0 0 16px; opacity: .65; }
+  p  { font-size: 13px; line-height: 1.6; }
+  button { font: inherit; font-size: 13px; padding: 7px 14px; cursor: pointer;
+           border-radius: 6px; border: 1px solid currentColor;
+           background: transparent; color: inherit; }
+</style>
+</head>
 <body>
 
 <h1>The Browser Object Model</h1>
 <h2>Remember a setting</h2>
 
-<p>localStorage stores strings in the browser; they survive a reload or a new tab on the same site.</p>
+<p>localStorage keeps one string per site, and it survives a reload.
+   Click "Save theme = dark" — the page changes colour, and it is still dark
+   after you reload.</p>
 
-<p><button id="save">Save theme = dark</button> <button id="clear">Clear it</button></p>
+<p>
+  <button id="save">Save theme = dark</button>
+  <button id="clear">Clear it</button>
+</p>
 <p id="demo"></p>
 
 <script>
 const demo = document.getElementById("demo");
-const show = () => {
-  const theme = localStorage.getItem("theme");
+
+// The setting is only words until you apply it. Here the stored theme
+// becomes an attribute on <body>, and the CSS decides what dark looks like.
+function apply() {
+  let theme = null;
+  try { theme = localStorage.getItem("theme"); } catch (e) { theme = null; }
+  document.body.dataset.theme = theme || "light";
   demo.textContent = theme === null
-    ? 'no theme saved — click "Save theme"'
-    : 'theme = "' + theme + '"  (reload the page: it is still there)';
+    ? "no theme saved — the page is light"
+    : 'theme = "' + theme + '"  (reload: it is still there)';
+}
+
+apply();                      // read it back on every load
+
+document.getElementById("save").onclick = () => {
+  try { localStorage.setItem("theme", "dark"); } catch (e) { /* blocked */ }
+  apply();
 };
 
-localStorage.setItem("theme", "dark");   // the recipe's two lines
-show();
-
-document.getElementById("save").onclick = () => { localStorage.setItem("theme", "dark"); show(); };
-document.getElementById("clear").onclick = () => { localStorage.removeItem("theme"); show(); };
+document.getElementById("clear").onclick = () => {
+  try { localStorage.removeItem("theme"); } catch (e) { /* blocked */ }
+  apply();
+};
 </script>
 
 </body>
