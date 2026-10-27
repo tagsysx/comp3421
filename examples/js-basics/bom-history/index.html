@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>history</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; font-size: 14px; }
+  h2   { margin: 0 0 10px; font-size: 19px; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px; font-size: 13px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h2>history — where this tab has been</h2>
+<pre id="out"></pre>
+
+<script>
+// history.length counts the entries in this tab, including the ones
+// you added with pushState. back() and forward() are the toolbar
+// buttons; this page only reads, so nothing navigates away.
+const rows = {
+  "history.length":           history.length,
+  "history.state":            JSON.stringify(history.state),
+  "history.scrollRestoration": history.scrollRestoration
+};
+
+document.getElementById("out").textContent =
+  Object.entries(rows).map(([k, v]) => k.padEnd(26) + v).join("\n") +
+  "\n\npushState() adds an entry without reloading — that is how an SPA\n" +
+  "changes the URL. popstate fires when the user walks back.";
+</script>
+
+</body>
+</html>

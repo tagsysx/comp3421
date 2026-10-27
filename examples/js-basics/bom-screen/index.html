@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>screen</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; font-size: 14px; }
+  h2   { margin: 0 0 10px; font-size: 19px; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px; font-size: 13px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h2>screen — the physical display</h2>
+<pre id="out"></pre>
+
+<script>
+// screen describes the monitor, not the page. Resizing the window
+// does not change screen.width; changing monitors does.
+const rows = {
+  "screen.width":       screen.width,
+  "screen.height":      screen.height,
+  "screen.availWidth":  screen.availWidth,
+  "screen.availHeight": screen.availHeight,
+  "screen.colorDepth":  screen.colorDepth
+};
+
+document.getElementById("out").textContent =
+  Object.entries(rows).map(([k, v]) => k.padEnd(20) + v).join("\n");
+</script>
+
+</body>
+</html>

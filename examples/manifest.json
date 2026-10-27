@@ -243,6 +243,11 @@
         "js-basics/object-add-property",
         "js-basics/object-delete-property",
         "js-basics/window-size",
+        "js-basics/bom-screen",
+        "js-basics/bom-location",
+        "js-basics/bom-history",
+        "js-basics/bom-navigator",
+        "js-basics/bom-document",
         "js-basics/cookies"
       ]
     },
@@ -2137,6 +2142,46 @@
           "id": "window-size",
           "name": "Window size",
           "desc": "window.innerWidth and window.innerHeight, live",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "bom-screen",
+          "name": "screen — the display",
+          "desc": "width, height, availWidth, colorDepth — read only",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "bom-location",
+          "name": "location — the address",
+          "desc": "Every part of the URL, already parsed for you",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "bom-history",
+          "name": "history — the tab's trail",
+          "desc": "length and state, plus what pushState adds",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "bom-navigator",
+          "name": "navigator — the browser",
+          "desc": "language, onLine, userAgent — and why sniffing fails",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "bom-document",
+          "name": "document — the page",
+          "desc": "document is a property of window; here is the proof",
           "files": [
             "index.html"
           ]

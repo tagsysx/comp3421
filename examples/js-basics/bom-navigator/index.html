@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>navigator</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; font-size: 14px; }
+  h2   { margin: 0 0 10px; font-size: 19px; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px; font-size: 13px; line-height: 1.6; word-break: break-all; }
+</style>
+</head>
+<body>
+
+<h2>navigator — the browser itself</h2>
+<pre id="out"></pre>
+
+<script>
+// navigator answers "what am I running in", not "where am I".
+// userAgent is long and easy to fake: feature-detect, never sniff.
+const rows = {
+  "navigator.language":          navigator.language,
+  "navigator.languages":         navigator.languages.join(", "),
+  "navigator.onLine":            navigator.onLine,
+  "navigator.cookieEnabled":     navigator.cookieEnabled,
+  "navigator.hardwareConcurrency": navigator.hardwareConcurrency,
+  "navigator.userAgent":         navigator.userAgent
+};
+
+document.getElementById("out").textContent =
+  Object.entries(rows).map(([k, v]) => k.padEnd(30) + v).join("\n");
+</script>
+
+</body>
+</html>

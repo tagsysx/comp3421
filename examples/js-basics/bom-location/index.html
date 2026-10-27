@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>location</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; font-size: 14px; }
+  h2   { margin: 0 0 10px; font-size: 19px; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px; font-size: 13px; line-height: 1.6; }
+</style>
+</head>
+<body>
+
+<h2>location — the address of this page</h2>
+<pre id="out"></pre>
+
+<script>
+// Every part of the URL is already parsed for you.
+// Reading is free; location.assign(url) would navigate away,
+// so this example only reads.
+const parts = {
+  "location.href":     location.href,
+  "location.protocol": location.protocol,
+  "location.hostname": location.hostname,
+  "location.pathname": location.pathname,
+  "location.search":   location.search || "(empty)",
+  "location.hash":     location.hash || "(empty)"
+};
+
+document.getElementById("out").textContent =
+  Object.entries(parts).map(([k, v]) => k.padEnd(19) + v).join("\n");
+</script>
+
+</body>
+</html>

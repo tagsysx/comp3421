@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>document</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; font-size: 14px; }
+  h2   { margin: 0 0 10px; font-size: 19px; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px; font-size: 13px; line-height: 1.6; word-break: break-all; }
+</style>
+</head>
+<body>
+
+<h2>document — the page, inside window</h2>
+<pre id="out"></pre>
+
+<script>
+// document is where the DOM lives. It is a property of window,
+// which is why window.document and document are the same object.
+const rows = {
+  "document.title":        document.title,
+  "document.URL":          document.URL,
+  "document.readyState":   document.readyState,
+  "document.characterSet": document.characterSet,
+  "document === window.document": document === window.document
+};
+
+document.getElementById("out").textContent =
+  Object.entries(rows).map(([k, v]) => k.padEnd(30) + v).join("\n");
+</script>
+
+</body>
+</html>
