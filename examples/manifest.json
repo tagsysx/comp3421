@@ -219,6 +219,7 @@
       "desc": "Syntax, types, statements, functions, objects — plus the DOM, the BOM and events",
       "examples": [
         "js-basics/change-style",
+        "js-basics/query-all",
         "js-basics/change-attribute",
         "js-basics/script-placement",
         "js-basics/loop-for",
@@ -1941,6 +1942,14 @@
           "id": "change-style",
           "name": "Change the style",
           "desc": "Click a button and JavaScript restyles an element",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "query-all",
+          "name": "One element, or all of them",
+          "desc": "querySelector stops at the first match; querySelectorAll returns a NodeList you must loop",
           "files": [
             "index.html"
           ]
