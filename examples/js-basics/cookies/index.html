@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Cookies</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; color: #1a2230; }
+  h2   { margin: 0 0 6px; font-size: 20px; }
+  p.note { margin: 0 0 16px; color: #4a5568; font-size: 13px; line-height: 1.5; }
+  .row { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 16px; }
+  button { font: inherit; font-size: 13px; padding: 6px 12px; cursor: pointer;
+           border: 1px solid #1e4fa8; background: #eef2f8; color: #1a2230;
+           border-radius: 6px; }
+  button.warn { border-color: #a33; background: #fdeeee; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px;
+         font-size: 13px; white-space: pre-wrap; word-break: break-all; }
+  table { border-collapse: collapse; font-size: 13px; }
+  th, td { border: 1px solid #dde1e7; padding: 4px 10px; text-align: left; }
+  th { background: #eef2f8; }
+  #warn { display: none; background: #fdeeee; border: 1px solid #a33;
+          color: #7a1f1f; padding: 10px; font-size: 13px; margin-bottom: 16px; }
+</style>
+</head>
+<body>
+
+<h2>Cookies — one property, a whole API</h2>
+<p class="note">
+  Every pair lives in the same string: <b>name=value; name2=value2</b>.
+  There is no getter for a single cookie — you write the string and you parse the string.
+</p>
+
+<div id="warn"></div>
+
+<div class="row">
+  <button onclick="put('theme','dark',3600)">
+    theme = dark (1 h)</button>
+  <button onclick="put('username','John Doe',3600)">
+    username = John Doe</button>
+  <button onclick="put('lang','en',3600)">
+    lang = en</button>
+  <button class="warn" onclick="drop('theme')">
+    delete theme</button>
+  <button class="warn" onclick="dropAll()">
+    delete all</button>
+</div>
+
+<p class="note"><b>document.cookie</b> right now:</p>
+<pre id="raw"></pre>
+
+<p class="note">Parsed by hand — this is the reading half of the API:</p>
+<table>
+  <thead><tr><th>cookie</th><th>decoded data</th></tr></thead>
+  <tbody id="parsed"></tbody>
+</table>
+
+<script>
+const blocked = (() => {
+  try { return typeof document.cookie !== "string"; }
+  catch (e) { return true; }
+})();
+
+function warnIfBlocked() {
+  if (!blocked) return false;
+  const box = document.getElementById("warn");
+  box.style.display = "block";
+  box.textContent =
+    "This frame does not allow cookies. Open the example in " +
+    "its own tab from the course site and it works normally.";
+  return true;
+}
+
+// Writing: assign a string. Second call APPENDS, it does not replace.
+function put(name, data, seconds) {
+  if (warnIfBlocked()) return;
+  document.cookie = name + "=" + encodeURIComponent(data) +
+                    "; max-age=" + seconds + "; path=/; SameSite=Lax";
+  show();
+}
+
+// Deleting: same assignment, with an expiry already in the past.
+function drop(name) {
+  if (warnIfBlocked()) return;
+  document.cookie = name + "=; max-age=0; path=/";
+  show();
+}
+
+function dropAll() {
+  if (warnIfBlocked()) return;
+  Object.keys(parse()).forEach(drop);
+  show();
+}
+
+// Reading: one string in, a plain object out. You split and trim it yourself.
+function parse() {
+  const out = {};
+  document.cookie.split(";").forEach((pair) => {
+    const at = pair.indexOf("=");
+    if (at < 0) return;
+    out[pair.slice(0, at).trim()] = decodeURIComponent(pair.slice(at + 1).trim());
+  });
+  return out;
+}
+
+function show() {
+  const raw = blocked ? "(cookies blocked in this frame)" : document.cookie;
+  document.getElementById("raw").textContent = raw || "(empty)";
+
+  const body = document.getElementById("parsed");
+  body.replaceChildren();
+  const rows = Object.entries(blocked ? {} : parse());
+  if (!rows.length) {
+    const tr = document.createElement("tr");
+    const td = document.createElement("td");
+    td.colSpan = 2;
+    td.textContent = "no cookies for this site yet";
+    tr.appendChild(td);
+    body.appendChild(tr);
+    return;
+  }
+  rows.forEach(([name, data]) => {
+    const tr = document.createElement("tr");
+    [name, data].forEach((cellText) => {
+      const td = document.createElement("td");
+      td.textContent = cellText;          // textContent, not innerHTML
+      tr.appendChild(td);
+    });
+    body.appendChild(tr);
+  });
+}
+
+warnIfBlocked();
+show();
+</script>
+
+</body>
+</html>

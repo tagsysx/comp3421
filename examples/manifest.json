@@ -242,7 +242,8 @@
         "js-basics/object-method",
         "js-basics/object-add-property",
         "js-basics/object-delete-property",
-        "js-basics/window-size"
+        "js-basics/window-size",
+        "js-basics/cookies"
       ]
     },
     {
@@ -2136,6 +2137,14 @@
           "id": "window-size",
           "name": "Window size",
           "desc": "window.innerWidth and window.innerHeight, live",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "cookies",
+          "name": "Cookies — one property, a whole API",
+          "desc": "Write, append, read and delete document.cookie — and parse the string by hand",
           "files": [
             "index.html"
           ]
