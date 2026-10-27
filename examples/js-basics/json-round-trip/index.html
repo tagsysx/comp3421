@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>JSON — objects in transit</title>
+<style>
+  body { font-family: system-ui, sans-serif; margin: 24px; font-size: 14px; }
+  h2   { margin: 0 0 6px; font-size: 19px; }
+  p    { margin: 0 0 14px; color: #4a5568; font-size: 13px; }
+  pre  { background: #f6f8fb; border: 1px solid #dde1e7; padding: 10px;
+         font-size: 13px; line-height: 1.6; white-space: pre-wrap; word-break: break-all; }
+</style>
+</head>
+<body>
+
+<h2>JSON — objects in transit</h2>
+<p>JSON is text, not an object. <b>stringify</b> writes it out; <b>parse</b> reads it back.</p>
+<pre id="out"></pre>
+
+<script>
+const user = { name: "Ada", age: 36, joined: new Date(1815, 11, 10) };
+
+// Out: a plain object becomes a string.
+const text = JSON.stringify(user);
+
+// Back: a string becomes a NEW object — not the one you started with.
+const back = JSON.parse(text);
+
+const rows = [
+  "typeof text               " + typeof text,
+  "JSON.stringify(user)      " + text,
+  "",
+  "back.name                 " + back.name,
+  "back === user             " + (back === user),
+  "back.joined instanceof Date  " + (back.joined instanceof Date),
+  "",
+  "// what does not survive",
+  "JSON.stringify({ f() {}, u: undefined })",
+  "  ->  " + JSON.stringify({ f() {}, u: undefined }),
+  "",
+  "// the third argument indents, for reading",
+  JSON.stringify({ name: "Ada", age: 36 }, null, 2)
+];
+
+document.getElementById("out").textContent = rows.join("\n");
+</script>
+
+</body>
+</html>

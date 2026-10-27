@@ -242,6 +242,7 @@
         "js-basics/object-method",
         "js-basics/object-add-property",
         "js-basics/object-delete-property",
+        "js-basics/json-round-trip",
         "js-basics/window-size",
         "js-basics/bom-screen",
         "js-basics/bom-location",
@@ -2134,6 +2135,14 @@
           "id": "object-delete-property",
           "name": "Delete a property",
           "desc": "delete removes the value and the property itself",
+          "files": [
+            "index.html"
+          ]
+        },
+        {
+          "id": "json-round-trip",
+          "name": "Objects in transit",
+          "desc": "stringify writes an object out, parse reads it back — and what gets lost",
           "files": [
             "index.html"
           ]
