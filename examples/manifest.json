@@ -273,6 +273,7 @@
         "js-advances/function-arguments",
         "js-advances/nested-closure",
         "js/classes",
+        "js/regex",
         "js/context",
         "js/closures"
       ]
@@ -1882,6 +1883,15 @@
           "id": "functions",
           "name": "Functions as values",
           "desc": "Pass, return and compose functions — higher-order functions",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "regex",
+          "name": "Regular expressions, symbol by symbol",
+          "desc": "Every symbol from the table, one line each: pattern, subject, what it matched",
           "files": [
             "index.html",
             "script.js"
