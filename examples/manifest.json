@@ -634,6 +634,7 @@
           "desc": "img + usemap + map + area — clickable regions (rect & circle)",
           "files": [
             "index.html",
+            "script.js",
             "computer.html",
             "phone.html",
             "coffee.html",
@@ -669,7 +670,8 @@
           "name": "SVG loaders",
           "desc": "Four loaders from one idea — a sliding line, a sweeping arc, a draw-on path, and a script-driven transition",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -692,7 +694,8 @@
           "name": "What style can do",
           "desc": "A lively intro: colour, width, text & font — all inline",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1478,6 +1481,7 @@
           "desc": "Custom properties --name and var() for theming",
           "files": [
             "index.html",
+            "script.js",
             "style.css"
           ]
         },
@@ -1792,6 +1796,7 @@
           "desc": "display:none, visibility:hidden, opacity:0 — space and clicks",
           "files": [
             "index.html",
+            "script.js",
             "style.css"
           ]
         },
@@ -1946,7 +1951,8 @@
           "name": "Object constructor",
           "desc": "A constructor function, new, and two independent Person objects",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1954,7 +1960,8 @@
           "name": "Add a method by prototype",
           "desc": "Person.prototype.changeName adds a method to every instance",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1962,7 +1969,8 @@
           "name": "Add a property by prototype",
           "desc": "Person.prototype.nationality is shared by every instance",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1970,7 +1978,8 @@
           "name": "Add a shared method",
           "desc": "One method object behind every Person",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1978,7 +1987,8 @@
           "name": "The Function() constructor",
           "desc": "A function built from strings — and why you avoid it",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1986,7 +1996,8 @@
           "name": "The arguments object",
           "desc": "findMax reads however many arguments it is handed",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -1994,7 +2005,8 @@
           "name": "A nested function",
           "desc": "An inner function keeps the outer counter alive",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         }
       ]
@@ -2017,7 +2029,8 @@
           "name": "One element, or all of them",
           "desc": "querySelector stops at the first match; querySelectorAll returns a NodeList you must loop",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2035,7 +2048,8 @@
           "name": "Where the script goes",
           "desc": "A script at the end of <body> writes into the page",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2043,7 +2057,8 @@
           "name": "The for loop",
           "desc": "Walk a cars array with for (let i = 0; ...)",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2051,7 +2066,8 @@
           "name": "for...in",
           "desc": "Loop through the properties of an object",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2059,7 +2075,8 @@
           "name": "for...of",
           "desc": "Loop through the values of an iterable",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2067,7 +2084,8 @@
           "name": "try...catch",
           "desc": "Type a number between 5 and 10 — throw, catch and report",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2075,7 +2093,8 @@
           "name": "Parameters and return",
           "desc": "A function that takes two parameters and returns the product",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2083,7 +2102,8 @@
           "name": "Parameters and arguments",
           "desc": "Too few arguments become undefined; a default fills that gap",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2091,7 +2111,8 @@
           "name": "Name vs call",
           "desc": "A function name without () is the function itself, not its result",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2099,7 +2120,8 @@
           "name": "Function expression",
           "desc": "Store a function in a variable, then call it by that variable",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2107,7 +2129,8 @@
           "name": "Arrow functions",
           "desc": "The JS name for a lambda: the arrow shorthand and the anonymous function are the same thing",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2115,7 +2138,8 @@
           "name": "Functions as parameters",
           "desc": "A named function passed as a callback: apply(shout, \"hi\"), map(double), addEventListener",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2123,7 +2147,8 @@
           "name": "Self-invoking function",
           "desc": "An IIFE — a function expression that calls itself",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2131,7 +2156,8 @@
           "name": "Automatically global",
           "desc": "An assignment with no declaration becomes a global variable",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2139,7 +2165,8 @@
           "name": "let and block scope",
           "desc": "let stays inside { } and var leaks out — try both outside the block",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2147,7 +2174,8 @@
           "name": "Strict mode — variable",
           "desc": "\"use strict\" rejects a variable that was never declared",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2155,7 +2183,8 @@
           "name": "Strict mode — global",
           "desc": "\"use strict\" at the top of the file covers the whole script",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2163,7 +2192,8 @@
           "name": "Strict mode — local",
           "desc": "\"use strict\" inside one function covers only that function",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2171,7 +2201,8 @@
           "name": "Object properties",
           "desc": "Reading properties with person[\"firstname\"]",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2179,7 +2210,8 @@
           "name": "Object method and this",
           "desc": "An object method is a function stored as a property",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2187,7 +2219,8 @@
           "name": "Add a property",
           "desc": "Assign to a new name and the property appears",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2195,7 +2228,8 @@
           "name": "Delete a property",
           "desc": "delete removes the value and the property itself",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2203,7 +2237,8 @@
           "name": "Objects in transit",
           "desc": "stringify writes an object out, parse reads it back — and what gets lost",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2211,7 +2246,8 @@
           "name": "Window size",
           "desc": "window.innerWidth and window.innerHeight, live",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2219,7 +2255,8 @@
           "name": "screen — the display",
           "desc": "width, height, availWidth, colorDepth — read only",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2227,7 +2264,8 @@
           "name": "location — the address",
           "desc": "Every part of the URL, already parsed for you",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2235,7 +2273,8 @@
           "name": "history — the tab's trail",
           "desc": "length and state, plus what pushState adds",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2243,7 +2282,8 @@
           "name": "navigator — the browser",
           "desc": "language, onLine, userAgent — and why sniffing fails",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2251,7 +2291,8 @@
           "name": "document — the page",
           "desc": "document is a property of window; here is the proof",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2259,7 +2300,8 @@
           "name": "Cookies — one property, a whole API",
           "desc": "Write, append, read and delete document.cookie — and parse the string by hand",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         }
       ]
@@ -2339,7 +2381,8 @@
           "name": "Log anything",
           "desc": "console.log takes any values; console.table prints objects as a table",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2347,7 +2390,8 @@
           "name": "Write into the page",
           "desc": "Find an element by id, then assign new HTML to its innerHTML",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2355,7 +2399,8 @@
           "name": "React to a click",
           "desc": "A button's onclick handler runs when the user clicks",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2363,7 +2408,8 @@
           "name": "A live clock in the title bar",
           "desc": "setInterval rewrites the tab title once a second",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2371,7 +2417,8 @@
           "name": "Count the clicks",
           "desc": "One variable, one handler: each click increments the count",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2379,7 +2426,8 @@
           "name": "A random colour on every load",
           "desc": "Math.random picks a hue; the page repaints on every load",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2387,7 +2435,8 @@
           "name": "Swap two variables",
           "desc": "Destructuring swaps two values in one line",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2395,7 +2444,8 @@
           "name": "Round to two decimals",
           "desc": "toFixed(2) rounds and returns a string; Number() turns it back",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2403,7 +2453,8 @@
           "name": "A safe default",
           "desc": "|| falls back on any falsy value; ?? only for null or undefined",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2411,7 +2462,8 @@
           "name": "One line, two outcomes",
           "desc": "The ternary picks one of two values from a condition",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2419,7 +2471,8 @@
           "name": "A dice roll",
           "desc": "Math.random scaled and floored gives 1–6",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2427,7 +2480,8 @@
           "name": "Loose versus strict equality",
           "desc": "== converts before comparing; === does not",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2435,7 +2489,8 @@
           "name": "Template a sentence",
           "desc": "Backticks and ${ } put a name and a count into one string",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2443,7 +2498,8 @@
           "name": "String to array",
           "desc": "split() cuts a comma-separated string into three items",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2451,7 +2507,8 @@
           "name": "Array to string",
           "desc": "join() glues the items into one string with a separator",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2459,7 +2516,8 @@
           "name": "Copy an array",
           "desc": "The spread copies first; push() then changes only the copy",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2467,7 +2525,8 @@
           "name": "Count the truthy ones",
           "desc": "filter(Boolean).length keeps the values that count as true",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2475,7 +2534,8 @@
           "name": "Double, then keep the big ones",
           "desc": "map() changes every item, filter() keeps the ones you want",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2483,7 +2543,8 @@
           "name": "Loop with the index",
           "desc": "entries() gives the index and the value together",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2491,7 +2552,8 @@
           "name": "Sum an array",
           "desc": "reduce() folds an array into one value",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2499,7 +2561,8 @@
           "name": "Pick one at random",
           "desc": "A random index picks a random array item",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2507,7 +2570,8 @@
           "name": "Guard clause",
           "desc": "Return early so the rest of the function only sees valid input",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2515,7 +2579,8 @@
           "name": "FizzBuzz, the classic",
           "desc": "Modulo tests, string building and || in one loop",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2523,7 +2588,8 @@
           "name": "Try it, or say why not",
           "desc": "try runs the risky line; catch reports the reason",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2531,7 +2597,8 @@
           "name": "A default that fills the gap",
           "desc": "A default value is used only when the argument is missing",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2539,7 +2606,8 @@
           "name": "Sum anything you pass",
           "desc": "The rest parameter gathers any number of arguments into an array",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2547,7 +2615,8 @@
           "name": "A function that returns a function",
           "desc": "Arrow functions nest: add(2) returns a function waiting for b",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2555,7 +2624,8 @@
           "name": "Run it once, whatever happens",
           "desc": "A closure remembers whether it has already run",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2563,7 +2633,8 @@
           "name": "Pipe two functions",
           "desc": "Compose two functions into one left-to-right pipeline",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2571,7 +2642,8 @@
           "name": "Arrow versus method, and this",
           "desc": "A method's this is its object; a copied function loses it",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2579,7 +2651,8 @@
           "name": "Shorthand properties",
           "desc": "When the variable name and the property name match, write it once",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2587,7 +2660,8 @@
           "name": "Destructure with defaults",
           "desc": "Destructuring with = inside the braces supplies missing values",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2595,7 +2669,8 @@
           "name": "Clone and override",
           "desc": "Spread copies every property; the later value wins",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2603,7 +2678,8 @@
           "name": "Reach in safely",
           "desc": "? stops at null/undefined; ?? supplies the fallback",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2611,7 +2687,8 @@
           "name": "A key you compute",
           "desc": "Square brackets in an object literal evaluate the key",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2619,7 +2696,8 @@
           "name": "Walk an object",
           "desc": "Object.entries() gives every key/value pair as an array",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2627,7 +2705,8 @@
           "name": "Build a list item",
           "desc": "Create the element in memory, fill it, then append it",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2635,7 +2714,8 @@
           "name": "Toggle a class",
           "desc": "classList.toggle adds the class, and removes it on the next call",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2643,7 +2723,8 @@
           "name": "Read what the user typed",
           "desc": "An input's current text lives in its value property",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2651,7 +2732,8 @@
           "name": "Smooth scroll to the top",
           "desc": "scrollTo takes an options object, including a smooth behaviour",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2659,7 +2741,8 @@
           "name": "Remember a setting",
           "desc": "localStorage keeps a string in the browser between visits",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2667,7 +2750,8 @@
           "name": "Read the URL query",
           "desc": "URLSearchParams parses the ?key=value part of the address",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2675,7 +2759,8 @@
           "name": "One listener for a whole list",
           "desc": "One listener on the parent handles every child, present or future",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2683,7 +2768,8 @@
           "name": "Stop a form from reloading",
           "desc": "preventDefault stops the browser's default submit-and-reload",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2691,7 +2777,8 @@
           "name": "A keyboard shortcut",
           "desc": "A document-level keydown listener can implement shortcuts",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2699,7 +2786,8 @@
           "name": "Live search without the jitter",
           "desc": "Clear the old timer, set a new one: only a pause in typing searches",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2707,7 +2795,8 @@
           "name": "Click outside to close",
           "desc": "contains() tells whether the click landed inside the menu",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2715,7 +2804,8 @@
           "name": "Fire on Enter",
           "desc": "Check e.key on keydown to act on one specific key",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         }
       ]
@@ -2729,7 +2819,8 @@
           "name": "A constructor with a method",
           "desc": "One function, two objects — and each instance keeps its own copy of len",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2737,7 +2828,8 @@
           "name": "Check the type",
           "desc": "instanceof walks the prototype chain, so every ancestor answers true",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2745,7 +2837,8 @@
           "name": "A factory instead of new",
           "desc": "A plain object literal: no prototype of its own, no instanceof, no constructor",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2753,7 +2846,8 @@
           "name": "Borrow the constructor",
           "desc": "Point.call runs the constructor on an object you pick — a class refuses with a TypeError",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2761,7 +2855,8 @@
           "name": "Forgetting new is silent",
           "desc": "Without new the properties leak onto the global object; strict mode turns it into a TypeError",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2769,7 +2864,8 @@
           "name": "A getter and a static helper",
           "desc": "get f computes on every read; fromF belongs to the class, not to an instance",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2777,7 +2873,8 @@
           "name": "Inherit and extend",
           "desc": "extends sets two links, and super() must run before this is touched",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2785,7 +2882,8 @@
           "name": "A class with no constructor",
           "desc": "An empty constructor is supplied for you — new still works",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2793,7 +2891,8 @@
           "name": "toString for nicer logs",
           "desc": "The method every string conversion calls, and the one JSON.stringify ignores",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2801,7 +2900,8 @@
           "name": "Capitalise a word",
           "desc": "The one-liner throws on an empty string, so guard it",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2809,7 +2909,8 @@
           "name": "A URL-friendly slug",
           "desc": "Runs of non-alphanumerics become one dash — but the ends are not trimmed",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2817,7 +2918,8 @@
           "name": "Cut a long line",
           "desc": "The ellipsis counts toward the limit you asked for",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2825,7 +2927,8 @@
           "name": "Pad a number",
           "desc": "padStart lives on strings: the usual answer for clocks and fixed columns",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2833,7 +2936,8 @@
           "name": "Format money",
           "desc": "toFixed returns a string and hides the float error instead of fixing it",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2841,7 +2945,8 @@
           "name": "Count the words",
           "desc": "split on whitespace, then drop the empty strings a leading space produces",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2849,7 +2954,8 @@
           "name": "Remove duplicates",
           "desc": "Set keeps insertion order and compares objects by reference",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2857,7 +2963,8 @@
           "name": "Sort objects by a field",
           "desc": "A numeric comparator — and sort mutates the array it is called on",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2865,7 +2972,8 @@
           "name": "A shuffled copy",
           "desc": "Copy first, then sort; quick, but not a fair shuffle",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2873,7 +2981,8 @@
           "name": "Days between two dates",
           "desc": "Milliseconds divided, then rounded because daylight saving bends the day",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2881,7 +2990,8 @@
           "name": "A number in a range",
           "desc": "floor, not round, or both ends get half the chance of the middle",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2889,7 +2999,8 @@
           "name": "Group by a property",
           "desc": "One reduce builds every bucket: create on first sight, then push",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2897,7 +3008,8 @@
           "name": "Cache one value",
           "desc": "??= computes once — and then ignores every new argument",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2905,7 +3017,8 @@
           "name": "Partial application",
           "desc": "A function returning a function: each call fixes one argument",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2913,7 +3026,8 @@
           "name": "Borrow a method",
           "desc": "Array's join applied to a string, which has no join of its own",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2921,7 +3035,8 @@
           "name": "Freeze the context",
           "desc": "bind decides this for good; the usual cure for a callback that loses it",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2929,7 +3044,8 @@
           "name": "Compose two functions",
           "desc": "Right to left — and the order changes the answer",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2937,7 +3053,8 @@
           "name": "Time a call",
           "desc": "performance.now is monotonic and precise enough for this",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2945,7 +3062,8 @@
           "name": "Add a method to every string",
           "desc": "Extending a built-in works everywhere at once — and is enumerable by default",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2953,7 +3071,8 @@
           "name": "Inherit without classes",
           "desc": "Object.create makes a prototype, not a copy",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2961,7 +3080,8 @@
           "name": "Copy own properties only",
           "desc": "Object.assign leaves the inherited methods behind",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2969,7 +3089,8 @@
           "name": "The chain ends at null",
           "desc": "One link per object, all the way up, and the last one is null",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2977,7 +3098,8 @@
           "name": "A counter with private state",
           "desc": "n lives in the closure, so there is no property to read or set",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2985,7 +3107,8 @@
           "name": "A tag factory",
           "desc": "The returned function remembers its tag on every call",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -2993,7 +3116,8 @@
           "name": "The loop bug, fixed — and not",
           "desc": "let makes one binding per turn, var makes one for the whole function",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -3001,7 +3125,8 @@
           "name": "A function factory",
           "desc": "times(3) returns a function that holds 3",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         },
         {
@@ -3009,7 +3134,8 @@
           "name": "Hide a helper in place",
           "desc": "Runs once and disappears; only what you hand out survives",
           "files": [
-            "index.html"
+            "index.html",
+            "script.js"
           ]
         }
       ]

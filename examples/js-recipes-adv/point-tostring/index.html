@@ -31,27 +31,8 @@
 <h3>What it prints</h3>
 <pre id="out"></pre>
 
-<div class="trap">最后一行说明 toString 只影响“转成字符串”，JSON.stringify 走的是另一条路。</div>
-<script>
-const out = [];
-function render() { document.getElementById("out").textContent = out.join("\n"); }
-function log(label, value) {
-  out.push(String(label).padEnd(30) + "  " + value);
-  render();
-}
-
-class Point {
-  constructor(x, y) { this.x = x; this.y = y; }
-  toString() { return `(${this.x}, ${this.y})`; }
-}
-
-const p = new Point(3, 4);
-log("String(p)", String(p));
-log("`p = ${p}`", `p = ${p}`);
-log("p + ''", p + "");
-log("'[' + [p] + ']'", "[" + [p] + "]");
-log("JSON.stringify(p)", JSON.stringify(p));
-</script>
+<div class="trap">The last line shows that toString only affects conversion to a string; JSON.stringify takes a different route.</div>
+<script src="script.js"></script>
 
 </body>
 </html>

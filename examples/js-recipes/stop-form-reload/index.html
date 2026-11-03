@@ -10,15 +10,7 @@
 <form id="form"><input id="name" value="Ada"> <button>Send</button></form>
 <p id="demo">Submit the form — the page does not reload.</p>
 
-<script>
-const form = document.getElementById("form");
-
-form.addEventListener("submit", e => {
-  e.preventDefault();
-  document.getElementById("demo").textContent =
-    "sent: " + document.getElementById("name").value;
-});
-</script>
+<script src="script.js"></script>
 
 </body>
 </html>

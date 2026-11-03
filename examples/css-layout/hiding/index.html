@@ -29,12 +29,7 @@
   <p class="note">Press the invisible middle box in the third column — the counter below goes up,
      because <code>opacity: 0</code> only makes it see-through: the element is still there.</p>
   <p class="tally">clicks on the invisible box: <span id="n">0</span></p>
-  <script>
-    let n = 0;
-    document.querySelector(".clickable").addEventListener("click", () => {
-      document.getElementById("n").textContent = ++n;
-    });
-  </script>
+  <script src="script.js"></script>
 
 </body>
 </html>

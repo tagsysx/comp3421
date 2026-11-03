@@ -31,31 +31,8 @@
 <h3>What it prints</h3>
 <pre id="out"></pre>
 
-<div class="trap">最后一行是 undefined：n 不是属性，拿不到。想暴露就只能再 return 一个 getter。</div>
-<script>
-const out = [];
-function render() { document.getElementById("out").textContent = out.join("\n"); }
-function log(label, value) {
-  out.push(String(label).padEnd(30) + "  " + value);
-  render();
-}
-
-const counter = (() => {
-  let n = 0;
-  return () => ++n;
-})();
-const other = (() => {
-  let n = 0;
-  return () => ++n;
-})();
-
-log("counter()", counter());
-log("counter()", counter());
-log("counter()", counter());
-log("a second counter", other());
-log("they are independent", counter() + " vs " + other());
-log("counter.n", String(counter.n));
-</script>
+<div class="trap">The last line is undefined: n is not a property, so it cannot be read from outside. To expose it, return a getter as well.</div>
+<script src="script.js"></script>
 
 </body>
 </html>

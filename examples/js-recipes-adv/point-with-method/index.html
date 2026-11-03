@@ -34,31 +34,8 @@ const b = new Point(6, 8);</pre>
 <h3>What it prints</h3>
 <pre id="out"></pre>
 
-<div class="trap">a.len === b.len 是 false —— 两个函数对象，不是共享的一份。把它挂到 Point.prototype 上才会变成 true，§02 的 class 就是自动替你做这件事。</div>
-<script>
-const out = [];
-function render() { document.getElementById("out").textContent = out.join("\n"); }
-function log(label, value) {
-  out.push(String(label).padEnd(30) + "  " + value);
-  render();
-}
-
-function Point(x, y) {
-  this.x = x; this.y = y;
-  this.len = () => Math.hypot(x, y);
-}
-
-const a = new Point(3, 4);
-const b = new Point(6, 8);
-
-log("a.x, a.y", a.x + ", " + a.y);
-log("a.len()", a.len());
-log("b.len()", b.len());
-log("a === b", a === b);
-log("a instanceof Point", a instanceof Point);
-log("a.hasOwnProperty('len')", a.hasOwnProperty("len"));
-log("a.len === b.len", a.len === b.len);
-</script>
+<div class="trap">a.len === b.len is false — two function objects, not one shared copy. Hang the method on Point.prototype and it becomes true, which is exactly what the class syntax does for you later.</div>
+<script src="script.js"></script>
 
 </body>
 </html>

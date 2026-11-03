@@ -1,0 +1,7 @@
+const user = { name: "Ada", age: 36, role: "engineer" };
+const next = { ...user, age: 37 };
+
+document.getElementById("demo").innerHTML =
+  "user = " + JSON.stringify(user) +
+  "<br>next = " + JSON.stringify(next) +
+  "<br>(user is unchanged)";

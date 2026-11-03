@@ -29,24 +29,8 @@
 <h3>What it prints</h3>
 <pre id="out"></pre>
 
-<div class="trap">随机 comparator 让 sort 的假设失效：结果偏斜，不是均匀分布。要真随机用 Fisher–Yates。</div>
-<script>
-const out = [];
-function render() { document.getElementById("out").textContent = out.join("\n"); }
-function log(label, value) {
-  out.push(String(label).padEnd(30) + "  " + value);
-  render();
-}
-
-const shuffle = a => [...a].sort(() => Math.random() - 0.5);
-const base = [1, 2, 3, 4, 5];
-
-log("original", JSON.stringify(base));
-log("shuffled copy", JSON.stringify(shuffle(base)));
-log("original intact", JSON.stringify(base));
-log("second run", JSON.stringify(shuffle(base)));
-log("a fair shuffle?", "no — sort expects consistent answers");
-</script>
+<div class="trap">A random comparator breaks the assumptions sort makes: the result is skewed, not uniform. For a real shuffle use Fisher–Yates.</div>
+<script src="script.js"></script>
 
 </body>
 </html>

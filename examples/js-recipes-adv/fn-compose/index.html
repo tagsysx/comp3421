@@ -29,25 +29,8 @@ compose(n =&gt; n + 1, n =&gt; n * 2)(5);</pre>
 <h3>What it prints</h3>
 <pre id="out"></pre>
 
-<div class="trap">compose(inc, dbl)(5) 是 11：先 dbl 得 10，再 inc。参数顺序和阅读顺序相反，是最容易写错的地方。</div>
-<script>
-const out = [];
-function render() { document.getElementById("out").textContent = out.join("\n"); }
-function log(label, value) {
-  out.push(String(label).padEnd(30) + "  " + value);
-  render();
-}
-
-const compose = (f, g) => x => f(g(x));
-const inc = n => n + 1;
-const dbl = n => n * 2;
-
-log("compose(dbl, inc)(5)", compose(dbl, inc)(5));
-log("inc(dbl(5))", inc(dbl(5)));
-log("compose(inc, dbl)(5)", compose(inc, dbl)(5));
-log("dbl(inc(5))", dbl(inc(5)));
-log("order matters", "same two functions, different answer");
-</script>
+<div class="trap">compose(inc, dbl)(5) is 11: dbl runs first and gives 10, then inc. The argument order is the reverse of the reading order, which is where this goes wrong.</div>
+<script src="script.js"></script>
 
 </body>
 </html>

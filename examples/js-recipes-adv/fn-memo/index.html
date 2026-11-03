@@ -30,29 +30,8 @@ slow(9);   // 81, computed once</pre>
 <h3>What it prints</h3>
 <pre id="out"></pre>
 
-<div class="trap">第二次调用参数变了，答案却没变 —— 这正是“只缓存一个值”的边界，多参数就要用 Map。</div>
-<script>
-const out = [];
-function render() { document.getElementById("out").textContent = out.join("\n"); }
-function log(label, value) {
-  out.push(String(label).padEnd(30) + "  " + value);
-  render();
-}
-
-let cache;
-let computed = 0;
-const slow = n => {
-  if (cache === undefined) { computed++; cache = n * n; }
-  return cache;
-};
-
-log("slow(9)", slow(9));
-log("slow(7)", slow(7));
-log("computations so far", computed);
-log("slow(100)", slow(100));
-log("computations so far", computed);
-log("cache now holds", cache);
-</script>
+<div class="trap">The second call passes different arguments and still gets the old answer — that is the limit of caching one value; with several arguments you need a Map.</div>
+<script src="script.js"></script>
 
 </body>
 </html>
