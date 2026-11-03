@@ -68,7 +68,7 @@ body.dragging .preview-frame { pointer-events: none; }
   font-size: 12px; color: var(--muted); text-transform: uppercase; letter-spacing: .04em;
   padding: 6px 12px; border-bottom: 1px solid var(--border); background: var(--panel);
   display: flex; align-items: center; justify-content: space-between;
-  gap: 8px;
+  gap: 8px; row-gap: 4px; flex-wrap: wrap;
 }
 .pane-title .open-tab {
   font-size: 12px; text-transform: none; letter-spacing: 0;
@@ -99,7 +99,63 @@ body.dragging .preview-frame { pointer-events: none; }
 .editor-host .cm-scroller { font-family: "SF Mono", "Menlo", "Consolas", monospace; font-size: 14px; line-height: 1.55; }
 
 /* preview */
-.preview-frame { flex: 1; width: 100%; border: none; background: #fff; }
+.pane-body { position: relative; flex: 1 1 auto; min-height: 0; }
+.preview-frame { position: absolute; inset: 0; width: 100%; height: 100%; border: none; background: #fff; }
+
+/* Result / Console switch inside the preview pane */
+.view-tabs { display: flex; gap: 2px; }
+.vtab {
+  font: inherit; font-size: 12px; letter-spacing: .04em; text-transform: uppercase;
+  color: var(--muted); background: none; border: 1px solid transparent;
+  padding: 4px 10px; border-radius: 6px; cursor: pointer;
+  display: inline-flex; align-items: center; gap: 6px;
+}
+.vtab:hover { background: var(--tab-inactive); color: var(--text); }
+.vtab.active {
+  background: var(--accent-soft); border-color: #c7ddf5;
+  color: var(--accent); font-weight: 600;
+}
+.vtab .size { text-transform: none; letter-spacing: 0; font-weight: 600; }
+.vtab .badge {
+  background: var(--accent); color: #fff; border-radius: 999px;
+  font-size: 11px; line-height: 1; padding: 2px 6px; font-weight: 600;
+  letter-spacing: 0; font-variant-numeric: tabular-nums;
+}
+.pane-actions { display: flex; align-items: center; gap: 8px; }
+.pane-actions .mini {
+  font: inherit; font-size: 12px; text-transform: none; letter-spacing: 0;
+  padding: 4px 10px; border-radius: 6px; border: 1px solid var(--border);
+  background: var(--panel); color: var(--muted); cursor: pointer; line-height: 1.4;
+}
+.pane-actions .mini:hover { background: var(--accent-soft); border-color: var(--accent); color: var(--accent); }
+
+/* console panel — overlays the iframe so the preview keeps its layout while hidden */
+.console-panel {
+  position: absolute; inset: 0; overflow: auto;
+  background: var(--code-bg);
+}
+.console-out {
+  padding: 10px 14px 16px;
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+  font-size: 13px; line-height: 1.65; color: #cfd6e0;
+}
+.console-line {
+  display: flex; gap: 9px; padding: 2px 0;
+  white-space: pre-wrap; word-break: break-word;
+  border-top: 1px solid rgba(255, 255, 255, .045);
+}
+.console-line:first-child { border-top: none; }
+.console-line .mark { flex: 0 0 12px; text-align: center; opacity: .55; }
+.console-line .msg { flex: 1 1 auto; min-width: 0; }
+.console-line.lv-log .msg { color: #cfd6e0; }
+.console-line.lv-info .mark, .console-line.lv-info .msg { color: #61afef; }
+.console-line.lv-warn .mark, .console-line.lv-warn .msg { color: #e5c07b; }
+.console-line.lv-error .mark, .console-line.lv-error .msg { color: #e06c75; }
+.console-empty {
+  padding: 16px 14px; color: #7f8c98; font-size: 13px;
+  font-family: "SF Mono", "Menlo", "Consolas", monospace;
+}
+.console-empty code { color: #61afef; }
 
 /* index gallery */
 .gallery { max-width: 1100px; margin: 0 auto; padding: 24px; }

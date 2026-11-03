@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMP3421 · Live Editor</title>
-  <link rel="stylesheet" href="assets/editor.css" />
+  <link rel="stylesheet" href="assets/editor.css?v=20261103" />
 </head>
 <body>
   <div class="topbar">
@@ -26,10 +26,28 @@
     <div class="divider" id="divider" title="Drag to resize the preview"></div>
     <div class="pane preview">
       <div class="pane-title">
-        <span>Result <span class="size" id="preview-size"></span></span>
-        <a class="open-tab" id="open-tab" href="#" target="_blank" rel="noopener" title="Open this HTML in a new browser tab">↗ Open in new tab</a>
+        <div class="view-tabs" role="tablist" aria-label="Preview panel">
+          <button class="vtab active" role="tab" aria-selected="true" data-view="result">
+            Result <span class="size" id="preview-size"></span>
+          </button>
+          <button class="vtab" role="tab" aria-selected="false" data-view="console">
+            Console <span class="badge" id="console-badge" hidden>0</span>
+          </button>
+        </div>
+        <div class="pane-actions">
+          <button class="mini" id="console-clear" type="button" title="Clear the console" hidden>Clear</button>
+          <a class="open-tab" id="open-tab" href="#" target="_blank" rel="noopener" title="Open this HTML in a new browser tab">↗ Open in new tab</a>
+        </div>
       </div>
-      <iframe class="preview-frame" id="preview-frame" title="Result"></iframe>
+      <div class="pane-body">
+        <iframe class="preview-frame" id="preview-frame" title="Result"></iframe>
+        <div class="console-panel" id="console-panel" hidden>
+          <div class="console-empty" id="console-empty">
+            Nothing logged yet — <code>console.log(…)</code> in your code prints here.
+          </div>
+          <div class="console-out" id="console-out" role="log" aria-live="polite"></div>
+        </div>
+      </div>
     </div>
   </div>
 
@@ -41,6 +59,6 @@
 
   <script src="vendor/codemirror.bundle.js"></script>
   <script src="assets/stored-zip.js"></script>
-  <script src="assets/editor.js"></script>
+  <script src="assets/editor.js?v=20261103"></script>
 </body>
 </html>

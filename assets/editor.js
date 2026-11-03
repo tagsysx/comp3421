@@ -140,6 +140,168 @@
     return doc;
   }
 
+  // ---------- Result / Console switch ---------------------------------------
+  //
+  // The preview is a `srcdoc` iframe: same origin as this page, no sandbox
+  // attribute. That is what makes a console panel possible at all — a small
+  // shim spliced in as the document's FIRST script can wrap console.* and the
+  // uncaught-error events, then postMessage() every line back to this page.
+  //
+  // The shim lives only in the in-memory document handed to the iframe. It is
+  // NOT written into state.files, so "Open in new tab" (a blob of the plain
+  // document) and the .zip download stay exactly what the student wrote.
+  const CONSOLE_SHIM = `(function () {
+  var LIMIT = 400, n = 0;
+  function fmt(v, d) {
+    if (typeof v === 'string') return v;
+    if (v === null) return 'null';
+    if (v === undefined) return 'undefined';
+    var t = typeof v;
+    if (t === 'number' || t === 'boolean' || t === 'bigint' || t === 'symbol') return String(v);
+    if (t === 'function') return 'ƒ ' + (v.name || 'anonymous') + '()';
+    if (v instanceof Error) return (v.name || 'Error') + ': ' + v.message;
+    if (typeof Element !== 'undefined' && v instanceof Element) {
+      var s = '<' + v.tagName.toLowerCase();
+      if (v.id) s += '#' + v.id;
+      var cls = typeof v.className === 'string' ? v.className.trim() : '';
+      if (cls) s += '.' + cls.split(/\\s+/).join('.');
+      return s + '>';
+    }
+    if (typeof Node !== 'undefined' && v instanceof Node) return v.nodeName;
+    if (d >= 2) return Array.isArray(v) ? '[…]' : '{…}';
+    if (Array.isArray(v)) return '[' + v.map(function (x) { return fmt(x, d + 1); }).join(', ') + ']';
+    if (typeof NodeList !== 'undefined' && v instanceof NodeList) {
+      return fmt(Array.prototype.slice.call(v), d);
+    }
+    var keys = Object.keys(v);
+    var ctor = v.constructor && v.constructor.name;
+    var name = ctor && ctor !== 'Object' ? ctor + ' ' : '';
+    if (!keys.length) return name + '{}';
+    var body = keys.slice(0, 10).map(function (k) {
+      return k + ': ' + fmt(v[k], d + 1);
+    }).join(', ');
+    return name + '{ ' + body + (keys.length > 10 ? ', …' : '') + ' }';
+  }
+  function send(level, text) {
+    if (n++ > LIMIT) return;
+    try { parent.postMessage({ __cmp3421: 1, level: level, text: text }, '*'); } catch (e) {}
+  }
+  var real = window.console || {};
+  var map = { log: 'log', info: 'info', warn: 'warn', error: 'error',
+              debug: 'log', dir: 'log', table: 'log', trace: 'error' };
+  Object.keys(map).forEach(function (k) {
+    var orig = real[k];
+    window.console[k] = function () {
+      var args = Array.prototype.slice.call(arguments);
+      send(map[k], args.map(function (a) { return fmt(a, 0); }).join(' '));
+      if (orig) { try { orig.apply(real, args); } catch (e) {} }
+    };
+  });
+  var realClear = real.clear;
+  window.console.clear = function () {
+    try { parent.postMessage({ __cmp3421: 1, clear: true }, '*'); } catch (e) {}
+    if (realClear) { try { realClear.call(real); } catch (e) {} }
+  };
+  window.addEventListener('error', function (e) {
+    if (e && e.message) send('error', e.message + (e.lineno ? '  (line ' + e.lineno + ')' : ''));
+  });
+  window.addEventListener('unhandledrejection', function (e) {
+    send('error', 'Uncaught (in promise) ' + fmt(e.reason, 0));
+  });
+})();`;
+
+  function withConsole(doc) {
+    const tag = '<script>' + CONSOLE_SHIM + '<\/script>';
+    const head = doc.match(/<head[^>]*>/i) || doc.match(/<body[^>]*>/i);
+    if (head) return doc.replace(head[0], () => head[0] + tag);
+    const dt = doc.match(/^\s*<!doctype[^>]*>/i);
+    if (dt) return doc.replace(dt[0], () => dt[0] + tag);
+    return tag + doc;
+  }
+
+  const VIEW_KEY = 'cmp3421.previewView';
+  const PREVIEW = $('#preview-frame');
+  const consolePanel = $('#console-panel');
+  const consoleOut = $('#console-out');
+  const consoleEmpty = $('#console-empty');
+  const consoleBadge = $('#console-badge');
+  const openTabLink = $('#open-tab');
+  const clearBtn = $('#console-clear');
+  let consoleCount = 0;
+  let unread = 0;
+  let previewView = 'result';
+
+  function updateBadge() {
+    if (!consoleBadge) return;
+    const show = unread > 0 && previewView !== 'console';
+    consoleBadge.hidden = !show;
+    consoleBadge.textContent = unread > 99 ? '99+' : String(unread);
+  }
+
+  function clearConsole() {
+    if (!consoleOut) return;
+    consoleOut.textContent = '';
+    if (consoleEmpty) consoleEmpty.hidden = false;
+    consoleCount = 0;
+    unread = 0;
+    updateBadge();
+  }
+
+  function addConsoleLine(level, text) {
+    if (!consoleOut) return;
+    if (consoleEmpty) consoleEmpty.hidden = true;
+    const line = document.createElement('div');
+    line.className = 'console-line lv-' + (level || 'log');
+    const mark = document.createElement('span');
+    mark.className = 'mark';
+    mark.textContent = level === 'error' ? '✕' : level === 'warn' ? '!' : '›';
+    const msg = document.createElement('span');
+    msg.className = 'msg';
+    msg.textContent = text;
+    line.append(mark, msg);
+    const atBottom = consolePanel.scrollHeight - consolePanel.scrollTop -
+                     consolePanel.clientHeight < 48;
+    consoleOut.appendChild(line);
+    consoleCount++;
+    while (consoleOut.childElementCount > 400) consoleOut.firstElementChild.remove();
+    if (atBottom || consoleCount === 1) consolePanel.scrollTop = consolePanel.scrollHeight;
+    if (previewView !== 'console') { unread++; updateBadge(); }
+  }
+
+  function setView(view, persist) {
+    previewView = view === 'console' ? 'console' : 'result';
+    document.querySelectorAll('.vtab').forEach((b) => {
+      const on = b.dataset.view === previewView;
+      b.classList.toggle('active', on);
+      b.setAttribute('aria-selected', on ? 'true' : 'false');
+    });
+    if (consolePanel) consolePanel.hidden = previewView !== 'console';
+    if (openTabLink) openTabLink.hidden = previewView !== 'result';
+    if (clearBtn) clearBtn.hidden = previewView !== 'console';
+    if (previewView === 'console') {
+      unread = 0;
+      if (consolePanel) consolePanel.scrollTop = consolePanel.scrollHeight;
+    }
+    updateBadge();
+    if (persist) { try { localStorage.setItem(VIEW_KEY, previewView); } catch (e) {} }
+  }
+
+  // Messages arrive only from the preview iframe. `e.source` is the guard: a
+  // link inside an example can navigate the iframe to a real page, and that
+  // page must not be able to write into this console.
+  window.addEventListener('message', (e) => {
+    if (!e.data || typeof e.data !== 'object' || !e.data.__cmp3421) return;
+    if (!PREVIEW || e.source !== PREVIEW.contentWindow) return;
+    if (e.data.clear) { clearConsole(); return; }
+    addConsoleLine(e.data.level, String(e.data.text));
+  });
+
+  document.querySelectorAll('.vtab').forEach((b) => {
+    b.onclick = () => setView(b.dataset.view, true);
+  });
+  if (clearBtn) clearBtn.onclick = () => clearConsole();
+  try { setView(localStorage.getItem(VIEW_KEY) || 'result', false); } catch (e) { setView('result', false); }
+
   function renderPreview() {
     const files = state.files;
     const hasPage = !!files['index.html'] || !!files['index.htm'];
@@ -161,11 +323,13 @@
         '<p>Files: ' + names + '</p>',
         '</body></html>'
       ].join('');
+      clearConsole();
       updateOpenTab(null);
       return;
     }
     const doc = buildSrcdoc();
-    $('#preview-frame').srcdoc = doc;
+    clearConsole();
+    $('#preview-frame').srcdoc = withConsole(doc);
     updateOpenTab(doc);
   }
 
