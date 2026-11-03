@@ -419,7 +419,9 @@
         "js-recipes-adv/closure-tag",
         "js-recipes-adv/loop-scope",
         "js-recipes-adv/fn-factory",
-        "js-recipes-adv/iife-hide"
+        "js-recipes-adv/iife-hide",
+        "js-recipes-adv/arr-flat",
+        "js-recipes-adv/arr-find"
       ]
     }
   ],
@@ -3025,6 +3027,24 @@
           "id": "arr-group-by",
           "name": "Group by a property",
           "desc": "One reduce builds every bucket: create on first sight, then push",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "arr-flat",
+          "name": "Flatten one level",
+          "desc": "flat() goes down one level by default — the depth is an argument",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "arr-find",
+          "name": "Find the first match",
+          "desc": "find() hands back the item, filter() hands back an array",
           "files": [
             "index.html",
             "script.js"
