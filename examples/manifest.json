@@ -422,7 +422,8 @@
         "js-recipes-adv/fn-factory",
         "js-recipes-adv/iife-hide",
         "js-recipes-adv/arr-flat",
-        "js-recipes-adv/arr-find"
+        "js-recipes-adv/arr-find",
+        "js-recipes-adv/proto-shadow"
       ]
     }
   ],
@@ -3136,6 +3137,15 @@
           "id": "obj-copy",
           "name": "Copy own properties only",
           "desc": "Object.assign leaves the inherited methods behind",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "proto-shadow",
+          "name": "Shadow the prototype",
+          "desc": "Assign the same name on one object: it gets its own copy, the prototype is untouched",
           "files": [
             "index.html",
             "script.js"
