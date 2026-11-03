@@ -1913,6 +1913,24 @@
           ]
         },
         {
+          "id": "map",
+          "name": "Map",
+          "desc": "keys of any type, size, set/get/has/delete",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
+          "id": "set",
+          "name": "Set",
+          "desc": "unique values, size, add/has/delete, reference equality",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
           "id": "promises",
           "name": "Promises",
           "desc": "then, catch, chaining and Promise.all",
