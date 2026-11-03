@@ -2010,6 +2010,15 @@
           ]
         },
         {
+          "id": "hoisting",
+          "name": "Hoisting",
+          "desc": "declarations hoist, expressions do not, and the temporal dead zone",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
+        },
+        {
           "id": "function-arguments",
           "name": "The arguments object",
           "desc": "findMax reads however many arguments it is handed",
