@@ -1901,7 +1901,7 @@
         {
           "id": "classes",
           "name": "ES6 classes",
-          "desc": "class, constructor, extends and super",
+          "desc": "class, constructor, methods, getters, static, extends",
           "files": [
             "index.html",
             "script.js"
