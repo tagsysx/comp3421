@@ -46,6 +46,7 @@ try {
 let sayLater = 1;
 
 // 5. var is the only one that reads as undefined instead of throwing.
-log('name before its line:', name);
-var name = 'Ada';
-log('name after its line:', name);
+//    (`name` would be a bad variable here: window.name already exists.)
+log('label before its line:', label);
+var label = 'Ada';
+log('label after its line:', label);
