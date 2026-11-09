@@ -513,6 +513,15 @@
             "index.html",
             "script.js"
           ]
+        },
+        {
+          "id": "lab9-queue",
+          "name": "Lab 9 — Model it, then play it",
+          "desc": "Your practice files: 9 exercises — a class and a subclass, a method added to a prototype, a closure that keeps the play counts, a search and a form (6 in the lab, 3 at home)",
+          "files": [
+            "index.html",
+            "script.js"
+          ]
         }
       ]
     },
