@@ -131,7 +131,7 @@ table.compact th { padding: 1.5mm 1.7mm; }
 .tl p { font-size: 7.55pt; line-height: 1.35; color: #4A5568; margin: 0; }
 
 /* ---------- package tree ---------- */
-pre.tree { background: #F4F7FC; border: .5pt solid #D8E3F4; border-radius: 2mm; padding: 2.8mm 3mm;
+pre.tree { background: #F4F7FC; border: .5pt solid #D8E3F4; border-radius: 2mm; padding: 2.2mm 3mm;
   font: 7.15pt/1.5 Menlo, Consolas, monospace; color: #25324A; margin: 0; white-space: pre; overflow: hidden; }
 
 /* ---------- FAQ ---------- */
@@ -206,6 +206,9 @@ section[data-name="rules"] ul.tight li { margin-bottom: .8mm; }
 .pill { display: inline-block; font-size: 6.6pt; font-weight: 700; letter-spacing: .5pt; text-transform: uppercase;
   background: #E8EFF8; color: #1E4FA8; border-radius: 1mm; padding: .75mm 1.7mm; }
 .gold { color: #B8860B; }
+.hl { background: #FFEF9E; box-decoration-break: clone; -webkit-box-decoration-break: clone;
+      -webkit-print-color-adjust: exact; print-color-adjust: exact;
+      padding: .25mm .9mm; border-radius: .8mm; }
 .center { text-align: center; }
 
 /* ---------- screen presentation (hidden in print) ---------- */
@@ -495,7 +498,7 @@ section[data-name="rules"] ul.tight li { margin-bottom: .8mm; }
 │   ├── package.json
 │   └── .env.example
 └── demo_video.mp4  (10 minutes, compulsory)</pre>
-      <p class="small"><b>GroupID</b> = each member’s name + student ID, e.g. <span class="mono">Amy_230xxxxx_Bob_240xxxx</span>. README must cover: prerequisites, install, environment variables, database setup, run, test accounts, deployment URL and known limitations.</p>
+      <p class="small"><span class="hl"><b>GroupID</b> = each member’s name + student ID, e.g. <span class="mono">Amy_230xxxxx_Bob_240xxxx</span></span>. README must cover: prerequisites, install, environment variables, database setup, run, test accounts, deployment URL and known limitations.</p>
     </div>
     <div>
       <div class="tag">Report must include</div>
@@ -513,7 +516,7 @@ section[data-name="rules"] ul.tight li { margin-bottom: .8mm; }
     </div>
   </div>
 
-  <h2><span class="k">3.3</span> Video presentation — 20%</h2>
+  <h2 style="margin-top:2.2mm;"><span class="k">3.3</span> Video presentation — 20%</h2>
   <div class="grid g2">
     <div>
       <ul class="tight">
