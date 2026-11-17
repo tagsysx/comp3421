@@ -198,16 +198,41 @@ body.dragging .preview-frame { pointer-events: none; }
 .card .name { font-weight: 600; font-size: 14px; }
 .card .desc { color: var(--muted); font-size: 12px; margin-top: 4px; }
 
-/* index gallery — the page is cut into three blocks (lectures / labs /
-   recipes); each block holds one section per lecture, as before. */
-.group + .group { margin-top: 34px; padding-top: 24px; border-top: 1px solid var(--border); }
-.group > h2.group-title {
-  font-size: 19px; font-weight: 700; margin: 0 0 3px;
+/* index gallery — three blocks (lectures / labs / recipes). Each block is its
+   own panel with a tinted head band, so the page reads as three sections
+   instead of one continuous list of headings. */
+.group {
+  background: var(--panel); border: 1px solid var(--border);
+  border-radius: 14px; overflow: hidden; margin-bottom: 22px;
+  box-shadow: 0 1px 2px rgba(20, 30, 45, .04);
+}
+.group-head {
+  display: flex; align-items: baseline; flex-wrap: wrap; gap: 4px 12px;
+  padding: 14px 20px; border-bottom: 1px solid var(--border);
+  background: var(--accent-soft);
+}
+.group-head > h2 {
+  font-size: 18px; font-weight: 700; margin: 0; color: var(--accent);
   letter-spacing: .01em;
 }
-.group > .gsub { color: var(--muted); font-size: 13px; margin: 0 0 18px; }
-.group .cat { margin-bottom: 24px; }
+.group-head .gsub { color: var(--muted); font-size: 13px; margin: 0; }
+.group-head .gcount {
+  margin-left: auto; font-size: 12px; color: var(--accent);
+  background: #fff; border: 1px solid #cfe1f4; border-radius: 999px;
+  padding: 2px 10px; font-variant-numeric: tabular-nums; white-space: nowrap;
+}
+.group-body { padding: 18px 20px 20px; background: #fbfcfd; }
+.group .cat { margin-bottom: 22px; }
 .group .cat:last-child { margin-bottom: 0; }
+.group .cat h3 { font-size: 14px; font-weight: 600; margin: 0 0 9px; }
+
+/* one tint per block: blue = lectures, amber = labs, green = recipes */
+.group[data-group="labs"] .group-head { background: #fdf3e4; border-bottom-color: #f1e0c5; }
+.group[data-group="labs"] .group-head > h2 { color: #9a5f10; }
+.group[data-group="labs"] .gcount { color: #9a5f10; border-color: #eed9b8; }
+.group[data-group="recipes"] .group-head { background: #e9f5ee; border-bottom-color: #d2e8db; }
+.group[data-group="recipes"] .group-head > h2 { color: #1b6a44; }
+.group[data-group="recipes"] .gcount { color: #1b6a44; border-color: #c9e2d4; }
 
 /* site footer */
 .site-footer {

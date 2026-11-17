@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMP3421 · Code Examples</title>
-  <link rel="stylesheet" href="assets/editor.css" />
+  <link rel="stylesheet" href="assets/editor.css?v=20261117" />
 </head>
 <body>
   <div class="topbar">
@@ -98,16 +98,27 @@
         const wrap = document.createElement('div');
         wrap.className = 'group';
         wrap.dataset.group = g.id;
+
+        const head = document.createElement('div');
+        head.className = 'group-head';
         const h = document.createElement('h2');
-        h.className = 'group-title';
         h.textContent = g.title;
         const sub = document.createElement('p');
         sub.className = 'gsub';
         sub.textContent = g.sub;
-        wrap.appendChild(h);
-        wrap.appendChild(sub);
+        const count = document.createElement('span');
+        count.className = 'gcount';
+        head.appendChild(h);
+        head.appendChild(sub);
+        head.appendChild(count);
+
+        const body = document.createElement('div');
+        body.className = 'group-body';
+
+        wrap.appendChild(head);
+        wrap.appendChild(body);
         catsEl.appendChild(wrap);
-        return wrap;
+        return { body: body, count: count };
       }
 
       // Featured entry: the Lists example keeps a short intro caption but
@@ -145,6 +156,7 @@
               if (!list.length) return;
               list.sort((a, b) => numberIn(a) - numberIn(b));
               const host = addGroup(g);
+              let total = 0;
               list.forEach((lec) => {
                 const cards = [];
                 (lec.examples || []).forEach((ref) => {
@@ -153,9 +165,11 @@
                   if (ex) cards.push(makeCard(ex, ref));
                 });
                 if (cards.length) {
-                  addSection(host, lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
+                  addSection(host.body, lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
+                  total += cards.length;
                 }
               });
+              host.count.textContent = total + (total === 1 ? ' example' : ' examples');
             });
             return;
           }
