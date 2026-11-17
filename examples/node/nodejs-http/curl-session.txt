@@ -1,0 +1,13 @@
+Lecture 9 - slide 51 : Testing the Server
+The session, with server-complete.js running in another terminal.
+
+$ curl -i localhost:3000/
+HTTP/1.1 200 OK
+Content-Type: text/plain; charset=utf-8
+
+$ curl -i localhost:3000/student
+Content-Type: application/json
+{"id":1,"name":"Alice"}
+
+$ curl -i localhost:3000/nope
+HTTP/1.1 404 Not Found

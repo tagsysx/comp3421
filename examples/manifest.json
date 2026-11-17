@@ -296,9 +296,17 @@
     },
     {
       "id": "lecture-10-node",
-      "name": "Lecture 10 · Node.js I — Runtime & HTTP",
+      "name": "Lecture 09 · Node.js \u2014 Runtime, HTTP & Data",
       "desc": "The Node runtime, npm, modules and the http module",
       "examples": [
+        "node/nodejs-runtime",
+        "node/nodejs-async",
+        "node/nodejs-files",
+        "node/nodejs-http",
+        "node/nodejs-cookies",
+        "node/nodejs-sql",
+        "node/nodejs-express",
+        "node/nodejs-mongo",
         "node/hello-http",
         "node/http-module",
         "node/npm-demo"
@@ -2360,6 +2368,113 @@
       "name": "Node.js & Express",
       "desc": "JavaScript on the server — run with: node server.js",
       "examples": [
+        {
+          "id": "nodejs-runtime",
+          "name": "Runtime, Modules & npm",
+          "desc": "Slides 9-15: one program, the runtime object, the three module kinds, an export, package.json.",
+          "files": [
+            "hello.js",
+            "runtime.js",
+            "module-kinds.js",
+            "math.js",
+            "app.js",
+            "package.json.example",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-async",
+          "name": "Callbacks, Promises & Events",
+          "desc": "Slides 21-27: a timer, the callback style, one chain with one catch, an EventEmitter.",
+          "files": [
+            "timing.js",
+            "callbacks.js",
+            "promises.js",
+            "promise-chain.js",
+            "events.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-files",
+          "name": "Files & Paths",
+          "desc": "Slides 30-34: write then read, append, cwd vs __dirname, path.join and path.resolve.",
+          "files": [
+            "write-and-read.js",
+            "append.js",
+            "cwd-dirname.js",
+            "paths.js",
+            "message.txt",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-http",
+          "name": "HTTP by Hand",
+          "desc": "Slides 37-51: the smallest server, the request line, URL, the body, both response kinds, routing and a route table.",
+          "files": [
+            "server-hello.js",
+            "http-messages.txt",
+            "server-request-line.js",
+            "url-object.js",
+            "body-fragment.js",
+            "write-html-fragment.js",
+            "json-helper.js",
+            "routing-fragment.js",
+            "patterns-fragment.js",
+            "regex-tests.js",
+            "route-table-fragment.js",
+            "server-complete.js",
+            "curl-session.txt",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-cookies",
+          "name": "Cookies",
+          "desc": "Slides 52-54: the raw header, setting with an array, reading and parsing req.headers.cookie.",
+          "files": [
+            "cookie-header.txt",
+            "set-cookie-fragment.js",
+            "read-cookie-fragment.js",
+            "cookie-demo.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-sql",
+          "name": "MySQL through mysql2",
+          "desc": "Slides 57-65: the four SQL verbs, setup, the promise client, insert/update/delete, a pool, the shared db.js.",
+          "files": [
+            "four-verbs.sql",
+            "setup.sql",
+            "install-and-env.txt",
+            "db-connect.js",
+            "insert-update-delete-fragment.js",
+            "pool.js",
+            "db.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-express",
+          "name": "Express, Declared",
+          "desc": "Slide 55: the same server with routes declared instead of compared.",
+          "files": [
+            "express-demo.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "nodejs-mongo",
+          "name": "MongoDB Documents",
+          "desc": "Slides 67-69: one nested document, then filters, $set and updateOne/find/deleteOne.",
+          "files": [
+            "document.txt",
+            "mongo-update-fragment.js",
+            "README.md"
+          ]
+        },
         {
           "id": "hello-http",
           "name": "Hello HTTP",

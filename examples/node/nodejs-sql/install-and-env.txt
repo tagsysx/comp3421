@@ -1,0 +1,11 @@
+Lecture 9 - slide 61 : Install the Driver and Configure Access
+
+$ npm install mysql2
+
+# .env  (never commit this file)          <- copy .env.example, fill in, rename
+DB_HOST=localhost
+DB_USER=your_mysql_user
+DB_PASSWORD=your_password
+DB_NAME=web_course
+
+$ node --env-file=.env db-connect.js

@@ -1,0 +1,15 @@
+Lecture 9 - slide 68 : Documents, Not Rows
+One document, one read, no JOIN. (Not JSON - ObjectId and the nesting are the
+point, and ObjectId is a driver type, not something JSON.parse knows.)
+
+{
+  "_id": ObjectId("66f1c2ab"),
+  "name": "Alice",
+  "programme": "Computing",
+  "courses": [
+    { "code": "COMP3421", "grade": "A" },
+    { "code": "COMP3422", "grade": "B+" }
+  ]
+}
+
+In MySQL the same student is three tables and a JOIN.

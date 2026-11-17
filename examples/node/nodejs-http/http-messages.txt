@@ -1,0 +1,16 @@
+Lecture 9 - slide 38 : Recall: HTTP Protocol
+Not code — one request and its answer, exactly as they travel on the wire.
+
+--- request ---------------------------------------------------------------
+GET /items?q=pen HTTP/1.1
+Host: localhost:3000
+Accept: application/json
+User-Agent: curl/8.7.1
+
+--- response --------------------------------------------------------------
+HTTP/1.1 201 Created
+Content-Type: application/json; charset=utf-8
+Location: /items/42
+Content-Length: 15
+
+{"id":42,"ok":true}

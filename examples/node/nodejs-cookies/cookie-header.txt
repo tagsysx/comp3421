@@ -1,0 +1,9 @@
+Lecture 9 - slide 52 : Cookies, and the State Problem
+One header, four attributes, each doing a different job.
+
+sid=abc123; HttpOnly; Secure; SameSite=Lax; Max-Age=3600
+
+HttpOnly        JavaScript cannot read it - document.cookie never shows sid
+Secure          only sent over HTTPS
+SameSite=Lax    not sent on a cross-site request
+Max-Age=3600    the browser drops it after an hour
