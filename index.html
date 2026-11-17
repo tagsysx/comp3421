@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMP3421 · Code Examples</title>
-  <link rel="stylesheet" href="assets/editor.css?v=2026111722" />
+  <link rel="stylesheet" href="assets/editor.css?v=2026111723" />
 </head>
 <body>
   <div class="topbar">
@@ -87,12 +87,13 @@
         return { grid: grid, count: count };
       }
 
-      // Two blocks, not one flat list: the manifest holds lectures, labs and the
-      // two recipes decks in a single array, so an ungrouped render put Lab 02
-      // between Lecture 3 and Lecture 4. Recipes are not a block of their own —
-      // they belong to their lecture and carry a badge on the card instead.
+      // Three blocks, not one flat list: the manifest holds lectures, labs and
+      // tutorials in a single array, so an ungrouped render put Lab 02 between
+      // Lecture 3 and Lecture 4. Recipes are not a block of their own — they
+      // belong to their lecture and carry a badge on the card instead.
       const GROUPS = [
         { id: 'lectures', title: 'Lectures', sub: 'One section per lecture, in teaching order. Cards marked “recipe” are the quick demos from that lecture.' },
+        { id: 'tutorials', title: 'Tutorials', sub: 'The in-class walk-throughs, same code as the tutorial decks.' },
         { id: 'labs', title: 'Labs', sub: 'The weekly exercise — open it, then build your own.' }
       ];
 
@@ -104,6 +105,7 @@
         const id = String(lec.id || '');
         const name = String(lec.name || '');
         if (/^lab-/i.test(id) || /^lab\b/i.test(name)) return 'labs';
+        if (/^tutorial/i.test(name) || /tutorial/i.test(id)) return 'tutorials';
         return 'lectures';
       }
 
@@ -161,18 +163,20 @@
         return a;
       }
 
-      fetch('examples/manifest.json')
+      // no-cache: revalidate with the ETag instead of trusting GitHub Pages'
+      // 10-minute max-age — the manifest is edited between classes.
+      fetch('examples/manifest.json', { cache: 'no-cache' })
         .then((r) => r.json())
         .then((manifest) => {
           catsEl.innerHTML = '';
 
-          // Group by kind first (lectures / labs), then one section per lecture
-          // inside each group. A Recipes entry is folded into the lecture it
-          // belongs to — same number, its cards appended to that section.
+          // Group by kind first (lectures / tutorials / labs), then one section
+          // per entry inside each group. A Recipes entry is folded into the
+          // lecture it belongs to — same number, its cards appended there.
           if (Array.isArray(manifest.lectures) && manifest.lectures.length) {
-            const buckets = { lectures: [], labs: [] };
+            const buckets = { lectures: [], tutorials: [], labs: [] };
             manifest.lectures.forEach((lec) => {
-              if (!(lec.examples || []).length) return; // lecture has no examples yet
+              if (!(lec.examples || []).length) return; // no examples yet
               buckets[groupOf(lec)].push(lec);
             });
             GROUPS.forEach((g) => {
@@ -199,7 +203,7 @@
                     host.body,
                     lec.name + (lec.desc ? ' — ' + lec.desc : ''),
                     cards,
-                    g.id === 'lectures'
+                    true        // every section folds: lectures, tutorials, labs
                   );
                 }
                 total += cards.length;

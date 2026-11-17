@@ -443,7 +443,9 @@
 
   async function load() {
     // load manifest
-    const mres = await fetch('examples/manifest.json');
+    // no-cache: revalidate instead of trusting the CDN's max-age — the
+    // manifest changes between classes.
+    const mres = await fetch('examples/manifest.json', { cache: 'no-cache' });
     const manifest = await mres.json();
     const cat = manifest.categories.find((c) => c.id === state.catId);
     if (!cat) throw new Error('Unknown category: ' + state.catId);

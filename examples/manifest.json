@@ -296,7 +296,7 @@
     },
     {
       "id": "lecture-10-node",
-      "name": "Lecture 09 · Node.js \u2014 Runtime, HTTP & Data",
+      "name": "Lecture 09 · Node.js — Runtime, HTTP & Data",
       "desc": "The Node runtime, npm, modules and the http module",
       "examples": [
         "node/nodejs-runtime",
@@ -314,8 +314,8 @@
     },
     {
       "id": "lecture-11-node-express",
-      "name": "Lecture 11 · Node.js II — Express & Data",
-      "desc": "Express, routes, REST APIs and databases",
+      "name": "Tutorial 2 · Express and EJS",
+      "desc": "Routes, middleware and server-rendered pages",
       "examples": [
         "node/express-hello",
         "node/express-rest",

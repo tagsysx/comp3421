@@ -268,7 +268,10 @@ details.cat:first-child { border-top: none; }
 .cat[open] > summary { margin-bottom: 10px; }
 details.cat > .grid { padding-bottom: 14px; }
 
-/* one tint per block: blue = lectures, amber = labs */
+/* one tint per block: blue = lectures, green = tutorials, amber = labs */
+.group[data-group="tutorials"] .group-head { background: #e9f5ee; border-bottom-color: #d2e8db; }
+.group[data-group="tutorials"] .group-head > h2 { color: #1b6a44; }
+.group[data-group="tutorials"] .gcount { color: #1b6a44; border-color: #c9e2d4; }
 .group[data-group="labs"] .group-head { background: #fdf3e4; border-bottom-color: #f1e0c5; }
 .group[data-group="labs"] .group-head > h2 { color: #9a5f10; }
 .group[data-group="labs"] .gcount { color: #9a5f10; border-color: #eed9b8; }
