@@ -1,0 +1,8 @@
+# in an empty folder
+mkdir express-demo
+cd express-demo
+npm init -y
+npm install express
+
+# then create app.js and run it
+node app.js

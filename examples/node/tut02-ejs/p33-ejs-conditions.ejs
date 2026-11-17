@@ -1,0 +1,11 @@
+const data = { name: 'Alice', isStudent: true };
+res.render('profile', data);
+
+<!-- views/profile.ejs -->
+<h1>Welcome, <%= name %>!</h1>
+
+<% if (isStudent) { %>
+  <p>Account type: Student</p>
+<% } else { %>
+  <p>Account type: Guest</p>
+<% } %>

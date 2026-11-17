@@ -1,0 +1,10 @@
+app.get('/student', (req, res) => {
+  res.render('student', {
+    name: 'Alice', programme: 'Computing'
+  });
+});
+
+<!-- views/student.ejs -->
+<h1>Student Profile</h1>
+<p>Name: <%= name %></p>
+<p>Programme: <%= programme %></p>

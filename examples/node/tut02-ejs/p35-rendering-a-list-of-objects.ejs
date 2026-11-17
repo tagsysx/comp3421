@@ -1,0 +1,9 @@
+const students = [
+  { id: 1, name: 'Alice' },
+  { id: 2, name: 'Bob' }
+];
+res.render('students', { students });
+
+<% for (const s of students) { %>
+  <li><%= s.id %> — <%= s.name %></li>
+<% } %>

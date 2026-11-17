@@ -325,6 +325,10 @@
       "name": "Tutorial 2 · Express and EJS",
       "desc": "Routes, middleware and server-rendered pages",
       "examples": [
+        "node/tut02-basics",
+        "node/tut02-routing",
+        "node/tut02-middleware",
+        "node/tut02-ejs",
         "node/express-hello",
         "node/express-rest",
         "node/express-db"
@@ -2376,6 +2380,61 @@
       "name": "Node.js & Express",
       "desc": "JavaScript on the server — run with: node server.js",
       "examples": [
+        {
+          "id": "tut02-basics",
+          "name": "Express Basics",
+          "desc": "Pages 6-9: the plain node:http server, the install, and the first Express app.",
+          "files": [
+            "p06-from-http-to-express.js",
+            "p08-installing-express.txt",
+            "p09-your-first-express-application.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "tut02-routing",
+          "name": "Routing",
+          "desc": "Pages 13-20: verbs, route parameters, query strings, the 404, and the four response kinds.",
+          "files": [
+            "p13-routes-and-http-methods.js",
+            "p14-reading-route-parameters.js",
+            "p15-reading-query-parameters.js",
+            "p16-handling-unknown-routes.js",
+            "p17-response-1-text-with-res-send.js",
+            "p18-response-2-json-with-res-json.js",
+            "p19-response-3-status-with-res-status.js",
+            "p20-response-4-html-with-res-render.ejs",
+            "README.md"
+          ]
+        },
+        {
+          "id": "tut02-middleware",
+          "name": "Middleware",
+          "desc": "Pages 22-24: what middleware is, why order matters, and reading a JSON body.",
+          "files": [
+            "p22-what-is-middleware.js",
+            "p23-middleware-order.js",
+            "p24-reading-a-json-request-body.js",
+            "README.md"
+          ]
+        },
+        {
+          "id": "tut02-ejs",
+          "name": "EJS Templates",
+          "desc": "Pages 29-38: installing EJS, the first page, passing data, tags, conditions, loops, partials, forms.",
+          "files": [
+            "p29-installing-and-configuring-ejs.js",
+            "p30-your-first-ejs-page.ejs",
+            "p31-passing-data-to-a-template.ejs",
+            "p33-ejs-conditions.ejs",
+            "p34-ejs-loops.ejs",
+            "p35-rendering-a-list-of-objects.ejs",
+            "p36-reusing-content-with-partials.ejs",
+            "p37-ejs-forms.js",
+            "p38-processing-a-form-submission.js",
+            "README.md"
+          ]
+        },
         {
           "id": "nodejs-runtime",
           "name": "Runtime, Modules & npm",

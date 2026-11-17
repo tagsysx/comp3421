@@ -1,0 +1,9 @@
+const courses = ['Web', 'Networks', 'Databases'];
+res.render('courses', { courses });
+
+<!-- views/courses.ejs -->
+<ul>
+  <% for (const c of courses) { %>
+    <li><%= c %></li>
+  <% } %>
+</ul>

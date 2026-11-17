@@ -1,0 +1,11 @@
+app.set('view engine', 'ejs');
+
+app.get('/list', (req, res) => {
+  res.render('list', { title: 'Courses' });
+});
+
+<!-- views/list.ejs -->
+<h1><%= title %></h1>
+<p>Rendered on the server.</p>
+
+// response: text/html, tags intact
