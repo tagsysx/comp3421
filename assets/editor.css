@@ -237,6 +237,37 @@ body.dragging .preview-frame { pointer-events: none; }
 .group .cat:last-child { margin-bottom: 0; }
 .group .cat h3 { font-size: 14px; font-weight: 600; margin: 0 0 9px; }
 
+/* A lecture section is a <details> that starts closed: ten rows instead of
+   275 cards. The count on the right is read off the grid, so the recipes
+   folded into the lecture are counted. */
+details.cat { margin-bottom: 0; padding: 2px 0; border-top: 1px solid var(--border); }
+details.cat:first-child { border-top: none; }
+.cat > summary {
+  display: flex; align-items: baseline; gap: 10px;
+  font-size: 14px; font-weight: 600; color: var(--text);
+  padding: 9px 10px 9px 26px; cursor: pointer; list-style: none;
+  position: relative; border-radius: 8px;
+}
+.cat > summary::-webkit-details-marker { display: none; }
+.cat > summary::before {
+  content: ''; position: absolute; left: 10px; top: 50%; margin-top: -4px;
+  width: 0; height: 0;
+  border-left: 6px solid var(--muted);
+  border-top: 4px solid transparent;
+  border-bottom: 4px solid transparent;
+  transition: transform .15s ease;
+  transform-origin: 32% 50%;
+}
+.cat[open] > summary::before { transform: rotate(90deg); }
+.cat > summary:hover { background: #f1f5f9; color: var(--accent); }
+.cat > summary:focus-visible { outline: 2px solid var(--accent); outline-offset: 1px; }
+.cat > summary .cat-count {
+  margin-left: auto; flex: 0 0 auto; color: var(--muted);
+  font-size: 12px; font-weight: 400; font-variant-numeric: tabular-nums;
+}
+.cat[open] > summary { margin-bottom: 10px; }
+details.cat > .grid { padding-bottom: 14px; }
+
 /* one tint per block: blue = lectures, amber = labs */
 .group[data-group="labs"] .group-head { background: #fdf3e4; border-bottom-color: #f1e0c5; }
 .group[data-group="labs"] .group-head > h2 { color: #9a5f10; }

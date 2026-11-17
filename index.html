@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMP3421 · Code Examples</title>
-  <link rel="stylesheet" href="assets/editor.css?v=2026111721" />
+  <link rel="stylesheet" href="assets/editor.css?v=2026111722" />
 </head>
 <body>
   <div class="topbar">
@@ -63,18 +63,28 @@
         return a;
       }
 
-      function addSection(parent, title, examples) {
-        const sec = document.createElement('div');
+      function addSection(parent, title, examples, collapsible) {
+        // A lecture has dozens of cards, so its section is a <details> that
+        // starts closed — the page opens as ten lines, not 275 cards.
+        const sec = document.createElement(collapsible ? 'details' : 'div');
         sec.className = 'cat';
-        const h = document.createElement('h3');
-        h.textContent = title;
-        sec.appendChild(h);
+        const head = document.createElement(collapsible ? 'summary' : 'h3');
+        head.textContent = title;
+        let count = null;
+        if (collapsible) {
+          count = document.createElement('span');
+          count.className = 'cat-count';
+          head.appendChild(count);
+        }
+        sec.appendChild(head);
         const grid = document.createElement('div');
         grid.className = 'grid';
         examples.forEach((ex) => grid.appendChild(ex));
         sec.appendChild(grid);
         parent.appendChild(sec);
-        return grid;      // so a Recipes entry can append into its lecture
+        // the grid is what a Recipes entry appends into; the count is filled in
+        // after every entry of that lecture has been folded in
+        return { grid: grid, count: count };
       }
 
       // Two blocks, not one flat list: the manifest holds lectures, labs and the
@@ -170,7 +180,7 @@
               if (!list.length) return;
               list.sort((a, b) => numberIn(a) - numberIn(b));
               const host = addGroup(g);
-              const sections = {};      // lecture number -> that section's grid
+              const sections = {};      // lecture number -> {grid, count}
               let total = 0;
               list.forEach((lec) => {
                 const num = numberIn(lec);
@@ -183,15 +193,23 @@
                 });
                 if (!cards.length) return;
                 if (recipe && sections[num]) {
-                  cards.forEach((c) => sections[num].appendChild(c));
+                  cards.forEach((c) => sections[num].grid.appendChild(c));
                 } else {
                   sections[num] = addSection(
                     host.body,
                     lec.name + (lec.desc ? ' — ' + lec.desc : ''),
-                    cards
+                    cards,
+                    g.id === 'lectures'
                   );
                 }
                 total += cards.length;
+              });
+              // counts are read off the grid, so the folded-in recipes count too
+              Object.keys(sections).forEach((k) => {
+                const s = sections[k];
+                if (!s.count) return;
+                const n = s.grid.childElementCount;
+                s.count.textContent = n + (n === 1 ? ' example' : ' examples');
               });
               host.count.textContent = total + (total === 1 ? ' example' : ' examples');
             });
@@ -202,8 +220,7 @@
           manifest.categories.forEach((cat) => {
             const cards = cat.examples.map((ex) => makeCard(ex, cat.id + '/' + ex.id));
             addSection(catsEl, cat.name + (cat.desc ? ' — ' + cat.desc : ''), cards);
-          });
-        })
+          });        })
         .catch((err) => { catsEl.innerHTML = '<p>Failed to load examples: ' + err.message + '</p>'; });
     })();
   </script>
