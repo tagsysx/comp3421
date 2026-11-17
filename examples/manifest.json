@@ -122,6 +122,14 @@
       ]
     },
     {
+      "id": "lab-09-queue",
+      "name": "Lab 9 · Model it, then play it",
+      "desc": "practise classes, prototypes and closures: a class and a subclass, a method on the prototype, a closure that keeps the play counts, a search and a form — 6 exercises in the lab, 3 at home",
+      "examples": [
+        "lab/lab9-queue"
+      ]
+    },
+    {
       "id": "lecture-04-css-layout",
       "name": "Lecture 4 · CSS II — Selectors, Cascade & the Box Model",
       "desc": "How rules target elements, which declaration wins, the parts of a box",
