@@ -227,13 +227,19 @@
   const consoleBadge = $('#console-badge');
   const openTabLink = $('#open-tab');
   const clearBtn = $('#console-clear');
+  const vtabConsole = document.querySelector('.vtab[data-view="console"]');
+  const runHint = $('#run-hint');
+  const runHintCmds = $('#run-hint-cmds');
+  const runBtn = $('#run');
+  const autoWrap = $('#autorun-wrap');
   let consoleCount = 0;
   let unread = 0;
   let previewView = 'result';
+  let pageRunnable = true;   // false for a server-side example: no page to run
 
   function updateBadge() {
     if (!consoleBadge) return;
-    const show = unread > 0 && previewView !== 'console';
+    const show = pageRunnable && unread > 0 && previewView !== 'console';
     consoleBadge.hidden = !show;
     consoleBadge.textContent = unread > 99 ? '99+' : String(unread);
   }
@@ -276,7 +282,7 @@
       b.setAttribute('aria-selected', on ? 'true' : 'false');
     });
     if (consolePanel) consolePanel.hidden = previewView !== 'console';
-    if (openTabLink) openTabLink.hidden = previewView !== 'result';
+    if (openTabLink) openTabLink.hidden = previewView !== 'result' || !pageRunnable;
     if (clearBtn) clearBtn.hidden = previewView !== 'console';
     if (previewView === 'console') {
       unread = 0;
@@ -284,6 +290,58 @@
     }
     updateBadge();
     if (persist) { try { localStorage.setItem(VIEW_KEY, previewView); } catch (e) {} }
+  }
+
+  // A server-side example (Node / Express) ships no index.html: nothing on this
+  // page can execute it, so console.log() can never arrive and "Run" has nothing
+  // to draw. Hide the whole preview half — divider, Result and Console — and let
+  // the code take the full width. The instructions you would have needed from
+  // the Result pane move to the strip above the tabs instead.
+  // A page example (html / css / js) is untouched: preview and console stay.
+  function runCommands(files, active) {
+    const cmds = [];
+    if (files['package.json']) cmds.push('npm install');
+    const isRun = (n) => /\.js$/i.test(n) && !/-fragment\.js$/i.test(n);
+    // the file you are reading wins: the hint follows the active tab
+    if (active && isRun(active)) cmds.push('node ' + active);
+    else if (files['server.js']) cmds.push('node server.js');
+    else if (files['app.js']) cmds.push('node app.js');
+    else {
+      const js = Object.keys(files).find(isRun);
+      if (js) cmds.push('node ' + js);
+    }
+    return cmds;
+  }
+
+  function setPageRunnable(hasPage) {
+    pageRunnable = !!hasPage;
+    const split = document.querySelector('.split');
+    if (split) split.classList.toggle('no-preview', !pageRunnable);
+    if (vtabConsole) vtabConsole.hidden = !pageRunnable;
+    if (runHint) runHint.hidden = pageRunnable;
+    if (runBtn) runBtn.hidden = !pageRunnable;
+    if (autoWrap) autoWrap.hidden = !pageRunnable;
+    if (openTabLink) openTabLink.hidden = !pageRunnable;
+    if (!pageRunnable) {
+      if (consolePanel) consolePanel.hidden = true;
+      if (clearBtn) clearBtn.hidden = true;
+      if (consoleBadge) consoleBadge.hidden = true;
+      unread = 0;
+      setView('result', false);
+      if (runHintCmds) {
+        runHintCmds.innerHTML = '';
+        runCommands(state.files, state.activeFile).forEach((c, i) => {
+          if (i) {
+            const then = document.createElement('span');
+            then.textContent = 'then';
+            runHintCmds.appendChild(then);
+          }
+          const code = document.createElement('code');
+          code.textContent = c;
+          runHintCmds.appendChild(code);
+        });
+      }
+    }
   }
 
   // Messages arrive only from the preview iframe. `e.source` is the guard: a
@@ -304,7 +362,12 @@
 
   function renderPreview() {
     const files = state.files;
-    const hasPage = !!files['index.html'] || !!files['index.htm'];
+    // A Node example is a server example even when it ships an index.html —
+    // that file is what the server *sends*, not a page this editor can run
+    // (node/http-module is exactly that case).
+    const isServer = !!files['server.js'] || !!files['app.js'];
+    const hasPage = !isServer && (!!files['index.html'] || !!files['index.htm']);
+    setPageRunnable(hasPage);
     if (!hasPage) {
       // Node/Express server example — no browser page; show run instructions.
       const cmds = [];

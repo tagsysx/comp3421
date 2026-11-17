@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMP3421 · Live Editor</title>
-  <link rel="stylesheet" href="assets/editor.css?v=20261103" />
+  <link rel="stylesheet" href="assets/editor.css?v=20261117" />
 </head>
 <body>
   <div class="topbar">
@@ -12,7 +12,7 @@
     <span class="brand">COMP3421 Live Editor</span>
     <span class="crumb"><span id="crumb-cat">…</span> / <span id="crumb-ex">…</span></span>
     <span class="spacer"></span>
-    <label><input type="checkbox" id="auto" checked /> Auto-run</label>
+    <label id="autorun-wrap"><input type="checkbox" id="auto" checked /> Auto-run</label>
     <button class="btn" id="download" title="Download all files of this example as a .zip (including your edits)">⬇ Download .zip</button>
     <button class="btn primary" id="run">▶ Run</button>
   </div>
@@ -20,6 +20,11 @@
   <div class="split">
     <div class="pane editor">
       <div class="pane-title">Source <span class="crumb" id="file-hint"></span></div>
+      <div class="run-hint" id="run-hint" hidden>
+        <b>Server-side example</b>
+        <span>Runs on your machine, not in this page.</span>
+        <span class="cmds" id="run-hint-cmds"></span>
+      </div>
       <div class="tabs" id="tabs"></div>
       <div class="editor-host" id="editor-host"></div>
     </div>
@@ -59,6 +64,6 @@
 
   <script src="vendor/codemirror.bundle.js"></script>
   <script src="assets/stored-zip.js"></script>
-  <script src="assets/editor.js?v=20261103"></script>
+  <script src="assets/editor.js?v=20261117"></script>
 </body>
 </html>

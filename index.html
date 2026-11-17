@@ -54,17 +54,60 @@
         return a;
       }
 
-      function addSection(title, examples) {
+      function addSection(parent, title, examples) {
         const sec = document.createElement('div');
         sec.className = 'cat';
-        const h = document.createElement('h2');
+        const h = document.createElement('h3');
         h.textContent = title;
         sec.appendChild(h);
         const grid = document.createElement('div');
         grid.className = 'grid';
         examples.forEach((ex) => grid.appendChild(ex));
         sec.appendChild(grid);
-        catsEl.appendChild(sec);
+        parent.appendChild(sec);
+      }
+
+      // Three blocks, not one flat list: the manifest holds lectures, labs and
+      // the two recipes decks in a single array, so an ungrouped render put
+      // Lab 02 between Lecture 3 and Lecture 4.
+      const GROUPS = [
+        { id: 'lectures', title: 'Lectures', sub: 'One section per lecture, in teaching order.' },
+        { id: 'labs', title: 'Labs', sub: 'The weekly exercise — open it, then build your own.' },
+        { id: 'recipes', title: 'Recipes', sub: 'The quick demos from the JavaScript lectures, one card each.' }
+      ];
+
+      function groupOf(lec) {
+        const id = String(lec.id || '');
+        const name = String(lec.name || '');
+        if (/^lab-/i.test(id) || /^lab\b/i.test(name)) return 'labs';
+        if (/recipe/i.test(id) || /recipe/i.test(name)) return 'recipes';
+        return 'lectures';
+      }
+
+      // Order by the number in the id (lecture-09-http -> 9). The display names
+      // are not reliable: two different entries are labelled "Lecture 09" and
+      // "Lecture 9" while their ids still run 09, 10, 11.
+      function numberIn(lec) {
+        const m = String(lec.id || '').match(/(\d+)/);
+        if (m) return parseInt(m[1], 10);
+        const n = String(lec.name || '').match(/(\d+)/);
+        return n ? parseInt(n[1], 10) : 999;
+      }
+
+      function addGroup(g) {
+        const wrap = document.createElement('div');
+        wrap.className = 'group';
+        wrap.dataset.group = g.id;
+        const h = document.createElement('h2');
+        h.className = 'group-title';
+        h.textContent = g.title;
+        const sub = document.createElement('p');
+        sub.className = 'gsub';
+        sub.textContent = g.sub;
+        wrap.appendChild(h);
+        wrap.appendChild(sub);
+        catsEl.appendChild(wrap);
+        return wrap;
       }
 
       // Featured entry: the Lists example keeps a short intro caption but
@@ -89,20 +132,30 @@
         .then((manifest) => {
           catsEl.innerHTML = '';
 
-          // New layout: group examples by lecture.
+          // Group by kind first (lectures / labs / recipes), then one section
+          // per lecture inside each group.
           if (Array.isArray(manifest.lectures) && manifest.lectures.length) {
+            const buckets = { lectures: [], labs: [], recipes: [] };
             manifest.lectures.forEach((lec) => {
-              const refs = lec.examples || [];
-              if (!refs.length) return; // lecture has no examples yet
-              const cards = [];
-              refs.forEach((ref) => {
-                if (ref === 'html/lists') { cards.push(makeListsFeature()); return; }
-                const ex = findExample(manifest.categories, ref);
-                if (ex) cards.push(makeCard(ex, ref));
+              if (!(lec.examples || []).length) return; // lecture has no examples yet
+              buckets[groupOf(lec)].push(lec);
+            });
+            GROUPS.forEach((g) => {
+              const list = buckets[g.id];
+              if (!list.length) return;
+              list.sort((a, b) => numberIn(a) - numberIn(b));
+              const host = addGroup(g);
+              list.forEach((lec) => {
+                const cards = [];
+                (lec.examples || []).forEach((ref) => {
+                  if (ref === 'html/lists') { cards.push(makeListsFeature()); return; }
+                  const ex = findExample(manifest.categories, ref);
+                  if (ex) cards.push(makeCard(ex, ref));
+                });
+                if (cards.length) {
+                  addSection(host, lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
+                }
               });
-              if (cards.length) {
-                addSection(lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
-              }
             });
             return;
           }
@@ -110,7 +163,7 @@
           // Fallback: old layout, one section per category.
           manifest.categories.forEach((cat) => {
             const cards = cat.examples.map((ex) => makeCard(ex, cat.id + '/' + ex.id));
-            addSection(cat.name + (cat.desc ? ' — ' + cat.desc : ''), cards);
+            addSection(catsEl, cat.name + (cat.desc ? ' — ' + cat.desc : ''), cards);
           });
         })
         .catch((err) => { catsEl.innerHTML = '<p>Failed to load examples: ' + err.message + '</p>'; });
