@@ -4,7 +4,7 @@
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1" />
   <title>COMP3421 · Code Examples</title>
-  <link rel="stylesheet" href="assets/editor.css?v=20261117" />
+  <link rel="stylesheet" href="assets/editor.css?v=2026111721" />
 </head>
 <body>
   <div class="topbar">
@@ -39,13 +39,22 @@
         return cat.examples.find((e) => e.id === eid) || null;
       }
 
-      function makeCard(ex, ref) {
+      function makeCard(ex, ref, isRecipe) {
         const a = document.createElement('a');
         a.className = 'card';
         a.href = 'editor.html?example=' + encodeURIComponent(ref);
         const name = document.createElement('div');
         name.className = 'name';
-        name.textContent = ex.name;
+        const label = document.createElement('span');
+        label.textContent = ex.name;
+        name.appendChild(label);
+        if (isRecipe) {
+          const tag = document.createElement('span');
+          tag.className = 'tag-recipe';
+          tag.textContent = 'recipe';
+          tag.title = 'From the Recipes deck — a quick demo, not a page of the lecture';
+          name.appendChild(tag);
+        }
         const desc = document.createElement('div');
         desc.className = 'desc';
         desc.textContent = ex.desc || '';
@@ -65,22 +74,26 @@
         examples.forEach((ex) => grid.appendChild(ex));
         sec.appendChild(grid);
         parent.appendChild(sec);
+        return grid;      // so a Recipes entry can append into its lecture
       }
 
-      // Three blocks, not one flat list: the manifest holds lectures, labs and
-      // the two recipes decks in a single array, so an ungrouped render put
-      // Lab 02 between Lecture 3 and Lecture 4.
+      // Two blocks, not one flat list: the manifest holds lectures, labs and the
+      // two recipes decks in a single array, so an ungrouped render put Lab 02
+      // between Lecture 3 and Lecture 4. Recipes are not a block of their own —
+      // they belong to their lecture and carry a badge on the card instead.
       const GROUPS = [
-        { id: 'lectures', title: 'Lectures', sub: 'One section per lecture, in teaching order.' },
-        { id: 'labs', title: 'Labs', sub: 'The weekly exercise — open it, then build your own.' },
-        { id: 'recipes', title: 'Recipes', sub: 'The quick demos from the JavaScript lectures, one card each.' }
+        { id: 'lectures', title: 'Lectures', sub: 'One section per lecture, in teaching order. Cards marked “recipe” are the quick demos from that lecture.' },
+        { id: 'labs', title: 'Labs', sub: 'The weekly exercise — open it, then build your own.' }
       ];
+
+      function isRecipe(lec) {
+        return /recipe/i.test(String(lec.id || '')) || /recipe/i.test(String(lec.name || ''));
+      }
 
       function groupOf(lec) {
         const id = String(lec.id || '');
         const name = String(lec.name || '');
         if (/^lab-/i.test(id) || /^lab\b/i.test(name)) return 'labs';
-        if (/recipe/i.test(id) || /recipe/i.test(name)) return 'recipes';
         return 'lectures';
       }
 
@@ -143,10 +156,11 @@
         .then((manifest) => {
           catsEl.innerHTML = '';
 
-          // Group by kind first (lectures / labs / recipes), then one section
-          // per lecture inside each group.
+          // Group by kind first (lectures / labs), then one section per lecture
+          // inside each group. A Recipes entry is folded into the lecture it
+          // belongs to — same number, its cards appended to that section.
           if (Array.isArray(manifest.lectures) && manifest.lectures.length) {
-            const buckets = { lectures: [], labs: [], recipes: [] };
+            const buckets = { lectures: [], labs: [] };
             manifest.lectures.forEach((lec) => {
               if (!(lec.examples || []).length) return; // lecture has no examples yet
               buckets[groupOf(lec)].push(lec);
@@ -156,18 +170,28 @@
               if (!list.length) return;
               list.sort((a, b) => numberIn(a) - numberIn(b));
               const host = addGroup(g);
+              const sections = {};      // lecture number -> that section's grid
               let total = 0;
               list.forEach((lec) => {
+                const num = numberIn(lec);
+                const recipe = isRecipe(lec);
                 const cards = [];
                 (lec.examples || []).forEach((ref) => {
                   if (ref === 'html/lists') { cards.push(makeListsFeature()); return; }
                   const ex = findExample(manifest.categories, ref);
-                  if (ex) cards.push(makeCard(ex, ref));
+                  if (ex) cards.push(makeCard(ex, ref, recipe));
                 });
-                if (cards.length) {
-                  addSection(host.body, lec.name + (lec.desc ? ' — ' + lec.desc : ''), cards);
-                  total += cards.length;
+                if (!cards.length) return;
+                if (recipe && sections[num]) {
+                  cards.forEach((c) => sections[num].appendChild(c));
+                } else {
+                  sections[num] = addSection(
+                    host.body,
+                    lec.name + (lec.desc ? ' — ' + lec.desc : ''),
+                    cards
+                  );
                 }
+                total += cards.length;
               });
               host.count.textContent = total + (total === 1 ? ' example' : ' examples');
             });

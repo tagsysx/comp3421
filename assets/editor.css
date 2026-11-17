@@ -196,7 +196,18 @@ body.dragging .preview-frame { pointer-events: none; }
 }
 .card:hover { border-color: var(--accent); box-shadow: 0 1px 6px rgba(0,0,0,.06); }
 .card .name { font-weight: 600; font-size: 14px; }
+.card .name {
+  font-weight: 600; font-size: 14px;
+  display: flex; align-items: baseline; justify-content: space-between; gap: 8px;
+}
 .card .desc { color: var(--muted); font-size: 12px; margin-top: 4px; }
+/* a card that comes from one of the Recipes decks — same grid, marked only */
+.card .tag-recipe {
+  flex: 0 0 auto; font-size: 10px; font-weight: 600; letter-spacing: .06em;
+  text-transform: uppercase; color: #1b6a44; background: #e9f5ee;
+  border: 1px solid #cbe4d6; border-radius: 999px; padding: 1px 7px;
+  white-space: nowrap;
+}
 
 /* index gallery — three blocks (lectures / labs / recipes). Each block is its
    own panel with a tinted head band, so the page reads as three sections
@@ -226,13 +237,10 @@ body.dragging .preview-frame { pointer-events: none; }
 .group .cat:last-child { margin-bottom: 0; }
 .group .cat h3 { font-size: 14px; font-weight: 600; margin: 0 0 9px; }
 
-/* one tint per block: blue = lectures, amber = labs, green = recipes */
+/* one tint per block: blue = lectures, amber = labs */
 .group[data-group="labs"] .group-head { background: #fdf3e4; border-bottom-color: #f1e0c5; }
 .group[data-group="labs"] .group-head > h2 { color: #9a5f10; }
 .group[data-group="labs"] .gcount { color: #9a5f10; border-color: #eed9b8; }
-.group[data-group="recipes"] .group-head { background: #e9f5ee; border-bottom-color: #d2e8db; }
-.group[data-group="recipes"] .group-head > h2 { color: #1b6a44; }
-.group[data-group="recipes"] .gcount { color: #1b6a44; border-color: #c9e2d4; }
 
 /* site footer */
 .site-footer {
