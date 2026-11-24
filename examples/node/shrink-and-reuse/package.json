@@ -1,0 +1,14 @@
+{
+  "name": "shrink-and-reuse",
+  "private": true,
+  "description": "COMP3421 Lecture 10 - minify, compress, keep-alive, in one file",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "dependencies": {
+    "compression": "^1.7.4",
+    "express": "^4.19.2",
+    "express-minify": "^1.0.0",
+    "jquery": "^3.7.1"
+  }
+}

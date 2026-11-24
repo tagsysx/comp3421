@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>shrink and reuse</title>
+</head>
+<body>
+  <h1>Shrink and reuse</h1>
+  <p>Open the Network tab, then watch three things:</p>
+  <ul>
+    <li><code>/api/items</code> — the reply carries <code>Content-Encoding</code></li>
+    <li><code>/app.js</code> — comments and indentation are gone</li>
+    <li><code>/vendor/…</code> — served as it was published</li>
+  </ul>
+  <script src="/app.js"></script>
+</body>
+</html>

@@ -342,9 +342,11 @@
     },
     {
       "id": "lecture-13-performance",
-      "name": "Lecture 13 · Performance",
-      "desc": "Caching, CDN, HTTP/2 & HTTP/3",
-      "examples": []
+      "name": "Lecture 10 · Performance & Optimisation",
+      "desc": "Latency, shrinking, caching layers, the CDN",
+      "examples": [
+        "node/shrink-and-reuse"
+      ]
     },
     {
       "id": "lecture-06-recipes",
@@ -2597,6 +2599,18 @@
           "files": [
             "server.js",
             "db.json",
+            "README.md"
+          ]
+        },
+        {
+          "id": "shrink-and-reuse",
+          "name": "Shrink and reuse — one runnable file",
+          "desc": "Minify, compress, serve the vendor build, keep-alive — the five moves of the lecture",
+          "files": [
+            "app.js",
+            "demo.js",
+            "index.html",
+            "package.json",
             "README.md"
           ]
         }
